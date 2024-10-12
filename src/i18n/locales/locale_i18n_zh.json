@@ -1,0 +1,9 @@
+{
+  "blank": {
+    "login": "登录",
+    "title": {
+      "addUser": "新增用户",
+      "demo": "Demo"
+    }
+  }
+}
