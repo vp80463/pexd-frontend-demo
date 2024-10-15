@@ -1,0 +1,9 @@
+{
+  "blank": {
+    "login": "ログイン",
+    "title": {
+      "addUser": "ユーザー追加",
+      "demo": "Demo"
+    }
+  }
+}
