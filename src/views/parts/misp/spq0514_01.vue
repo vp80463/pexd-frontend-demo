@@ -27,7 +27,7 @@ const viy2Button_2gh3Ey = ref();
 const viy2Row_lOY8w = ref();
 const viy2Row_4qB1eW = ref();
 const viy2Row_ruHgA = ref();
-const viy2Row_14vOY5 = ref();
+const viy2Row_14wgyC = ref();
 const viy2Radio_UzePB = ref();
 const viy2Select_mgSN = ref();
 const viy2Radio_gBGYE = ref();
@@ -36,6 +36,7 @@ const viy2Table_mmkzz = ref();
 const viy2Panel_14irVK = ref();
 const viy2Button_5heur2 = ref();
 const viy2Table_14dwTw = ref();
+const viy2Table_aGgKDk = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
@@ -79,6 +80,12 @@ const viy2Table_14dwTwEditConfig = reactive({
   trigger: 'click',
 });
 const viy2Table_14dwTwMouseConfig = reactive({
+  extension: true,
+});
+const viy2Table_aGgKDkEditConfig = reactive({
+  trigger: 'click',
+});
+const viy2Table_aGgKDkMouseConfig = reactive({
   extension: true,
 });
 const largeGroupDsApi = useApi({
@@ -326,6 +333,201 @@ const viy2Table_14dwTwAmtCostEditRender = computed(() => {
     enabled: false,
   };
 });
+const viy2Table_aGgKDkSiteIdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkProductCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSalesDescriptionEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkStandardPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkFirstOrderDateEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkProdLargeIdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkProdMediumIdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkProdSmallIdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkOrthoSubstitCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSupplyControlIdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkCostEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkReorderPointEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkReorderQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkOnHandQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkReceivingQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkAlocatedQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkOnShippingQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkOnFrozenQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkTotalQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSumAllocatedQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSumShipmentQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSumOnPurchaseQty1EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSumOnPurchaseQty2EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkSumOnPurchaseQty3EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth01QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth02QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth03QqtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth04QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth05QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth06QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth07QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth08QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth09QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth10QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth11QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkMonth12QtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkLocationCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkLocationQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_aGgKDkOpenPriceFlagEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 onMounted(() => {
 // 初始化targetMonth 和 point
   queryFormData.pointCd = uc.defaultPointCd;
@@ -422,12 +624,12 @@ const skipToDetail = (row) => {
                       :md="{ span: 24 }"
                     >
                       <VueRow
-                        id="viy2Row_14vOY5"
-                        ref="viy2Row_14vOY5"
+                        id="viy2Row_14wgyC"
+                        ref="viy2Row_14wgyC"
                       >
                         <VueCol
                           item-key="item"
-                          :md="{ span: 8 }"
+                          :md="{ span: 10 }"
                         >
                           <VueFormItem
                             label="出力対象"
@@ -503,7 +705,12 @@ const skipToDetail = (row) => {
                         </VueCol>
                         <VueCol
                           item-key="item"
-                          :md="{ span: 16 }"
+                          :inline="true"
+                          :md="{ span: 4 }"
+                        />
+                        <VueCol
+                          item-key="item"
+                          :md="{ span: 10 }"
                         >
                           <VueTable id="viy2Table_mmkzz" ref="viy2Table_mmkzz" height="auto" :edit-config="viy2Table_mmkzzEditConfig" :mouse-config="viy2Table_mmkzzMouseConfig">
                             <VueInputColumn
@@ -705,6 +912,249 @@ const skipToDetail = (row) => {
               field="amtCost"
               width="200px"
               title="売上原価（合計）"
+            />
+          </VueTable>
+          <VueTable id="viy2Table_aGgKDk" ref="viy2Table_aGgKDk" :edit-config="viy2Table_aGgKDkEditConfig" :mouse-config="viy2Table_aGgKDkMouseConfig">
+            <VueIndexColumn
+              align="center"
+              width="50px"
+              min-width="50px"
+              header-align="center"
+              title="No"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSiteIdEditRender"
+              field="siteId"
+              width="200px"
+              title="拠点コード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkProductCdEditRender"
+              field="productCd"
+              width="200px"
+              title="部品番号"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSalesDescriptionEditRender"
+              field="salesDescription"
+              width="200px"
+              title="部品名称"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkStandardPriceEditRender"
+              field="standardPrice"
+              width="200px"
+              title="標準小売単価"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkFirstOrderDateEditRender"
+              field="firstOrderDate"
+              width="200px"
+              title="拠点別商品マスタ登録日"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkProdLargeIdEditRender"
+              field="prodLargeId"
+              width="200px"
+              title="商品大区分"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkProdMediumIdEditRender"
+              field="prodMediumId"
+              width="200px"
+              title="商品中区分"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkProdSmallIdEditRender"
+              field="prodSmallId"
+              width="200px"
+              title="商品小区分"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkOrthoSubstitCdEditRender"
+              field="orthoSubstitCd"
+              width="200px"
+              title="正代替部品番号"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSupplyControlIdEditRender"
+              field="supplyControlId"
+              width="200px"
+              title="供給管理区分"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkCostEditRender"
+              field="cost"
+              width="200px"
+              title="最終仕入単価"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkReorderPointEditRender"
+              field="reorderPoint"
+              width="200px"
+              title="発注点"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkReorderQtyEditRender"
+              field="reorderQty"
+              width="200px"
+              title="発注量"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkOnHandQtyEditRender"
+              field="onHandQty"
+              width="200px"
+              title="未引当在庫"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkReceivingQtyEditRender"
+              field="receivingQty"
+              width="200px"
+              title="入庫中在庫"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkAlocatedQtyEditRender"
+              field="alocatedQty"
+              width="200px"
+              title="引当中在庫"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkOnShippingQtyEditRender"
+              field="onShippingQty"
+              width="200px"
+              title="出庫中在庫"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkOnFrozenQtyEditRender"
+              field="onFrozenQty"
+              width="200px"
+              title="フローズン在庫"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkTotalQtyEditRender"
+              field="totalQty"
+              width="200px"
+              title="受注総数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSumAllocatedQtyEditRender"
+              field="sumAllocatedQty"
+              width="200px"
+              title="引当総数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSumShipmentQtyEditRender"
+              field="sumShipmentQty"
+              width="200px"
+              title="出荷総数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSumOnPurchaseQty1EditRender"
+              field="sumOnPurchaseQty1"
+              width="200px"
+              title="欠品発注残数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSumOnPurchaseQty2EditRender"
+              field="sumOnPurchaseQty2"
+              width="200px"
+              title="補充発注残数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkSumOnPurchaseQty3EditRender"
+              field="sumOnPurchaseQty3"
+              width="200px"
+              title="先行発注残数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth01QtyEditRender"
+              field="month01Qty"
+              width="200px"
+              title="当月－１"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth02QtyEditRender"
+              field="month02Qty"
+              width="200px"
+              title="当月－２"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth03QqtyEditRender"
+              field="month03Qqty"
+              width="200px"
+              title="当月－３"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth04QtyEditRender"
+              field="month04Qty"
+              width="200px"
+              title="当月－4"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth05QtyEditRender"
+              field="month05Qty"
+              width="200px"
+              title="当月－５"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth06QtyEditRender"
+              field="month06Qty"
+              width="200px"
+              title="当月－６"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth07QtyEditRender"
+              field="month07Qty"
+              width="200px"
+              title="当月－７"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth08QtyEditRender"
+              field="month08Qty"
+              width="200px"
+              title="当月－８"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth09QtyEditRender"
+              field="month09Qty"
+              width="200px"
+              title="当月－９"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth10QtyEditRender"
+              field="month10Qty"
+              width="200px"
+              title="当月－１０"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth11QtyEditRender"
+              field="month11Qty"
+              width="200px"
+              title="当月－１１"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkMonth12QtyEditRender"
+              field="month12Qty"
+              width="200px"
+              title="当月－１２"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkLocationCdEditRender"
+              field="locationCd"
+              width="200px"
+              title="ロケーションコード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkLocationQtyEditRender"
+              field="locationQty"
+              width="200px"
+              title="ロケーション在庫数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkOpenPriceFlagEditRender"
+              field="openPriceFlag"
+              width="200px"
+              title="オープン価格サイン"
             />
           </VueTable>
         </VuePanel>

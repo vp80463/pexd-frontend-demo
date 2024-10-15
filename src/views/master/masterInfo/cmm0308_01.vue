@@ -18,12 +18,13 @@ const viy2Button_4CGTzC = ref();
 const resetBtn = ref();
 const viy2Row_rFsZl = ref();
 const copy8_viy2Row_rFsZl_col1 = ref();
-const viy2ValueList_5EzOE = ref();
 const viy2InputBox_4y5p9E = ref();
-const viy2Select_9gseBy = ref();
-const viy2Select_4uc4zb = ref();
+const viy2InputBox_aK1dSU = ref();
+const viy2InputBox_aKdSBE = ref();
+const viy2InputBox_aKdS6Q = ref();
 const viy2InputBox_9geMAm = ref();
-const viy2Select_9g5xbI = ref();
+const viy2InputBox_aKfw80 = ref();
+const viy2InputBox_aKfvDc = ref();
 const viy2InputNumber_ZLhoe = ref();
 const viy2InputNumber_ZLaLM = ref();
 const viy2Flex_pVGDy = ref();
@@ -33,68 +34,8 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  productCd: '', productNm: '', makerCd: '', makerAbbrCd: '', QmakerCd: '', brand: '', priceFrom: undefined, datafieldviy2InputNumber_ZLaLM: undefined,
+  productCd: '', productNm: '', productNm: '', productNm: '', QmakerCd: '', QmakerCd: '', QmakerCd: '', priceFrom: undefined, datafieldviy2InputNumber_ZLaLM: undefined,
 });
-const viy2Select_9gseByOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
-const viy2Select_4uc4zbOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
-const viy2Select_9g5xbIOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -402,12 +343,12 @@ const getTotalRate = () => {
                 label="部品番号"
                 prop="productCd"
               >
-                <VueValueList
-                  id="viy2ValueList_5EzOE"
-                  ref="viy2ValueList_5EzOE"
+                <VueInput
+                  id="viy2InputBox_4y5p9E"
+                  ref="viy2InputBox_4y5p9E"
                   v-model="queryFormData.productCd"
-                  :use-popover="true"
-                  :use-popup="true"
+                  :clearable="true"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
               <VueFormItem
@@ -415,8 +356,8 @@ const getTotalRate = () => {
                 prop="productNm"
               >
                 <VueInput
-                  id="viy2InputBox_4y5p9E"
-                  ref="viy2InputBox_4y5p9E"
+                  id="viy2InputBox_aK1dSU"
+                  ref="viy2InputBox_aK1dSU"
                   v-model="queryFormData.productNm"
                   :clearable="true"
                   :style="{ width: '200px' }"
@@ -424,28 +365,26 @@ const getTotalRate = () => {
               </VueFormItem>
               <VueFormItem
                 label="メーカーコード"
-                prop="makerCd"
+                prop="productNm"
               >
-                <VueSelect
-                  id="viy2Select_9gseBy"
-                  ref="viy2Select_9gseBy"
-                  v-model="queryFormData.makerCd"
-                  :style="{ width: '200px' }"
+                <VueInput
+                  id="viy2InputBox_aKdSBE"
+                  ref="viy2InputBox_aKdSBE"
+                  v-model="queryFormData.productNm"
                   :clearable="true"
-                  :options="viy2Select_9gseByOpts"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
               <VueFormItem
                 label="メーカー略号"
-                prop="makerAbbrCd"
+                prop="productNm"
               >
-                <VueSelect
-                  id="viy2Select_4uc4zb"
-                  ref="viy2Select_4uc4zb"
-                  v-model="queryFormData.makerAbbrCd"
-                  :style="{ width: '200px' }"
+                <VueInput
+                  id="viy2InputBox_aKdS6Q"
+                  ref="viy2InputBox_aKdS6Q"
+                  v-model="queryFormData.productNm"
                   :clearable="true"
-                  :options="viy2Select_4uc4zbOpts"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
               <VueFormItem
@@ -461,16 +400,27 @@ const getTotalRate = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="ブランド"
-                prop="brand"
+                label="ブランド1"
+                prop="QmakerCd"
               >
-                <VueSelect
-                  id="viy2Select_9g5xbI"
-                  ref="viy2Select_9g5xbI"
-                  v-model="queryFormData.brand"
-                  :style="{ width: '200px' }"
+                <VueInput
+                  id="viy2InputBox_aKfw80"
+                  ref="viy2InputBox_aKfw80"
+                  v-model="queryFormData.QmakerCd"
                   :clearable="true"
-                  :options="viy2Select_9g5xbIOpts"
+                  :style="{ width: '200px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="ブランド2"
+                prop="QmakerCd"
+              >
+                <VueInput
+                  id="viy2InputBox_aKfvDc"
+                  ref="viy2InputBox_aKfvDc"
+                  v-model="queryFormData.QmakerCd"
+                  :clearable="true"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
               <VueFormItem

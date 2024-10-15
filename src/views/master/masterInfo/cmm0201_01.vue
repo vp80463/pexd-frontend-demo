@@ -149,6 +149,26 @@ const viy2Select_1rPSyEHOpts = reactive([
 '66598 ジャック698',
   },
 ]);
+const viy2Select_1KzHGgOpts = reactive([
+  {
+    codeData1:
+'普通',
+    codeDbid:
+'普通',
+  },
+  {
+    codeData1:
+'欠品',
+    codeDbid:
+'欠品',
+  },
+  {
+    codeData1:
+'凍結',
+    codeDbid:
+'凍結',
+  },
+]);
 const viy2CheckBox_vEEkqOpts = [
   {
     label:
@@ -667,7 +687,7 @@ const getPointLabel = (pointId) => {
                 </VueInput>
               </VueFormItem>
               <VueFormItem
-                label="ロケーション別"
+                label="ロケーションタイプ"
                 prop="locationTypeId"
               >
                 <VueSelect
@@ -676,7 +696,7 @@ const getPointLabel = (pointId) => {
                   v-model="conditionFormData.locationTypeId"
                   :style="{ width: '200px' }"
                   :clearable="true"
-                  :options="locationTypeDs"
+                  :options="viy2Select_1KzHGgOpts"
                   :props="{
                     label: 'codeData1',
                     value: 'codeDbid',
