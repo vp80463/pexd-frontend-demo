@@ -629,7 +629,7 @@ const skipToDetail = (row) => {
                       >
                         <VueCol
                           item-key="item"
-                          :md="{ span: 10 }"
+                          :md="{ span: 8 }"
                         >
                           <VueFormItem
                             label="出力対象"
@@ -705,12 +705,7 @@ const skipToDetail = (row) => {
                         </VueCol>
                         <VueCol
                           item-key="item"
-                          :inline="true"
-                          :md="{ span: 4 }"
-                        />
-                        <VueCol
-                          item-key="item"
-                          :md="{ span: 10 }"
+                          :md="{ span: 8 }"
                         >
                           <VueTable id="viy2Table_mmkzz" ref="viy2Table_mmkzz" height="auto" :edit-config="viy2Table_mmkzzEditConfig" :mouse-config="viy2Table_mmkzzMouseConfig">
                             <VueInputColumn
@@ -727,6 +722,10 @@ const skipToDetail = (row) => {
                             />
                           </VueTable>
                         </VueCol>
+                        <VueCol
+                          item-key="item"
+                          :md="{ span: 8 }"
+                        />
                       </VueRow>
                     </VueCol>
                   </VueRow>

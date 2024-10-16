@@ -33,6 +33,7 @@ const Parts = ref();
 const viy2Row_1Ms8Aa = ref();
 const viy2ValueList_IxhGR = ref();
 const viy2Cascader_qHUEk = ref();
+const viy2Cascader_3OfGH = ref();
 const viy2Flex_KcTfE = ref();
 const viy2Panel_gTNDt = ref();
 const Export = ref();
@@ -45,7 +46,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  pointId: '', parts: '', partsTest: '', productCategory: [],
+  pointId: '', parts: '', partsTest: '', productCategory: [], Groupcd: [],
 });
 const rules = reactive({
   viy2Select_1rPSyEHRules: [
@@ -61,6 +62,9 @@ const PartsPopupQueryMethod = parts_pop_query_method;
 const viy2Cascader_qHUEkProps = reactive({
   checkStrictly: true,
   expandTrigger: 'click',
+});
+const viy2Cascader_3OfGHProps = reactive({
+  checkStrictly: true,
 });
 const gridEditConfig = reactive({
   trigger: 'click',
@@ -191,6 +195,109 @@ const gridDs2Api = useApi({
   manual: true,
 });
 const gridDs2 = gridDs2Api.data;
+const groupDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const groupDs = groupDsApi.data;
 const productCategoryDsApi = useApi({
   url: '/common/helper/getLargeGroupList.json',
   method: 'post',
@@ -651,6 +758,7 @@ const onLeavePartsCode = async (code) => {
                 />
               </VueFormItem>
               <VueFormItem
+                v-if="false"
                 label="商品区分"
                 prop="productCategory"
               >
@@ -663,6 +771,18 @@ const onLeavePartsCode = async (code) => {
                   :style="{ width: '250px' }"
                   :options="productCategoryDs"
                   :props="viy2Cascader_qHUEkProps"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="商品区分"
+                prop="Groupcd"
+              >
+                <VueCascader
+                  id="viy2Cascader_3OfGH"
+                  ref="viy2Cascader_3OfGH"
+                  v-model="queryFormData.Groupcd"
+                  :options="groupDs"
+                  :props="viy2Cascader_3OfGHProps"
                 />
               </VueFormItem>
             </VueCol>

@@ -20,7 +20,7 @@ const viy2Row_rFsZl = ref();
 const copy8_viy2Row_rFsZl_col1 = ref();
 const viy2Select_4uc4zb = ref();
 const viy2InputBox_4y5p9E = ref();
-const viy2Select_4CHRQo = ref();
+const viy2Cascader_4o8AI = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_GEM7N = ref();
 const viy2Button_5FbWKc = ref();
@@ -29,7 +29,7 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  org: '', wholesaleRate: '', largeGroupCd: '',
+  org: '', wholesaleRate: '', largeGroupCd: [],
 });
 const rules = reactive({
   viy2Select_4uc4zbRules: [
@@ -59,26 +59,11 @@ const viy2Select_4uc4zbOpts = reactive([
 'Option 3',
   },
 ]);
-const viy2Select_4CHRQoOpts = reactive([
-  {
-    label:
-'66564 ジャック',
-    value:
-'66564 ジャック',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
+const viy2Cascader_4o8AIProps = reactive({
+  checkStrictly: true,
+  label: 'label',
+  value: 'value',
+});
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -96,6 +81,109 @@ const mstCodeDsApi = useApi({
   manual: true,
 });
 const mstCodeDs = mstCodeDsApi.data;
+const productCategoryCdApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const productCategoryCd = productCategoryCdApi.data;
 const downloadDsApi = useApi({
   url: '/parts/spq0308/doDownload.json',
   method: 'post',
@@ -357,12 +445,14 @@ const getTotalRate = () => {
                 label="商品大区分"
                 prop="largeGroupCd"
               >
-                <VueSelect
-                  id="viy2Select_4CHRQo"
-                  ref="viy2Select_4CHRQo"
+                <VueCascader
+                  id="viy2Cascader_4o8AI"
+                  ref="viy2Cascader_4o8AI"
                   v-model="queryFormData.largeGroupCd"
-                  :style="{ width: '200px' }"
-                  :options="viy2Select_4CHRQoOpts"
+                  display-member="label"
+                  value-member="value"
+                  :options="productCategoryCd"
+                  :props="viy2Cascader_4o8AIProps"
                 />
               </VueFormItem>
             </VueCol>

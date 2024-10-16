@@ -30,6 +30,7 @@ const queryFormData = reactive({
   WholesaleRate: '', GroupCd: [],
 });
 const viy2Cascader_2Sgt2Props = reactive({
+  checkStrictly: true,
   label: 'label',
   value: 'value',
 });

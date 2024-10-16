@@ -42,7 +42,6 @@ const viy2Row_TBVFW = ref();
 const viy2Row_TCZrB = ref();
 const viy2Form_MFuoe = ref();
 const viy2Panel_MFrbq = ref();
-const viy2Button_10s0uo = ref();
 const viy2Button_SS9Ht = ref();
 const viy2Button_MHEph = ref();
 const viy2Row_MFE8R = ref();
@@ -50,14 +49,10 @@ const viy2InputBox_STKLR1 = ref();
 const viy2InputBox_STKLR3 = ref();
 const viy2Radio_UbcrS = ref();
 const viy2InputBox_STKLR5 = ref();
-const viy2InputBox_8RazzA11 = ref();
-const viy2Radio_U4f1I = ref();
 const viy2Select_MLrPg = ref();
 const viy2InputBox_STKLR2 = ref();
 const viy2InputBox_STKLR4 = ref();
-const viy2InputBox_STKLR8 = ref();
-const viy2InputBox_STKLR6 = ref();
-const viy2InputBox_STKLR10 = ref();
+const viy2Radio_U4f1I = ref();
 const viy2Radio_U59Hr = ref();
 const viy2Panel_SXD4P = ref();
 const viy2Row_SYw06 = ref();
@@ -69,16 +64,12 @@ const queryFormData = reactive({
   shop: '', tel: '', zipCode: '', cityGove: '', city: '', activeStatus: '有効',
 });
 const viy2Form_MFuoeData = reactive({
-  orgCd: '01234', orgAbbr: '特金製造', attribute: '内部課', orgRequestCd: '01234', regularRank: '05', shipflag: 'する', stopFlag: [], orgNm: '特金製造株式会社', orgNm: '特金製造', proDpCd: '5001', pcCd: '10011', resscutFlag: '', status: '有効',
+  orgCd: '01234', orgAbbr: '特金製造', attribute: '内部課', orgRequestCd: '01234', stopFlag: [], orgNm: '特金製造株式会社', orgNm: '特金製造', shipflag: 'する', status: '有効',
 });
 const aside001002 = ref(false);
 const viy2Radio_UbcrSOpts = reactive([
   { value: '販売店', label: '販売店' },
   { value: '内部課', label: '内部課' },
-]);
-const viy2Radio_U4f1IOpts = reactive([
-  { value: 'する', label: 'する' },
-  { value: 'しない', label: 'しない' },
 ]);
 const viy2Select_MLrPgOpts = reactive([
   {
@@ -123,6 +114,10 @@ const viy2Select_MLrPgOpts = reactive([
     value:
 '日曜日',
   },
+]);
+const viy2Radio_U4f1IOpts = reactive([
+  { value: 'する', label: 'する' },
+  { value: 'しない', label: 'しない' },
 ]);
 const viy2Radio_U59HrOpts = reactive([
   { value: '有効', label: '有効' },
@@ -189,8 +184,9 @@ const asideGridDsApi = useApi({
       postCode: '4544-6454',
       cityGove: '大阪府',
       city: '堺市',
-      address1: '大阪府堺市',
-      address2: '大阪府堺市',
+      fax: '+81-3-1234-5678',
+      address1: '１－１１',
+      address2: 'マンション１０１号室',
       default: '1',
     },
     {
@@ -200,8 +196,9 @@ const asideGridDsApi = useApi({
       postCode: '4544-6454',
       cityGove: '大阪府',
       city: '吹田市',
-      address1: '大阪府吹田市',
-      address2: '大阪府吹田市',
+      fax: '+81-45-6789-0123',
+      address1: '１－１１',
+      address2: 'マンション１０１号室',
       default: '0',
     },
   ],
@@ -425,12 +422,12 @@ const asideGridTelEditRender = computed(() => {
     enabled: false,
   };
 });
-const asideGridPostCodeEditRender = computed(() => {
+const asideGridFaxEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const asideGridFaxEditRender = computed(() => {
+const asideGridPostCodeEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -441,11 +438,6 @@ const asideGridCityGoveEditRender = computed(() => {
   };
 });
 const asideGridCityEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const asideGridAutonomousEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -837,9 +829,6 @@ const isNewInput = (value) => {
         <VuePanel id="viy2Panel_MFrbq" ref="viy2Panel_MFrbq" title="内部課情報">
           <template #header>
             <div style="width: auto">
-              <VueButton id="viy2Button_10s0uo" ref="viy2Button_10s0uo" icon-position="left" type="danger">
-                削除
-              </VueButton>
               <VueButton id="viy2Button_SS9Ht" ref="viy2Button_SS9Ht" type="info" icon-position="right">
                 保存
               </VueButton>
@@ -864,6 +853,7 @@ const isNewInput = (value) => {
                   id="viy2InputBox_STKLR1"
                   ref="viy2InputBox_STKLR1"
                   v-model="viy2Form_MFuoeData.orgCd"
+                  :readonly="true"
                   class="no-border"
                   :style="{ width: '200px' }"
                 />
@@ -915,39 +905,6 @@ const isNewInput = (value) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="純掛掛率ランク"
-                prop="regularRank"
-              >
-                <VueInput
-                  id="viy2InputBox_8RazzA11"
-                  ref="viy2InputBox_8RazzA11"
-                  v-model="viy2Form_MFuoeData.regularRank"
-                  class="no-border"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="出荷可否"
-                prop="shipflag"
-              >
-                <VueRadioGroup
-                  id="viy2Radio_U4f1I"
-                  ref="viy2Radio_U4f1I"
-                  v-model="viy2Form_MFuoeData.shipflag"
-                  radio-style="button"
-                  direction="horizontal"
-                  split-size="default"
-                >
-                  <VueRadioButton
-                    v-for="option in viy2Radio_U4f1IOpts"
-                    :key="option.value"
-                    :label="option.value"
-                  >
-                    {{ option.label }}
-                  </VueRadioButton>
-                </VueRadioGroup>
-              </VueFormItem>
-              <VueFormItem
                 label="非稼働日"
                 prop="stopFlag"
               >
@@ -990,41 +947,25 @@ const isNewInput = (value) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="受注代行拠点"
-                prop="proDpCd"
+                label="出荷可否"
+                prop="shipflag"
               >
-                <VueInput
-                  id="viy2InputBox_STKLR8"
-                  ref="viy2InputBox_STKLR8"
-                  v-model="viy2Form_MFuoeData.proDpCd"
-                  class="no-border"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="管轄ＰＣコード"
-                prop="pcCd"
-              >
-                <VueInput
-                  id="viy2InputBox_STKLR6"
-                  ref="viy2InputBox_STKLR6"
-                  v-model="viy2Form_MFuoeData.pcCd"
-                  :readonly="true"
-                  class="no-border"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="レスカットサイン"
-                prop="resscutFlag"
-              >
-                <VueInput
-                  id="viy2InputBox_STKLR10"
-                  ref="viy2InputBox_STKLR10"
-                  v-model="viy2Form_MFuoeData.resscutFlag"
-                  class="no-border"
-                  :style="{ width: '200px' }"
-                />
+                <VueRadioGroup
+                  id="viy2Radio_U4f1I"
+                  ref="viy2Radio_U4f1I"
+                  v-model="viy2Form_MFuoeData.shipflag"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_U4f1IOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
               </VueFormItem>
               <VueFormItem
                 label="有効状態"
@@ -1036,7 +977,6 @@ const isNewInput = (value) => {
                   v-model="viy2Form_MFuoeData.status"
                   radio-style="button"
                   direction="horizontal"
-                  :disabled="true"
                   split-size="default"
                 >
                   <VueRadioButton
@@ -1101,16 +1041,16 @@ const isNewInput = (value) => {
             header-align="center"
           />
           <VueInputColumn
-            :edit-render="asideGridPostCodeEditRender"
-            field="postCode"
-            title="郵便番号"
-            width="100px"
-            header-align="center"
-          />
-          <VueInputColumn
             :edit-render="asideGridFaxEditRender"
             field="fax"
             title="FAX"
+            width="130px"
+            header-align="center"
+          />
+          <VueInputColumn
+            :edit-render="asideGridPostCodeEditRender"
+            field="postCode"
+            title="郵便番号"
             width="100px"
             header-align="center"
           />
@@ -1129,13 +1069,6 @@ const isNewInput = (value) => {
             header-align="center"
           />
           <VueInputColumn
-            :edit-render="asideGridAutonomousEditRender"
-            field="autonomous"
-            title="自治体コード"
-            width="100px"
-            header-align="center"
-          />
-          <VueInputColumn
             :edit-render="asideGridAddress1EditRender"
             field="address1"
             title="住所1"
@@ -1146,15 +1079,8 @@ const isNewInput = (value) => {
             :edit-render="asideGridAddress2EditRender"
             field="address2"
             title="住所2"
-            width="100px"
+            width="150px"
             header-align="center"
-          />
-          <VueSelectionColumn
-            align="center"
-            header-align="center"
-            title="デフォルト"
-            width="100px"
-            type="radio"
           />
           <VueButtonColumn
             align="center"

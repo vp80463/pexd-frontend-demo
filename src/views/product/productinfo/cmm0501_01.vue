@@ -45,6 +45,8 @@ const viy2InputBox_tyPCQformatter = value => formatCodeInput(value);
 const viy2Cascader_87KXOProps = reactive({
   checkStrictly: true,
   expandTrigger: 'click',
+  label: 'label',
+  value: 'value',
 });
 const gridEditConfig = reactive({
   trigger: 'click',
@@ -64,6 +66,109 @@ const gridViy2TableButtonColumn_gR42iButtons = (scope) => {
 };
 const paginationCurrentPage = ref(1);
 const paginationPageSize = ref();
+const productGroupDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const productGroupDs = productGroupDsApi.data;
 const largeGroupDsApi = useApi({
   url: '/common/helper/getLargeGroupList.json',
   method: 'post',
@@ -424,9 +529,11 @@ const exportFile = () => {
                   id="viy2Cascader_87KXO"
                   ref="viy2Cascader_87KXO"
                   v-model="queryFormData.productCategory"
+                  display-member="label"
+                  value-member="value"
                   :clearable="true"
                   :disabled="queryFormData.parts !== ''"
-                  :options="largeGroupDs"
+                  :options="productGroupDs"
                   :props="viy2Cascader_87KXOProps"
                 />
               </VueFormItem>

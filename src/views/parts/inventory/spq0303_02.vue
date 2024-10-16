@@ -34,6 +34,7 @@ const viy2Select_1rPSyEH = ref();
 const parts = ref();
 const viy2Row_1MwUsG = ref();
 const viy2ValueList_N7tbE = ref();
+const viy2Cascader_3OZUM = ref();
 const viy2Cascader_r874R = ref();
 const location = ref();
 const viy2Button_CblvN = ref();
@@ -54,7 +55,7 @@ const viy2Subpage_nm3U6 = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  pointId: '', parts: '', partsTest: '', productCategory: [], location: '', locationTypeId: '', mainLocationSign: 'N',
+  pointId: '', parts: '', partsTest: '', productCategory: [], productCategory: [], location: '', locationTypeId: '', mainLocationSign: 'N',
 });
 const rules = reactive({
   viy2Select_1rPSyEHRules: [
@@ -68,6 +69,11 @@ const showLocationWin = ref(false);
 const partsPopoverQueryMethod = parts_query_method;
 const partsPopupColumns = ref(parts_pop_column);
 const partsPopupQueryMethod = parts_pop_query_method;
+const viy2Cascader_3OZUMProps = reactive({
+  checkStrictly: true,
+  label: 'label',
+  value: 'value',
+});
 const viy2Cascader_r874RProps = reactive({
   checkStrictly: true,
   expandTrigger: 'click',
@@ -188,6 +194,109 @@ const partsInputDsApi = useApi({
   manual: true,
 });
 const partsInputDs = partsInputDsApi.data;
+const productGroupDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const productGroupDs = productGroupDsApi.data;
 const productCategoryDsApi = useApi({
   url: '/common/helper/getLargeGroupList.json',
   method: 'post',
@@ -653,6 +762,21 @@ const getPointLabel = (pointId) => {
                 />
               </VueFormItem>
               <VueFormItem
+                label="商品区分"
+                prop="productCategory"
+              >
+                <VueCascader
+                  id="viy2Cascader_3OZUM"
+                  ref="viy2Cascader_3OZUM"
+                  v-model="queryFormData.productCategory"
+                  display-member="label"
+                  value-member="value"
+                  :options="productGroupDs"
+                  :props="viy2Cascader_3OZUMProps"
+                />
+              </VueFormItem>
+              <VueFormItem
+                v-if="false"
                 label="商品区分"
                 prop="productCategory"
               >

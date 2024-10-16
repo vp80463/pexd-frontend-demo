@@ -84,36 +84,6 @@ const viy2ValueList_hNGbc5PopupQueryMethod = parts_pop_query_method;
 const viy2Select_D7GEqOpts = reactive([
   {
     label:
-'月初在庫',
-    value:
-'月初在庫',
-  },
-  {
-    label:
-'バランスコスト',
-    value:
-'バランスコスト',
-  },
-  {
-    label:
-'受入',
-    value:
-'受入',
-  },
-  {
-    label:
-'出荷',
-    value:
-'出荷',
-  },
-  {
-    label:
-'返品',
-    value:
-'返品',
-  },
-  {
-    label:
 '調整入',
     value:
 '調整入',
@@ -123,18 +93,6 @@ const viy2Select_D7GEqOpts = reactive([
 '調整出',
     value:
 '調整出',
-  },
-  {
-    label:
-'棚卸増',
-    value:
-'棚卸増',
-  },
-  {
-    label:
-'棚卸減',
-    value:
-'棚卸減',
   },
 ]);
 const gridEditConfig = reactive({

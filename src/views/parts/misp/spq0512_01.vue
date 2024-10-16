@@ -1,5 +1,5 @@
 <script setup>
-import { useLockScreen } from 'viy-ui';
+import { IconCloseBold, IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -24,6 +24,8 @@ const formatFlag = ref(true);
 const firstDay = dayjs().startOf('month').format('YYYYMMDD');
 // 该程序取当天为最后一天
 const lastDay = dayjs().format('YYYYMMDD');
+const gridShow = ref(true);
+const grid1Show = ref(false);
 defineOptions({
   name: 'spq0512_01',
 });
@@ -41,17 +43,37 @@ const viy2DateTimePicker_RRgLG = ref();
 const viy2Row_4ZrBT2 = ref();
 const viy2Radio_4ZrBT6 = ref();
 const viy2Radio_4ZrBT8 = ref();
+const viy2Flex_ztw91 = ref();
 const viy2Panel_50igpm = ref();
 const viy2Button_50q5go = ref();
 const viy2Button_50lG5o = ref();
 const viy2Button_50v94C = ref();
 const viy2Button_50lEfc = ref();
+const grid = ref();
 const grid1 = ref();
-const grid2 = ref();
+const viy2Aside_zwSA3 = ref();
+const viy2Row_v8prN = ref();
+const viy2Row_5K6AKO = ref();
+const copy2_viy2Row_v8xMS_col1 = ref();
+const copy2_viy2Row_v8xMS_col2 = ref();
+const viy2Button_5K6ALG = ref();
+const viy2Form_zCww8 = ref();
+const viy2FormItem_zCDdW = ref();
+const viy2Panel_zDFko = ref();
+const viy2Table_zDKIo = ref();
 const formData = reactive({
 });
 const queryFormDataData = reactive({
   Type: '1', datafieldviy2DateTimePicker_RRgLG: '', NewLineCode: 'CR + LF', SignConversion: 'する',
+});
+const viy2Form_zCww8Data = reactive({
+});
+const skipDetailShow = ref(false);
+const viy2Table_zDKIoEditConfig = reactive({
+  trigger: 'click',
+});
+const viy2Table_zDKIoMouseConfig = reactive({
+  extension: true,
 });
 const viy2Radio_ANhICOpts = reactive([
   { value: '1', label: '鑑データ' },
@@ -65,18 +87,28 @@ const viy2Radio_4ZrBT8Opts = reactive([
   { value: 'する', label: 'する' },
   { value: 'しない', label: 'しない' },
 ]);
+const gridEditConfig = reactive({
+  trigger: 'click',
+});
+const gridMouseConfig = reactive({
+  extension: true,
+});
 const grid1EditConfig = reactive({
   trigger: 'click',
 });
 const grid1MouseConfig = reactive({
   extension: true,
 });
-const grid2EditConfig = reactive({
-  trigger: 'click',
-});
-const grid2MouseConfig = reactive({
-  extension: true,
-});
+const grid1Viy2TableButtonColumn_zws0GButtons = (scope) => {
+  return [
+    {
+      label: '',
+      type: 'text',
+      icon: IconEdit,
+      click: skipDetailFc,
+    },
+  ];
+};
 const gridDsApi = useApi({
   url: '/parts/spm020101/searchSalesOrderList.json',
   method: 'post',
@@ -100,6 +132,16 @@ const gridDsApi = useApi({
   manual: true,
 });
 const gridDs = gridDsApi.data;
+const staticDsApi = useApi({
+  method: 'post',
+  localData: [
+    { billingTo: 'consumer1', amountOfPartsSold: 10.2, Fare: 5, directFees: 1, manufacturerFees: 3, totalPrice: 19.2 },
+    { billingTo: 'consumer2', amountOfPartsSold: 3.1, Fare: 5, directFees: 1, manufacturerFees: 3, totalPrice: 13.1 },
+    { billingTo: 'consumer3', amountOfPartsSold: 6.4, Fare: 5, directFees: 1, manufacturerFees: 3, totalPrice: 12.4 },
+    { billingTo: 'consumer4', amountOfPartsSold: 30, Fare: 5, directFees: 1, manufacturerFees: 3, totalPrice: 39 },
+  ],
+});
+const staticDs = staticDsApi.data;
 const orderStatusDsApi = useApi({
   url: '/common/helper/getOrderStatus.json',
   method: 'post',
@@ -128,17 +170,17 @@ const viy2Button_6My7VAClick = () => {
   doExport();
 };
 const viy2Radio_ANhICChange = (value) => {
-  debugger;
   if (value == '1') {
     formatFlag.value = true;
-    gridFlag.value = true;
+    gridShow.value = false;
+    grid1Show.value = true;
   } else {
     formatFlag.value = false;
-    gridFlag.value = false;
+    gridShow.value = false;
+    grid1Show.value = true;
   }
 };
 (value) => {
-  debugger;
   const displayTypeDS = displayTypeDSApi.data;
   if (value == 'companyWide') {
     // 隐藏 表示タイプ、
@@ -168,72 +210,164 @@ const viy2Button_50v94CClick = () => {
 const viy2Button_50lEfcClick = () => {
   doExport();
 };
-const grid1IdentificationEditRender = computed(() => {
+const gridIdentificationEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1DealerCodeEditRender = computed(() => {
+const gridDealerCodeEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1HeaderIndicatorEditRender = computed(() => {
+const gridHeaderIndicatorEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1SalesClosingDateEditRender = computed(() => {
+const gridSalesClosingDateEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1BaseCodeEditRender = computed(() => {
+const gridBaseCodeEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1BillingToStoreCodeEditRender = computed(() => {
+const gridBillingToStoreCodeEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1EntryAndExitCategoryEditRender = computed(() => {
+const gridEntryAndExitCategoryEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid1InvoiceSmountEditRender = computed(() => {
+const gridInvoiceSmountEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2BillingToEditRender = computed(() => {
+const grid1BillingToEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2AmountOfPartsSoldEditRender = computed(() => {
+const grid1AmountOfPartsSoldEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const grid1FareEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const grid1DirectFeesEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const grid1ManufacturerFeesEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const grid1TotalPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const viy2Button_5K6ALGClick = () => {
+  VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
+    type: 'warning',
+  }).then(() => {
+    skipDetailShow.value = false;
+  });
+};
+const viy2Table_zDKIoData1EditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2FareEditRender = computed(() => {
+const viy2Table_zDKIoData2EditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2DirectFeesEditRender = computed(() => {
+const viy2Table_zDKIoData3EditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2ManufacturerFeesEditRender = computed(() => {
+const viy2Table_zDKIoData4EditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2TotalPriceEditRender = computed(() => {
+const viy2Table_zDKIoData5EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData6EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData7EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData8EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData9EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData10EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData11EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData12EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData13EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_zDKIoData14EditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -311,6 +445,9 @@ const onRowDetail = (row) => {
 const getPointLabel = (pointId) => {
   const item = find(pointDs.value, { id: pointId });
   return item ? item.desc : null;
+};
+const skipDetailFc = () => {
+  skipDetailShow.value = true;
 };
 </script>
 
@@ -463,7 +600,14 @@ const getPointLabel = (pointId) => {
             </VueCol>
           </VueRow>
         </VuePanel>
-        <VuePanel id="viy2Panel_50igpm" ref="viy2Panel_50igpm" :title="t('label.detailInfo')" height="auto" collapse-icon-position="left">
+      </VueForm>
+      <VueFlex
+        id="viy2Flex_ztw91"
+        ref="viy2Flex_ztw91"
+        direction="column"
+        grow="1"
+      >
+        <VuePanel id="viy2Panel_50igpm" ref="viy2Panel_50igpm" :title="t('label.detailInfo')" height="100%" collapse-icon-position="left">
           <template #header>
             <div style="width: auto">
               <VueButton id="viy2Button_50q5go" ref="viy2Button_50q5go" icon-position="left" @click="viy2Button_50q5goClick">
@@ -480,7 +624,7 @@ const getPointLabel = (pointId) => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="grid1" ref="grid1" :stripe="true" :show-footer="true" :edit-config="grid1EditConfig" :mouse-config="grid1MouseConfig">
+          <VueTable v-if="gridShow" id="grid" ref="grid" :stripe="true" :show-footer="true" height="auto" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
             <VueIndexColumn
               align="center"
               width="50px"
@@ -489,55 +633,55 @@ const getPointLabel = (pointId) => {
               title="No"
             />
             <VueInputColumn
-              :edit-render="grid1IdentificationEditRender"
+              :edit-render="gridIdentificationEditRender"
               field="identification"
               title="識別"
               width="100px"
             />
             <VueInputColumn
-              :edit-render="grid1DealerCodeEditRender"
+              :edit-render="gridDealerCodeEditRender"
               field="dealerCode"
               width="200px"
               title="特約店コード"
             />
             <VueInputColumn
-              :edit-render="grid1HeaderIndicatorEditRender"
+              :edit-render="gridHeaderIndicatorEditRender"
               field="headerIndicator"
               title="ヘッダー区分"
               width="150px"
             />
             <VueInputColumn
-              :edit-render="grid1SalesClosingDateEditRender"
+              :edit-render="gridSalesClosingDateEditRender"
               field="salesClosingDate"
               width="200px"
               title="売上締日"
             />
             <VueInputColumn
-              :edit-render="grid1BaseCodeEditRender"
+              :edit-render="gridBaseCodeEditRender"
               field="baseCode"
               width="200px"
               title="ベースコード"
             />
             <VueInputColumn
-              :edit-render="grid1BillingToStoreCodeEditRender"
+              :edit-render="gridBillingToStoreCodeEditRender"
               field="billingToStoreCode"
               width="200px"
               title="請求先販売店コード"
             />
             <VueInputColumn
-              :edit-render="grid1EntryAndExitCategoryEditRender"
+              :edit-render="gridEntryAndExitCategoryEditRender"
               field="entryAndExitCategory"
               title="入出庫分類"
               width="150px"
             />
             <VueInputColumn
-              :edit-render="grid1InvoiceSmountEditRender"
+              :edit-render="gridInvoiceSmountEditRender"
               field="invoiceSmount"
               width="200px"
               title="請求金額"
             />
           </VueTable>
-          <VueTable id="grid2" ref="grid2" :stripe="true" :show-footer="true" :edit-config="grid2EditConfig" :mouse-config="grid2MouseConfig">
+          <VueTable v-if="grid1Show" id="grid1" ref="grid1" :stripe="true" :show-footer="true" height="auto" :data="staticDs" :edit-config="grid1EditConfig" :mouse-config="grid1MouseConfig">
             <VueIndexColumn
               align="center"
               width="50px"
@@ -546,44 +690,200 @@ const getPointLabel = (pointId) => {
               title="No"
             />
             <VueInputColumn
-              :edit-render="grid2BillingToEditRender"
+              :edit-render="grid1BillingToEditRender"
               field="billingTo"
               width="200px"
               title="請求先"
             />
             <VueInputColumn
-              :edit-render="grid2AmountOfPartsSoldEditRender"
+              :edit-render="grid1AmountOfPartsSoldEditRender"
               field="amountOfPartsSold"
+              align="right"
               width="200px"
               title="部品売上金額"
             />
             <VueInputColumn
-              :edit-render="grid2FareEditRender"
+              :edit-render="grid1FareEditRender"
               field="Fare"
+              align="right"
               width="200px"
               title="運賃"
             />
             <VueInputColumn
-              :edit-render="grid2DirectFeesEditRender"
+              :edit-render="grid1DirectFeesEditRender"
               field="directFees"
+              align="right"
               width="200px"
               title="直送手数料"
             />
             <VueInputColumn
-              :edit-render="grid2ManufacturerFeesEditRender"
+              :edit-render="grid1ManufacturerFeesEditRender"
               field="manufacturerFees"
+              align="right"
               width="200px"
               title="メーカー手数料"
             />
             <VueInputColumn
-              :edit-render="grid2TotalPriceEditRender"
+              :edit-render="grid1TotalPriceEditRender"
               field="totalPrice"
+              align="right"
               width="200px"
               title="合計"
+            />
+            <VueButtonColumn
+              align="center"
+              width="80px"
+              :buttons="grid1Viy2TableButtonColumn_zws0GButtons"
+            />
+          </VueTable>
+        </VuePanel>
+      </VueFlex>
+    </VueFlex>
+    <VueAside
+      id="viy2Aside_zwSA3"
+      ref="viy2Aside_zwSA3"
+      v-model="skipDetailShow"
+      :modal="true"
+      size="50%"
+      :with-header="false"
+      :show-close="false"
+    >
+      <VueRow
+        id="viy2Row_v8prN"
+        ref="viy2Row_v8prN"
+        class="aside-title-row"
+      >
+        <VueCol
+          item-key="item"
+          :md="{ span: 24 }"
+        >
+          <VueRow
+            id="viy2Row_5K6AKO"
+            ref="viy2Row_5K6AKO"
+          >
+            <VueCol
+              id="copy2_viy2Row_v8xMS_col1"
+              ref="copy2_viy2Row_v8xMS_col1"
+              item-key="item"
+              :md="{ span: 12 }"
+            >
+              <VueText id="viy2Text_5K6AKZ" ref="viy2Text_5K6AKZ" class="aside-title-text">
+                請求書情報
+              </VueText>
+            </VueCol>
+            <VueCol
+              id="copy2_viy2Row_v8xMS_col2"
+              ref="copy2_viy2Row_v8xMS_col2"
+              item-key="item"
+              align="right"
+              :inline="true"
+              :md="{ span: 12 }"
+            >
+              <VueButton id="viy2Button_5K6ALG" ref="viy2Button_5K6ALG" icon-position="right" type="text" class="icon-button-width" :icon="IconCloseBold" @click="viy2Button_5K6ALGClick" />
+            </VueCol>
+          </VueRow>
+        </VueCol>
+      </VueRow>
+      <VueForm
+        id="viy2Form_zCww8"
+        ref="viy2Form_zCww8"
+        :model="viy2Form_zCww8Data"
+      >
+        <VueFormItem
+          id="viy2FormItem_zCDdW"
+          ref="viy2FormItem_zCDdW"
+          label="請求先"
+          prop="billingTo"
+        />
+        <VuePanel id="viy2Panel_zDFko" ref="viy2Panel_zDFko" title="明細情報">
+          <VueTable id="viy2Table_zDKIo" ref="viy2Table_zDKIo" height="auto" :edit-config="viy2Table_zDKIoEditConfig" :mouse-config="viy2Table_zDKIoMouseConfig">
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData1EditRender"
+              field="data1"
+              title="売上日"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData2EditRender"
+              field="data2"
+              title="伝票番号"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData3EditRender"
+              field="data3"
+              title="科目適用"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData4EditRender"
+              field="data4"
+              title="出荷部品No."
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData5EditRender"
+              field="data5"
+              title="出荷部品名称"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData6EditRender"
+              field="data6"
+              title="注文数"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData7EditRender"
+              field="data7"
+              title="売上種別"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData8EditRender"
+              field="data8"
+              title="売上数"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData9EditRender"
+              field="data9"
+              title="仕切単価"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData10EditRender"
+              field="data10"
+              title="小壳単価"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData11EditRender"
+              field="data11"
+              title="売上金額"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData12EditRender"
+              field="data12"
+              title="運賃"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData13EditRender"
+              field="data13"
+              title="直送手数料"
+              width="100px"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_zDKIoData14EditRender"
+              field="data14"
+              title="メーカー手数料"
+              width="100px"
             />
           </VueTable>
         </VuePanel>
       </VueForm>
-    </VueFlex>
+    </VueAside>
   </VueForm>
 </template>

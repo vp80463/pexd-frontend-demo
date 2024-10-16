@@ -9,7 +9,6 @@ import { useApi } from '@/composables/useApi';
 import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import { formatPartNo } from '@/pj-commonutils.js';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
-import { parts_column, parts_pop_column, parts_pop_query_method, parts_query_method } from '@/settings/valuelistSetting.js';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
 const router = useRouter();
@@ -39,9 +38,8 @@ const viy2Button_2gh3Ey = ref();
 const queryForm = ref();
 const viy2Row_lOY8w = ref();
 const viy2Select_oHWwK = ref();
-const viy2ValueList_iR7L7t = ref();
-const viy2Row_iR7L97 = ref();
 const viy2InputBox_1SUzHx = ref();
+const viy2InputBox_BXdcE = ref();
 const viy2InputBox_5hhMPi = ref();
 const viy2DateTimePicker_1SUzHK = ref();
 const viy2DateTimePicker_1SUzI6 = ref();
@@ -75,9 +73,6 @@ const rules = reactive({
     },
   ],
 });
-const viy2ValueList_iR7L7tPopoverQueryMethod = parts_query_method;
-const viy2ValueList_iR7L7tPopupColumns = ref(parts_pop_column);
-const viy2ValueList_iR7L7tPopupQueryMethod = parts_pop_query_method;
 const viy2Select_iR7Le1Opts = reactive([
   {
     codeData1:
@@ -220,32 +215,6 @@ const viy2Button_2gh3EyClick = () => {
   }).catch(() => {
   });
 };
-const viy2ValueList_iR7L7tSelect = (params) => {
-  queryFormData.partId = params.id;
-};
-const viy2ValueList_iR7L7tClear = (params) => {
-  queryFormData.partId = '';
-};
-const viy2ValueList_iR7L7tLeave = (obj) => {
-  if (obj.currentValue != obj.lastSelectedValue) {
-    if (obj.currentValue) {
-      onLeavePartsCode(obj.currentValue);
-    } else {
-      queryFormData.partId = '';
-    }
-  }
-};
-const viy2ValueList_iR7L7tPopoverColumns = computed(() => {
-  return parts_column;
-});
-const viy2ValueList_iR7L7tPopupConditions = computed(() => {
-  return [
-    { compType: 'VueInput', field: 'code', label: t('label.parts'), clearable: true, style: { width: '150px' } },
-    { compType: 'VueSelect', field: 'batteryFlag', label: t('label.batteryFlag'), options: flagOpts, clearable: true, style: { width: '100px' } },
-    { compType: 'VueSelect', field: 'brandId', label: t('label.brand'), options: brandDs.value, clearable: true, style: { width: '200px' } },
-    { compType: 'VueCascader', field: 'prodCtg', label: t('label.productCategory'), props: { checkStrictly: true }, options: largeGroupDs.value, clearable: true, style: { width: '150px' } },
-  ];
-});
 const viy2Button_1SUzI7Click = () => {
   if (queryFormData.dateFrom == null) {
     queryFormData.dateFrom = firstDay;
@@ -515,63 +484,23 @@ const getPartsData = async () => {
               label="部品番号"
               prop="newPart"
             >
-              <VueValueList
-                :use-common-popover="true"
-                :use-common-popup="true"
-                id="viy2ValueList_iR7L7t"
-                aside-size="60%"
-                ref="viy2ValueList_iR7L7t"
-                :toggle-popover-on-click="queryFormData.newPart.length > 3"
+              <VueInput
+                id="viy2InputBox_1SUzHx"
+                ref="viy2InputBox_1SUzHx"
                 v-model="queryFormData.newPart"
-                select-field="desc"
-                :popover-min-query-length="3"
-                :close-on-click-modal="true"
-                :use-popup="true"
+                :formatter="(value) => value.toUpperCase()"
+                :parser="(value) => value.toUpperCase()"
                 :clearable="true"
-                :popover-width="500"
-                width="180px"
-                :popover-columns="viy2ValueList_iR7L7tPopoverColumns"
-                :popover-query-method="viy2ValueList_iR7L7tPopoverQueryMethod"
-                :popup-columns="viy2ValueList_iR7L7tPopupColumns"
-                :popup-conditions="viy2ValueList_iR7L7tPopupConditions"
-                :popup-query-method="viy2ValueList_iR7L7tPopupQueryMethod"
-                @select="viy2ValueList_iR7L7tSelect"
-                @clear="viy2ValueList_iR7L7tClear"
-                @leave="viy2ValueList_iR7L7tLeave"
-              >
-                <template #asideHeader>
-                  <VueRow
-                    id="viy2Row_iR7L97"
-                    ref="viy2Row_iR7L97"
-                    class="aside-title-row"
-                  >
-                    <VueCol
-                      item-key="item"
-                      class="aside-title-text"
-                      :md="{ span: 7 }"
-                    >
-                      <VueText id="viy2Text_iR7LaK" ref="viy2Text_iR7LaK" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                        {{ t('title.partNoRef') }}
-                      </VueText>
-                    </VueCol>
-                    <VueCol
-                      item-key="item"
-                      align="right"
-                      :inline="true"
-                      class="aside-title-button"
-                      :md="{ span: 17 }"
-                    />
-                  </VueRow>
-                </template>
-              </VueValueList>
+                :style="{ width: '180px' }"
+              />
             </VueFormItem>
             <VueFormItem
               label="発注番号"
               prop="orderNo"
             >
               <VueInput
-                id="viy2InputBox_1SUzHx"
-                ref="viy2InputBox_1SUzHx"
+                id="viy2InputBox_BXdcE"
+                ref="viy2InputBox_BXdcE"
                 v-model="queryFormData.orderNo"
                 :formatter="(value) => value.toUpperCase()"
                 :parser="(value) => value.toUpperCase()"

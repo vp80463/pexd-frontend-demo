@@ -19,7 +19,7 @@ const resetBtn = ref();
 const viy2Row_rFsZl = ref();
 const copy8_viy2Row_rFsZl_col1 = ref();
 const viy2InputBox_4uc4za = ref();
-const viy2Select_4uc4zb = ref();
+const viy2Cascader_4oEfL = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_GHgKT = ref();
 const viy2Button_cAH5o = ref();
@@ -29,33 +29,18 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  WholesaleRate: '', largeGroupCd: '',
+  WholesaleRate: '', largeGroupCd: [],
 });
 const gridRules = {
   Rate: [
     { required: true, message: 'name required' },
   ],
 };
-const viy2Select_4uc4zbOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
+const viy2Cascader_4oEfLProps = reactive({
+  checkStrictly: true,
+  label: 'label',
+  value: 'value',
+});
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -73,6 +58,109 @@ const gridViy2TableButtonColumn_GDWleButtons = (scope) => {
     },
   ];
 };
+const productCategoryDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const productCategoryDs = productCategoryDsApi.data;
 const mstCodeDsApi = useApi({
   url: '/common/helper/getMstCodeInfos.json',
   method: 'post',
@@ -327,12 +415,14 @@ const resetTblResults = () => {
                 label="大区分"
                 prop="largeGroupCd"
               >
-                <VueSelect
-                  id="viy2Select_4uc4zb"
-                  ref="viy2Select_4uc4zb"
+                <VueCascader
+                  id="viy2Cascader_4oEfL"
+                  ref="viy2Cascader_4oEfL"
                   v-model="queryFormData.largeGroupCd"
-                  :style="{ width: '200px' }"
-                  :options="viy2Select_4uc4zbOpts"
+                  display-member="label"
+                  value-member="value"
+                  :options="productCategoryDs"
+                  :props="viy2Cascader_4oEfLProps"
                 />
               </VueFormItem>
             </VueCol>
