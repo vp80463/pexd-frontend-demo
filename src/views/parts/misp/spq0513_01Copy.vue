@@ -22,20 +22,14 @@ const queryForm = ref();
 const Search_Panel = ref();
 const viy2Button_6Eq86q = ref();
 const viy2Button_2gh3Ey = ref();
-const viy2Button_5heur2 = ref();
 const viy2Row_lOY8w = ref();
-const viy2Row_4qB1eW = ref();
-const viy2Row_ruHgA = ref();
-const viy2Row_rtfNL = ref();
-const viy2Row_ryCx1 = ref();
-const viy2Radio_gBGYE = ref();
 const viy2Row_ryEFG = ref();
+const viy2Radio_gBGYE = ref();
 const markDate = ref();
-const viy2Row_ruG6A = ref();
-const viy2Row_rtwlt = ref();
-const viy2Table_mmkzz = ref();
-const viy2Row_ruKi5 = ref();
-const viy2Row_rtyiO = ref();
+const viy2Flex_4TNrL = ref();
+const viy2Panel_426xZ = ref();
+const viy2Button_5heur2 = ref();
+const viy2Table_3QuTH = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
@@ -43,12 +37,12 @@ const queryFormData = reactive({
 });
 const viy2Radio_gBGYEOpts = reactive([
   { value: '1', label: '未出力全件' },
-  { value: '2', label: '作成日指定' },
+  { value: '2', label: '売上日' },
 ]);
-const viy2Table_mmkzzEditConfig = reactive({
+const viy2Table_3QuTHEditConfig = reactive({
   trigger: 'click',
 });
-const viy2Table_mmkzzMouseConfig = reactive({
+const viy2Table_3QuTHMouseConfig = reactive({
   extension: true,
 });
 const largeGroupDsApi = useApi({
@@ -120,9 +114,6 @@ const viy2Button_2gh3EyClick = () => {
   }).catch(() => {
   });
 };
-const viy2Button_5heur2Click = () => {
-  exportDsApi.runAsync();
-};
 const viy2Radio_gBGYEChange = (value) => {
   if (value == '1') {
     markDateShow.value = false;
@@ -139,12 +130,125 @@ const viy2Radio_gBGYEChange = (value) => {
   }
 }
 ;
-const viy2Table_mmkzzMarkDateEditRender = computed(() => {
+const viy2Button_5heur2Click = () => {
+  exportDsApi.runAsync();
+};
+const viy2Table_3QuTHSiteIdEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const viy2Table_mmkzzNoEditRender = computed(() => {
+const viy2Table_3QuTHRecodeTypeEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHAccountReceivCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHCustomerIdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSiteCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSaleDateEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHInvoiceNoEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSaleKindEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHDataTypeEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSiteNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHProductCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHProductNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHOrderQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHDeliveryQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHStandardPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSellingPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHLastPurCostEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHAmtEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHDirectCommissionEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHMakerCommissionEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHCustomorInfoEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSaleKindNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHDetailSubjectsCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_3QuTHSpareEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -201,6 +305,7 @@ const skipToDetail = (row) => {
       id="viy2Flex_SMXA1"
       ref="viy2Flex_SMXA1"
       direction="column"
+      class="full-height"
     >
       <VueForm
         id="queryForm"
@@ -216,9 +321,6 @@ const skipToDetail = (row) => {
               <VueButton id="viy2Button_2gh3Ey" ref="viy2Button_2gh3Ey" icon-position="left" @click="viy2Button_2gh3EyClick">
                 {{ t('button.reset') }}
               </VueButton>
-              <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" icon-position="left" :disabled="exportFlag" @click="viy2Button_5heur2Click">
-                {{ t('button.export') }}
-              </VueButton>
             </div>
           </template>
           <VueRow
@@ -232,173 +334,225 @@ const skipToDetail = (row) => {
               :md="{ span: 24 }"
             >
               <VueRow
-                id="viy2Row_4qB1eW"
-                ref="viy2Row_4qB1eW"
+                id="viy2Row_ryEFG"
+                ref="viy2Row_ryEFG"
               >
                 <VueCol
                   item-key="item"
+                  :inline="true"
                   :md="{ span: 24 }"
                 >
-                  <VueRow
-                    id="viy2Row_ruHgA"
-                    ref="viy2Row_ruHgA"
+                  <VueFormItem
+                    :label="t('label.outputRange')"
+                    label-width="100px"
+                    prop="datafieldviy2Radio_gBGYE"
                   >
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 24 }"
+                    <VueRadioGroup
+                      id="viy2Radio_gBGYE"
+                      ref="viy2Radio_gBGYE"
+                      v-model="queryFormData.datafieldviy2Radio_gBGYE"
+                      radio-style="button"
+                      direction="horizontal"
+                      split-size="default"
+                      @change="viy2Radio_gBGYEChange"
                     >
-                      <VueRow
-                        id="viy2Row_rtfNL"
-                        ref="viy2Row_rtfNL"
+                      <VueRadioButton
+                        v-for="option in viy2Radio_gBGYEOpts"
+                        :key="option.value"
+                        :label="option.value"
                       >
-                        <VueCol
-                          item-key="item"
-                          :md="{ span: 8 }"
-                        />
-                        <VueCol
-                          item-key="item"
-                          :inline="true"
-                          :md="{ span: 8 }"
-                        >
-                          <VueRow
-                            id="viy2Row_ryCx1"
-                            ref="viy2Row_ryCx1"
-                          >
-                            <VueCol
-                              item-key="item"
-                              :md="{ span: 24 }"
-                            >
-                              <VueFormItem
-                                :label="t('label.outputRange')"
-                                label-width="100px"
-                                prop="datafieldviy2Radio_gBGYE"
-                              >
-                                <VueRadioGroup
-                                  id="viy2Radio_gBGYE"
-                                  ref="viy2Radio_gBGYE"
-                                  v-model="queryFormData.datafieldviy2Radio_gBGYE"
-                                  radio-style="button"
-                                  direction="horizontal"
-                                  split-size="default"
-                                  @change="viy2Radio_gBGYEChange"
-                                >
-                                  <VueRadioButton
-                                    v-for="option in viy2Radio_gBGYEOpts"
-                                    :key="option.value"
-                                    :label="option.value"
-                                  >
-                                    {{ option.label }}
-                                  </VueRadioButton>
-                                </VueRadioGroup>
-                              </VueFormItem>
-                            </VueCol>
-                          </VueRow>
-                          <VueRow
-                            id="viy2Row_ryEFG"
-                            ref="viy2Row_ryEFG"
-                          >
-                            <VueCol
-                              item-key="item"
-                              :md="{ span: 24 }"
-                            >
-                              <VueFormItem
-                                v-show="markDateShow"
-                                prop="markDate"
-                              >
-                                <VueDatePicker
-                                  id="markDate"
-                                  ref="markDate"
-                                  v-model="queryFormData.markDate"
-                                  type="daterange"
-                                />
-                              </VueFormItem>
-                            </VueCol>
-                          </VueRow>
-                        </VueCol>
-                        <VueCol
-                          item-key="item"
-                          :inline="true"
-                          :md="{ span: 8 }"
-                        />
-                      </VueRow>
-                    </VueCol>
-                  </VueRow>
-                </VueCol>
-              </VueRow>
-              <VueRow
-                id="viy2Row_ruG6A"
-                ref="viy2Row_ruG6A"
-              >
-                <VueCol
-                  item-key="item"
-                  :md="{ span: 24 }"
-                >
-                  <VueRow
-                    id="viy2Row_rtwlt"
-                    ref="viy2Row_rtwlt"
+                        {{ option.label }}
+                      </VueRadioButton>
+                    </VueRadioGroup>
+                  </VueFormItem>
+                  <VueFormItem
+                    v-show="markDateShow"
+                    label-width="10px"
+                    prop="markDate"
                   >
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 8 }"
+                    <VueDatePicker
+                      id="markDate"
+                      ref="markDate"
+                      v-model="queryFormData.markDate"
+                      type="daterange"
+                      :style="{ width: '200px' }"
                     />
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 8 }"
-                    >
-                      <VueTable id="viy2Table_mmkzz" ref="viy2Table_mmkzz" height="auto" :edit-config="viy2Table_mmkzzEditConfig" :mouse-config="viy2Table_mmkzzMouseConfig">
-                        <VueInputColumn
-                          :edit-render="viy2Table_mmkzzMarkDateEditRender"
-                          field="markDate"
-                          title="作成年月日"
-                          width="auto"
-                        />
-                        <VueInputColumn
-                          :edit-render="viy2Table_mmkzzNoEditRender"
-                          field="no"
-                          title="件数"
-                          width="auto"
-                        />
-                      </VueTable>
-                    </VueCol>
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 8 }"
-                    />
-                  </VueRow>
-                </VueCol>
-              </VueRow>
-              <VueRow
-                id="viy2Row_ruKi5"
-                ref="viy2Row_ruKi5"
-              >
-                <VueCol
-                  item-key="item"
-                  style="padding-top:15px"
-                  :md="{ span: 24 }"
-                >
-                  <VueRow
-                    id="viy2Row_rtyiO"
-                    ref="viy2Row_rtyiO"
-                  >
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 8 }"
-                    />
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 8 }"
-                    />
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 8 }"
-                    />
-                  </VueRow>
+                  </VueFormItem>
                 </VueCol>
               </VueRow>
             </VueCol>
           </VueRow>
         </VuePanel>
       </VueForm>
+      <VueFlex
+        id="viy2Flex_4TNrL"
+        ref="viy2Flex_4TNrL"
+        direction="column"
+        grow="1"
+      >
+        <VuePanel id="viy2Panel_426xZ" ref="viy2Panel_426xZ" :title="t('label.detailInfo')" height="100%">
+          <template #header>
+            <div style="width: auto">
+              <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" icon-position="left" :disabled="exportFlag" @click="viy2Button_5heur2Click">
+                {{ t('button.export') }}
+              </VueButton>
+            </div>
+          </template>
+          <VueTable id="viy2Table_3QuTH" ref="viy2Table_3QuTH" height="auto" :edit-config="viy2Table_3QuTHEditConfig" :mouse-config="viy2Table_3QuTHMouseConfig">
+            <VueIndexColumn
+              align="center"
+              width="50px"
+              min-width="50px"
+              header-align="center"
+              title="No"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSiteIdEditRender"
+              field="siteId"
+              width="200px"
+              title="拠点コード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHRecodeTypeEditRender"
+              field="recodeType"
+              width="200px"
+              title="レコード区分"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHAccountReceivCdEditRender"
+              field="accountReceivCd"
+              width="200px"
+              title="売掛金計上先コード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHCustomerIdEditRender"
+              field="customerId"
+              width="200px"
+              title="請求先コード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSiteCdEditRender"
+              field="siteCd"
+              width="200px"
+              title="売上先コード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSaleDateEditRender"
+              field="saleDate"
+              width="200px"
+              title="売上年月日"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHInvoiceNoEditRender"
+              field="invoiceNo"
+              width="200px"
+              title="伝票番号"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSaleKindEditRender"
+              field="saleKind"
+              width="200px"
+              title="売上種別"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHDataTypeEditRender"
+              field="dataType"
+              width="200px"
+              title="データ区分"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSiteNmEditRender"
+              field="siteNm"
+              width="200px"
+              title="売上先名称"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHProductCdEditRender"
+              field="productCd"
+              width="200px"
+              title="出荷部品番号"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHProductNmEditRender"
+              field="productNm"
+              width="200px"
+              title="出荷部品名称"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHOrderQtyEditRender"
+              field="orderQty"
+              width="200px"
+              title="受注数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHDeliveryQtyEditRender"
+              field="deliveryQty"
+              width="200px"
+              title="出荷数"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHStandardPriceEditRender"
+              field="standardPrice"
+              width="200px"
+              title="標準小売単価"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSellingPriceEditRender"
+              field="sellingPrice"
+              width="200px"
+              title="仕切単価"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHLastPurCostEditRender"
+              field="lastPurCost"
+              width="200px"
+              title="最終仕入単価"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHAmtEditRender"
+              field="amt"
+              width="200px"
+              title="売上金額"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHDirectCommissionEditRender"
+              field="directCommission"
+              width="200px"
+              title="直送手数料"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHMakerCommissionEditRender"
+              field="makerCommission"
+              width="200px"
+              title="メーカー手数料"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHCustomorInfoEditRender"
+              field="customorInfo"
+              width="200px"
+              title="お客様情報"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSaleKindNmEditRender"
+              field="saleKindNm"
+              width="200px"
+              title="売上種別名称"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHDetailSubjectsCdEditRender"
+              field="detailSubjectsCd"
+              width="200px"
+              title="科目摘要コード"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_3QuTHSpareEditRender"
+              field="spare"
+              width="200px"
+              title="予備"
+            />
+          </VueTable>
+        </VuePanel>
+      </VueFlex>
     </VueFlex>
   </VueForm>
 </template>

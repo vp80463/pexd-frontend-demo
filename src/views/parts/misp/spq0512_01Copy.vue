@@ -27,12 +27,13 @@ const lastDay = dayjs().format('YYYYMMDD');
 const gridShow = ref(true);
 const grid1Show = ref(false);
 defineOptions({
-  name: 'spq0512_01Copy1',
+  name: 'spq0512_01Copy',
 });
 const form = ref();
 const viy2Flex_HG4DT = ref();
 const queryFormData = ref();
 const Search_Panel = ref();
+const viy2Button_50lEfc = ref();
 const viy2Button_50kiOC = ref();
 const viy2Button_6My7VA = ref();
 const viy2Row_hLmD = ref();
@@ -48,9 +49,7 @@ const viy2Panel_50igpm = ref();
 const viy2Button_50q5go = ref();
 const viy2Button_50lG5o = ref();
 const viy2Button_50v94C = ref();
-const viy2Button_50lEfc = ref();
 const grid = ref();
-const grid1 = ref();
 const viy2Aside_zwSA3 = ref();
 const viy2Row_v8prN = ref();
 const viy2Row_5K6AKO = ref();
@@ -93,13 +92,7 @@ const gridEditConfig = reactive({
 const gridMouseConfig = reactive({
   extension: true,
 });
-const grid1EditConfig = reactive({
-  trigger: 'click',
-});
-const grid1MouseConfig = reactive({
-  extension: true,
-});
-const grid1Viy2TableButtonColumn_zws0GButtons = (scope) => {
+const gridViy2TableButtonColumn_zws0GButtons = (scope) => {
   return [
     {
       label: '',
@@ -163,6 +156,9 @@ const pointDsApi = useApi({
   },
 });
 const pointDs = pointDsApi.data;
+const viy2Button_50lEfcClick = () => {
+  doExport();
+};
 const viy2Button_50kiOCClick = () => {
   doSearch();
 };
@@ -172,8 +168,8 @@ const viy2Button_6My7VAClick = () => {
 const viy2Radio_ANhICChange = (value) => {
   if (value == '1') {
     formatFlag.value = true;
-    gridShow.value = true;
-    grid1Show.value = false;
+    gridShow.value = false;
+    grid1Show.value = true;
   } else {
     formatFlag.value = false;
     gridShow.value = false;
@@ -207,55 +203,12 @@ const viy2Button_50lG5oClick = () => {
 const viy2Button_50v94CClick = () => {
   doExport();
 };
-const viy2Button_50lEfcClick = () => {
-  doExport();
-};
-const gridIdentificationEditRender = computed(() => {
+const gridBillingToEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridDealerCodeEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridHeaderIndicatorEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridSalesClosingDateEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridBaseCodeEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridBillingToStoreCodeEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridEntryAndExitCategoryEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridInvoiceSmountEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const grid1BillingToEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const grid1AmountOfPartsSoldEditRender = computed(() => {
+const gridAmountOfPartsSoldEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -263,7 +216,7 @@ const grid1AmountOfPartsSoldEditRender = computed(() => {
     },
   };
 });
-const grid1FareEditRender = computed(() => {
+const gridFareEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -271,7 +224,7 @@ const grid1FareEditRender = computed(() => {
     },
   };
 });
-const grid1DirectFeesEditRender = computed(() => {
+const gridDirectFeesEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -279,7 +232,7 @@ const grid1DirectFeesEditRender = computed(() => {
     },
   };
 });
-const grid1ManufacturerFeesEditRender = computed(() => {
+const gridManufacturerFeesEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -287,7 +240,7 @@ const grid1ManufacturerFeesEditRender = computed(() => {
     },
   };
 });
-const grid1TotalPriceEditRender = computed(() => {
+const gridTotalPriceEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -296,7 +249,7 @@ const grid1TotalPriceEditRender = computed(() => {
   };
 });
 const viy2Button_5K6ALGClick = () => {
-  VueMessageBox.confirm(t('閉じますか？'), t('title.warn'), {
+  VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
     skipDetailShow.value = false;
@@ -467,6 +420,9 @@ const skipDetailFc = () => {
         <VuePanel id="Search_Panel" ref="Search_Panel" :title="t('label.searchCondition')" height="auto" collapse-icon-position="left">
           <template #header>
             <div style="width: auto">
+              <VueButton id="viy2Button_50lEfc" ref="viy2Button_50lEfc" icon-position="left" @click="viy2Button_50lEfcClick">
+                請求書印刷
+              </VueButton>
               <VueButton id="viy2Button_50kiOC" ref="viy2Button_50kiOC" icon-position="left" type="info" @click="viy2Button_50kiOCClick">
                 {{ t('button.search') }}
               </VueButton>
@@ -614,17 +570,14 @@ const skipDetailFc = () => {
                 鑑データ出力
               </VueButton>
               <VueButton id="viy2Button_50lG5o" ref="viy2Button_50lG5o" icon-position="left" @click="viy2Button_50lG5oClick">
-                請求データ出力 (一覧)
+                ファイル出力
               </VueButton>
               <VueButton id="viy2Button_50v94C" ref="viy2Button_50v94C" icon-position="left" @click="viy2Button_50v94CClick">
-                請求データ出力 (明細)
-              </VueButton>
-              <VueButton id="viy2Button_50lEfc" ref="viy2Button_50lEfc" icon-position="left" @click="viy2Button_50lEfcClick">
-                請求書明細印刷
+                明細ファイル出力
               </VueButton>
             </div>
           </template>
-          <VueTable v-if="gridShow" id="grid" ref="grid" :stripe="true" :show-footer="true" height="auto" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" :stripe="true" :show-footer="true" height="auto" :data="staticDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
             <VueIndexColumn
               align="center"
               width="50px"
@@ -633,98 +586,41 @@ const skipDetailFc = () => {
               title="No"
             />
             <VueInputColumn
-              :edit-render="gridIdentificationEditRender"
-              field="identification"
-              title="識別"
-              width="100px"
-            />
-            <VueInputColumn
-              :edit-render="gridDealerCodeEditRender"
-              field="dealerCode"
-              width="200px"
-              title="特約店コード"
-            />
-            <VueInputColumn
-              :edit-render="gridHeaderIndicatorEditRender"
-              field="headerIndicator"
-              title="ヘッダー区分"
-              width="150px"
-            />
-            <VueInputColumn
-              :edit-render="gridSalesClosingDateEditRender"
-              field="salesClosingDate"
-              width="200px"
-              title="売上締日"
-            />
-            <VueInputColumn
-              :edit-render="gridBaseCodeEditRender"
-              field="baseCode"
-              width="200px"
-              title="ベースコード"
-            />
-            <VueInputColumn
-              :edit-render="gridBillingToStoreCodeEditRender"
-              field="billingToStoreCode"
-              width="200px"
-              title="請求先販売店コード"
-            />
-            <VueInputColumn
-              :edit-render="gridEntryAndExitCategoryEditRender"
-              field="entryAndExitCategory"
-              title="入出庫分類"
-              width="150px"
-            />
-            <VueInputColumn
-              :edit-render="gridInvoiceSmountEditRender"
-              field="invoiceSmount"
-              width="200px"
-              title="請求金額"
-            />
-          </VueTable>
-          <VueTable v-if="grid1Show" id="grid1" ref="grid1" :stripe="true" :show-footer="true" height="auto" :data="staticDs" :edit-config="grid1EditConfig" :mouse-config="grid1MouseConfig">
-            <VueIndexColumn
-              align="center"
-              width="50px"
-              min-width="50px"
-              header-align="center"
-              title="No"
-            />
-            <VueInputColumn
-              :edit-render="grid1BillingToEditRender"
+              :edit-render="gridBillingToEditRender"
               field="billingTo"
               width="200px"
               title="請求先"
             />
             <VueInputColumn
-              :edit-render="grid1AmountOfPartsSoldEditRender"
+              :edit-render="gridAmountOfPartsSoldEditRender"
               field="amountOfPartsSold"
               align="right"
               width="200px"
               title="部品売上金額"
             />
             <VueInputColumn
-              :edit-render="grid1FareEditRender"
+              :edit-render="gridFareEditRender"
               field="Fare"
               align="right"
               width="200px"
               title="運賃"
             />
             <VueInputColumn
-              :edit-render="grid1DirectFeesEditRender"
+              :edit-render="gridDirectFeesEditRender"
               field="directFees"
               align="right"
               width="200px"
               title="直送手数料"
             />
             <VueInputColumn
-              :edit-render="grid1ManufacturerFeesEditRender"
+              :edit-render="gridManufacturerFeesEditRender"
               field="manufacturerFees"
               align="right"
               width="200px"
               title="メーカー手数料"
             />
             <VueInputColumn
-              :edit-render="grid1TotalPriceEditRender"
+              :edit-render="gridTotalPriceEditRender"
               field="totalPrice"
               align="right"
               width="200px"
@@ -733,7 +629,7 @@ const skipDetailFc = () => {
             <VueButtonColumn
               align="center"
               width="80px"
-              :buttons="grid1Viy2TableButtonColumn_zws0GButtons"
+              :buttons="gridViy2TableButtonColumn_zws0GButtons"
             />
           </VueTable>
         </VuePanel>
