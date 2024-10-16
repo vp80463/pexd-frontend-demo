@@ -19,8 +19,7 @@ const resetBtn = ref();
 const viy2Row_rFsZl = ref();
 const copy8_viy2Row_rFsZl_col1 = ref();
 const viy2InputBox_4uc4za = ref();
-const viy2Select_4uc4zb = ref();
-const viy2Select_4uc4zm = ref();
+const viy2Cascader_2Sgt2 = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_G8xTh = ref();
 const grid = ref();
@@ -28,48 +27,12 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  WholesaleRate: '', largeGroupCd: '', middleGroupCd: '',
+  WholesaleRate: '', GroupCd: [],
 });
-const viy2Select_4uc4zbOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
-const viy2Select_4uc4zmOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
+const viy2Cascader_2Sgt2Props = reactive({
+  label: 'label',
+  value: 'value',
+});
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -189,6 +152,109 @@ const gridDs2Api = useApi({
   },
 });
 const gridDs2 = gridDs2Api.data;
+const groupDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const groupDs = groupDsApi.data;
 const binTypeDsApi = useApi({
   url: '/common/helper/getBinTypeList.json',
   method: 'post',
@@ -336,27 +402,17 @@ const getTotalRate = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="商品大区分"
-                prop="largeGroupCd"
+                label="大中区分"
+                prop="GroupCd"
               >
-                <VueSelect
-                  id="viy2Select_4uc4zb"
-                  ref="viy2Select_4uc4zb"
-                  v-model="queryFormData.largeGroupCd"
-                  :style="{ width: '200px' }"
-                  :options="viy2Select_4uc4zbOpts"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="商品中区分"
-                prop="middleGroupCd"
-              >
-                <VueSelect
-                  id="viy2Select_4uc4zm"
-                  ref="viy2Select_4uc4zm"
-                  v-model="queryFormData.middleGroupCd"
-                  :style="{ width: '200px' }"
-                  :options="viy2Select_4uc4zmOpts"
+                <VueCascader
+                  id="viy2Cascader_2Sgt2"
+                  ref="viy2Cascader_2Sgt2"
+                  v-model="queryFormData.GroupCd"
+                  display-member="label"
+                  value-member="value"
+                  :options="groupDs"
+                  :props="viy2Cascader_2Sgt2Props"
                 />
               </VueFormItem>
             </VueCol>

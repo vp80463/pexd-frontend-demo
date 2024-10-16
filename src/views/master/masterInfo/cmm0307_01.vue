@@ -23,8 +23,8 @@ const copy8_viy2Row_rFsZl_col1 = ref();
 const viy2Select_4uc4zb = ref();
 const viy2ValueList_DG4AF = ref();
 const viy2InputBox_4y5p9E = ref();
-const viy2Select_6pBcES = ref();
-const viy2Select_6pB7Lk = ref();
+const viy2InputBox_sZtAq = ref();
+const viy2InputBox_t0yX2 = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_IXTRe = ref();
 const viy2Row_IZL02 = ref();
@@ -65,64 +65,6 @@ const viy2Select_4uc4zbOpts = reactive([
 'Option 3',
     value:
 'Option 3',
-  },
-]);
-const viy2Select_6pBcESOpts = reactive([
-  {
-    label:
-'A',
-    value:
-'A',
-  },
-  {
-    label:
-'B',
-    value:
-'B',
-  },
-  {
-    label:
-'C',
-    value:
-'C',
-  },
-  {
-    label:
-'E',
-    value:
-'E',
-  },
-  {
-    label:
-'F',
-    value:
-'F',
-  },
-]);
-const viy2Select_6pB7LkOpts = reactive([
-  {
-    label:
-'01',
-    value:
-'01',
-  },
-  {
-    label:
-'03',
-    value:
-'03',
-  },
-  {
-    label:
-'05',
-    value:
-'05',
-  },
-  {
-    label:
-'06',
-    value:
-'06',
   },
 ]);
 const gridEditConfig = reactive({
@@ -538,29 +480,25 @@ const closeConsumerAside = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="特掛ランク"
+                label="特掛掛率ランク"
                 prop="specialRank"
               >
-                <VueSelect
-                  id="viy2Select_6pBcES"
-                  ref="viy2Select_6pBcES"
+                <VueInput
+                  id="viy2InputBox_sZtAq"
+                  ref="viy2InputBox_sZtAq"
                   v-model="queryFormData.specialRank"
-                  :style="{ width: '80PX' }"
-                  :clearable="true"
-                  :options="viy2Select_6pBcESOpts"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
               <VueFormItem
                 label="特掛コード"
                 prop="specialRateCd"
               >
-                <VueSelect
-                  id="viy2Select_6pB7Lk"
-                  ref="viy2Select_6pB7Lk"
+                <VueInput
+                  id="viy2InputBox_t0yX2"
+                  ref="viy2InputBox_t0yX2"
                   v-model="queryFormData.specialRateCd"
-                  :style="{ width: '80PX' }"
-                  :clearable="true"
-                  :options="viy2Select_6pB7LkOpts"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
             </VueCol>
@@ -664,7 +602,7 @@ const closeConsumerAside = () => {
               align="left"
               :sortable="true"
               width="100px"
-              title="特掛ランク"
+              title="特掛掛率ランク"
               header-align="center"
             />
             <VueNumberColumn

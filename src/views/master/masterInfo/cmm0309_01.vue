@@ -27,7 +27,7 @@ const confirmBtn = ref();
 const viy2Row_3K9grA = ref();
 const viy2DateTimePicker_nQ0Vk = ref();
 const viy2DateTimePicker_nQ1qx = ref();
-const viy2Select_nSXa9 = ref();
+const viy2Cascader_2IGG1 = ref();
 const viy2Flex_KMDho = ref();
 const viy2Panel_IYKn8 = ref();
 const viy2Button_2Himl4 = ref();
@@ -38,7 +38,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  dateFrom: '', dateTo: '', middleCategoryCd: '',
+  dateFrom: '', dateTo: '', middleCategoryCd: [],
 });
 const rules = reactive({
   viy2DateTimePicker_nQ0VkRules: [
@@ -54,26 +54,11 @@ const rules = reactive({
     },
   ],
 });
-const viy2Select_nSXa9Opts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
+const viy2Cascader_2IGG1Props = reactive({
+  checkStrictly: true,
+  label: 'label',
+  value: 'value',
+});
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -159,6 +144,109 @@ const gridDsApi = useApi({
   manual: true,
 });
 const gridDs = gridDsApi.data;
+const groupDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '7',
+      label: '船外機',
+      children: [
+        {
+          value: 'C',
+          label: 'ヘルメット',
+          children: [
+            {
+              value: 'B5',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A6',
+              label: 'エンデューロ',
+            },
+          ],
+        },
+        {
+          value: '6',
+          label: 'ＧＨＰ',
+          children: [
+            {
+              value: 'F8',
+              label: 'スプロケットドライブ',
+            },
+            {
+              value: 'L0',
+              label: 'ＭＵマリンジェット',
+            },
+            {
+              value: 'F5',
+              label: 'チェーン．Ｊチェーン',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  ,
+});
+const groupDs = groupDsApi.data;
 const brandDsApi = useApi({
   url: '/common/helper/getBrandList.json',
   method: 'post',
@@ -404,12 +492,14 @@ const exportFile = () => {
                 label="中区分"
                 prop="middleCategoryCd"
               >
-                <VueSelect
-                  id="viy2Select_nSXa9"
-                  ref="viy2Select_nSXa9"
+                <VueCascader
+                  id="viy2Cascader_2IGG1"
+                  ref="viy2Cascader_2IGG1"
                   v-model="queryFormData.middleCategoryCd"
-                  :style="{ width: '180px' }"
-                  :options="viy2Select_nSXa9Opts"
+                  display-member="label"
+                  value-member="value"
+                  :options="groupDs"
+                  :props="viy2Cascader_2IGG1Props"
                 />
               </VueFormItem>
             </VueCol>
