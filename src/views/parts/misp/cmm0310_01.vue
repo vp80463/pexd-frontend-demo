@@ -27,7 +27,7 @@ const viy2Panel_GvVgb = ref();
 const viy2Button_5SkH4A = ref();
 const resetBtn = ref();
 const viy2Row_4Hp8hY = ref();
-const viy2ValueList_OqyCL = ref();
+const viy2InputBox_2Uqfv = ref();
 const viy2Flex_LUasz = ref();
 const viy2Panel_GvVUq = ref();
 const viy2Button_Ar1oV = ref();
@@ -49,7 +49,7 @@ const asideGrid = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  shop: '',
+  datafieldviy2InputBox_2Uqfv: '',
 });
 const viy2Form_SRIEFData = reactive({
   orgCd: '01234', orgNm: 'グループA',
@@ -496,14 +496,13 @@ const isNewInput = (value) => {
             >
               <VueFormItem
                 label="売上グループコード"
-                prop="shop"
+                prop="datafieldviy2InputBox_2Uqfv"
               >
-                <VueValueList
-                  id="viy2ValueList_OqyCL"
-                  ref="viy2ValueList_OqyCL"
-                  v-model="queryFormData.shop"
-                  :use-popover="true"
-                  width="200px"
+                <VueInput
+                  id="viy2InputBox_2Uqfv"
+                  ref="viy2InputBox_2Uqfv"
+                  v-model="queryFormData.datafieldviy2InputBox_2Uqfv"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
             </VueCol>

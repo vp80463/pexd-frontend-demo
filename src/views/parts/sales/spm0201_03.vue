@@ -716,7 +716,7 @@ const onDelRow = (row) => {
               </VueRow>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" header-align="center" height="auto" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" header-align="center" height="98%" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
             <VueRow
               id="viy2Row_AsHNi"
               ref="viy2Row_AsHNi"

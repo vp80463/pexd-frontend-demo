@@ -165,23 +165,19 @@ const gridViy2TableButtonColumn_odGQQButtons = (scope) => {
 const paginationCurrentPage = ref(1);
 const paginationPageSize = ref();
 const gridDsApi = useApi({
-  url: '/parts/spm020101/searchSalesOrderList.json',
   method: 'post',
-  data: () => {
-    const condition = {};
-    merge(condition, queryFormData);
-    condition.pageSize = paginationPageSize.value;
-    condition.currentPage = paginationCurrentPage.value;
-    return condition;
-  },
+  localData: [
+    { orderDate: '20241001', orderType: '通常', consumer: '1', consumerNm: 'テスト販売店', orderNo: 'SO20240001', orderStatus: '引当待ち', orderAmount: 10000, allOutStock: 'しない', outDate: '20241002', memo: 'メモ', orderInputType: '1' },
+    { orderDate: '20241002', orderType: '通常', consumer: '2', consumerNm: 'テスト販売店2', orderNo: 'SO20240002', orderStatus: 'ピッキング待ち', orderAmount: 10000, allOutStock: 'しない', outDate: '20241003', memo: 'メモ', orderInputType: '2' },
+  ],
   lockScreen: true,
 }, {
   onSuccess: (data, params) => {
-    if (data.content.length > 0) {
-      exportFlag.value = false;
-    } else {
-      exportFlag.value = true;
-    }
+    // if(data.content.length>0){
+    exportFlag.value = false;
+    // }else{
+    // exportFlag.value=true;
+    // }
     total.value = data.totalElements;
   },
   manual: true,
@@ -198,6 +194,7 @@ const orderStatusDsApi = useApi({
   initialData: {
     data: [],
   },
+  manual: true,
 });
 const orderStatusDs = orderStatusDsApi.data;
 const pointDsApi = useApi({
@@ -206,6 +203,8 @@ const pointDsApi = useApi({
   data: {
     arg0: 'SHOP', // CONSIGNEE | WO | ALL
   },
+}, {
+  manual: true,
 });
 const pointDs = pointDsApi.data;
 const viy2Button_3B5wPc2Click = () => {
@@ -213,7 +212,7 @@ const viy2Button_3B5wPc2Click = () => {
     name: 'spm0201_03', // 路由名称
   });
   // 详情页标签名
-  useMultiTags().getTag({ name: 'spm0201_03' }).meta.title = t('title.fastSalesEntry_03');
+  useMultiTags().getTag({ name: 'spm0201_03' }).meta.title = t('受注登録');
   // router导航到页面并传递参数
   router.push({ name: 'spm0201_03' });
 };
@@ -426,13 +425,19 @@ const onExport = () => {
 };
 const onRowDetail = (row) => {
   const query = { salesOrderId: row.salesOrderId };
+  let name = 'spm0201_03';
+  let title = '受注登録';
+  if (row.orderInputType === '2') {
+    name = 'spm0201_02';
+    title = '来店客受注登録';
+  }
   useMultiTags().openTag({
-    name: 'spm0201_03', // 路由名称
+    name, // 路由名称
   });
   // 详情页标签名
-  useMultiTags().getTag({ name: 'spm0201_03' }).meta.title = t('title.fastSalesEntry_03');
+  useMultiTags().getTag({ name }).meta.title = t(title);
   // router导航到页面并传递参数
-  router.push({ name: 'spm0201_03', data: query });
+  router.push({ name, data: query });
 };
 const getPointLabel = (pointId) => {
   const item = find(pointDs.value, { id: pointId });
@@ -633,7 +638,7 @@ const getPointLabel = (pointId) => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" height="auto" :data="gridDs.content" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
+          <VueTable id="grid" ref="grid" height="auto" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
             <VueRow
               id="viy2Row_8Z2zZ1"
               ref="viy2Row_8Z2zZ1"

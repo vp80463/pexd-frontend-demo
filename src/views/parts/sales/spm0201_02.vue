@@ -9,17 +9,15 @@ defineOptions({
   name: 'spm0201_02',
 });
 const form = ref();
-const viy2Row_kwk8m = ref();
+const viy2Flex_1lcFp = ref();
+const viy2Form_3gckrw = ref();
 const viy2Panel_3gckra = ref();
 const saveOrderBtn = ref();
 const resetBtn = ref();
-const viy2Form_3gckrw = ref();
-const viy2Row_3gckrx = ref();
 const viy2Row_x5ZiW6 = ref();
 const viy2InputBox_2FYzgw = ref();
 const viy2Radio_x5Zg4g = ref();
 const viy2CheckBox_x5Zg5W = ref();
-const viy2Row_gBx8C = ref();
 const viy2ValueList_sloqw = ref();
 const viy2ValueList_slGns = ref();
 const viy2Row_3V3IZ = ref();
@@ -30,7 +28,7 @@ const viy2Select_x5ZiXG = ref();
 const viy2Flex_lymUW = ref();
 const viy2Panel_wZlWr = ref();
 const viy2Row_wZvy4 = ref();
-const viy2Button_3B5wPc = ref();
+const viy2Button_dEE4S = ref();
 const viy2Button_AsKSg = ref();
 const viy2Button_8d4cpK = ref();
 const viy2Button_5SFpP6 = ref();
@@ -38,7 +36,7 @@ const viy2Button_89VsAk = ref();
 const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_99De62 = ref();
-const viy2CheckBox_aKHz2L = ref();
+const viy2CheckBox_939QSr = ref();
 const viy2Aside_92y0kC = ref();
 const viy2Subpage_92y0kP = ref();
 const formData = reactive({
@@ -147,7 +145,7 @@ const gridExportMethod = (obj) => {
 const gridMouseConfig = reactive({
   extension: true,
 });
-const viy2CheckBox_aKHz2LOpts = [
+const viy2CheckBox_939QSrOpts = [
   {
     label:
 'Option 1',
@@ -193,14 +191,8 @@ const resetBtnClick = () => {
   }).catch(() => {
   });
 };
-const viy2Button_3B5wPcClick = () => {
-  useMultiTags().openTag({
-    name: 'spm0201_03', // 路由名称
-  });
-  // 详情页标签名
-  useMultiTags().getTag({ name: 'spm0201_03' }).meta.title = t('title.fastSalesEntry_03');
-  // router导航到页面并传递参数
-  router.push({ name: 'spm0201_03' });
+const viy2Button_dEE4SClick = () => {
+  showPartsMultiWin.value = true;
 };
 const viy2Button_8d4cpKClick = () => {
   window.open('https://www.baidu.com', '_blank');
@@ -428,15 +420,18 @@ const onDelRow = (row) => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_kwk8m"
-      ref="viy2Row_kwk8m"
+    <VueFlex
+      id="viy2Flex_1lcFp"
+      ref="viy2Flex_1lcFp"
+      direction="column"
+      class="full-height"
     >
-      <VueCol
-        item-key="item"
-        :md="{ span: 24 }"
+      <VueForm
+        id="viy2Form_3gckrw"
+        ref="viy2Form_3gckrw"
+        :model="viy2Form_3gckrwData"
       >
-        <VuePanel id="viy2Panel_3gckra" ref="viy2Panel_3gckra" :collapse="true" title="受注情報">
+        <VuePanel id="viy2Panel_3gckra" ref="viy2Panel_3gckra" title="受注情報" height="auto">
           <template #header>
             <div style="width: auto">
               <VueButton id="saveOrderBtn" ref="saveOrderBtn" icon-position="left" type="info" class="fixed-button">
@@ -447,568 +442,539 @@ const onDelRow = (row) => {
               </VueButton>
             </div>
           </template>
-          <VueForm
-            id="viy2Form_3gckrw"
-            ref="viy2Form_3gckrw"
-            label-width="140px"
-            :model="viy2Form_3gckrwData"
+          <VueRow
+            id="viy2Row_x5ZiW6"
+            ref="viy2Row_x5ZiW6"
           >
-            <VueRow
-              id="viy2Row_3gckrx"
-              ref="viy2Row_3gckrx"
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
             >
-              <VueCol
-                item-key="item"
-                :md="{ span: 24 }"
+              <VueFormItem
+                label="受注番号"
+                label-width="120px"
+                prop="orderNo"
               >
-                <VueRow
-                  id="viy2Row_x5ZiW6"
-                  ref="viy2Row_x5ZiW6"
+                <VueInput
+                  id="viy2InputBox_2FYzgw"
+                  ref="viy2InputBox_2FYzgw"
+                  v-model="viy2Form_3gckrwData.orderNo"
+                  :readonly="true"
+                  type="text"
+                  class="no-border"
+                  :style="{ width: '160px' }"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            />
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            />
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFormItem
+                label="受注種類"
+                label-width="120px"
+                prop="orderType"
+                size="default"
+              >
+                <VueRadioGroup
+                  id="viy2Radio_x5Zg4g"
+                  ref="viy2Radio_x5Zg4g"
+                  v-model="viy2Form_3gckrwData.orderType"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
                 >
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
+                  <VueRadioButton
+                    v-for="option in viy2Radio_x5Zg4gOpts"
+                    :key="option.value"
+                    :label="option.value"
                   >
-                    <VueFormItem
-                      label="受注番号"
-                      label-width="120px"
-                      prop="orderNo"
-                    >
-                      <VueInput
-                        id="viy2InputBox_2FYzgw"
-                        ref="viy2InputBox_2FYzgw"
-                        v-model="viy2Form_3gckrwData.orderNo"
-                        :readonly="true"
-                        type="text"
-                        class="no-border"
-                        :style="{ width: '160px' }"
-                      />
-                    </VueFormItem>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
-                  />
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
-                  />
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFormItem
+                label="異常受注サイン"
+                label-width="120px"
+                prop="orderOutSign"
+              >
+                <VueCheckbox
+                  id="viy2CheckBox_x5Zg5W"
+                  ref="viy2CheckBox_x5Zg5W"
+                  v-model="viy2Form_3gckrwData.orderOutSign"
+                  true-label="Y"
+                  false-label="N"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            />
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFormItem
+                label="受注先"
+                label-width="120px"
+                prop="salesShop"
+                :rules="rules.viy2ValueList_sloqwRules"
+              >
+                <VueValueList
+                  id="viy2ValueList_sloqw"
+                  ref="viy2ValueList_sloqw"
+                  v-model="viy2Form_3gckrwData.salesShop"
+                  :use-popover="false"
+                  width="290px"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFormItem
+                label="出荷先"
+                label-width="120px"
+                prop="deliveryAddress"
+                :rules="rules.viy2ValueList_slGnsRules"
+              >
+                <VueValueList
+                  id="viy2ValueList_slGns"
+                  ref="viy2ValueList_slGns"
+                  v-model="viy2Form_3gckrwData.deliveryAddress"
+                  :use-popover="true"
+                  width="300px"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueRow
+                id="viy2Row_3V3IZ"
+                ref="viy2Row_3V3IZ"
+              >
+                <VueCol
+                  v-show="true"
+                  item-key="item"
+                  :inline="true"
+                  :md="{ span: 24 }"
+                >
+                  <VueFormItem
+                    label="仕訳コード"
+                    label-width="120px"
+                    prop="siwakecd"
+                    :rules="rules.viy2InputBox_kxtHQRules"
                   >
-                    <VueFormItem
-                      label="受注種類"
-                      label-width="120px"
-                      prop="orderType"
-                      size="default"
-                    >
-                      <VueRadioGroup
-                        id="viy2Radio_x5Zg4g"
-                        ref="viy2Radio_x5Zg4g"
-                        v-model="viy2Form_3gckrwData.orderType"
-                        radio-style="button"
-                        direction="horizontal"
-                        split-size="default"
-                      >
-                        <VueRadioButton
-                          v-for="option in viy2Radio_x5Zg4gOpts"
-                          :key="option.value"
-                          :label="option.value"
-                        >
-                          {{ option.label }}
-                        </VueRadioButton>
-                      </VueRadioGroup>
-                    </VueFormItem>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
+                    <VueInput
+                      id="viy2InputBox_kxtHQ"
+                      ref="viy2InputBox_kxtHQ"
+                      v-model="viy2Form_3gckrwData.siwakecd"
+                      :style="{ width: '50px' }"
+                    />
+                  </VueFormItem>
+                  <!-- BEGIN CUSTOM DIV CODE -->
+                  <span>-</span>
+                  <!-- END CUSTOM DIV CODE -->
+                  <VueFormItem
+                    label-width="0px"
+                    prop="saimokucd"
                   >
-                    <VueFormItem
-                      label="異常受注サイン"
-                      label-width="120px"
-                      prop="orderOutSign"
-                    >
-                      <VueCheckbox
-                        id="viy2CheckBox_x5Zg5W"
-                        ref="viy2CheckBox_x5Zg5W"
-                        v-model="viy2Form_3gckrwData.orderOutSign"
-                        true-label="Y"
-                        false-label="N"
-                      />
-                    </VueFormItem>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
-                  />
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 24 }"
-                  >
-                    <VueRow
-                      id="viy2Row_gBx8C"
-                      ref="viy2Row_gBx8C"
-                    >
-                      <VueCol
-                        item-key="item"
-                        :inline="true"
-                        :md="{ span: 8 }"
-                      >
-                        <VueFormItem
-                          label="受注先"
-                          label-width="120px"
-                          prop="salesShop"
-                          :rules="rules.viy2ValueList_sloqwRules"
-                        >
-                          <VueValueList
-                            id="viy2ValueList_sloqw"
-                            ref="viy2ValueList_sloqw"
-                            v-model="viy2Form_3gckrwData.salesShop"
-                            :use-popover="false"
-                            width="290px"
-                          />
-                        </VueFormItem>
-                      </VueCol>
-                      <VueCol
-                        item-key="item"
-                        :inline="true"
-                        :md="{ span: 8 }"
-                      >
-                        <VueFormItem
-                          label="出荷先"
-                          label-width="120px"
-                          prop="deliveryAddress"
-                          :rules="rules.viy2ValueList_slGnsRules"
-                        >
-                          <VueValueList
-                            id="viy2ValueList_slGns"
-                            ref="viy2ValueList_slGns"
-                            v-model="viy2Form_3gckrwData.deliveryAddress"
-                            :use-popover="true"
-                            width="300px"
-                          />
-                        </VueFormItem>
-                      </VueCol>
-                      <VueCol
-                        item-key="item"
-                        :inline="true"
-                        :md="{ span: 8 }"
-                      >
-                        <VueRow
-                          id="viy2Row_3V3IZ"
-                          ref="viy2Row_3V3IZ"
-                        >
-                          <VueCol
-                            v-show="true"
-                            item-key="item"
-                            :inline="true"
-                            :md="{ span: 24 }"
-                          >
-                            <VueFormItem
-                              label="仕訳コード"
-                              label-width="120px"
-                              prop="siwakecd"
-                              :rules="rules.viy2InputBox_kxtHQRules"
-                            >
-                              <VueInput
-                                id="viy2InputBox_kxtHQ"
-                                ref="viy2InputBox_kxtHQ"
-                                v-model="viy2Form_3gckrwData.siwakecd"
-                                :style="{ width: '100px' }"
-                              />
-                            </VueFormItem>
-                            <!-- BEGIN CUSTOM DIV CODE -->
-                            <span>-</span>
-                            <!-- END CUSTOM DIV CODE -->
-                            <VueFormItem
-                              label-width="0px"
-                              prop="saimokucd"
-                            >
-                              <VueInput
-                                id="viy2InputBox_CYeZS"
-                                ref="viy2InputBox_CYeZS"
-                                v-model="viy2Form_3gckrwData.saimokucd"
-                                :style="{ width: '100px' }"
-                              />
-                            </VueFormItem>
-                          </VueCol>
-                        </VueRow>
-                      </VueCol>
-                    </VueRow>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    :md="{ span: 8 }"
-                  >
-                    <VueFormItem
-                      label="コメント"
-                      label-width="120px"
-                      prop="datafieldviy2InputBox_kxtHQ"
-                    >
-                      <VueInput
-                        id="viy2InputBox_Aevce"
-                        ref="viy2InputBox_Aevce"
-                        v-model="viy2Form_3gckrwData.datafieldviy2InputBox_kxtHQ"
-                        :style="{ width: '350px' }"
-                      />
-                    </VueFormItem>
-                  </VueCol>
-                  <VueCol
-                    v-show="true"
-                    item-key="item"
-                    :md="{ span: 8 }"
-                  >
-                    <VueFormItem
-                      v-show="false"
-                      label="出荷倉庫"
-                      label-width="120px"
-                      prop="point"
-                    >
-                      <VueSelect
-                        id="viy2Select_x5ZiXG"
-                        ref="viy2Select_x5ZiXG"
-                        v-model="viy2Form_3gckrwData.point"
-                        :style="{ width: '300px' }"
-                        :disabled="true"
-                        :filterable="true"
-                        :clearable="true"
-                        :options="viy2Select_x5ZiXGOpts"
-                        :props="{
-                          label: 'codeData1',
-                          value: 'codeData1',
-                        }"
-                      />
-                    </VueFormItem>
-                  </VueCol>
-                </VueRow>
-              </VueCol>
-            </VueRow>
-          </VueForm>
+                    <VueInput
+                      id="viy2InputBox_CYeZS"
+                      ref="viy2InputBox_CYeZS"
+                      v-model="viy2Form_3gckrwData.saimokucd"
+                      :style="{ width: '80px' }"
+                    />
+                  </VueFormItem>
+                </VueCol>
+              </VueRow>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFormItem
+                label="コメント"
+                label-width="120px"
+                prop="datafieldviy2InputBox_kxtHQ"
+              >
+                <VueInput
+                  id="viy2InputBox_Aevce"
+                  ref="viy2InputBox_Aevce"
+                  v-model="viy2Form_3gckrwData.datafieldviy2InputBox_kxtHQ"
+                  :style="{ width: '350px' }"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              v-show="true"
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFormItem
+                v-show="false"
+                label="出荷倉庫"
+                label-width="120px"
+                prop="point"
+              >
+                <VueSelect
+                  id="viy2Select_x5ZiXG"
+                  ref="viy2Select_x5ZiXG"
+                  v-model="viy2Form_3gckrwData.point"
+                  :style="{ width: '300px' }"
+                  :disabled="true"
+                  :filterable="true"
+                  :clearable="true"
+                  :options="viy2Select_x5ZiXGOpts"
+                  :props="{
+                    label: 'codeData1',
+                    value: 'codeData1',
+                  }"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
         </VuePanel>
-      </VueCol>
-    </VueRow>
-    <VueFlex
-      id="viy2Flex_lymUW"
-      ref="viy2Flex_lymUW"
-      direction="column"
-    >
-      <VuePanel id="viy2Panel_wZlWr" ref="viy2Panel_wZlWr" title="明細情報" :collapse="true" collapse-icon-position="left">
-        <template #header>
-          <div style="width: auto">
+      </VueForm>
+      <VueFlex
+        id="viy2Flex_lymUW"
+        ref="viy2Flex_lymUW"
+        direction="column"
+        grow="1"
+      >
+        <VuePanel id="viy2Panel_wZlWr" ref="viy2Panel_wZlWr" title="明細情報" height="100%" collapse-icon-position="left">
+          <template #header>
+            <div style="width: auto">
+              <VueRow
+                id="viy2Row_wZvy4"
+                ref="viy2Row_wZvy4"
+              >
+                <VueCol
+                  v-show="true"
+                  item-key="item"
+                  align="right"
+                  :inline="true"
+                  :md="{ span: 24 }"
+                >
+                  <VueButton id="viy2Button_dEE4S" ref="viy2Button_dEE4S" icon-position="left" type="danger" @click="viy2Button_dEE4SClick">
+                    受注キャンセル
+                  </VueButton>
+                  <VueButton id="viy2Button_AsKSg" ref="viy2Button_AsKSg" icon-position="left">
+                    ファイル取込
+                  </VueButton>
+                  <VueButton id="viy2Button_8d4cpK" ref="viy2Button_8d4cpK" icon-position="left" @click="viy2Button_8d4cpKClick">
+                    YPEC
+                  </VueButton>
+                  <VueButton id="viy2Button_5SFpP6" ref="viy2Button_5SFpP6" icon-position="left" @click="viy2Button_5SFpP6Click">
+                    部品選択
+                  </VueButton>
+                  <VueButton id="viy2Button_89VsAk" ref="viy2Button_89VsAk" icon-position="left" @click="viy2Button_89VsAkClick">
+                    行追加
+                  </VueButton>
+                </VueCol>
+              </VueRow>
+            </div>
+          </template>
+          <VueTable id="grid" ref="grid" header-align="center" height="98%" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
             <VueRow
-              id="viy2Row_wZvy4"
-              ref="viy2Row_wZvy4"
+              id="viy2Row_AsHNi"
+              ref="viy2Row_AsHNi"
+              class="toolbar-row-width except-height-css"
             >
               <VueCol
-                v-show="true"
                 item-key="item"
                 align="right"
                 :inline="true"
                 :md="{ span: 24 }"
-              >
-                <VueButton id="viy2Button_3B5wPc" ref="viy2Button_3B5wPc" icon-position="left" type="danger" @click="viy2Button_3B5wPcClick">
-                  受注キャンセル
-                </VueButton>
-                <VueButton id="viy2Button_AsKSg" ref="viy2Button_AsKSg" icon-position="left">
-                  ファイル取込
-                </VueButton>
-                <VueButton id="viy2Button_8d4cpK" ref="viy2Button_8d4cpK" icon-position="left" @click="viy2Button_8d4cpKClick">
-                  YPEC
-                </VueButton>
-                <VueButton id="viy2Button_5SFpP6" ref="viy2Button_5SFpP6" icon-position="left" @click="viy2Button_5SFpP6Click">
-                  部品選択
-                </VueButton>
-                <VueButton id="viy2Button_89VsAk" ref="viy2Button_89VsAk" icon-position="left" @click="viy2Button_89VsAkClick">
-                  行追加
-                </VueButton>
-              </VueCol>
-            </VueRow>
-          </div>
-        </template>
-        <VueTable id="grid" ref="grid" :stripe="true" header-align="center" :highlight-current-row="true" height="450px" :border="true" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
-          <VueRow
-            id="viy2Row_AsHNi"
-            ref="viy2Row_AsHNi"
-            class="toolbar-row-width except-height-css"
-          >
-            <VueCol
-              item-key="item"
-              align="right"
-              :inline="true"
-              :md="{ span: 24 }"
-            />
-          </VueRow>
-          <VueIndexColumn
-            align="center"
-            fixed="left"
-            width="50px"
-            min-width="50px"
-            header-align="center"
-            title="No."
-          />
-          <VueSelectionColumn
-            :resizable="true"
-            check-field="cancelSign"
-            align="center"
-            fixed="left"
-            header-align="center"
-            width="50px"
-            type="checkbox"
-          />
-          <VueValueListColumn
-            :edit-render="gridPartsNoEditRender"
-            field="partsNo"
-            :clearable="true"
-            fixed="left"
-            show-overflow="tooltip"
-            :sortable="true"
-            title="部品番号"
-            width="180px"
-          >
-            <template #asideHeader="scope">
-              <VueRow
-                id="viy2Row_99De62"
-                ref="viy2Row_99De62"
-                class="aside-title-row"
-              >
-                <VueCol
-                  item-key="item"
-                  class="aside-title-text"
-                  :md="{ span: 10 }"
-                >
-                  <VueText id="viy2Text_5Wg0tq" ref="viy2Text_5Wg0tq" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                    部品選択
-                  </VueText>
-                </VueCol>
-                <VueCol
-                  item-key="item"
-                  align="right"
-                  :inline="true"
-                  class="aside-title-button"
-                  :md="{ span: 14 }"
-                />
-              </VueRow>
-            </template>
-          </VueValueListColumn>
-          <VueInputColumn
-            :edit-render="gridPartsNmEditRender"
-            field="partsNm"
-            show-overflow="title"
-            :sortable="true"
-            title="部品名称"
-            width="150px"
-            header-align="center"
-          />
-          <VueInputColumn
-            :edit-render="gridSupersedingPartsCdEditRender"
-            field="supersedingPartsCd"
-            :sortable="true"
-            title="引当部品番号"
-            width="150px"
-            header-align="center"
-          />
-          <VueInputColumn
-            :edit-render="gridSupersedingPartsNmEditRender"
-            field="supersedingPartsNm"
-            :sortable="true"
-            aggregate-label="合計"
-            title="引当部品名称"
-            width="150px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridOrderQtyEditRender"
-            field="orderQty"
-            align="right"
-            :resizable="true"
-            :step="1"
-            :step-strictly="true"
-            :min="1"
-            aggregate="sum"
-            :sortable="true"
-            title="受注数"
-            width="120px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridPcStockQtyEditRender"
-            field="pcStockQty"
-            align="right"
-            footer-align="center"
-            :sortable="true"
-            title="在庫数"
-            width="100px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridOtherStockQtyEditRender"
-            field="otherStockQty"
-            align="right"
-            footer-align="center"
-            :sortable="true"
-            title="他在庫数"
-            width="100px"
-            header-align="center"
-          />
-          <VueDateTimeColumn
-            :edit-render="gridDeliveryPlanDateEditRender"
-            field="deliveryPlanDate"
-            :visible="true"
-            :sortable="true"
-            title="納品予定日"
-            width="110px"
-          />
-          <VueNumberColumn
-            :edit-render="gridStdSellingPriceEditRender"
-            field="stdSellingPrice"
-            align="right"
-            show-overflow="tooltip"
-            :sortable="true"
-            title="希望小売価格"
-            width="130px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridSellingPriceEditRender"
-            field="sellingPrice"
-            align="right"
-            :min="1"
-            :step="1"
-            :step-strictly="true"
-            :sortable="true"
-            title="仕切単価"
-            width="120px"
-            header-align="center"
-          />
-          <VueSelectColumn
-            :edit-render="gridDiscountPercentageEditRender"
-            field="discountPercentage"
-            :sortable="true"
-            title="仕切率"
-            width="110px"
-          />
-          <VueNumberColumn
-            :edit-render="gridOrderAmtEditRender"
-            field="orderAmt"
-            align="right"
-            aggregate="sum"
-            :sortable="true"
-            title="合計金額"
-            width="110px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridPcAllocatedQtyEditRender"
-            field="pcAllocatedQty"
-            :visible="false"
-            align="right"
-            aggregate="sum"
-            footer-align="right"
-            :sortable="true"
-            title="自引当数"
-            width="110px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridOtherAllocatedQtyEditRender"
-            field="otherAllocatedQty"
-            :visible="false"
-            align="right"
-            aggregate="sum"
-            footer-align="right"
-            :sortable="true"
-            title="他引当数"
-            width="110px"
-            header-align="center"
-          />
-          <VueTemplateColumn
-            :edit-render="gridBoCancelSignEditRender"
-            align="center"
-            :sortable="true"
-            field="boCancelSign"
-            title=" B/Oキャンセル"
-            width="140px"
-          >
-            <template #default="scope">
-              <VueCheckbox
-                id="viy2CheckBox_aKHz2L"
-                ref="viy2CheckBox_aKHz2L"
-                v-model="scope.row.boCancelSign"
-                true-label="Y"
-                false-label="N"
               />
-            </template>
-          </VueTemplateColumn>
-          <VueNumberColumn
-            v-if="true"
-            v-show="'S015SPCREATED' !== orderStatus"
-            :edit-render="gridBoQtyEditRender"
-            field="boQty"
-            :visible="'S015SPCREATED' !== orderStatus"
-            align="right"
-            :sortable="true"
-            title="B/O数"
-            width="130px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            v-if="false"
-            v-show="'S015SPCREATED' !== orderStatus"
-            :edit-render="gridAllocatedQtyEditRender"
-            field="allocatedQty"
-            :visible="'S015SPCREATED' !== orderStatus"
-            align="right"
-            :sortable="true"
-            title="引当数"
-            width="130px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            v-if="false"
-            v-show="'S015SPCREATED' !== orderStatus"
-            :edit-render="gridPickingQtyEditRender"
-            field="pickingQty"
-            :visible="'S015SPCREATED' !== orderStatus"
-            align="right"
-            :sortable="true"
-            title="ピッキング数"
-            width="130px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            v-if="false"
-            v-show="'S015SPCREATED' !== orderStatus"
-            :edit-render="gridSalesQtyEditRender"
-            field="salesQty"
-            :visible="'S015SPCREATED' !== orderStatus"
-            align="right"
-            :sortable="true"
-            title="出庫数"
-            width="130px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            v-if="false"
-            v-show="'S015SPCREATED' !== orderStatus"
-            :edit-render="gridCancelledQtyEditRender"
-            field="cancelledQty"
-            :visible="'S015SPCREATED' !== orderStatus"
-            align="right"
-            :sortable="true"
-            title="キャンセル数"
-            width="130px"
-            header-align="center"
-          />
-          <VueButtonColumn
-            align="center"
-            fixed="right"
-            width="40px"
-            :buttons="gridViy2TableButtonColumn_S6mhnButtons"
-          />
-        </VueTable>
-      </VuePanel>
+            </VueRow>
+            <VueIndexColumn
+              align="center"
+              fixed="left"
+              width="50px"
+              min-width="50px"
+              header-align="center"
+              title="No."
+            />
+            <VueSelectionColumn
+              :resizable="true"
+              check-field="cancelSign"
+              align="center"
+              fixed="left"
+              header-align="center"
+              width="50px"
+              type="checkbox"
+            />
+            <VueValueListColumn
+              :edit-render="gridPartsNoEditRender"
+              field="partsNo"
+              :clearable="true"
+              fixed="left"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="部品番号"
+              width="180px"
+            >
+              <template #asideHeader="scope">
+                <VueRow
+                  id="viy2Row_99De62"
+                  ref="viy2Row_99De62"
+                  class="aside-title-row"
+                >
+                  <VueCol
+                    item-key="item"
+                    class="aside-title-text"
+                    :md="{ span: 10 }"
+                  >
+                    <VueText id="viy2Text_5Wg0tq" ref="viy2Text_5Wg0tq" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
+                      部品選択
+                    </VueText>
+                  </VueCol>
+                  <VueCol
+                    item-key="item"
+                    align="right"
+                    :inline="true"
+                    class="aside-title-button"
+                    :md="{ span: 14 }"
+                  />
+                </VueRow>
+              </template>
+            </VueValueListColumn>
+            <VueInputColumn
+              :edit-render="gridPartsNmEditRender"
+              field="partsNm"
+              show-overflow="title"
+              :sortable="true"
+              title="部品名称"
+              width="150px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridSupersedingPartsCdEditRender"
+              field="supersedingPartsCd"
+              :sortable="true"
+              title="引当部品番号"
+              width="150px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridSupersedingPartsNmEditRender"
+              field="supersedingPartsNm"
+              :sortable="true"
+              aggregate-label="合計"
+              title="引当部品名称"
+              width="150px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridOrderQtyEditRender"
+              field="orderQty"
+              align="right"
+              :resizable="true"
+              :step="1"
+              :step-strictly="true"
+              :min="1"
+              aggregate="sum"
+              :sortable="true"
+              title="受注数"
+              width="120px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridPcStockQtyEditRender"
+              field="pcStockQty"
+              align="right"
+              footer-align="center"
+              :sortable="true"
+              title="在庫数"
+              width="100px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridOtherStockQtyEditRender"
+              field="otherStockQty"
+              align="right"
+              footer-align="center"
+              :sortable="true"
+              title="他在庫数"
+              width="100px"
+              header-align="center"
+            />
+            <VueDateTimeColumn
+              :edit-render="gridDeliveryPlanDateEditRender"
+              field="deliveryPlanDate"
+              :visible="true"
+              :sortable="true"
+              title="納品予定日"
+              width="110px"
+            />
+            <VueNumberColumn
+              :edit-render="gridStdSellingPriceEditRender"
+              field="stdSellingPrice"
+              align="right"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="希望小売価格"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridSellingPriceEditRender"
+              field="sellingPrice"
+              align="right"
+              :min="1"
+              :step="1"
+              :step-strictly="true"
+              :sortable="true"
+              title="仕切単価"
+              width="120px"
+              header-align="center"
+            />
+            <VueSelectColumn
+              :edit-render="gridDiscountPercentageEditRender"
+              field="discountPercentage"
+              :sortable="true"
+              title="仕切率"
+              width="110px"
+            />
+            <VueNumberColumn
+              :edit-render="gridOrderAmtEditRender"
+              field="orderAmt"
+              align="right"
+              aggregate="sum"
+              :sortable="true"
+              title="合計金額"
+              width="110px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridPcAllocatedQtyEditRender"
+              field="pcAllocatedQty"
+              :visible="false"
+              align="right"
+              aggregate="sum"
+              footer-align="right"
+              :sortable="true"
+              title="自引当数"
+              width="110px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridOtherAllocatedQtyEditRender"
+              field="otherAllocatedQty"
+              :visible="false"
+              align="right"
+              aggregate="sum"
+              footer-align="right"
+              :sortable="true"
+              title="他引当数"
+              width="110px"
+              header-align="center"
+            />
+            <VueTemplateColumn
+              :edit-render="gridBoCancelSignEditRender"
+              align="center"
+              :sortable="true"
+              field="boCancelSign"
+              title=" B/O キャンセル"
+              width="140px"
+            >
+              <template #default="scope">
+                <VueCheckbox
+                  id="viy2CheckBox_939QSr"
+                  ref="viy2CheckBox_939QSr"
+                  v-model="scope.row.boCancelSign"
+                  true-label="Y"
+                  false-label="N"
+                />
+              </template>
+            </VueTemplateColumn>
+            <VueNumberColumn
+              v-if="true"
+              v-show="'S015SPCREATED' !== orderStatus"
+              :edit-render="gridBoQtyEditRender"
+              field="boQty"
+              :visible="'S015SPCREATED' !== orderStatus"
+              align="right"
+              :sortable="true"
+              title="B/O数"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              v-if="false"
+              v-show="'S015SPCREATED' !== orderStatus"
+              :edit-render="gridAllocatedQtyEditRender"
+              field="allocatedQty"
+              :visible="'S015SPCREATED' !== orderStatus"
+              align="right"
+              :sortable="true"
+              title="引当数"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              v-if="false"
+              v-show="'S015SPCREATED' !== orderStatus"
+              :edit-render="gridPickingQtyEditRender"
+              field="pickingQty"
+              :visible="'S015SPCREATED' !== orderStatus"
+              align="right"
+              :sortable="true"
+              title="ピッキング数"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              v-if="false"
+              v-show="'S015SPCREATED' !== orderStatus"
+              :edit-render="gridSalesQtyEditRender"
+              field="salesQty"
+              :visible="'S015SPCREATED' !== orderStatus"
+              align="right"
+              :sortable="true"
+              title="出庫数"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              v-if="false"
+              v-show="'S015SPCREATED' !== orderStatus"
+              :edit-render="gridCancelledQtyEditRender"
+              field="cancelledQty"
+              :visible="false"
+              align="right"
+              :sortable="true"
+              title="キャンセル数"
+              width="130px"
+              header-align="center"
+            />
+            <VueButtonColumn
+              align="center"
+              fixed="right"
+              width="40px"
+              :buttons="gridViy2TableButtonColumn_S6mhnButtons"
+            />
+          </VueTable>
+        </VuePanel>
+      </VueFlex>
     </VueFlex>
     <VueAside
       id="viy2Aside_92y0kC"

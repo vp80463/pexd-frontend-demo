@@ -3,7 +3,7 @@ import { useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import viy2Subpage_4wmMaPage from '';
+import viy2Subpage_4wmMaPage from '/src/views/fileLoad/fileImport.vue';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
 const uc = useUser().userInfo;

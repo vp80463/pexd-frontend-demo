@@ -186,7 +186,7 @@ const viy2Button_NKS0zClick = () => {
     name: 'spm0202_02', // 路由名称
   });
   // 详情页标签名
-  useMultiTags().getTag({ name: 'spm0202_02' }).meta.title = t('title.salesReturnHistoryInquiry_02');
+  useMultiTags().getTag({ name: 'spm0202_02' }).meta.title = t('顧客返品履歴');
   // router导航到页面并传递参数
   router.push({ name: 'spm0202_02', data: query });
 };

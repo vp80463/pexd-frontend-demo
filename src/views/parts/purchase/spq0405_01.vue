@@ -113,11 +113,15 @@ const partsAutoFill2Ds = partsAutoFill2DsApi.data;
 const largeGroupDsApi = useApi({
   url: '/common/helper/getLargeGroupList.json',
   method: 'post',
+}, {
+  manual: true,
 });
 const largeGroupDs = largeGroupDsApi.data;
 const brandDsApi = useApi({
   url: '/common/helper/getBrandListVL.json',
   method: 'post',
+}, {
+  manual: true,
 });
 const brandDs = brandDsApi.data;
 const pointDsApi = useApi({
@@ -126,6 +130,8 @@ const pointDsApi = useApi({
   data: {
     arg0: 'SHOP',
   },
+}, {
+  manual: true,
 });
 const pointDs = pointDsApi.data;
 const gridDsApi = useApi({
@@ -153,6 +159,7 @@ const mstCodeInfoDsApi = useApi({
   initialData: {
     S042: [],
   },
+  manual: true,
 });
 const mstCodeInfoDs = mstCodeInfoDsApi.data;
 const viy2Button_5FbWKcClick = () => {

@@ -4,7 +4,6 @@ import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import viy2Subpage_WCgmWPage from '';
 import { parts_column, parts_pop_column } from '@/settings/valuelistSetting.js';
 import { formatPartNo, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -56,8 +55,6 @@ const viy2Button_4zr4Xw = ref();
 const viy2Button_qOnsr = ref();
 const grid = ref();
 const viy2Row_AsHNi = ref();
-const viy2Dialog_WC1Ro = ref();
-const viy2Subpage_WCgmW = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
@@ -123,7 +120,6 @@ const gridRules = {
     },
   ],
 };
-const importWindowShowFlag = ref(false);
 const gridEditConfig = reactive({
   trigger: 'click',
   mode: 'cell',
@@ -771,20 +767,5 @@ const getPartsData = async (row) => {
         </VuePanel>
       </VueFlex>
     </VueFlex>
-    <VueDialog
-      id="viy2Dialog_WC1Ro"
-      ref="viy2Dialog_WC1Ro"
-      v-model="importWindowShowFlag"
-      :title="t('label.fileImport')"
-    >
-      <template #default>
-        <viy2Subpage_WCgmWPage
-          id="viy2Subpage_WCgmW"
-          ref="viy2Subpage_WCgmW"
-          :import-info="importInfo"
-          @transferring-data="handle"
-        />
-      </template>
-    </VueDialog>
   </VueForm>
 </template>

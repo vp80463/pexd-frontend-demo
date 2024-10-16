@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
 import { CONST_SYSTEM_DATE_FORMAT } from '@/constants';
-import viy2Subpage_WCgmWPage from '';
+import viy2Subpage_WCgmWPage from '/src/views/fileLoad/fileImport.vue';
 import { formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
