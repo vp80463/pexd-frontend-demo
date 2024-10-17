@@ -708,7 +708,8 @@ const skipDetailFc = () => {
                   id="viy2InputBox_a1I0p"
                   ref="viy2InputBox_a1I0p"
                   v-model="viy2Form_zCww8Data.billingTo"
-                  :disabled="true"
+                  :readonly="true"
+                  class="no-border"
                 />
               </VueFormItem>
             </VueCol>
