@@ -33,6 +33,7 @@ const form = ref();
 const viy2Flex_HG4DT = ref();
 const queryFormData = ref();
 const Search_Panel = ref();
+const viy2Button_50lEfc = ref();
 const viy2Button_50kiOC = ref();
 const viy2Button_6My7VA = ref();
 const viy2Row_hLmD = ref();
@@ -48,7 +49,6 @@ const viy2Panel_50igpm = ref();
 const viy2Button_50q5go = ref();
 const viy2Button_50lG5o = ref();
 const viy2Button_50v94C = ref();
-const viy2Button_50lEfc = ref();
 const grid = ref();
 const grid1 = ref();
 const viy2Aside_zwSA3 = ref();
@@ -163,6 +163,9 @@ const pointDsApi = useApi({
   },
 });
 const pointDs = pointDsApi.data;
+const viy2Button_50lEfcClick = () => {
+  doExport();
+};
 const viy2Button_50kiOCClick = () => {
   doSearch();
 };
@@ -205,9 +208,6 @@ const viy2Button_50lG5oClick = () => {
   doExport();
 };
 const viy2Button_50v94CClick = () => {
-  doExport();
-};
-const viy2Button_50lEfcClick = () => {
   doExport();
 };
 const gridIdentificationEditRender = computed(() => {
@@ -467,6 +467,9 @@ const skipDetailFc = () => {
         <VuePanel id="Search_Panel" ref="Search_Panel" :title="t('label.searchCondition')" height="auto" collapse-icon-position="left">
           <template #header>
             <div style="width: auto">
+              <VueButton id="viy2Button_50lEfc" ref="viy2Button_50lEfc" icon-position="left" @click="viy2Button_50lEfcClick">
+                請求書印刷
+              </VueButton>
               <VueButton id="viy2Button_50kiOC" ref="viy2Button_50kiOC" icon-position="left" type="info" @click="viy2Button_50kiOCClick">
                 {{ t('button.search') }}
               </VueButton>
@@ -614,13 +617,10 @@ const skipDetailFc = () => {
                 鑑データ出力
               </VueButton>
               <VueButton id="viy2Button_50lG5o" ref="viy2Button_50lG5o" icon-position="left" @click="viy2Button_50lG5oClick">
-                請求データ出力 (一覧)
+                一覧データ出力
               </VueButton>
               <VueButton id="viy2Button_50v94C" ref="viy2Button_50v94C" icon-position="left" @click="viy2Button_50v94CClick">
-                請求データ出力 (明細)
-              </VueButton>
-              <VueButton id="viy2Button_50lEfc" ref="viy2Button_50lEfc" icon-position="left" @click="viy2Button_50lEfcClick">
-                請求書明細印刷
+                明細データ出力
               </VueButton>
             </div>
           </template>

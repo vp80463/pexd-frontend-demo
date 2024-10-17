@@ -254,44 +254,6 @@ const gridPoRoRateEditRender = computed(() => {
     },
   };
 });
-const gridPoHoLineEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const gridPoHoRateFormatter = (row, columnConfig, cellValue) => {
-  return percentFormat(row.cellValue);
-};
-const gridPoHoRateEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const gridPoWoLineEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const gridPoWoRateFormatter = (row, columnConfig, cellValue) => {
-  return percentFormat(row.cellValue);
-};
-const gridPoWoRateEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
 const gridReceiptLineEditRender = computed(() => {
   return {
     enabled: false,
@@ -819,47 +781,6 @@ const resetTblResults = () => {
               :sortable="true"
               :title="t('label.purchaseOrderRORate')"
               width="190px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridPoHoLineEditRender"
-              field="poHoLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderHOLines')"
-              width="150px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="gridPoHoRateFormatter"
-              :edit-render="gridPoHoRateEditRender"
-              field="poHoRate"
-              align="right"
-              :sortable="true"
-              :title="t('label.purchaseOrderHORate')"
-              width="160px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridPoWoLineEditRender"
-              field="poWoLine"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderWOLines')"
-              width="150px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="gridPoWoRateFormatter"
-              :edit-render="gridPoWoRateEditRender"
-              field="poWoRate"
-              align="right"
-              :sortable="true"
-              :title="t('label.purchaseOrderWORate')"
-              width="160px"
               header-align="center"
             />
             <VueNumberColumn

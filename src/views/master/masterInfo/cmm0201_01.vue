@@ -1,5 +1,5 @@
 <script setup>
-import { IconCloseBold, IconDelete, IconEdit, IconSearch, VueMessage, useLockScreen } from 'viy-ui';
+import { IconDelete, IconEdit, IconSearch, VueMessage, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { find, merge } from 'lodash-es';
 import { useUser } from 'viy-menu';
@@ -42,11 +42,13 @@ const pagination = ref();
 const locationAside = ref();
 const viy2Subpage_A5K24 = ref();
 const addAside = ref();
-const addRow = ref();
+const viy2Row_a8uIG = ref();
+const viy2Row_a8x7n = ref();
 const viy2Button_ag9EkT = ref();
-const viy2Button_ag9EkU = ref();
+const viy2Button_a8H3c = ref();
 const locationForm = ref();
-const viy2Row_6Wsa8u = ref();
+const viy2Panel_a80Ut = ref();
+const viy2Row_a8axL = ref();
 const viy2Select_1rPSyE1 = ref();
 const viy2InputBox_6Wsa95 = ref();
 const viy2Select_17qxDrQ = ref();
@@ -501,8 +503,8 @@ const viy2Button_ag9EkTClick = () => {
     }
   });
 };
-const viy2Button_ag9EkUClick = () => {
-  VueMessageBox.confirm(t('M.C.10214'), t('title.warn'), {
+const viy2Button_a8H3cClick = () => {
+  VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
     showLocationAside.value = false;
@@ -900,183 +902,168 @@ const getPointLabel = (pointId) => {
       :close-on-press-escape="true"
     >
       <VueRow
-        id="addRow"
-        ref="addRow"
-        class="aside-title-row"
+        id="viy2Row_a8uIG"
+        ref="viy2Row_a8uIG"
       >
         <VueCol
           item-key="item"
-          :inline="true"
-          class="aside-title-row"
-          :md="{ span: 16 }"
+          style="padding-bottom:5px"
+          :md="{ span: 24 }"
         >
-          <VueText id="viy2Text_ag9EkS" ref="viy2Text_ag9EkS" class="aside-title-text">
-            ロケーションメンテ（詳細）
-          </VueText>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          align="right"
-          :inline="true"
-          class="aside-title-row"
-          :md="{ span: 8 }"
-        >
-          <VueButton id="viy2Button_ag9EkT" ref="viy2Button_ag9EkT" icon-position="left" type="info" @click="viy2Button_ag9EkTClick">
-            保存
-          </VueButton>
-          <VueButton id="viy2Button_ag9EkU" ref="viy2Button_ag9EkU" icon-position="left" size="large" type="text" class="icon-button-width" :icon="IconCloseBold" @click="viy2Button_ag9EkUClick" />
+          <VueRow
+            id="viy2Row_a8x7n"
+            ref="viy2Row_a8x7n"
+          >
+            <VueCol
+              item-key="item"
+              :md="{ span: 12 }"
+            >
+              <VueText id="viy2Text_ag9EkS" ref="viy2Text_ag9EkS" class="aside-title-text">
+                ロケーションメンテ（詳細）
+              </VueText>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              align="right"
+              :inline="true"
+              :md="{ span: 12 }"
+            >
+              <VueButton id="viy2Button_ag9EkT" ref="viy2Button_ag9EkT" icon-position="left" type="info" @click="viy2Button_ag9EkTClick">
+                保存
+              </VueButton>
+              <VueButton id="viy2Button_a8H3c" ref="viy2Button_a8H3c" icon-position="left" @click="viy2Button_a8H3cClick">
+                閉じる
+              </VueButton>
+            </VueCol>
+          </VueRow>
         </VueCol>
       </VueRow>
       <VueForm
         id="locationForm"
         ref="locationForm"
-        class="margin-top-div0 except-height-css"
         :model="locationFormData"
       >
-        <VueRow
-          id="viy2Row_6Wsa8u"
-          ref="viy2Row_6Wsa8u"
-        >
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
+        <VuePanel id="viy2Panel_a80Ut" ref="viy2Panel_a80Ut" title="詳細情報">
+          <VueRow
+            id="viy2Row_a8axL"
+            ref="viy2Row_a8axL"
           >
-            <VueFormItem
-              v-if="false"
-              label="販売店"
-              label-width="110px"
-              prop="pointId"
+            <VueCol
+              item-key="item"
+              :md="{ span: 24 }"
             >
-              <VueSelect
-                id="viy2Select_1rPSyE1"
-                ref="viy2Select_1rPSyE1"
-                v-model="locationFormData.pointId"
-                :style="{ width: '250px' }"
-                :collapse-tags="true"
-                :filterable="true"
-                :collapse-tags-tooltip="true"
-                :disabled="true"
-                :options="viy2Select_1rPSyE1Opts"
-                :props="{
-                  label: 'desc',
-                  value: 'id',
-                }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="ロケーション"
-              label-width="200px"
-              prop="location"
-              :rules="rules.viy2InputBox_6Wsa95Rules"
-            >
-              <VueInput
-                id="viy2InputBox_6Wsa95"
-                ref="viy2InputBox_6Wsa95"
-                v-model="locationFormData.location"
-                :disabled="locationFlag"
-                :style="{ width: '250px' }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="ロケーション別"
-              label-width="200px"
-              prop="locationTypeId"
-              :rules="rules.viy2Select_17qxDrQRules"
-            >
-              <VueSelect
-                id="viy2Select_17qxDrQ"
-                ref="viy2Select_17qxDrQ"
-                v-model="locationFormData.locationTypeId"
-                :style="{ width: '250px' }"
-                :disabled="locationTypeFlag"
-                :clearable="true"
-                :options="locationTypeDs"
-                :props="{
-                  label: 'codeData1',
-                  value: 'codeDbid',
-                }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              v-if="false"
-              label="エリア"
-              label-width="110px"
-              prop="wzId"
-              :rules="rules.viy2Select_17qxDtzRules"
-            >
-              <VueSelect
-                id="viy2Select_17qxDtz"
-                ref="viy2Select_17qxDtz"
-                v-model="locationFormData.wzId"
-                :style="{ width: '250px' }"
-                :clearable="true"
-                :options="workzoneDs"
-                :props="{
-                  label: 'description',
-                  value: 'workzoneId',
-                }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              v-if="false"
-              label="箱別"
-              label-width="110px"
-              prop="binTypeId"
-              :rules="rules.viy2Select_17qxDviRules"
-            >
-              <VueSelect
-                id="viy2Select_17qxDvi"
-                ref="viy2Select_17qxDvi"
-                v-model="locationFormData.binTypeId"
-                :style="{ width: '250px' }"
-                :clearable="true"
-                :options="binTypeDs"
-                :props="{
-                  label: 'description',
-                  value: 'binTypeId',
-                }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="主サイン"
-              label-width="110px"
-              prop="mainLocation"
-            >
-              <VueCheckbox
-                id="viy2CheckBox_17qxDx1"
-                ref="viy2CheckBox_17qxDx1"
-                v-model="locationFormData.mainLocation"
-                true-label="Y"
-                false-label="N"
-              />
-            </VueFormItem>
-          </VueCol>
-        </VueRow>
+              <VueFormItem
+                v-if="false"
+                label="販売店"
+                label-width="110px"
+                prop="pointId"
+              >
+                <VueSelect
+                  id="viy2Select_1rPSyE1"
+                  ref="viy2Select_1rPSyE1"
+                  v-model="locationFormData.pointId"
+                  :style="{ width: '250px' }"
+                  :collapse-tags="true"
+                  :filterable="true"
+                  :collapse-tags-tooltip="true"
+                  :disabled="true"
+                  :options="viy2Select_1rPSyE1Opts"
+                  :props="{
+                    label: 'desc',
+                    value: 'id',
+                  }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="ロケーション"
+                label-width="150px"
+                prop="location"
+                :rules="rules.viy2InputBox_6Wsa95Rules"
+              >
+                <VueInput
+                  id="viy2InputBox_6Wsa95"
+                  ref="viy2InputBox_6Wsa95"
+                  v-model="locationFormData.location"
+                  :disabled="locationFlag"
+                  :style="{ width: '250px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="ロケーションタイプ"
+                label-width="180px"
+                prop="locationTypeId"
+                :rules="rules.viy2Select_17qxDrQRules"
+              >
+                <VueSelect
+                  id="viy2Select_17qxDrQ"
+                  ref="viy2Select_17qxDrQ"
+                  v-model="locationFormData.locationTypeId"
+                  :style="{ width: '250px' }"
+                  :disabled="locationTypeFlag"
+                  :clearable="true"
+                  :options="locationTypeDs"
+                  :props="{
+                    label: 'codeData1',
+                    value: 'codeDbid',
+                  }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                v-if="false"
+                label="エリア"
+                label-width="110px"
+                prop="wzId"
+                :rules="rules.viy2Select_17qxDtzRules"
+              >
+                <VueSelect
+                  id="viy2Select_17qxDtz"
+                  ref="viy2Select_17qxDtz"
+                  v-model="locationFormData.wzId"
+                  :style="{ width: '250px' }"
+                  :clearable="true"
+                  :options="workzoneDs"
+                  :props="{
+                    label: 'description',
+                    value: 'workzoneId',
+                  }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                v-if="false"
+                label="箱別"
+                label-width="110px"
+                prop="binTypeId"
+                :rules="rules.viy2Select_17qxDviRules"
+              >
+                <VueSelect
+                  id="viy2Select_17qxDvi"
+                  ref="viy2Select_17qxDvi"
+                  v-model="locationFormData.binTypeId"
+                  :style="{ width: '250px' }"
+                  :clearable="true"
+                  :options="binTypeDs"
+                  :props="{
+                    label: 'description',
+                    value: 'binTypeId',
+                  }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="主サイン"
+                label-width="110px"
+                prop="mainLocation"
+              >
+                <VueCheckbox
+                  id="viy2CheckBox_17qxDx1"
+                  ref="viy2CheckBox_17qxDx1"
+                  v-model="locationFormData.mainLocation"
+                  true-label="Y"
+                  false-label="N"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
+        </VuePanel>
       </VueForm>
     </VueAside>
   </VueForm>

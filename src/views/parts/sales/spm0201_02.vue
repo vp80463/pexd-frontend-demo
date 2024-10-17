@@ -349,22 +349,6 @@ const gridOrderAmtEditRender = computed(() => {
     },
   };
 });
-const gridPcAllocatedQtyEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const gridOtherAllocatedQtyEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
 const gridBoCancelSignEditRender = computed(() => {
   return {
     enabled: false,
@@ -382,6 +366,14 @@ const gridBoQtyEditRender = computed(() => {
   };
 });
 const gridAllocatedQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridOtherAllocatedQtyEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -864,30 +856,6 @@ const onDelRow = (row) => {
               width="110px"
               header-align="center"
             />
-            <VueNumberColumn
-              :edit-render="gridPcAllocatedQtyEditRender"
-              field="pcAllocatedQty"
-              :visible="false"
-              align="right"
-              aggregate="sum"
-              footer-align="right"
-              :sortable="true"
-              title="自引当数"
-              width="110px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridOtherAllocatedQtyEditRender"
-              field="otherAllocatedQty"
-              :visible="false"
-              align="right"
-              aggregate="sum"
-              footer-align="right"
-              :sortable="true"
-              title="他引当数"
-              width="110px"
-              header-align="center"
-            />
             <VueTemplateColumn
               :edit-render="gridBoCancelSignEditRender"
               align="center"
@@ -928,6 +896,18 @@ const onDelRow = (row) => {
               :sortable="true"
               title="引当数"
               width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridOtherAllocatedQtyEditRender"
+              field="otherAllocatedQty"
+              :visible="false"
+              align="right"
+              aggregate="sum"
+              footer-align="right"
+              :sortable="true"
+              title="他引当数"
+              width="110px"
               header-align="center"
             />
             <VueNumberColumn

@@ -1,5 +1,5 @@
 <script setup>
-import { IconCloseBold, IconDelete, IconEdit, IconSearch, useLockScreen } from 'viy-ui';
+import { IconDelete, IconEdit, IconSearch, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
@@ -48,11 +48,13 @@ const grid = ref();
 const viy2Row_AsHNi = ref();
 const copy1_viy2Row_AsHNi_col1 = ref();
 const addStockAside = ref();
-const addRow = ref();
-const viy2Button_70FD2D = ref();
-const viy2Button_70FD2E = ref();
 const stockForm = ref();
-const viy2Row_70FZUc = ref();
+const viy2Row_a5W0P = ref();
+const viy2Row_a64to = ref();
+const viy2Button_70FD2D = ref();
+const viy2Button_a5CcB = ref();
+const viy2Panel_a58pk = ref();
+const viy2Row_a5f6Q = ref();
 const viy2Select_1rPSyE2 = ref();
 const viy2Select_186LZ5P = ref();
 const viy2InputBox_A6HxA = ref();
@@ -493,7 +495,7 @@ const viy2Button_70FD2DClick = () => {
     }
   });
 };
-const viy2Button_70FD2EClick = () => {
+const viy2Button_a5CcBClick = () => {
   VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
@@ -1027,225 +1029,213 @@ const isNewInput = (value) => {
       :with-header="false"
       :show-close="false"
     >
-      <VueRow
-        id="addRow"
-        ref="addRow"
-        class="aside-title-row"
-      >
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 16 }"
-        >
-          <VueText id="viy2Text_70FD2C" ref="viy2Text_70FD2C" class="aside-title-text">
-            棚卸在庫実績入力（明細）
-          </VueText>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          align="right"
-          :inline="true"
-          :md="{ span: 8 }"
-        >
-          <VueButton id="viy2Button_70FD2D" ref="viy2Button_70FD2D" icon-position="left" size="large" type="info" @click="viy2Button_70FD2DClick">
-            確定
-          </VueButton>
-          <VueButton id="viy2Button_70FD2E" ref="viy2Button_70FD2E" icon-position="left" size="large" type="text" class="icon-button-width" :icon="IconCloseBold" @click="viy2Button_70FD2EClick" />
-        </VueCol>
-      </VueRow>
       <VueForm
         id="stockForm"
         ref="stockForm"
-        class="margin-top-div0 except-height-css"
         :model="stockFormData"
       >
         <VueRow
-          id="viy2Row_70FZUc"
-          ref="viy2Row_70FZUc"
+          id="viy2Row_a5W0P"
+          ref="viy2Row_a5W0P"
         >
           <VueCol
             item-key="item"
+            style="padding-bottom:5px"
             :md="{ span: 24 }"
           >
-            <VueFormItem
-              v-if="false"
-              :label="t('label.point')"
-              label-width="110px"
-              prop="pointId"
+            <VueRow
+              id="viy2Row_a64to"
+              ref="viy2Row_a64to"
             >
-              <VueSelect
-                id="viy2Select_1rPSyE2"
-                ref="viy2Select_1rPSyE2"
-                v-model="stockFormData.pointId"
-                :style="{ width: '250px' }"
-                :collapse-tags="true"
-                :clearable="true"
-                :filterable="true"
-                :collapse-tags-tooltip="true"
-                :disabled="true"
-                :options="pointDs"
-                :props="{
-                  label: 'desc',
-                  value: 'id',
-                }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              v-if="false"
-              :label="t('label.wz')"
-              label-width="110px"
-              prop="wzId"
-              :rules="rules.viy2Select_186LZ5PRules"
-            >
-              <VueSelect
-                id="viy2Select_186LZ5P"
-                ref="viy2Select_186LZ5P"
-                v-model="stockFormData.wzId"
-                :style="{ width: '250px' }"
-                :disabled="true"
-                :options="workzoneDs"
-                :props="{
-                  label: 'description',
-                  value: 'workzoneId',
-                }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="棚"
-              label-width="110px"
-              prop="location"
-              :rules="rules.viy2InputBox_A6HxARules"
-            >
-              <VueInput
-                id="viy2InputBox_A6HxA"
-                ref="viy2InputBox_A6HxA"
-                v-model="stockFormData.location"
-                type="text"
-                :disabled="stockFormData.action === OperationStatus.UPDATE"
-                class="no-border"
-                :on-suffix-icon-click="viy2InputBox_A6HxAOnSuffixIconClick"
-                :style="{ width: '250px' }"
-                @change="viy2InputBox_A6HxAChange"
+              <VueCol
+                item-key="item"
+                class="aside-title-text"
+                :md="{ span: 12 }"
               >
-                <template #append>
-                  <VueButton id="viy2Button_76LHTy" ref="viy2Button_76LHTy" icon-position="left" :disabled="stockFormData.action === OperationStatus.UPDATE" class="icon-button-width" :icon="IconSearch" @click="viy2Button_76LHTyClick" />
-                </template>
-              </VueInput>
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="部品"
-              label-width="110px"
-              prop="parts"
-              :rules="rules.viy2ValueList_iR7L6tRules"
-            >
-              <VueValueList
-                :use-common-popover="true"
-                id="viy2ValueList_iR7L6t"
-                :use-common-popup="true"
-                ref="viy2ValueList_iR7L6t"
-                aside-size="60%"
-                v-model="stockFormData.parts"
-                :toggle-popover-on-click="true"
-                select-field="desc"
-                popup-type="aside"
-                :popover-width="500"
-                :use-popup="true"
-                :clearable="true"
-                width="250px"
-                :popover-columns="viy2ValueList_iR7L6tPopoverColumns"
-                :popover-query-method="viy2ValueList_iR7L6tPopoverQueryMethod"
-                :popup-columns="viy2ValueList_iR7L6tPopupColumns"
-                :popup-conditions="viy2ValueList_iR7L6tPopupConditions"
-                :popup-query-method="viy2ValueList_iR7L6tPopupQueryMethod"
-                @select="viy2ValueList_iR7L6tSelect"
-                @clear="viy2ValueList_iR7L6tClear"
-                @leave="viy2ValueList_iR7L6tLeave"
+                <VueText id="viy2Text_a6haS" ref="viy2Text_a6haS" class="aside-title-text">
+                  棚卸在庫実績入力（明細）
+                </VueText>
+              </VueCol>
+              <VueCol
+                item-key="item"
+                align="right"
+                :inline="true"
+                :md="{ span: 12 }"
               >
-                <template #asideHeader>
-                  <VueRow
-                    id="viy2Row_72ZSpZ"
-                    ref="viy2Row_72ZSpZ"
-                    class="aside-title-row"
-                  >
-                    <VueCol
-                      item-key="item"
-                      class="aside-title-text"
-                      :md="{ span: 7 }"
-                    >
-                      <VueText id="viy2Text_72ZSq0" ref="viy2Text_72ZSq0" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                        Select Parts
-                      </VueText>
-                    </VueCol>
-                    <VueCol
-                      item-key="item"
-                      align="right"
-                      :inline="true"
-                      class="aside-title-button"
-                      :md="{ span: 17 }"
-                    />
-                  </VueRow>
-                </template>
-              </VueValueList>
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="実績数量"
-              label-width="110px"
-              prop="actualQty"
-              :rules="rules.viy2InputNumber_HGnhiRules"
-            >
-              <VueInputNumber
-                id="viy2InputNumber_HGnhi"
-                ref="viy2InputNumber_HGnhi"
-                v-model="stockFormData.actualQty"
-                controls-position="both"
-                text-align="center"
-                :controls="true"
-                :style="{ width: '150px' }"
-              />
-            </VueFormItem>
-          </VueCol>
-          <VueCol
-            item-key="item"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="コスト"
-              label-width="110px"
-              prop="currentAverageCost"
-            >
-              <VueInputNumber
-                id="viy2InputNumber_hp0oH"
-                ref="viy2InputNumber_hp0oH"
-                v-model="stockFormData.currentAverageCost"
-                :controls="false"
-                :precision="2"
-                text-align="center"
-                :disabled="true"
-                :style="{ width: '250px' }"
-              />
-            </VueFormItem>
+                <VueButton id="viy2Button_70FD2D" ref="viy2Button_70FD2D" icon-position="left" type="info" @click="viy2Button_70FD2DClick">
+                  保存
+                </VueButton>
+                <VueButton id="viy2Button_a5CcB" ref="viy2Button_a5CcB" icon-position="left" @click="viy2Button_a5CcBClick">
+                  閉じる
+                </VueButton>
+              </VueCol>
+            </VueRow>
           </VueCol>
         </VueRow>
+        <VuePanel id="viy2Panel_a58pk" ref="viy2Panel_a58pk" title="実績入力明細">
+          <VueRow
+            id="viy2Row_a5f6Q"
+            ref="viy2Row_a5f6Q"
+          >
+            <VueCol
+              item-key="item"
+              :md="{ span: 24 }"
+            >
+              <VueFormItem
+                v-if="false"
+                :label="t('label.point')"
+                label-width="110px"
+                prop="pointId"
+              >
+                <VueSelect
+                  id="viy2Select_1rPSyE2"
+                  ref="viy2Select_1rPSyE2"
+                  v-model="stockFormData.pointId"
+                  :style="{ width: '250px' }"
+                  :collapse-tags="true"
+                  :clearable="true"
+                  :filterable="true"
+                  :collapse-tags-tooltip="true"
+                  :disabled="true"
+                  :options="pointDs"
+                  :props="{
+                    label: 'desc',
+                    value: 'id',
+                  }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                v-if="false"
+                :label="t('label.wz')"
+                label-width="110px"
+                prop="wzId"
+                :rules="rules.viy2Select_186LZ5PRules"
+              >
+                <VueSelect
+                  id="viy2Select_186LZ5P"
+                  ref="viy2Select_186LZ5P"
+                  v-model="stockFormData.wzId"
+                  :style="{ width: '250px' }"
+                  :disabled="true"
+                  :options="workzoneDs"
+                  :props="{
+                    label: 'description',
+                    value: 'workzoneId',
+                  }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="ロケーション"
+                label-width="130px"
+                prop="location"
+                :rules="rules.viy2InputBox_A6HxARules"
+              >
+                <VueInput
+                  id="viy2InputBox_A6HxA"
+                  ref="viy2InputBox_A6HxA"
+                  v-model="stockFormData.location"
+                  type="text"
+                  :disabled="stockFormData.action === OperationStatus.UPDATE"
+                  class="no-border"
+                  :on-suffix-icon-click="viy2InputBox_A6HxAOnSuffixIconClick"
+                  :style="{ width: '250px' }"
+                  @change="viy2InputBox_A6HxAChange"
+                >
+                  <template #append>
+                    <VueButton id="viy2Button_76LHTy" ref="viy2Button_76LHTy" icon-position="left" :disabled="stockFormData.action === OperationStatus.UPDATE" class="icon-button-width" :icon="IconSearch" @click="viy2Button_76LHTyClick" />
+                  </template>
+                </VueInput>
+              </VueFormItem>
+              <VueFormItem
+                label="部品"
+                label-width="110px"
+                prop="parts"
+                :rules="rules.viy2ValueList_iR7L6tRules"
+              >
+                <VueValueList
+                  :use-common-popover="true"
+                  id="viy2ValueList_iR7L6t"
+                  :use-common-popup="true"
+                  ref="viy2ValueList_iR7L6t"
+                  aside-size="60%"
+                  v-model="stockFormData.parts"
+                  :toggle-popover-on-click="true"
+                  select-field="desc"
+                  popup-type="aside"
+                  :popover-width="500"
+                  :use-popup="true"
+                  :clearable="true"
+                  width="250px"
+                  :popover-columns="viy2ValueList_iR7L6tPopoverColumns"
+                  :popover-query-method="viy2ValueList_iR7L6tPopoverQueryMethod"
+                  :popup-columns="viy2ValueList_iR7L6tPopupColumns"
+                  :popup-conditions="viy2ValueList_iR7L6tPopupConditions"
+                  :popup-query-method="viy2ValueList_iR7L6tPopupQueryMethod"
+                  @select="viy2ValueList_iR7L6tSelect"
+                  @clear="viy2ValueList_iR7L6tClear"
+                  @leave="viy2ValueList_iR7L6tLeave"
+                >
+                  <template #asideHeader>
+                    <VueRow
+                      id="viy2Row_72ZSpZ"
+                      ref="viy2Row_72ZSpZ"
+                      class="aside-title-row"
+                    >
+                      <VueCol
+                        item-key="item"
+                        class="aside-title-text"
+                        :md="{ span: 7 }"
+                      >
+                        <VueText id="viy2Text_72ZSq0" ref="viy2Text_72ZSq0" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
+                          Select Parts
+                        </VueText>
+                      </VueCol>
+                      <VueCol
+                        item-key="item"
+                        align="right"
+                        :inline="true"
+                        class="aside-title-button"
+                        :md="{ span: 17 }"
+                      />
+                    </VueRow>
+                  </template>
+                </VueValueList>
+              </VueFormItem>
+              <VueFormItem
+                label="実績数量"
+                label-width="110px"
+                prop="actualQty"
+                :rules="rules.viy2InputNumber_HGnhiRules"
+              >
+                <VueInputNumber
+                  id="viy2InputNumber_HGnhi"
+                  ref="viy2InputNumber_HGnhi"
+                  v-model="stockFormData.actualQty"
+                  controls-position="both"
+                  text-align="center"
+                  :controls="true"
+                  :style="{ width: '150px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="原価"
+                label-width="110px"
+                prop="currentAverageCost"
+              >
+                <VueInputNumber
+                  id="viy2InputNumber_hp0oH"
+                  ref="viy2InputNumber_hp0oH"
+                  v-model="stockFormData.currentAverageCost"
+                  :controls="false"
+                  :precision="2"
+                  text-align="center"
+                  :disabled="true"
+                  :style="{ width: '250px' }"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
+        </VuePanel>
       </VueForm>
     </VueAside>
     <VueAside

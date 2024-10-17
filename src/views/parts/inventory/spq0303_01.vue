@@ -879,7 +879,7 @@ const onLeavePartsCode = async (code) => {
               field="supersedingParts"
               show-overflow="tooltip"
               :sortable="true"
-              :aggregate-label="t('label.total')"
+              aggregate-label="合計"
               footer-align="center"
               title="代替部品(旧品)"
               width="175px"

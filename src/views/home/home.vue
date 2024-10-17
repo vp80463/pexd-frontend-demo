@@ -144,7 +144,7 @@ const gridDsApi = useApi({
       date: '20240101',
       item: '発注キャンセル',
       qty: '1',
-      flag: '1',
+      flag: '3',
       message: 'キャンセルされた発注があります。',
     },
     {
@@ -278,28 +278,37 @@ const onEditWin = (selectedRow) => {
     useMultiTags().getTag({ name: 'spq0207_01' }).meta.title = t('受注キャンセル履歴', data);
     // Use Vue Router to navigate to the specified route and pass the data parameters
     router.push({ name: 'spq0207_01', data });
+  } else if (selectedRow.flag === '3') {
+    // 発注キャンセル
+    useMultiTags().openTag({
+      name: 'spq0401_01', // 路由名称
+    });
+    // Update the meta title of the tag if it exists.
+    useMultiTags().getTag({ name: 'spq0401_01' }).meta.title = t('発注照会（部品別）', data);
+    // Use Vue Router to navigate to the specified route and pass the data parameters
+    router.push({ name: 'spq0401_01', data });
   } else {
     // 発注
     useMultiTags().openTag({
-      name: 'spm0404_01Copy', // 路由名称
+      name: 'spm0404_01', // 路由名称
     });
     // Update the meta title of the tag if it exists.
-    useMultiTags().getTag({ name: 'spm0404_01Copy' }).meta.title = t('発注一覧', data);
+    useMultiTags().getTag({ name: 'spm0404_01' }).meta.title = t('発注一覧', data);
     // Use Vue Router to navigate to the specified route and pass the data parameters
-    router.push({ name: 'spm0404_01Copy', data });
+    router.push({ name: 'spm0404_01', data });
   }
 };
-// 受注入力
+// 受注登録
 const skipTo1 = (row) => {
 // 跳转到详情页的必要参数
   const data = {};
   useMultiTags().openTag({
-    name: 'spm0201_03_new', // 路由名称
+    name: 'spm0201_03', // 路由名称
   });
   // 详情页标签名
-  useMultiTags().getTag({ name: 'spm0201_03_new' }).meta.title = t('受注登録');
+  useMultiTags().getTag({ name: 'spm0201_03' }).meta.title = t('受注登録');
   // router导航到页面并传递参数
-  router.push({ name: 'spm0201_03_new', data });
+  router.push({ name: 'spm0201_03', data });
 };
 // 受注一覧
 const skipTo2 = (row) => {
@@ -527,7 +536,7 @@ const skipTo9 = (row) => {
                   :md="{ span: 8 }"
                 >
                   <VueButton id="viy2Button_6ZrFZO" ref="viy2Button_6ZrFZO" icon-position="left" class="btn2" @click="viy2Button_6ZrFZOClick">
-                    受注入力
+                    受注登録
                   </VueButton>
                 </VueCol>
                 <VueCol

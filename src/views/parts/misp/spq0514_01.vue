@@ -12,9 +12,11 @@ const currentMonth = dayjs().format('YYYYMM');
 const exportFlag = ref(true);
 const router = useRouter();
 const grid1ListShow = ref(true);
+const grid2ListShow = ref(false);
 const markDateShow = ref(false);
 const selectDateShow = ref(false);
 const selectRangeShow = ref(true);
+const targetDateShow = ref(false);
 defineOptions({
   name: 'spq0514_01',
 });
@@ -25,14 +27,12 @@ const Search_Panel = ref();
 const viy2Button_6Eq86q = ref();
 const viy2Button_2gh3Ey = ref();
 const viy2Row_lOY8w = ref();
-const viy2Row_4qB1eW = ref();
-const viy2Row_ruHgA = ref();
-const viy2Row_14wgyC = ref();
+const viy2Row_4hnOU = ref();
 const viy2Radio_UzePB = ref();
-const viy2Select_mgSN = ref();
+const viy2DateTimePicker_LXukK = ref();
 const viy2Radio_gBGYE = ref();
 const markDate = ref();
-const viy2Table_mmkzz = ref();
+const viy2Flex_4pPG1 = ref();
 const viy2Panel_14irVK = ref();
 const viy2Button_5heur2 = ref();
 const viy2Table_14dwTw = ref();
@@ -40,42 +40,16 @@ const viy2Table_aGgKDk = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  datafieldviy2Radio_UzePB: '1', datafieldviy2Select_mgSN: '', datafieldviy2Radio_gBGYE: '1', markDate: [],
+  datafieldviy2Radio_UzePB: '1', targetDate: '', outRadius: '1', markDate: [],
 });
 const viy2Radio_UzePBOpts = reactive([
   { value: '1', label: '売上データ' },
   { value: '2', label: '在庫データ' },
 ]);
-const viy2Select_mgSNOpts = reactive([
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-]);
 const viy2Radio_gBGYEOpts = reactive([
   { value: '1', label: '未出力全件' },
-  { value: '2', label: '作成日指定' },
+  { value: '2', label: '売上日' },
 ]);
-const viy2Table_mmkzzEditConfig = reactive({
-  trigger: 'click',
-});
-const viy2Table_mmkzzMouseConfig = reactive({
-  extension: true,
-});
 const viy2Table_14dwTwEditConfig = reactive({
   trigger: 'click',
 });
@@ -160,13 +134,19 @@ const viy2Button_2gh3EyClick = () => {
 const viy2Radio_UzePBChange = (value) => {
   debugger;
   if (value == '1') {
-    selectDateShow = false;
-    selectRangeShow = true;
-    markDateShow = true;
+    selectDateShow.value = false;
+    selectRangeShow.value = true;
+    grid1ListShow.value = true;
+    grid2ListShow.value = false;
+    queryFormData.outRadius = 1;
+    targetDateShow.value = false;
   } else {
-    selectDateShow = true;
-    selectRangeShow = false;
-    markDateShow = false;
+    selectDateShow.value = true;
+    selectRangeShow.value = false;
+    grid1ListShow.value = false;
+    grid2ListShow.value = true;
+    markDateShow.value = false;
+    targetDateShow.value = true;
   }
 };
 const viy2Radio_gBGYEChange = (value) => {
@@ -185,16 +165,6 @@ const viy2Radio_gBGYEChange = (value) => {
   }
 }
 ;
-const viy2Table_mmkzzMarkDateEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const viy2Table_mmkzzNoEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 const viy2Button_5heur2Click = () => {
   exportDsApi.runAsync();
 };
@@ -398,6 +368,11 @@ const viy2Table_aGgKDkReorderQtyEditRender = computed(() => {
     enabled: false,
   };
 });
+const viy2Table_aGgKDkManualOrderSignEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const viy2Table_aGgKDkOnHandQtyEditRender = computed(() => {
   return {
     enabled: false,
@@ -580,6 +555,7 @@ const skipToDetail = (row) => {
       id="viy2Flex_SMXA1"
       ref="viy2Flex_SMXA1"
       direction="column"
+      class="full-height"
     >
       <VueForm
         id="queryForm"
@@ -608,133 +584,97 @@ const skipToDetail = (row) => {
               :md="{ span: 24 }"
             >
               <VueRow
-                id="viy2Row_4qB1eW"
-                ref="viy2Row_4qB1eW"
+                id="viy2Row_4hnOU"
+                ref="viy2Row_4hnOU"
               >
                 <VueCol
                   item-key="item"
+                  :inline="true"
                   :md="{ span: 24 }"
                 >
-                  <VueRow
-                    id="viy2Row_ruHgA"
-                    ref="viy2Row_ruHgA"
+                  <VueFormItem
+                    label="出力対象"
+                    label-width="100px"
+                    prop="datafieldviy2Radio_UzePB"
                   >
-                    <VueCol
-                      item-key="item"
-                      :md="{ span: 24 }"
+                    <VueRadioGroup
+                      id="viy2Radio_UzePB"
+                      ref="viy2Radio_UzePB"
+                      v-model="queryFormData.datafieldviy2Radio_UzePB"
+                      radio-style="button"
+                      direction="horizontal"
+                      split-size="default"
+                      @change="viy2Radio_UzePBChange"
                     >
-                      <VueRow
-                        id="viy2Row_14wgyC"
-                        ref="viy2Row_14wgyC"
+                      <VueRadioButton
+                        v-for="option in viy2Radio_UzePBOpts"
+                        :key="option.value"
+                        :label="option.value"
                       >
-                        <VueCol
-                          item-key="item"
-                          :md="{ span: 8 }"
-                        >
-                          <VueFormItem
-                            label="出力対象"
-                            label-width="100px"
-                            prop="datafieldviy2Radio_UzePB"
-                          >
-                            <VueRadioGroup
-                              id="viy2Radio_UzePB"
-                              ref="viy2Radio_UzePB"
-                              v-model="queryFormData.datafieldviy2Radio_UzePB"
-                              radio-style="button"
-                              direction="horizontal"
-                              split-size="default"
-                              @change="viy2Radio_UzePBChange"
-                            >
-                              <VueRadioButton
-                                v-for="option in viy2Radio_UzePBOpts"
-                                :key="option.value"
-                                :label="option.value"
-                              >
-                                {{ option.label }}
-                              </VueRadioButton>
-                            </VueRadioGroup>
-                          </VueFormItem>
-                          <VueFormItem
-                            v-show="selectDateShow"
-                            label-width="10px"
-                            prop="datafieldviy2Select_mgSN"
-                          >
-                            <VueSelect
-                              id="viy2Select_mgSN"
-                              ref="viy2Select_mgSN"
-                              v-model="queryFormData.datafieldviy2Select_mgSN"
-                              :style="{ width: '200px' }"
-                              :options="viy2Select_mgSNOpts"
-                            />
-                          </VueFormItem>
-                          <VueFormItem
-                            v-show="selectRangeShow"
-                            :label="t('label.outputRange')"
-                            label-width="100px"
-                            prop="datafieldviy2Radio_gBGYE"
-                          >
-                            <VueRadioGroup
-                              id="viy2Radio_gBGYE"
-                              ref="viy2Radio_gBGYE"
-                              v-model="queryFormData.datafieldviy2Radio_gBGYE"
-                              radio-style="button"
-                              direction="horizontal"
-                              split-size="default"
-                              @change="viy2Radio_gBGYEChange"
-                            >
-                              <VueRadioButton
-                                v-for="option in viy2Radio_gBGYEOpts"
-                                :key="option.value"
-                                :label="option.value"
-                              >
-                                {{ option.label }}
-                              </VueRadioButton>
-                            </VueRadioGroup>
-                          </VueFormItem>
-                          <VueFormItem
-                            v-show="markDateShow"
-                            prop="markDate"
-                          >
-                            <VueDatePicker
-                              id="markDate"
-                              ref="markDate"
-                              v-model="queryFormData.markDate"
-                              type="daterange"
-                            />
-                          </VueFormItem>
-                        </VueCol>
-                        <VueCol
-                          item-key="item"
-                          :md="{ span: 8 }"
-                        >
-                          <VueTable id="viy2Table_mmkzz" ref="viy2Table_mmkzz" height="auto" :edit-config="viy2Table_mmkzzEditConfig" :mouse-config="viy2Table_mmkzzMouseConfig">
-                            <VueInputColumn
-                              :edit-render="viy2Table_mmkzzMarkDateEditRender"
-                              field="markDate"
-                              title="作成年月日"
-                              width="auto"
-                            />
-                            <VueInputColumn
-                              :edit-render="viy2Table_mmkzzNoEditRender"
-                              field="no"
-                              title="件数"
-                              width="auto"
-                            />
-                          </VueTable>
-                        </VueCol>
-                        <VueCol
-                          item-key="item"
-                          :md="{ span: 8 }"
-                        />
-                      </VueRow>
-                    </VueCol>
-                  </VueRow>
+                        {{ option.label }}
+                      </VueRadioButton>
+                    </VueRadioGroup>
+                  </VueFormItem>
+                  <VueFormItem
+                    v-show="targetDateShow"
+                    label-width="10px"
+                    prop="targetDate"
+                  >
+                    <VueDatePicker
+                      id="viy2DateTimePicker_LXukK"
+                      ref="viy2DateTimePicker_LXukK"
+                      v-model="queryFormData.targetDate"
+                      type="date"
+                    />
+                  </VueFormItem>
+                  <VueFormItem
+                    v-show="selectRangeShow"
+                    :label="t('label.outputRange')"
+                    label-width="100px"
+                    prop="outRadius"
+                  >
+                    <VueRadioGroup
+                      id="viy2Radio_gBGYE"
+                      ref="viy2Radio_gBGYE"
+                      v-model="queryFormData.outRadius"
+                      radio-style="button"
+                      direction="horizontal"
+                      split-size="default"
+                      @change="viy2Radio_gBGYEChange"
+                    >
+                      <VueRadioButton
+                        v-for="option in viy2Radio_gBGYEOpts"
+                        :key="option.value"
+                        :label="option.value"
+                      >
+                        {{ option.label }}
+                      </VueRadioButton>
+                    </VueRadioGroup>
+                  </VueFormItem>
+                  <VueFormItem
+                    v-show="markDateShow"
+                    prop="markDate"
+                  >
+                    <VueDatePicker
+                      id="markDate"
+                      ref="markDate"
+                      v-model="queryFormData.markDate"
+                      type="daterange"
+                    />
+                  </VueFormItem>
                 </VueCol>
               </VueRow>
             </VueCol>
           </VueRow>
         </VuePanel>
-        <VuePanel id="viy2Panel_14irVK" ref="viy2Panel_14irVK" :title="t('label.detailInfo')">
+      </VueForm>
+      <VueFlex
+        id="viy2Flex_4pPG1"
+        ref="viy2Flex_4pPG1"
+        direction="column"
+        grow="1"
+      >
+        <VuePanel id="viy2Panel_14irVK" ref="viy2Panel_14irVK" :title="t('label.detailInfo')" height="100%">
           <template #header>
             <div style="width: auto">
               <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" :disabled="exportFlag" @click="viy2Button_5heur2Click">
@@ -742,7 +682,7 @@ const skipToDetail = (row) => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="viy2Table_14dwTw" ref="viy2Table_14dwTw" :edit-config="viy2Table_14dwTwEditConfig" :mouse-config="viy2Table_14dwTwMouseConfig">
+          <VueTable v-show="grid1ListShow" id="viy2Table_14dwTw" ref="viy2Table_14dwTw" height="auto" :edit-config="viy2Table_14dwTwEditConfig" :mouse-config="viy2Table_14dwTwMouseConfig">
             <VueIndexColumn
               align="center"
               width="50px"
@@ -913,7 +853,7 @@ const skipToDetail = (row) => {
               title="売上原価（合計）"
             />
           </VueTable>
-          <VueTable id="viy2Table_aGgKDk" ref="viy2Table_aGgKDk" :edit-config="viy2Table_aGgKDkEditConfig" :mouse-config="viy2Table_aGgKDkMouseConfig">
+          <VueTable v-show="grid2ListShow" id="viy2Table_aGgKDk" ref="viy2Table_aGgKDk" height="auto" :edit-config="viy2Table_aGgKDkEditConfig" :mouse-config="viy2Table_aGgKDkMouseConfig">
             <VueIndexColumn
               align="center"
               width="50px"
@@ -998,6 +938,12 @@ const skipToDetail = (row) => {
               field="reorderQty"
               width="200px"
               title="発注量"
+            />
+            <VueInputColumn
+              :edit-render="viy2Table_aGgKDkManualOrderSignEditRender"
+              field="manualOrderSign"
+              width="200px"
+              title="マニュアル発注サイン"
             />
             <VueInputColumn
               :edit-render="viy2Table_aGgKDkOnHandQtyEditRender"
@@ -1157,7 +1103,7 @@ const skipToDetail = (row) => {
             />
           </VueTable>
         </VuePanel>
-      </VueForm>
+      </VueFlex>
     </VueFlex>
   </VueForm>
 </template>
