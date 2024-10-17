@@ -168,6 +168,8 @@ const gridDsApi = useApi({
   },
 ]
   ,
+}, {
+  manual: true,
 });
 const gridDs = gridDsApi.data;
 const pointDsApi = useApi({

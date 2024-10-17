@@ -40,10 +40,10 @@ const grid = ref();
 const aside001 = ref();
 const viy2Row_TBVFW = ref();
 const viy2Row_TCZrB = ref();
-const viy2Form_MFuoe = ref();
-const viy2Panel_MFrbq = ref();
 const viy2Button_SS9Ht = ref();
 const viy2Button_MHEph = ref();
+const viy2Form_MFuoe = ref();
+const viy2Panel_MFrbq = ref();
 const viy2Row_MFE8R = ref();
 const viy2InputBox_STKLR1 = ref();
 const viy2InputBox_STKLR3 = ref();
@@ -796,6 +796,7 @@ const isNewInput = (value) => {
       >
         <VueCol
           item-key="item"
+          style="padding-bottom:5px"
           :md="{ span: 24 }"
         >
           <VueRow
@@ -817,7 +818,14 @@ const isNewInput = (value) => {
               align="right"
               :inline="true"
               :md="{ span: 12 }"
-            />
+            >
+              <VueButton id="viy2Button_SS9Ht" ref="viy2Button_SS9Ht" type="info" icon-position="right">
+                保存
+              </VueButton>
+              <VueButton id="viy2Button_MHEph" ref="viy2Button_MHEph" icon-position="left" @click="viy2Button_MHEphClick">
+                閉じる
+              </VueButton>
+            </VueCol>
           </VueRow>
         </VueCol>
       </VueRow>
@@ -827,16 +835,6 @@ const isNewInput = (value) => {
         :model="viy2Form_MFuoeData"
       >
         <VuePanel id="viy2Panel_MFrbq" ref="viy2Panel_MFrbq" title="内部課情報">
-          <template #header>
-            <div style="width: auto">
-              <VueButton id="viy2Button_SS9Ht" ref="viy2Button_SS9Ht" type="info" icon-position="right">
-                保存
-              </VueButton>
-              <VueButton id="viy2Button_MHEph" ref="viy2Button_MHEph" icon-position="left" @click="viy2Button_MHEphClick">
-                閉じる
-              </VueButton>
-            </div>
-          </template>
           <VueRow
             id="viy2Row_MFE8R"
             ref="viy2Row_MFE8R"

@@ -11,12 +11,14 @@ defineOptions({
   name: 'cmm0306_01',
 });
 const form = ref();
-const dataForm = ref();
+const viy2Flex_aaV33 = ref();
+const viy2Flex_aaXuz = ref();
 const viy2Panel_GLqEE = ref();
 const viy2Button_5FbWKcnew = ref();
 const viy2Button_5FbWKc = ref();
 const viy2Button_2gh3Ey = ref();
 const grid = ref();
+const dataForm = ref();
 const formData = reactive({
 });
 const dataFormData = reactive({
@@ -214,61 +216,74 @@ const resetTblResults = () => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
+    <VueFlex
+      id="viy2Flex_aaV33"
+      ref="viy2Flex_aaV33"
+      direction="column"
+      class="full-height"
+    >
+      <VueFlex
+        id="viy2Flex_aaXuz"
+        ref="viy2Flex_aaXuz"
+        direction="column"
+        grow="1"
+      >
+        <VuePanel id="viy2Panel_GLqEE" ref="viy2Panel_GLqEE" title="単価情報" height="100%">
+          <template #header>
+            <div style="width: auto">
+              <VueButton id="viy2Button_5FbWKcnew" ref="viy2Button_5FbWKcnew" icon-position="left" class="icon-button-width" @click="viy2Button_5FbWKcnewClick">
+                行追加
+              </VueButton>
+              <VueButton id="viy2Button_5FbWKc" ref="viy2Button_5FbWKc" icon-position="left" type="info" @click="viy2Button_5FbWKcClick">
+                保存
+              </VueButton>
+              <VueButton id="viy2Button_2gh3Ey" ref="viy2Button_2gh3Ey" icon-position="left" @click="viy2Button_2gh3EyClick">
+                クリア
+              </VueButton>
+            </div>
+          </template>
+          <VueTable id="grid" ref="grid" height="auto" :data="gridDs" :edit-rules="gridRules" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+            <VueIndexColumn
+              align="center"
+              width="50px"
+              min-width="50px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridStdpriceEditRender"
+              field="stdprice"
+              title="基準標準小売単価"
+              header-align="center"
+              width="160px"
+            />
+            <VueNumberColumn
+              :edit-render="gridUpRateEditRender"
+              field="upRate"
+              title="アップ率"
+              header-align="center"
+              width="120px"
+            />
+            <VueSelectColumn
+              :edit-render="gridPatternEditRender"
+              field="pattern"
+              title="切上パターン"
+              header-align="center"
+              width="130px"
+            />
+            <VueButtonColumn
+              align="center"
+              fixed="right"
+              width="40px"
+              :buttons="gridViy2TableButtonColumn_GDWleButtons"
+            />
+          </VueTable>
+        </VuePanel>
+      </VueFlex>
+    </VueFlex>
     <VueForm
       id="dataForm"
       ref="dataForm"
       :model="dataFormData"
-    >
-      <VuePanel id="viy2Panel_GLqEE" ref="viy2Panel_GLqEE" title="単価情報" height="100%">
-        <template #header>
-          <div style="width: auto">
-            <VueButton id="viy2Button_5FbWKcnew" ref="viy2Button_5FbWKcnew" icon-position="left" class="icon-button-width" @click="viy2Button_5FbWKcnewClick">
-              行追加
-            </VueButton>
-            <VueButton id="viy2Button_5FbWKc" ref="viy2Button_5FbWKc" icon-position="left" type="info" @click="viy2Button_5FbWKcClick">
-              保存
-            </VueButton>
-            <VueButton id="viy2Button_2gh3Ey" ref="viy2Button_2gh3Ey" icon-position="left" @click="viy2Button_2gh3EyClick">
-              クリア
-            </VueButton>
-          </div>
-        </template>
-        <VueTable id="grid" ref="grid" height="100%" :data="gridDs" :edit-rules="gridRules" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
-          <VueIndexColumn
-            align="center"
-            width="50px"
-            min-width="50px"
-            header-align="center"
-          />
-          <VueNumberColumn
-            :edit-render="gridStdpriceEditRender"
-            field="stdprice"
-            title="基準標準小売単価"
-            header-align="center"
-            width="160px"
-          />
-          <VueNumberColumn
-            :edit-render="gridUpRateEditRender"
-            field="upRate"
-            title="アップ率"
-            header-align="center"
-            width="120px"
-          />
-          <VueSelectColumn
-            :edit-render="gridPatternEditRender"
-            field="pattern"
-            title="切上パターン"
-            header-align="center"
-            width="130px"
-          />
-          <VueButtonColumn
-            align="center"
-            fixed="right"
-            width="40px"
-            :buttons="gridViy2TableButtonColumn_GDWleButtons"
-          />
-        </VueTable>
-      </VuePanel>
-    </VueForm>
+    />
   </VueForm>
 </template>
