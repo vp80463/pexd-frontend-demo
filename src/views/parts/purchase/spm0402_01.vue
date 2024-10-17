@@ -874,14 +874,14 @@ const getDetailPartsData = async (row) => {
               :edit-render="gridOnPurchaseQtyEditRender"
               field="onPurchaseQty"
               align="right"
-              title="発注中数"
+              title="発注残数"
               width="145px"
             />
             <VueNumberColumn
               :edit-render="gridBoQtyEditRender"
               field="boQty"
               align="right"
-              title="発注残数"
+              title="BO数"
               width="90px"
             />
             <VueButtonColumn
