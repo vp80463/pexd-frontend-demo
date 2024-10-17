@@ -182,6 +182,7 @@
     "purchaseOrderEOLines" : "購入(急)行数",
     "updateRecords" : "  Update Records",
     "fileName" : " File Name",
+    "total" : "合計",
     "exportCondition" : "出力条件",
     "yes" : "  Yes",
     "purchaseQuantity" : "  Purchase Quantity",
