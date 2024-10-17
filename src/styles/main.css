@@ -380,3 +380,13 @@ button[title='Delete'] .vue-icon {
     --vue-button-bg-color: red;
     --vue-button-border-color: red;
 }
+
+.vue-dropdown {
+   .globalization{
+      display: none;
+   }
+}
+
+.sidebar-logo-container .sidebar-logo-link .svg-container[data-v-231cc813]{
+  width: 178px;
+}

@@ -5,8 +5,8 @@ import { locales } from 'viy-menu';
 import { merge } from 'lodash-es';
 
 export const i18n = createI18n({
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'ja',
+  fallbackLocale: 'ja',
   legacy: false,
   missingWarn: false,
   fallbackWarn: false,
