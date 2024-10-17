@@ -142,7 +142,6 @@ const doClose = () => {
         item-key="item"
         align="left"
         :inline="true"
-        class="aside-title-row"
         :md="{ span: 16 }"
       >
         <VueText id="viy2Text_RrUe8" ref="viy2Text_RrUe8" class="aside-title-text">
@@ -153,7 +152,6 @@ const doClose = () => {
         item-key="item"
         align="right"
         :inline="true"
-        class="aside-title-row"
         :md="{ span: 8 }"
       >
         <VueButton id="close" ref="close" icon-position="left" @click="closeClick">

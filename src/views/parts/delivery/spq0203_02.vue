@@ -17,10 +17,11 @@ defineOptions({
   name: 'spq0203_02',
 });
 const form = ref();
+const viy2Row_zgSti = ref();
+const BackBtn = ref();
+const viy2Button_1M67GZ = ref();
 const viy2Flex_13qVCS = ref();
 const viy2Panel_2rs6nZ = ref();
-const BackBtn = ref();
-const close = ref();
 const orderForm = ref();
 const viy2Row_95TIyi = ref();
 const viy2InputBox_56ddTC = ref();
@@ -78,7 +79,7 @@ const BackBtnClick = () => {
     },
   });
 };
-const closeClick = () => {
+const viy2Button_1M67GZClick = () => {
   doClose();
 };
 const gridOrderNoEditRender = computed(() => {
@@ -161,6 +162,34 @@ const doClose = () => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
+    <VueRow
+      id="viy2Row_zgSti"
+      ref="viy2Row_zgSti"
+    >
+      <VueCol
+        item-key="item"
+        align="left"
+        :inline="true"
+        :md="{ span: 16 }"
+      >
+        <VueText id="viy2Text_1M67GY" ref="viy2Text_1M67GY" class="aside-title-text">
+          出荷履歴明細（販売店別）
+        </VueText>
+      </VueCol>
+      <VueCol
+        item-key="item"
+        align="right"
+        :inline="true"
+        :md="{ span: 8 }"
+      >
+        <VueButton id="BackBtn" ref="BackBtn" icon-position="left" type="info" @click="BackBtnClick">
+          印刷
+        </VueButton>
+        <VueButton id="viy2Button_1M67GZ" ref="viy2Button_1M67GZ" icon-position="left" @click="viy2Button_1M67GZClick">
+          閉じる
+        </VueButton>
+      </VueCol>
+    </VueRow>
     <VueFlex
       id="viy2Flex_13qVCS"
       ref="viy2Flex_13qVCS"
@@ -168,16 +197,6 @@ const doClose = () => {
       class="full-height"
     >
       <VuePanel id="viy2Panel_2rs6nZ" ref="viy2Panel_2rs6nZ" :collapse="true" title="基本情報">
-        <template #header>
-          <div style="width: auto">
-            <VueButton id="BackBtn" ref="BackBtn" icon-position="left" type="info" @click="BackBtnClick">
-              印刷
-            </VueButton>
-            <VueButton id="close" ref="close" icon-position="left" @click="closeClick">
-              閉じる
-            </VueButton>
-          </div>
-        </template>
         <VueForm
           id="orderForm"
           ref="orderForm"
