@@ -19,6 +19,7 @@ const router = useRouter();
 const placeholderNm = ref('');
 const assignShow = ref(false);
 const validataFlag = ref(true);
+const groupShow = ref(false);
 defineOptions({
   name: 'spq0510_01_3s',
 });
@@ -247,12 +248,16 @@ const viy2Radio_BPvTQChange = (value) => {
   if (value == 'companyWide') {
     // 隐藏 表示タイプ、
     assignShow.value = false;
+    groupShow.value = false;
   } else if (value == 'salesman') {
     assignShow.value = true;
+    groupShow.value = true;
   } else if (value == 'consumer') {
     assignShow.value = true;
+    groupShow.value = false;
   } else if (value == 'internalDivision') {
     assignShow.value = false;
+    groupShow.value = false;
   }
 }
 ;
@@ -266,6 +271,17 @@ const gridSalesStoredFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
 const gridSalesStoredEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridGroupFormatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const gridGroupEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -486,6 +502,7 @@ const skipToDetail = (row) => {
               </VueFormItem>
               <VueFormItem
                 :label="t('label.pcType')"
+                label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
                 <VueCascader
@@ -558,12 +575,26 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
+                :formatter="gridGroupFormatter"
+                :edit-render="gridGroupEditRender"
+                field="group"
+                align="right"
+                aggregate="sum"
+                footer-align="right"
+                :visible="groupShow"
+                :sortable="true"
+                width="200px"
+                title="グルーブ"
+                header-align="center"
+              />
+              <VueNumberColumn
                 :formatter="gridSalesStoreFormatter"
                 :edit-render="gridSalesStoreEditRender"
                 field="salesStore"
                 align="right"
                 aggregate="sum"
                 footer-align="right"
+                :visible="!groupShow"
                 :sortable="true"
                 width="200px"
                 title="販売店"

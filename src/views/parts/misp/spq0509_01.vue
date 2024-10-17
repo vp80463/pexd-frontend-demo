@@ -26,9 +26,7 @@ const viy2Button_2gh3Ey = ref();
 const viy2Row_23d4A = ref();
 const viy2DateTimePicker_1yEexG = ref();
 const viy2Select_1rPSyEH = ref();
-const viy2Select_1a1t5k4 = ref();
-const viy2Select_3UTmVK = ref();
-const viy2Select_3UTMNC = ref();
+const viy2Cascader_LmE9w = ref();
 const viy2Flex_SMXLZ = ref();
 const viy2Panel_22eDL = ref();
 const viy2Button_5heur2 = ref();
@@ -37,7 +35,7 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  targetYearFrom: '', salesStore: '', productCd: '', productCd: '', productCd: '',
+  targetYearFrom: '', salesStore: '', datafieldviy2Cascader_LmE9w: [],
 });
 const rules = reactive({
   viy2DateTimePicker_1yEexGRules: [
@@ -46,6 +44,11 @@ const rules = reactive({
       message: t('validation.error.required'),
     },
   ],
+});
+const viy2Cascader_LmE9wProps = reactive({
+  checkStrictly: true,
+  label: 'label',
+  value: 'value',
 });
 const gridEditConfig = reactive({
   trigger: 'click',
@@ -70,6 +73,70 @@ const pointDsApi = useApi({
   },
 });
 const pointDs = pointDsApi.data;
+const pcTypeDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
+const pcTypeDs = pcTypeDsApi.data;
 const findStockAccountListApi = useApi({
   url: '/parts/spq0508/findStockAccountList.json',
   method: 'post',
@@ -123,15 +190,6 @@ const viy2Button_2gh3EyClick = () => {
   });
 };
 const viy2Select_1rPSyEHChange = (value, data) => {
-  queryFormData.pointCd = data.code;
-};
-const viy2Select_1a1t5k4Change = (value, data) => {
-  queryFormData.pointCd = data.code;
-};
-const viy2Select_3UTmVKChange = (value, data) => {
-  queryFormData.pointCd = data.code;
-};
-const viy2Select_3UTMNCChange = (value, data) => {
   queryFormData.pointCd = data.code;
 };
 const viy2Button_5heur2Click = () => {
@@ -680,69 +738,21 @@ const skipToDetail = (row) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="大区分"
+                :label="t('label.pcType')"
                 label-width="100px"
-                prop="productCd"
+                prop="datafieldviy2Cascader_LmE9w"
               >
-                <VueSelect
-                  id="viy2Select_1a1t5k4"
-                  ref="viy2Select_1a1t5k4"
-                  v-model="queryFormData.productCd"
-                  :style="{ width: '100px' }"
-                  :collapse-tags="true"
-                  :clearable="true"
+                <VueCascader
+                  id="viy2Cascader_LmE9w"
+                  ref="viy2Cascader_LmE9w"
+                  v-model="queryFormData.datafieldviy2Cascader_LmE9w"
+                  display-member="label"
+                  value-member="value"
                   :filterable="true"
-                  :collapse-tags-tooltip="true"
-                  :options="pointDs"
-                  :props="{
-                    label: 'desc',
-                    value: 'id',
-                  }"
-                  @change="viy2Select_1a1t5k4Change"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="中区分"
-                label-width="100px"
-                prop="productCd"
-              >
-                <VueSelect
-                  id="viy2Select_3UTmVK"
-                  ref="viy2Select_3UTmVK"
-                  v-model="queryFormData.productCd"
-                  :style="{ width: '100px' }"
-                  :collapse-tags="true"
                   :clearable="true"
-                  :filterable="true"
-                  :collapse-tags-tooltip="true"
-                  :options="pointDs"
-                  :props="{
-                    label: 'desc',
-                    value: 'id',
-                  }"
-                  @change="viy2Select_3UTmVKChange"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="小区分"
-                label-width="100px"
-                prop="productCd"
-              >
-                <VueSelect
-                  id="viy2Select_3UTMNC"
-                  ref="viy2Select_3UTMNC"
-                  v-model="queryFormData.productCd"
-                  :style="{ width: '100px' }"
-                  :collapse-tags="true"
-                  :clearable="true"
-                  :filterable="true"
-                  :collapse-tags-tooltip="true"
-                  :options="pointDs"
-                  :props="{
-                    label: 'desc',
-                    value: 'id',
-                  }"
-                  @change="viy2Select_3UTMNCChange"
+                  :style="{ width: '250px' }"
+                  :options="pcTypeDs"
+                  :props="viy2Cascader_LmE9wProps"
                 />
               </VueFormItem>
             </VueCol>
@@ -788,6 +798,7 @@ const skipToDetail = (row) => {
               field="targetYear"
               show-overflow="tooltip"
               :sortable="true"
+              aggregate-label="Total"
               :title="t('label.targetYear')"
               width="130px"
               header-align="center"
@@ -815,7 +826,6 @@ const skipToDetail = (row) => {
               field="pointNm"
               show-overflow="tooltip"
               :sortable="true"
-              aggregate-label="Total"
               :title="t('label.productDiff')"
               header-align="center"
               min-width="200px"
@@ -825,7 +835,6 @@ const skipToDetail = (row) => {
               :edit-render="gridProductDiffNmEditRender"
               field="productDiffNm"
               align="right"
-              aggregate="sum"
               footer-align="right"
               :sortable="true"
               width="200px"

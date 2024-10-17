@@ -441,6 +441,7 @@ const percentFormat = (cellValue) => {
               </VueFormItem>
               <VueFormItem
                 :label="t('label.pcType')"
+                label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
                 <VueCascader
@@ -509,7 +510,6 @@ const percentFormat = (cellValue) => {
               field="pointCd"
               show-overflow="tooltip"
               :sortable="true"
-              aggregate-label="Total:"
               title="受注先"
               width="130px"
               header-align="center"

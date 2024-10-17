@@ -1,5 +1,5 @@
 <script setup>
-import { IconCloseBold, IconEdit, useLockScreen } from 'viy-ui';
+import { IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -26,6 +26,7 @@ const firstDay = dayjs().startOf('month').format('YYYYMMDD');
 const lastDay = dayjs().format('YYYYMMDD');
 const gridShow = ref(true);
 const grid1Show = ref(false);
+const billingTo = '';
 defineOptions({
   name: 'spq0512_01Copy',
 });
@@ -55,9 +56,11 @@ const viy2Row_v8prN = ref();
 const viy2Row_5K6AKO = ref();
 const copy2_viy2Row_v8xMS_col1 = ref();
 const copy2_viy2Row_v8xMS_col2 = ref();
-const viy2Button_5K6ALG = ref();
+const viy2Button_MHEph = ref();
 const viy2Form_zCww8 = ref();
-const viy2FormItem_zCDdW = ref();
+const viy2Panel_a0Ael = ref();
+const viy2Row_a2fXN = ref();
+const viy2InputBox_a1I0p = ref();
 const viy2Panel_zDFko = ref();
 const viy2Table_zDKIo = ref();
 const formData = reactive({
@@ -66,6 +69,7 @@ const queryFormDataData = reactive({
   Type: '1', datafieldviy2DateTimePicker_RRgLG: '', NewLineCode: 'CR + LF', SignConversion: 'する',
 });
 const viy2Form_zCww8Data = reactive({
+  billingTo: 'consumer1',
 });
 const skipDetailShow = ref(false);
 const viy2Table_zDKIoEditConfig = reactive({
@@ -248,11 +252,11 @@ const gridTotalPriceEditRender = computed(() => {
     },
   };
 });
-const viy2Button_5K6ALGClick = () => {
+const viy2Button_MHEphClick = () => {
   VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
-    skipDetailShow.value = false;
+    aside001002.value = false;
   });
 };
 const viy2Table_zDKIoData1EditRender = computed(() => {
@@ -647,7 +651,7 @@ const skipDetailFc = () => {
       <VueRow
         id="viy2Row_v8prN"
         ref="viy2Row_v8prN"
-        class="aside-title-row"
+        style="padding-bottom:5px;"
       >
         <VueCol
           item-key="item"
@@ -675,7 +679,9 @@ const skipDetailFc = () => {
               :inline="true"
               :md="{ span: 12 }"
             >
-              <VueButton id="viy2Button_5K6ALG" ref="viy2Button_5K6ALG" icon-position="right" type="text" class="icon-button-width" :icon="IconCloseBold" @click="viy2Button_5K6ALGClick" />
+              <VueButton id="viy2Button_MHEph" ref="viy2Button_MHEph" icon-position="left" @click="viy2Button_MHEphClick">
+                閉じる
+              </VueButton>
             </VueCol>
           </VueRow>
         </VueCol>
@@ -685,12 +691,29 @@ const skipDetailFc = () => {
         ref="viy2Form_zCww8"
         :model="viy2Form_zCww8Data"
       >
-        <VueFormItem
-          id="viy2FormItem_zCDdW"
-          ref="viy2FormItem_zCDdW"
-          label="請求先"
-          prop="billingTo"
-        />
+        <VuePanel id="viy2Panel_a0Ael" ref="viy2Panel_a0Ael" title="主信息">
+          <VueRow
+            id="viy2Row_a2fXN"
+            ref="viy2Row_a2fXN"
+          >
+            <VueCol
+              item-key="item"
+              :md="{ span: 24 }"
+            >
+              <VueFormItem
+                label="請求先"
+                prop="billingTo"
+              >
+                <VueInput
+                  id="viy2InputBox_a1I0p"
+                  ref="viy2InputBox_a1I0p"
+                  v-model="viy2Form_zCww8Data.billingTo"
+                  :disabled="true"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
+        </VuePanel>
         <VuePanel id="viy2Panel_zDFko" ref="viy2Panel_zDFko" title="明細情報">
           <VueTable id="viy2Table_zDKIo" ref="viy2Table_zDKIo" height="auto" :edit-config="viy2Table_zDKIoEditConfig" :mouse-config="viy2Table_zDKIoMouseConfig">
             <VueInputColumn

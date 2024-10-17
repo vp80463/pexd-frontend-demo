@@ -403,6 +403,7 @@ const skipToDetail = (row) => {
               </VueFormItem>
               <VueFormItem
                 :label="t('label.pcType')"
+                label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
                 <VueCascader
@@ -461,6 +462,7 @@ const skipToDetail = (row) => {
               field="targetYear"
               show-overflow="tooltip"
               :sortable="true"
+              aggregate-label="Total"
               title="对象年"
               width="130px"
               header-align="center"
@@ -470,7 +472,6 @@ const skipToDetail = (row) => {
               field="pointNm"
               show-overflow="tooltip"
               :sortable="true"
-              aggregate-label="Total"
               :title="t('label.productDiff')"
               header-align="center"
               min-width="200px"
@@ -480,7 +481,6 @@ const skipToDetail = (row) => {
               :edit-render="gridProductDiffNmEditRender"
               field="productDiffNm"
               align="right"
-              aggregate="sum"
               footer-align="right"
               :sortable="true"
               width="200px"
@@ -492,7 +492,6 @@ const skipToDetail = (row) => {
               :edit-render="gridTargetTypeCategoryEditRender"
               field="targetTypeCategory"
               align="right"
-              aggregate="sum"
               footer-align="right"
               :sortable="true"
               width="200px"
