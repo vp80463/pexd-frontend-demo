@@ -5,6 +5,7 @@ import { CONST_SYSTEM_DATE_FORMAT } from '@/constants';
 import viy2Subpage_92y0kPPage from '/src/views/commons/parts_select_multi.vue';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
+const showFlag = ref(false);
 defineOptions({
   name: 'spm0201_03',
 });
@@ -44,7 +45,7 @@ const viy2Subpage_92y0kP = ref();
 const formData = reactive({
 });
 const viy2Form_3gckrwData = reactive({
-  orderNo: '', datafieldviy2Radio_ksdEB: 'しない', dateFrom: '', orderType: '通常', orderOutSign: 'N', salesShop: '', deliveryAddress: '', siwakecd: '', saimokucd: '', datafieldviy2InputBox_kxtHQ: '', point: 'YSP 傘下',
+  orderNo: '', datafieldviy2Radio_ksdEB: 'しない', dateFrom: '', orderType: '1', orderOutSign: 'N', salesShop: '', deliveryAddress: '', siwakecd: '', saimokucd: '', datafieldviy2InputBox_kxtHQ: '', point: 'YSP 傘下',
 });
 const rules = reactive({
   viy2ValueList_sloqwRules: [
@@ -100,9 +101,9 @@ const viy2Radio_x5Zg2GOpts = reactive([
   { value: 'しない', label: 'しない' },
 ]);
 const viy2Radio_x5Zg4gOpts = reactive([
-  { value: '通常', label: '通常' },
-  { value: '社内', label: '社内' },
-  { value: '廃却', label: '廃却' },
+  { value: '1', label: '通常' },
+  { value: '2', label: '社内' },
+  { value: '3', label: '廃却' },
 ]);
 const viy2CheckBox_x5Zg5WOpts = [
   {
@@ -197,6 +198,13 @@ const resetBtnClick = () => {
     }
   }).catch(() => {
   });
+};
+const viy2Radio_x5Zg4gChange = (value) => {
+  if (value == 2) {
+    showFlag.value = true;
+  } else {
+    showFlag.value = false;
+  }
 };
 const viy2Button_dEE4SClick = () => {
   showPartsMultiWin.value = true;
@@ -515,6 +523,7 @@ const onDelRow = (row) => {
                   radio-style="button"
                   direction="horizontal"
                   split-size="default"
+                  @change="viy2Radio_x5Zg4gChange"
                 >
                   <VueRadioButton
                     v-for="option in viy2Radio_x5Zg4gOpts"
@@ -595,7 +604,7 @@ const onDelRow = (row) => {
                 ref="viy2Row_3V3IZ"
               >
                 <VueCol
-                  v-show="true"
+                  v-if="showFlag"
                   item-key="item"
                   :inline="true"
                   :md="{ span: 24 }"
@@ -716,7 +725,7 @@ const onDelRow = (row) => {
               </VueRow>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" header-align="center" height="98%" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" header-align="center" height="96%" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
             <VueRow
               id="viy2Row_AsHNi"
               ref="viy2Row_AsHNi"

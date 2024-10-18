@@ -1,6 +1,7 @@
 <script setup>
 import { IconDelete, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
+import { useApi } from '@/composables/useApi';
 import { CONST_SYSTEM_DATE_FORMAT } from '@/constants';
 import viy2Subpage_92y0kPPage from '/src/views/commons/parts_select_multi.vue';
 const { t } = useI18n();
@@ -23,7 +24,6 @@ const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_972Qhd = ref();
 const viy2Row_973olD = ref();
-const viy2Row_98XTVE = ref();
 const viy2Row_98XSoa = ref();
 const viy2CheckBox_98qsnk = ref();
 const viy2CheckBox_98ut2U = ref();
@@ -182,6 +182,10 @@ const gridViy2TableButtonColumn_S6mhnButtons = (scope) => {
     },
   ];
 };
+const pageDataSet_ePP6QApi = useApi({
+  method: 'post',
+});
+const pageDataSet_ePP6Q = pageDataSet_ePP6QApi.data;
 const resetBtnClick = () => {
   VueMessageBox.confirm(t('ymc-commons.P.00006'), t('title.warn'), {
     type: 'warning',
@@ -705,32 +709,7 @@ const onDelRow = (row) => {
               :sortable="true"
               title="科目コード"
               width="145px"
-            >
-              <template #asideHeader="scope">
-                <VueRow
-                  id="viy2Row_98XTVE"
-                  ref="viy2Row_98XTVE"
-                  class="aside-title-row"
-                >
-                  <VueCol
-                    item-key="item"
-                    class="aside-title-text"
-                    :md="{ span: 10 }"
-                  >
-                    <VueText id="viy2Text_98XTVP" ref="viy2Text_98XTVP" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                      {{ t('title.partItemRef') }}
-                    </VueText>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    align="right"
-                    :inline="true"
-                    class="aside-title-button"
-                    :md="{ span: 14 }"
-                  />
-                </VueRow>
-              </template>
-            </VueValueListColumn>
+            />
             <VueValueListColumn
               :edit-render="gridSaimokucdEditRender"
               field="saimokucd"
