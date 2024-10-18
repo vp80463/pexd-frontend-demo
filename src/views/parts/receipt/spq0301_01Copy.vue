@@ -33,7 +33,7 @@ const storingLineId = ref('');
 const receiptSlipId = ref('');
 const receiptSlipIds = ref([]);
 defineOptions({
-  name: 'spq0301_01',
+  name: 'spq0301_01Copy',
 });
 const form = ref();
 const viy2Flex_Bumfn = ref();
@@ -542,7 +542,7 @@ const onLeavePartsCode = async (code) => {
 };
 const closeSpq030102 = () => {
   showDetailAside.value = false;
-  headerGridDsApi.runAsync();
+// gridDsApi.runAsync();
 };
 </script>
 
@@ -911,16 +911,14 @@ const closeSpq030102 = () => {
       ref="detailAside"
       v-model="showDetailAside"
       :close-on-press-escape="true"
-      direction="btt"
-      size="90%"
+      direction="rtl"
+      size="60%"
       :with-header="false"
       :show-close="false"
     >
       <detailPagePage
         id="detailPage"
         ref="detailPage"
-        :init-data="asideParams"
-        @select="callBackSpq030102"
         @close="closeSpq030102"
       />
     </VueAside>
