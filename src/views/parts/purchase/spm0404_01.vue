@@ -957,10 +957,10 @@ const checkFilter = () => {
       ref="detailAside"
       v-model="showDetailAside"
       :close-on-click-modal="false"
-      size="60%"
+      size="90%"
       :with-header="false"
       :show-close="false"
-      direction="rtl"
+      direction="btt"
       :close-on-press-escape="true"
     >
       <detailPagePage
