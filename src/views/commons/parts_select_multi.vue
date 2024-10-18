@@ -1,5 +1,5 @@
 <script setup>
-import { IconCloseBold, IconDArrowRight, IconDelete, useLockScreen } from 'viy-ui';
+import { IconDArrowRight, IconDelete, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { merge } from 'lodash-es';
 import { useApi } from '@/composables/useApi';
@@ -16,11 +16,11 @@ defineOptions({
 });
 const form = ref();
 const titlerow = ref();
-const viy2Button_fsC6p = ref();
+const viy2Button_fsgWC = ref();
+const viy2Button_fxAOz = ref();
 const viy2Flex_24Zbe = ref();
 const queryForm = ref();
 const viy2Panel_1FmkD = ref();
-const viy2Button_fsgWC = ref();
 const viy2Row_fsSal = ref();
 const viy2InputBox_fsX54 = ref();
 const viy2Cascader_87KXO = ref();
@@ -155,11 +155,11 @@ const largeGroupDsApi = useApi({
   },
 });
 const largeGroupDs = largeGroupDsApi.data;
-const viy2Button_fsC6pClick = () => {
-  emit('close');
-};
 const viy2Button_fsgWCClick = () => {
   gridDsApi.runAsync();
+};
+const viy2Button_fxAOzClick = () => {
+  doClose();
 };
 const viy2Button_2uA36eClick = () => {
   emit('select', chosenGrid.value.getRecordset());
@@ -328,6 +328,9 @@ const moveAllProduct = () => {
 const isNoValue = (value) => {
   return value === undefined || value === null || value === '';
 };
+const doClose = () => {
+  emit('close');
+};
 </script>
 
 <template>
@@ -336,12 +339,11 @@ const isNoValue = (value) => {
       v-show="true"
       id="titlerow"
       ref="titlerow"
-      class="aside-title-row"
     >
       <VueCol
         item-key="item"
-        class="aside-title-text"
-        :md="{ span: 7 }"
+        align="left"
+        :md="{ span: 16 }"
       >
         <VueText id="viy2Text_frSdr" ref="viy2Text_frSdr" size="large" :style="{ fontSize: '16px', fontWeight: 'bold', width: '100%', display: 'inline-block' }">
           部品選択
@@ -350,10 +352,15 @@ const isNoValue = (value) => {
       <VueCol
         item-key="item"
         align="right"
-        class="aside-title-button"
-        :md="{ span: 17 }"
+        :inline="true"
+        :md="{ span: 8 }"
       >
-        <VueButton id="viy2Button_fsC6p" ref="viy2Button_fsC6p" icon-position="left" type="text" size="default" class="icon-button-width" :icon="IconCloseBold" @click="viy2Button_fsC6pClick" />
+        <VueButton id="viy2Button_fsgWC" ref="viy2Button_fsgWC" icon-position="left" type="info" @click="viy2Button_fsgWCClick">
+          検索
+        </VueButton>
+        <VueButton id="viy2Button_fxAOz" ref="viy2Button_fxAOz" icon-position="left" @click="viy2Button_fxAOzClick">
+          閉じる
+        </VueButton>
       </VueCol>
     </VueRow>
     <VueFlex
@@ -368,13 +375,6 @@ const isNoValue = (value) => {
         :model="queryFormData"
       >
         <VuePanel id="viy2Panel_1FmkD" ref="viy2Panel_1FmkD" title="検索条件" height="auto">
-          <template #header>
-            <div style="width: auto">
-              <VueButton id="viy2Button_fsgWC" ref="viy2Button_fsgWC" icon-position="left" type="info" @click="viy2Button_fsgWCClick">
-                検索
-              </VueButton>
-            </div>
-          </template>
           <VueRow
             id="viy2Row_fsSal"
             ref="viy2Row_fsSal"
