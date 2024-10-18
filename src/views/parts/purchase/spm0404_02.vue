@@ -34,6 +34,7 @@ defineOptions({
 const form = ref();
 const viy2Flex_QK8gS = ref();
 const viy2Row_3Gyq1K = ref();
+const viy2Button_aWDT4 = ref();
 const viy2Panel_2rs6nZ = ref();
 const orderForm = ref();
 const viy2Row_3mqzSt = ref();
@@ -203,6 +204,9 @@ const brandDsApi = useApi({
   manual: true,
 });
 const brandDs = brandDsApi.data;
+const viy2Button_aWDT4Click = () => {
+  emit('close');
+};
 const viy2Button_3GAG33Click = () => {
   const $table = grid.value;
   if ($table) {
@@ -333,12 +337,25 @@ const getPartsData = async (row) => {
         ref="viy2Row_3Gyq1K"
       >
         <VueCol
-          v-show="detailPanelModel"
+          item-key="item"
+          align="left"
+          :inline="true"
+          :md="{ span: 12 }"
+        >
+          <VueText id="viy2Text_aWIc2" ref="viy2Text_aWIc2" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
+            発注詳細情報
+          </VueText>
+        </VueCol>
+        <VueCol
           item-key="item"
           align="right"
           :inline="true"
-          :md="{ span: 24 }"
-        />
+          :md="{ span: 12 }"
+        >
+          <VueButton id="viy2Button_aWDT4" ref="viy2Button_aWDT4" icon-position="left" @click="viy2Button_aWDT4Click">
+            閉じる
+          </VueButton>
+        </VueCol>
       </VueRow>
       <VuePanel id="viy2Panel_2rs6nZ" ref="viy2Panel_2rs6nZ" title="発注情報" class="margin-top-aside">
         <VueForm
@@ -517,6 +534,8 @@ const getPartsData = async (row) => {
               :edit-render="gridPartsNmEditRender"
               field="partsNm"
               show-overflow="tooltip"
+              :aggregate-label="t('label.total')"
+              footer-align="right"
               title="部品名称"
               width="240px"
               min-width="140px"
@@ -536,7 +555,7 @@ const getPartsData = async (row) => {
               :edit-render="gridBoPurchaseEditRender"
               field="boPurchase"
               align="right"
-              :aggregate-label="t('label.total')"
+              aggregate="sum"
               title="発注残数"
               width="120px"
               header-align="center"
