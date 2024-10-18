@@ -29,6 +29,8 @@ defineOptions({
   name: 'spq0301_02',
 });
 const form = ref();
+const viy2Row_eu9lo = ref();
+const viy2Button_eudFG = ref();
 const viy2Panel_1H8PQ = ref();
 const orderForm = ref();
 const viy2Row_3mqzSt = ref();
@@ -152,6 +154,9 @@ const deleteDsApi = useApi({
   manual: true,
 });
 const deleteDs = deleteDsApi.data;
+const viy2Button_eudFGClick = () => {
+  emit('close');
+};
 const gridRegisterLocationEditRender = computed(() => {
   return {
     enabled: false,
@@ -302,6 +307,31 @@ const getPartsData2 = async (row) => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
+    <VueRow
+      id="viy2Row_eu9lo"
+      ref="viy2Row_eu9lo"
+    >
+      <VueCol
+        item-key="item"
+        align="left"
+        :inline="true"
+        :md="{ span: 12 }"
+      >
+        <VueText id="viy2Text_euges" ref="viy2Text_euges" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
+          棚入明細
+        </VueText>
+      </VueCol>
+      <VueCol
+        item-key="item"
+        align="right"
+        :inline="true"
+        :md="{ span: 12 }"
+      >
+        <VueButton id="viy2Button_eudFG" ref="viy2Button_eudFG" icon-position="left" @click="viy2Button_eudFGClick">
+          閉じる
+        </VueButton>
+      </VueCol>
+    </VueRow>
     <VuePanel id="viy2Panel_1H8PQ" ref="viy2Panel_1H8PQ" title="受付情報">
       <VueForm
         id="orderForm"

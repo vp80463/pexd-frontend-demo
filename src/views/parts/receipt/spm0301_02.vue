@@ -29,6 +29,8 @@ defineOptions({
   name: 'spm0301_02',
 });
 const form = ref();
+const viy2Row_b3fEL = ref();
+const viy2Button_b3zOh = ref();
 const viy2Panel_1H8PQ = ref();
 const orderForm = ref();
 const viy2Row_3mqzSt = ref();
@@ -162,6 +164,9 @@ const deleteDsApi = useApi({
   manual: true,
 });
 const deleteDs = deleteDsApi.data;
+const viy2Button_b3zOhClick = () => {
+  emit('close');
+};
 const gridOrderNoEditRender = computed(() => {
   return {
     enabled: false,
@@ -337,6 +342,29 @@ const getPartsData2 = async (row) => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
+    <VueRow
+      id="viy2Row_b3fEL"
+      ref="viy2Row_b3fEL"
+    >
+      <VueCol
+        item-key="item"
+        :md="{ span: 12 }"
+      >
+        <VueText id="viy2Text_b3sgM" ref="viy2Text_b3sgM" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
+          受付明細情報
+        </VueText>
+      </VueCol>
+      <VueCol
+        item-key="item"
+        align="right"
+        :inline="true"
+        :md="{ span: 12 }"
+      >
+        <VueButton id="viy2Button_b3zOh" ref="viy2Button_b3zOh" icon-position="left" @click="viy2Button_b3zOhClick">
+          閉じる
+        </VueButton>
+      </VueCol>
+    </VueRow>
     <VuePanel id="viy2Panel_1H8PQ" ref="viy2Panel_1H8PQ" title="受付情報">
       <VueForm
         id="orderForm"

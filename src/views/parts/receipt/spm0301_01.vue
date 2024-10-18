@@ -430,6 +430,7 @@ const closeSpm030102 = () => {
               :edit-render="gridReceiptAmountEditRender"
               field="receiptAmount"
               align="right"
+              aggregate="sum"
               :sortable="true"
               title="金額"
               width="180px"

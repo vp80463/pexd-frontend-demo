@@ -540,6 +540,10 @@ const onLeavePartsCode = async (code) => {
     queryFormData.partsId = data.id;
   }
 };
+const closeSpq030102 = () => {
+  showDetailAside.value = false;
+  headerGridDsApi.runAsync();
+};
 </script>
 
 <template>
@@ -884,8 +888,8 @@ const onLeavePartsCode = async (code) => {
             />
             <VueButtonColumn
               align="center"
-              footer-align="right"
               :visible="true"
+              fixed="right"
               width="80px"
               :buttons="headerGridViy2TableButtonColumn_13T8YBButtons"
             />
@@ -915,6 +919,9 @@ const onLeavePartsCode = async (code) => {
       <detailPagePage
         id="detailPage"
         ref="detailPage"
+        :init-data="asideParams"
+        @select="callBackSpq030102"
+        @close="closeSpq030102"
       />
     </VueAside>
   </VueForm>
