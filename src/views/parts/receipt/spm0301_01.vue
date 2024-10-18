@@ -451,8 +451,8 @@ const closeSpm030102 = () => {
       v-model="showDetailAside"
       :close-on-click-modal="false"
       :close-on-press-escape="true"
-      direction="rtl"
-      size="60%"
+      direction="btt"
+      size="90%"
       :with-header="false"
       :show-close="false"
     >

@@ -29,6 +29,7 @@ defineOptions({
   name: 'spq0301_02',
 });
 const form = ref();
+const viy2Flex_fADC6 = ref();
 const viy2Row_eu9lo = ref();
 const viy2Button_eudFG = ref();
 const viy2Panel_1H8PQ = ref();
@@ -307,158 +308,179 @@ const getPartsData2 = async (row) => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_eu9lo"
-      ref="viy2Row_eu9lo"
+    <VueFlex
+      id="viy2Flex_fADC6"
+      ref="viy2Flex_fADC6"
+      direction="column"
+      class="full-height"
     >
-      <VueCol
-        item-key="item"
-        align="left"
-        :inline="true"
-        :md="{ span: 12 }"
+      <VueRow
+        id="viy2Row_eu9lo"
+        ref="viy2Row_eu9lo"
       >
-        <VueText id="viy2Text_euges" ref="viy2Text_euges" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
-          棚入明細
-        </VueText>
-      </VueCol>
-      <VueCol
-        item-key="item"
-        align="right"
-        :inline="true"
-        :md="{ span: 12 }"
-      >
-        <VueButton id="viy2Button_eudFG" ref="viy2Button_eudFG" icon-position="left" @click="viy2Button_eudFGClick">
-          閉じる
-        </VueButton>
-      </VueCol>
-    </VueRow>
-    <VuePanel id="viy2Panel_1H8PQ" ref="viy2Panel_1H8PQ" title="受付情報">
-      <VueForm
-        id="orderForm"
-        ref="orderForm"
-        label-width="130px"
-        :model="orderFormData"
-      >
-        <VueRow
-          id="viy2Row_3mqzSt"
-          ref="viy2Row_3mqzSt"
+        <VueCol
+          item-key="item"
+          align="left"
+          :inline="true"
+          :md="{ span: 12 }"
         >
-          <VueCol
-            item-key="item"
-            :inline="true"
-            :md="{ span: 24 }"
-          >
-            <VueFormItem
-              label="受付番号"
-              prop="receiptNo"
-            >
-              <VueInput
-                id="viy2InputBox_5k94Sg"
-                ref="viy2InputBox_5k94Sg"
-                v-model="orderFormData.receiptNo"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :disabled="true"
-                :readonly="true"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="部品番号"
-              prop="partsNo"
-            >
-              <VueInput
-                id="viy2InputBox_3HPkks"
-                ref="viy2InputBox_3HPkks"
-                v-model="orderFormData.partsNo"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :disabled="true"
-                :readonly="true"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="発注番号"
-              prop="purchaseOrderNo"
-            >
-              <VueInput
-                id="viy2InputBox_3HUzN0"
-                ref="viy2InputBox_3HUzN0"
-                v-model="orderFormData.purchaseOrderNo"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :disabled="true"
-                :readonly="true"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="受付日"
-              prop="receiptDate"
-            >
-              <VueInput
-                id="viy2InputBox_3HVbfU"
-                ref="viy2InputBox_3HVbfU"
-                v-model="orderFormData.receiptDate"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :disabled="true"
-                :readonly="true"
-                text-align="center"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="受付数"
-              prop="receiptQty"
-            >
-              <VueInput
-                id="viy2InputBox_3I7RtS"
-                ref="viy2InputBox_3I7RtS"
-                v-model="orderFormData.receiptQty"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :disabled="true"
-                :readonly="true"
-                text-align="right"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="受付単価"
-              prop="receiptPrice"
-            >
-              <VueInput
-                id="viy2InputBox_3I9LLU"
-                ref="viy2InputBox_3I9LLU"
-                v-model="orderFormData.receiptPrice"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :disabled="true"
-                :readonly="true"
-              />
-            </VueFormItem>
-            <VueFormItem
-              v-show="false"
-              label="倉庫"
-              prop="point"
-            >
-              <VueInput
-                id="viy2InputBox_RfsMNE"
-                ref="viy2InputBox_RfsMNE"
-                v-model="orderFormData.point"
-                :clearable="false"
-                :readonly="true"
-                class="no-border"
-              />
-            </VueFormItem>
-          </VueCol>
-        </VueRow>
-      </VueForm>
-    </VuePanel>
-    <VuePanel id="viy2Panel_wZlWr" ref="viy2Panel_wZlWr" v-model="detailPanelModel" title="棚入情報" height="100%">
-      <template #header>
-        <div style="width: 400px">
+          <VueText id="viy2Text_euges" ref="viy2Text_euges" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
+            棚入明細
+          </VueText>
+        </VueCol>
+        <VueCol
+          item-key="item"
+          align="right"
+          :inline="true"
+          :md="{ span: 12 }"
+        >
+          <VueButton id="viy2Button_eudFG" ref="viy2Button_eudFG" icon-position="left" @click="viy2Button_eudFGClick">
+            閉じる
+          </VueButton>
+        </VueCol>
+      </VueRow>
+      <VuePanel id="viy2Panel_1H8PQ" ref="viy2Panel_1H8PQ" title="受付情報">
+        <VueForm
+          id="orderForm"
+          ref="orderForm"
+          label-width="130px"
+          :model="orderFormData"
+        >
           <VueRow
-            v-show="detailPanelModel"
-            id="viy2Row_wZvy4"
-            ref="viy2Row_wZvy4"
+            id="viy2Row_3mqzSt"
+            ref="viy2Row_3mqzSt"
+          >
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 24 }"
+            >
+              <VueFormItem
+                label="受付番号"
+                prop="receiptNo"
+              >
+                <VueInput
+                  id="viy2InputBox_5k94Sg"
+                  ref="viy2InputBox_5k94Sg"
+                  v-model="orderFormData.receiptNo"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :disabled="true"
+                  :readonly="true"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="部品番号"
+                prop="partsNo"
+              >
+                <VueInput
+                  id="viy2InputBox_3HPkks"
+                  ref="viy2InputBox_3HPkks"
+                  v-model="orderFormData.partsNo"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :disabled="true"
+                  :readonly="true"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="発注番号"
+                prop="purchaseOrderNo"
+              >
+                <VueInput
+                  id="viy2InputBox_3HUzN0"
+                  ref="viy2InputBox_3HUzN0"
+                  v-model="orderFormData.purchaseOrderNo"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :disabled="true"
+                  :readonly="true"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="受付日"
+                prop="receiptDate"
+              >
+                <VueInput
+                  id="viy2InputBox_3HVbfU"
+                  ref="viy2InputBox_3HVbfU"
+                  v-model="orderFormData.receiptDate"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :disabled="true"
+                  :readonly="true"
+                  text-align="center"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="受付数"
+                prop="receiptQty"
+              >
+                <VueInput
+                  id="viy2InputBox_3I7RtS"
+                  ref="viy2InputBox_3I7RtS"
+                  v-model="orderFormData.receiptQty"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :disabled="true"
+                  :readonly="true"
+                  text-align="right"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="受付単価"
+                prop="receiptPrice"
+              >
+                <VueInput
+                  id="viy2InputBox_3I9LLU"
+                  ref="viy2InputBox_3I9LLU"
+                  v-model="orderFormData.receiptPrice"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :disabled="true"
+                  :readonly="true"
+                />
+              </VueFormItem>
+              <VueFormItem
+                v-show="false"
+                label="倉庫"
+                prop="point"
+              >
+                <VueInput
+                  id="viy2InputBox_RfsMNE"
+                  ref="viy2InputBox_RfsMNE"
+                  v-model="orderFormData.point"
+                  :clearable="false"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
+        </VueForm>
+      </VuePanel>
+      <VuePanel id="viy2Panel_wZlWr" ref="viy2Panel_wZlWr" v-model="detailPanelModel" title="棚入情報" height="100%">
+        <template #header>
+          <div style="width: 400px">
+            <VueRow
+              v-show="detailPanelModel"
+              id="viy2Row_wZvy4"
+              ref="viy2Row_wZvy4"
+            >
+              <VueCol
+                item-key="item"
+                align="right"
+                :inline="true"
+                :md="{ span: 24 }"
+              />
+            </VueRow>
+          </div>
+        </template>
+        <VueTable id="grid" ref="grid" height="auto" :show-footer="true" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueRow
+            id="viy2Row_7yiZLF"
+            ref="viy2Row_7yiZLF"
+            class="toolbar-row-width except-height-css"
           >
             <VueCol
               item-key="item"
@@ -467,61 +489,47 @@ const getPartsData2 = async (row) => {
               :md="{ span: 24 }"
             />
           </VueRow>
-        </div>
-      </template>
-      <VueTable id="grid" ref="grid" height="auto" :show-footer="true" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
-        <VueRow
-          id="viy2Row_7yiZLF"
-          ref="viy2Row_7yiZLF"
-          class="toolbar-row-width except-height-css"
-        >
-          <VueCol
-            item-key="item"
-            align="right"
-            :inline="true"
-            :md="{ span: 24 }"
+          <VueIndexColumn
+            align="center"
+            width="50px"
+            min-width="50px"
+            header-align="center"
+            title="No."
           />
-        </VueRow>
-        <VueIndexColumn
-          align="center"
-          width="50px"
-          min-width="50px"
-          header-align="center"
-          title="No."
-        />
-        <VueInputColumn
-          :edit-render="gridRegisterLocationEditRender"
-          field="registerLocation"
-          show-overflow="tooltip"
-          title="ロケーション"
-          width="150px"
-        />
-        <VueValueListColumn
-          :formatter="gridLocationTypeFormatter"
-          :edit-render="gridLocationTypeEditRender"
-          field="locationType"
-          :clearable="true"
-          title="ロケーションタイプ"
-          width="155px"
-        />
-        <VueInputColumn
-          :edit-render="gridRegisterQtyEditRender"
-          field="registerQty"
-          show-overflow="tooltip"
-          align="right"
-          title="棚入数"
-          width="100px"
-        />
-        <VueValueListColumn
-          :formatter="gridRegisterDateFormatter"
-          :edit-render="gridRegisterDateEditRender"
-          field="registerDate"
-          :clearable="true"
-          align="center"
-          title="棚入日"
-          width="165px"
-        />
-      </VueTable>
-    </VuePanel>
+          <VueInputColumn
+            :edit-render="gridRegisterLocationEditRender"
+            field="registerLocation"
+            show-overflow="tooltip"
+            title="ロケーション"
+            width="150px"
+          />
+          <VueValueListColumn
+            :formatter="gridLocationTypeFormatter"
+            :edit-render="gridLocationTypeEditRender"
+            field="locationType"
+            :clearable="true"
+            title="ロケーションタイプ"
+            width="155px"
+          />
+          <VueInputColumn
+            :edit-render="gridRegisterQtyEditRender"
+            field="registerQty"
+            show-overflow="tooltip"
+            align="right"
+            title="棚入数"
+            width="100px"
+          />
+          <VueValueListColumn
+            :formatter="gridRegisterDateFormatter"
+            :edit-render="gridRegisterDateEditRender"
+            field="registerDate"
+            :clearable="true"
+            align="center"
+            title="棚入日"
+            width="165px"
+          />
+        </VueTable>
+      </VuePanel>
+    </VueFlex>
   </VueForm>
 </template>

@@ -29,6 +29,7 @@ defineOptions({
   name: 'spm0301_02',
 });
 const form = ref();
+const viy2Flex_fzFB5 = ref();
 const viy2Row_b3fEL = ref();
 const viy2Button_b3zOh = ref();
 const viy2Panel_1H8PQ = ref();
@@ -342,82 +343,103 @@ const getPartsData2 = async (row) => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_b3fEL"
-      ref="viy2Row_b3fEL"
+    <VueFlex
+      id="viy2Flex_fzFB5"
+      ref="viy2Flex_fzFB5"
+      direction="column"
+      class="full-height"
     >
-      <VueCol
-        item-key="item"
-        :md="{ span: 12 }"
+      <VueRow
+        id="viy2Row_b3fEL"
+        ref="viy2Row_b3fEL"
       >
-        <VueText id="viy2Text_b3sgM" ref="viy2Text_b3sgM" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
-          受付明細情報
-        </VueText>
-      </VueCol>
-      <VueCol
-        item-key="item"
-        align="right"
-        :inline="true"
-        :md="{ span: 12 }"
-      >
-        <VueButton id="viy2Button_b3zOh" ref="viy2Button_b3zOh" icon-position="left" @click="viy2Button_b3zOhClick">
-          閉じる
-        </VueButton>
-      </VueCol>
-    </VueRow>
-    <VuePanel id="viy2Panel_1H8PQ" ref="viy2Panel_1H8PQ" title="受付情報">
-      <VueForm
-        id="orderForm"
-        ref="orderForm"
-        label-width="130px"
-        :model="orderFormData"
-      >
-        <VueRow
-          id="viy2Row_3mqzSt"
-          ref="viy2Row_3mqzSt"
+        <VueCol
+          item-key="item"
+          :md="{ span: 12 }"
         >
-          <VueCol
-            item-key="item"
-            :inline="true"
-          >
-            <VueFormItem
-              label="納品書番号"
-              prop="invoiceNo"
-            >
-              <VueInput
-                id="viy2InputBox_5k94Sg"
-                ref="viy2InputBox_5k94Sg"
-                v-model="orderFormData.invoiceNo"
-                :formatter="formatCodeInput"
-                :parser="formatCodeInput"
-                :readonly="true"
-              />
-            </VueFormItem>
-            <VueFormItem
-              v-show="false"
-              label="倉庫"
-              prop="point"
-            >
-              <VueInput
-                id="viy2InputBox_RfsMNE"
-                ref="viy2InputBox_RfsMNE"
-                v-model="orderFormData.point"
-                :clearable="false"
-                :readonly="true"
-                class="no-border"
-              />
-            </VueFormItem>
-          </VueCol>
-        </VueRow>
-      </VueForm>
-    </VuePanel>
-    <VuePanel id="viy2Panel_wZlWr" ref="viy2Panel_wZlWr" v-model="detailPanelModel" title="明細情報" height="100%">
-      <template #header>
-        <div style="width: 400px">
+          <VueText id="viy2Text_b3sgM" ref="viy2Text_b3sgM" class="aside-title-text" :style="{ width: '100%', display: 'inline-block' }">
+            受付明細情報
+          </VueText>
+        </VueCol>
+        <VueCol
+          item-key="item"
+          align="right"
+          :inline="true"
+          :md="{ span: 12 }"
+        >
+          <VueButton id="viy2Button_b3zOh" ref="viy2Button_b3zOh" icon-position="left" @click="viy2Button_b3zOhClick">
+            閉じる
+          </VueButton>
+        </VueCol>
+      </VueRow>
+      <VuePanel id="viy2Panel_1H8PQ" ref="viy2Panel_1H8PQ" title="受付情報">
+        <VueForm
+          id="orderForm"
+          ref="orderForm"
+          label-width="130px"
+          :model="orderFormData"
+        >
           <VueRow
-            v-show="detailPanelModel"
-            id="viy2Row_wZvy4"
-            ref="viy2Row_wZvy4"
+            id="viy2Row_3mqzSt"
+            ref="viy2Row_3mqzSt"
+          >
+            <VueCol
+              item-key="item"
+              :inline="true"
+            >
+              <VueFormItem
+                label="納品書番号"
+                prop="invoiceNo"
+              >
+                <VueInput
+                  id="viy2InputBox_5k94Sg"
+                  ref="viy2InputBox_5k94Sg"
+                  v-model="orderFormData.invoiceNo"
+                  :formatter="formatCodeInput"
+                  :parser="formatCodeInput"
+                  :readonly="true"
+                />
+              </VueFormItem>
+              <VueFormItem
+                v-show="false"
+                label="倉庫"
+                prop="point"
+              >
+                <VueInput
+                  id="viy2InputBox_RfsMNE"
+                  ref="viy2InputBox_RfsMNE"
+                  v-model="orderFormData.point"
+                  :clearable="false"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
+        </VueForm>
+      </VuePanel>
+      <VuePanel id="viy2Panel_wZlWr" ref="viy2Panel_wZlWr" v-model="detailPanelModel" title="明細情報" height="100%">
+        <template #header>
+          <div style="width: 400px">
+            <VueRow
+              v-show="detailPanelModel"
+              id="viy2Row_wZvy4"
+              ref="viy2Row_wZvy4"
+            >
+              <VueCol
+                item-key="item"
+                align="right"
+                :inline="true"
+                :md="{ span: 24 }"
+              />
+            </VueRow>
+          </div>
+        </template>
+        <VueTable id="grid" ref="grid" height="auto" :show-footer="true" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueRow
+            id="viy2Row_7yiZLF"
+            ref="viy2Row_7yiZLF"
+            class="toolbar-row-width except-height-css"
           >
             <VueCol
               item-key="item"
@@ -426,94 +448,80 @@ const getPartsData2 = async (row) => {
               :md="{ span: 24 }"
             />
           </VueRow>
-        </div>
-      </template>
-      <VueTable id="grid" ref="grid" height="auto" :show-footer="true" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
-        <VueRow
-          id="viy2Row_7yiZLF"
-          ref="viy2Row_7yiZLF"
-          class="toolbar-row-width except-height-css"
-        >
-          <VueCol
-            item-key="item"
-            align="right"
-            :inline="true"
-            :md="{ span: 24 }"
+          <VueIndexColumn
+            align="center"
+            width="50px"
+            min-width="50px"
+            header-align="center"
+            title="No."
           />
-        </VueRow>
-        <VueIndexColumn
-          align="center"
-          width="50px"
-          min-width="50px"
-          header-align="center"
-          title="No."
-        />
-        <VueInputColumn
-          :edit-render="gridOrderNoEditRender"
-          field="orderNo"
-          show-overflow="tooltip"
-          title="発注番号"
-          width="150px"
-        />
-        <VueValueListColumn
-          :formatter="gridOrderPartsNoFormatter"
-          :edit-render="gridOrderPartsNoEditRender"
-          field="orderPartsNo"
-          :clearable="true"
-          title="発注部品番号"
-          width="155px"
-        />
-        <VueInputColumn
-          :edit-render="gridOrderPartsNmEditRender"
-          field="orderPartsNm"
-          show-overflow="tooltip"
-          title="発注部品名"
-          min-width="160px"
-        />
-        <VueValueListColumn
-          :formatter="gridReceiptPartsNoFormatter"
-          :edit-render="gridReceiptPartsNoEditRender"
-          field="receiptPartsNo"
-          :clearable="true"
-          title="受付部品番号"
-          width="165px"
-        />
-        <VueInputColumn
-          :edit-render="gridReceiptPartsNmEditRender"
-          field="receiptPartsNm"
-          show-overflow="tooltip"
-          title="受付部品名"
-          min-width="170px"
-        />
-        <VueNumberColumn
-          :edit-render="gridOnPurchaseQtyEditRender"
-          field="onPurchaseQty"
-          align="right"
-          title="発注残数"
-          width="150px"
-        />
-        <VueNumberColumn
-          :edit-render="gridTotalReceiptQtyEditRender"
-          field="totalReceiptQty"
-          align="right"
-          title="受付数"
-          width="180px"
-        />
-        <VueNumberColumn
-          :edit-render="gridReceiptCostEditRender"
-          field="receiptCost"
-          align="right"
-          title="受付単価"
-          width="130px"
-        />
-        <VueButtonColumn
-          fixed="right"
-          align="center"
-          :visible="false"
-          width="60px"
-          :buttons="gridViy2TableButtonColumn_DYaB6Buttons"
-        />
-      </VueTable>
-    </VuePanel>
+          <VueInputColumn
+            :edit-render="gridOrderNoEditRender"
+            field="orderNo"
+            show-overflow="tooltip"
+            title="発注番号"
+            width="150px"
+          />
+          <VueValueListColumn
+            :formatter="gridOrderPartsNoFormatter"
+            :edit-render="gridOrderPartsNoEditRender"
+            field="orderPartsNo"
+            :clearable="true"
+            title="発注部品番号"
+            width="155px"
+          />
+          <VueInputColumn
+            :edit-render="gridOrderPartsNmEditRender"
+            field="orderPartsNm"
+            show-overflow="tooltip"
+            title="発注部品名"
+            min-width="160px"
+          />
+          <VueValueListColumn
+            :formatter="gridReceiptPartsNoFormatter"
+            :edit-render="gridReceiptPartsNoEditRender"
+            field="receiptPartsNo"
+            :clearable="true"
+            title="受付部品番号"
+            width="165px"
+          />
+          <VueInputColumn
+            :edit-render="gridReceiptPartsNmEditRender"
+            field="receiptPartsNm"
+            show-overflow="tooltip"
+            title="受付部品名"
+            min-width="170px"
+          />
+          <VueNumberColumn
+            :edit-render="gridOnPurchaseQtyEditRender"
+            field="onPurchaseQty"
+            align="right"
+            title="発注残数"
+            width="150px"
+          />
+          <VueNumberColumn
+            :edit-render="gridTotalReceiptQtyEditRender"
+            field="totalReceiptQty"
+            align="right"
+            title="受付数"
+            width="180px"
+          />
+          <VueNumberColumn
+            :edit-render="gridReceiptCostEditRender"
+            field="receiptCost"
+            align="right"
+            title="受付単価"
+            width="130px"
+          />
+          <VueButtonColumn
+            fixed="right"
+            align="center"
+            :visible="false"
+            width="60px"
+            :buttons="gridViy2TableButtonColumn_DYaB6Buttons"
+          />
+        </VueTable>
+      </VuePanel>
+    </VueFlex>
   </VueForm>
 </template>
