@@ -493,7 +493,7 @@ const closeSpq020302 = () => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="99%" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="auto" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
             <VueRow
               id="viy2Row_soVPC"
               ref="viy2Row_soVPC"
