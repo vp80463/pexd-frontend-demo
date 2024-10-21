@@ -33,6 +33,7 @@ const viy2InputBox_RfsMSE = ref();
 const viy2Button_E1Br6 = ref();
 const viy2InputBox_43OW3q = ref();
 const viy2Button_43OW3t = ref();
+const viy2Select_xbR9K = ref();
 const viy2Select_oP7od = ref();
 const viy2Panel_1DZns = ref();
 const grid = ref();
@@ -42,7 +43,7 @@ const detailPage = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  invoiceNoFrom: '', invoiceNoTo: '', point: '',
+  invoiceNoFrom: '', invoiceNoTo: '', datafieldviy2Select_xbR9K: '', point: '',
 });
 const rules = reactive({
   viy2Select_oP7odRules: [
@@ -53,6 +54,20 @@ const rules = reactive({
   ],
 });
 const showDetailAside = ref(false);
+const viy2Select_xbR9KOpts = reactive([
+  {
+    label:
+'EO',
+    value:
+'EO',
+  },
+  {
+    label:
+'RO',
+    value:
+'RO',
+  },
+]);
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -183,6 +198,11 @@ const gridImportDateEditRender = computed(() => {
   };
 });
 const gridInvoiceNoEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridOrderTypeEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -328,6 +348,18 @@ const closeSpm030102 = () => {
                   </VueInput>
                 </VueFormItem>
                 <VueFormItem
+                  label="発注種類"
+                  prop="datafieldviy2Select_xbR9K"
+                >
+                  <VueSelect
+                    id="viy2Select_xbR9K"
+                    ref="viy2Select_xbR9K"
+                    v-model="queryFormData.datafieldviy2Select_xbR9K"
+                    :style="{ width: '80px' }"
+                    :options="viy2Select_xbR9KOpts"
+                  />
+                </VueFormItem>
+                <VueFormItem
                   v-show="false"
                   label="倉庫"
                   prop="point"
@@ -396,6 +428,15 @@ const closeSpm030102 = () => {
               show-overflow="tooltip"
               title="納品書番号"
               width="160px"
+            />
+            <VueInputColumn
+              :edit-render="gridOrderTypeEditRender"
+              field="orderType"
+              :resizable="true"
+              :sortable="true"
+              show-overflow="tooltip"
+              title="発注種類"
+              width="100px"
             />
             <VueInputColumn
               :edit-render="gridDeliveryNoEditRender"
