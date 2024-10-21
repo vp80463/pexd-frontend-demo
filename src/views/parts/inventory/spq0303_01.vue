@@ -891,7 +891,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="有効在庫数量"
+              title="在庫数"
               width="130px"
               header-align="center"
             />
@@ -902,7 +902,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="引当数量"
+              title="引当数"
               width="130px"
               header-align="center"
             />
@@ -913,7 +913,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="欠品数量"
+              title="受注残数"
               width="130px"
               header-align="center"
             />
@@ -924,7 +924,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="受付中数量"
+              title="受付中数"
               width="150px"
               header-align="center"
             />
@@ -936,7 +936,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="出庫中数量"
+              title="ピック中数"
               width="150px"
               header-align="center"
             />
@@ -961,7 +961,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="緊急発注中数量"
+              title="緊急発注中数"
               width="130px"
               header-align="center"
             />
@@ -973,7 +973,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="普通発注中数量"
+              title="通常発注中数"
               width="130px"
               header-align="center"
             />
@@ -1024,7 +1024,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="凍結数量"
+              title="凍結数"
               width="130px"
               header-align="center"
             />
