@@ -829,7 +829,6 @@ const calculateVolume = () => {
                 :min="0"
                 :precision="0"
                 :use-separator="true"
-                :style="{ width: '208px' }"
                 @change="viy2InputNumber_4KV30iChange"
               />
             </VueFormItem>
@@ -854,7 +853,6 @@ const calculateVolume = () => {
                 :min="0"
                 :precision="0"
                 :use-separator="true"
-                :style="{ width: '208px' }"
                 @change="viy2InputNumber_8qR92IChange"
               />
             </VueFormItem>

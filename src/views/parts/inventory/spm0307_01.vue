@@ -130,12 +130,6 @@ const viy2Select_5zamoxOpts = reactive([
   },
   {
     codeData1:
-'削除',
-    codeDbid:
-'削除',
-  },
-  {
-    codeData1:
 '棚卸発見(増)',
     codeDbid:
 '棚卸発見(増)',

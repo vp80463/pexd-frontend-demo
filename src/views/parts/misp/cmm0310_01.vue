@@ -35,10 +35,10 @@ const grid = ref();
 const aside001 = ref();
 const viy2Row_TBVFW = ref();
 const viy2Row_TCZrB = ref();
-const viy2Form_SRIEF = ref();
-const viy2Panel_AsqWp = ref();
 const viy2Button_SS9Ht = ref();
 const viy2Button_Au5Xf = ref();
+const viy2Form_SRIEF = ref();
+const viy2Panel_AsqWp = ref();
 const viy2Row_STxN0 = ref();
 const viy2InputBox_STKLR1 = ref();
 const viy2InputBox_STKLR2 = ref();
@@ -573,6 +573,7 @@ const isNewInput = (value) => {
       >
         <VueCol
           item-key="item"
+          style="padding-bottom:5px"
           :md="{ span: 24 }"
         >
           <VueRow
@@ -594,7 +595,14 @@ const isNewInput = (value) => {
               align="right"
               :inline="true"
               :md="{ span: 12 }"
-            />
+            >
+              <VueButton id="viy2Button_SS9Ht" ref="viy2Button_SS9Ht" type="info" icon-position="right">
+                保存
+              </VueButton>
+              <VueButton id="viy2Button_Au5Xf" ref="viy2Button_Au5Xf" icon-position="left" @click="viy2Button_Au5XfClick">
+                閉じる
+              </VueButton>
+            </VueCol>
           </VueRow>
         </VueCol>
       </VueRow>
@@ -604,16 +612,6 @@ const isNewInput = (value) => {
         :model="viy2Form_SRIEFData"
       >
         <VuePanel id="viy2Panel_AsqWp" ref="viy2Panel_AsqWp" title="グループ詳細">
-          <template #header>
-            <div style="width: auto">
-              <VueButton id="viy2Button_SS9Ht" ref="viy2Button_SS9Ht" type="info" icon-position="right">
-                保存
-              </VueButton>
-              <VueButton id="viy2Button_Au5Xf" ref="viy2Button_Au5Xf" icon-position="left" @click="viy2Button_Au5XfClick">
-                閉じる
-              </VueButton>
-            </div>
-          </template>
           <VueRow
             id="viy2Row_STxN0"
             ref="viy2Row_STxN0"

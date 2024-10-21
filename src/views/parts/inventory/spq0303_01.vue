@@ -412,6 +412,14 @@ const gridOnHandQtyEditRender = computed(() => {
     enabled: false,
   };
 });
+const gridStockQtyFormatter = (row, columnConfig, cellValue) => {
+  return formatQty(row.cellValue);
+};
+const gridStockQtyEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const gridAllocatedQtyFormatter = (row, columnConfig, cellValue) => {
   return formatQty(row.cellValue);
 };
@@ -888,6 +896,17 @@ const onLeavePartsCode = async (code) => {
               :formatter="gridOnHandQtyFormatter"
               :edit-render="gridOnHandQtyEditRender"
               field="onHandQty"
+              aggregate="sum"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="有効在庫数"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :formatter="gridStockQtyFormatter"
+              :edit-render="gridStockQtyEditRender"
+              field="stockQty"
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"

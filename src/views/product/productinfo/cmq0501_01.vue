@@ -2,7 +2,6 @@
 import { useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT } from '@/constants';
 import { parts_column, parts_pop_column, parts_pop_query_method, parts_query_method } from '@/settings/valuelistSetting.js';
 import { formatPartNo, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -997,8 +996,6 @@ const onLeavePartsCode = async (code) => {
               :readonly="true"
               class="no-border"
               :style="{ width: '130px' }"
-              :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-              :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
             />
           </VueFormItem>
         </VueCol>
@@ -1039,7 +1036,7 @@ const onLeavePartsCode = async (code) => {
           field="stockQty"
           align="right"
           :sortable="true"
-          title="在庫数量"
+          title="在庫数"
           width="90px"
           header-align="center"
         />
@@ -1048,7 +1045,7 @@ const onLeavePartsCode = async (code) => {
           field="backOrder"
           align="right"
           :sortable="true"
-          title="欠品数量"
+          title="受注残数"
           width="90px"
           header-align="center"
         />
@@ -1059,7 +1056,7 @@ const onLeavePartsCode = async (code) => {
           align="right"
           show-overflow="tooltip"
           :sortable="true"
-          title="発注中数量"
+          title="発注中数"
           width="98px"
           header-align="center"
         />
@@ -1069,7 +1066,7 @@ const onLeavePartsCode = async (code) => {
           field="onReceivingQty"
           align="right"
           :sortable="true"
-          title="入荷中数量"
+          title="受付中数"
           width="108px"
           header-align="center"
         />
@@ -1079,7 +1076,7 @@ const onLeavePartsCode = async (code) => {
           field="onFrozenQty"
           align="right"
           :sortable="true"
-          title="凍結数量"
+          title="凍結数"
           width="100px"
           header-align="center"
         />
@@ -1089,7 +1086,7 @@ const onLeavePartsCode = async (code) => {
           field="allocatedQty"
           align="right"
           :sortable="true"
-          title="引当数量"
+          title="引当数"
           width="120px"
           header-align="center"
         />
@@ -1099,7 +1096,7 @@ const onLeavePartsCode = async (code) => {
           field="onPickingQty"
           align="right"
           :sortable="true"
-          title="ピック中数量"
+          title="ピック中数"
           width="100px"
           header-align="center"
         />
