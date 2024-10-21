@@ -373,7 +373,7 @@ onMounted(() => {
 // 初始化targetMonth 和 point
   queryFormData.pointCd = uc.defaultPointCd;
   queryFormData.pointId = uc.defaultPointId;
-  queryFormData.targetYear = targetYear;
+  queryFormData.targetYear = currentYear;
 });
 // 条件改变，清空明细
 watch(() => queryFormData, (newVal, oldVal) => {
