@@ -1,5 +1,5 @@
 <script setup>
-import { IconDocument, useLockScreen } from 'viy-ui';
+import { IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -90,7 +90,7 @@ const gridViy2TableButtonColumn_odGQQButtons = (scope) => {
     {
       label: '',
       type: 'text',
-      icon: IconDocument,
+      icon: IconEdit,
       click: viewDetail,
       title: 'Detail',
     },
@@ -107,28 +107,22 @@ const pointDsApi = useApi({
 });
 const pointDs = pointDsApi.data;
 const gridDsApi = useApi({
-  url: '/parts/spq0206/getPickingInstructionList.json',
   method: 'post',
-  data: () => {
-    const condition = {};
-    merge(condition, queryFormData);
-    condition.pointId = uc.defaultPointId;
-    condition.pageSize = paginationPageSize.value;
-    condition.currentPage = paginationCurrentPage.value;
-    return condition;
-  },
+  localData: [
+    { pickingListNo: 'PL241000001', customerCd: '1', customerNm: 'テスト販売店', instructionDate: '20241010', orderAmount: 10000, dateFrom: '20241001', pickingLines: 10, boOrderAmount: 200000, boRowCount: 10 },
+  ],
 }, {
   onSuccess: (data, params) => {
-    if (data && data.content.length > 0) {
-      btnFlg.value = false;
-      pickingListId.value = data.content[0].pickingListId;
-      deliveryOrderId.value = data.content[0].deliveryOrderId;
-      nextTick(() => {
-        grid.value.setCurrentRow(data.content[0]);
-      });
-    } else {
-      btnFlg.value = true;
-    }
+    // if (data && data.content.length > 0) {
+    btnFlg.value = false;
+    // pickingListId.value = data.content[0].pickingListId;
+    // deliveryOrderId.value = data.content[0].deliveryOrderId;
+    // nextTick(() => {
+    // grid.value.setCurrentRow(data.content[0]);
+    // })
+    // } else {
+    // btnFlg.value = true;
+    // }
   },
   manual: true,
 });
@@ -517,7 +511,7 @@ const closeAside = () => {
         grow="1"
       >
         <VuePanel id="viy2Panel_2ZIIn1" ref="viy2Panel_2ZIIn1" height="100%" title="明細情報">
-          <VueTable id="grid" ref="grid" header-align="center" height="auto" :data="gridDs.content" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-click="gridCellClick" @cell-dblclick="gridCellDblclick">
+          <VueTable id="grid" ref="grid" header-align="center" height="auto" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-click="gridCellClick" @cell-dblclick="gridCellDblclick">
             <VueRow
               id="viy2Row_soVPC"
               ref="viy2Row_soVPC"
@@ -655,8 +649,8 @@ const closeAside = () => {
       ref="detailAside"
       v-model="showAsideWin"
       :modal="true"
-      direction="rtl"
-      size="60%"
+      direction="btt"
+      size="90%"
       :with-header="false"
     >
       <viy2Subpage_RoWUZPage
