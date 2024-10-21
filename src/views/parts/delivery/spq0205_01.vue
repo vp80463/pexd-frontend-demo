@@ -416,8 +416,6 @@ const closeAside = () => {
                   v-model="queryFormData.dateFrom"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <VueFormItem

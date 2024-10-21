@@ -242,8 +242,6 @@ const doClose = () => {
                   :disabled="false"
                   :readonly="true"
                   class="no-border"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
             </VueCol>

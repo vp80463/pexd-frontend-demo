@@ -407,8 +407,6 @@ const getPartsData = async () => {
                   v-model="queryFormData.dateFrom"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <!-- BEGIN CUSTOM DIV CODE -->
@@ -425,8 +423,6 @@ const getPartsData = async () => {
                   v-model="queryFormData.dateTo"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <VueButton id="viy2Button_hFmWWA" ref="viy2Button_hFmWWA" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_hFmWWAClick" />

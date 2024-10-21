@@ -431,8 +431,6 @@ const closeConsumerAside = () => {
                   :shortcuts="datePickerShortcuts"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <!-- BEGIN CUSTOM DIV CODE -->
@@ -449,8 +447,6 @@ const closeConsumerAside = () => {
                   :shortcuts="datePickerShortcuts"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <VueButton id="viy2Button_1s1LTOW" ref="viy2Button_1s1LTOW" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_1s1LTOWClick" />

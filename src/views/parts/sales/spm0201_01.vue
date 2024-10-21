@@ -5,9 +5,8 @@ import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { useRouter } from 'vue-router';
 import { merge } from 'lodash-es';
-import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
+import { useApi } from '@/composables/useApi';
 import { datePickerShortcuts } from '@/pj-commonutils.js';
 import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
 const { t } = useI18n();
@@ -287,8 +286,6 @@ const gridOrderDateEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
@@ -333,8 +330,6 @@ const gridOutDateEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
@@ -496,8 +491,6 @@ const getPointLabel = (pointId) => {
                   :shortcuts="datePickerShortcuts"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <!-- BEGIN CUSTOM DIV CODE -->
@@ -515,8 +508,6 @@ const getPointLabel = (pointId) => {
                   :shortcuts="datePickerShortcuts"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <VueButton id="viy2Button_1GTRdfg" ref="viy2Button_1GTRdfg" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_1GTRdfgClick" />

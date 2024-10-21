@@ -390,8 +390,6 @@ const closeSpq020302 = () => {
                   :shortcuts="datePickerShortcuts"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <!-- BEGIN CUSTOM DIV CODE -->
@@ -409,8 +407,6 @@ const closeSpq020302 = () => {
                   :shortcuts="datePickerShortcuts"
                   type="date"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
               <VueButton id="viy2Button_hHcWwP" ref="viy2Button_hHcWwP" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_hHcWwPClick" />

@@ -602,8 +602,6 @@ const calculation = (obj, value) => {
                   :readonly="true"
                   class="no-border"
                   :style="{ width: '130px' }"
-                  format="YYYY/MM/DD"
-                  value-format="YYYYMMDD"
                 />
               </VueFormItem>
             </VueCol>
