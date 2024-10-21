@@ -63,7 +63,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  pointId: '', newPart: '', orderNo: '', salesOrderNo: '', dateFrom: '', dateTo: '', orderStatus: ['発注中'], orderType: ['EO'], datafieldviy2Radio_bIeKr: 'する',
+  pointId: '', newPart: '', orderNo: '', salesOrderNo: '', dateFrom: '', dateTo: '', orderStatus: ['発注中'], orderType: [], datafieldviy2Radio_bIeKr: 'する',
 });
 const rules = reactive({
   viy2Select_oHWwKRules: [
