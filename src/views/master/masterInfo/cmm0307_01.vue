@@ -23,8 +23,6 @@ const copy8_viy2Row_rFsZl_col1 = ref();
 const viy2Select_4uc4zb = ref();
 const viy2ValueList_DG4AF = ref();
 const viy2InputBox_4y5p9E = ref();
-const viy2InputBox_sZtAq = ref();
-const viy2InputBox_t0yX2 = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_IXTRe = ref();
 const viy2Row_IZL02 = ref();
@@ -36,7 +34,7 @@ const viy2Subpage_OzNTu = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  org: '', productCd: '', wholesaleRate: '05', specialRank: '', specialRateCd: '',
+  org: '', productCd: '', wholesaleRate: '05',
 });
 const rules = reactive({
   viy2Select_4uc4zbRules: [
@@ -248,40 +246,12 @@ const gridSupersedeProductCdEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridPureRankEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      useSeparator: true,
-      textAlign: 'left',
-    },
-  };
-});
-const gridRankEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      useSeparator: true,
-      textAlign: 'left',
-    },
-  };
-});
-const gridStdPriceWithTaxEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridSpecialDiscountCdEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 const gridStdPriceWithoutTaxEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridOriginPriceEditRender = computed(() => {
+const gridStdPriceWithTaxEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -297,6 +267,25 @@ const gridPartitionRateEditRender = computed(() => {
   };
 });
 const gridDivisionPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridRankEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      useSeparator: true,
+      textAlign: 'left',
+    },
+  };
+});
+const gridSpecialDiscountCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridOriginPriceEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -481,28 +470,6 @@ const closeConsumerAside = () => {
                   :style="{ width: '200px' }"
                 />
               </VueFormItem>
-              <VueFormItem
-                label="特掛掛率ランク"
-                prop="specialRank"
-              >
-                <VueInput
-                  id="viy2InputBox_sZtAq"
-                  ref="viy2InputBox_sZtAq"
-                  v-model="queryFormData.specialRank"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="特掛コード"
-                prop="specialRateCd"
-              >
-                <VueInput
-                  id="viy2InputBox_t0yX2"
-                  ref="viy2InputBox_t0yX2"
-                  v-model="queryFormData.specialRateCd"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
             </VueCol>
           </VueRow>
         </VuePanel>
@@ -513,7 +480,7 @@ const closeConsumerAside = () => {
         direction="column"
         grow="1"
       >
-        <VuePanel id="viy2Panel_IXTRe" ref="viy2Panel_IXTRe" height="100%" title="詳細情報">
+        <VuePanel id="viy2Panel_IXTRe" ref="viy2Panel_IXTRe" height="100%" title="明細情報">
           <template #header>
             <div style="width: auto">
               <VueRow
@@ -528,7 +495,7 @@ const closeConsumerAside = () => {
                   :md="{ span: 24 }"
                 >
                   <VueButton id="viy2Button_IZNZa" ref="viy2Button_IZNZa" icon-position="left" @click="viy2Button_IZNZaClick">
-                    複数部品選択
+                    部品選択
                   </VueButton>
                 </VueCol>
               </VueRow>
@@ -590,22 +557,12 @@ const closeConsumerAside = () => {
               header-align="center"
             />
             <VueNumberColumn
-              :edit-render="gridPureRankEditRender"
-              field="pureRank"
-              align="left"
+              :edit-render="gridStdPriceWithoutTaxEditRender"
+              field="stdPriceWithoutTax"
               :sortable="true"
-              width="150px"
-              title="純掛掛率ランク"
               header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridRankEditRender"
-              field="rank"
-              align="left"
-              :sortable="true"
-              width="100px"
-              title="特掛掛率ランク"
-              header-align="center"
+              title="標準小売単価(税抜)"
+              width="160px"
             />
             <VueNumberColumn
               :edit-render="gridStdPriceWithTaxEditRender"
@@ -616,37 +573,12 @@ const closeConsumerAside = () => {
               width="160px"
             />
             <VueInputColumn
-              :edit-render="gridSpecialDiscountCdEditRender"
-              field="specialDiscountCd"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="特掛コード"
-              width="100px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridStdPriceWithoutTaxEditRender"
-              field="stdPriceWithoutTax"
-              :sortable="true"
-              header-align="center"
-              title="標準小売単価(税抜)"
-              width="160px"
-            />
-            <VueNumberColumn
-              :edit-render="gridOriginPriceEditRender"
-              field="originPrice"
-              :sortable="true"
-              header-align="center"
-              title="原価"
-              width="100px"
-            />
-            <VueInputColumn
               :edit-render="gridOpenFlagEditRender"
               field="openFlag"
               :sortable="true"
-              width="60px"
+              width="130px"
               header-align="center"
-              title="OPEN"
+              title="オープン価格"
             />
             <VueNumberColumn
               :edit-render="gridPartitionRateEditRender"
@@ -665,11 +597,37 @@ const closeConsumerAside = () => {
               width="100px"
             />
             <VueNumberColumn
+              :edit-render="gridRankEditRender"
+              field="rank"
+              align="left"
+              :sortable="true"
+              width="130px"
+              title="特掛掛率ランク"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridSpecialDiscountCdEditRender"
+              field="specialDiscountCd"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="特掛コード"
+              width="100px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridOriginPriceEditRender"
+              field="originPrice"
+              :sortable="true"
+              header-align="center"
+              title="原価"
+              width="100px"
+            />
+            <VueNumberColumn
               :edit-render="gridSelfInventoryQtyEditRender"
               field="selfInventoryQty"
               :sortable="true"
               header-align="center"
-              title="自在库"
+              title="在庫数"
               width="100px"
             />
           </VueTable>
