@@ -1,5 +1,5 @@
 <script setup>
-import { IconArrowLeftBold, IconCaretRight, IconCheck, IconClose, IconDocumentCopy, IconRefreshRight, useLockScreen } from 'viy-ui';
+import { IconArrowLeftBold, IconCaretRight, IconCheck, IconClose, IconEdit, IconRefreshRight, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -156,7 +156,7 @@ const gridViy2TableButtonColumn_odGQQButtons = (scope) => {
     {
       label: '',
       type: 'text',
-      icon: IconDocumentCopy,
+      icon: IconEdit,
       click: onRowDetail,
       title: 'Detail',
     },

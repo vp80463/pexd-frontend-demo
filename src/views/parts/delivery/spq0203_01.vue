@@ -1,5 +1,5 @@
 <script setup>
-import { IconArrowLeftBold, IconDocument, IconRefreshRight, VueUtil, useLockScreen } from 'viy-ui';
+import { IconArrowLeftBold, IconEdit, IconRefreshRight, VueUtil, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -104,7 +104,7 @@ const gridViy2TableButtonColumn_g34UEButtons = (scope) => {
     {
       label: '',
       type: 'text',
-      icon: IconDocument,
+      icon: IconEdit,
       click: showRowDetail,
       title: 'Detail',
     },
@@ -493,7 +493,7 @@ const closeSpq020302 = () => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="auto" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="98%" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
             <VueRow
               id="viy2Row_soVPC"
               ref="viy2Row_soVPC"
@@ -644,8 +644,8 @@ const closeSpq020302 = () => {
       v-model="showDetailAside"
       :close-on-click-modal="false"
       :close-on-press-escape="true"
-      direction="rtl"
-      size="60%"
+      direction="btt"
+      size="90%"
       :with-header="false"
       :show-close="false"
     >

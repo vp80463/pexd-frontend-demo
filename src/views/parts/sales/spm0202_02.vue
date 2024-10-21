@@ -1,5 +1,5 @@
 <script setup>
-import { IconArrowLeftBold, IconDocument, IconRefreshRight, useLockScreen } from 'viy-ui';
+import { IconArrowLeftBold, IconEdit, IconRefreshRight, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
@@ -77,7 +77,7 @@ const headerGridViy2TableButtonColumn_hONMkButtons = (scope) => {
     {
       label: '',
       type: 'text',
-      icon: IconDocument,
+      icon: IconEdit,
       click: viewDetail,
       title: 'Detail',
     },
@@ -567,8 +567,8 @@ const viewDetail = (row) => {
       ref="detailAside"
       v-model="showDetailAside"
       :close-on-press-escape="true"
-      direction="rtl"
-      size="60%"
+      direction="btt"
+      size="90%"
       :with-header="false"
       :show-close="false"
     >

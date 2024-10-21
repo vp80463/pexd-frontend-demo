@@ -194,7 +194,7 @@ const doClose = () => {
       id="viy2Flex_13qVCS"
       ref="viy2Flex_13qVCS"
       direction="column"
-      class="full-height"
+      class="full-height-b3t"
     >
       <VuePanel id="viy2Panel_2rs6nZ" ref="viy2Panel_2rs6nZ" :collapse="true" title="基本情報">
         <VueForm

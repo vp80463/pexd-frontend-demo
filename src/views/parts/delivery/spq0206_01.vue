@@ -1,5 +1,5 @@
 <script setup>
-import { IconArrowLeftBold, IconCaretRight, IconDocument, IconPromotion, IconRefreshRight, IconSelect, useLockScreen } from 'viy-ui';
+import { IconArrowLeftBold, IconCaretRight, IconEdit, IconPromotion, IconRefreshRight, IconSelect, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -106,7 +106,7 @@ const gridViy2TableButtonColumn_odGQQButtons = (scope) => {
     {
       label: '',
       type: 'text',
-      icon: IconDocument,
+      icon: IconEdit,
       click: viewDetail,
       title: 'Detail',
     },
@@ -728,8 +728,8 @@ const closeAside = () => {
       ref="detailAside"
       v-model="showAsideWin"
       :modal="true"
-      direction="rtl"
-      size="60%"
+      direction="btt"
+      size="90%"
       :with-header="false"
     >
       <viy2Subpage_RoWUZPage
