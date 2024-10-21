@@ -4,7 +4,6 @@ import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { merge } from 'lodash-es';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT } from '@/constants';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
 import { formatPartNo, formatPrice, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -270,7 +269,6 @@ const gridOrderDateEditRender = computed(() => {
     enabled: false,
     attrs: {
       textAlign: 'center',
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
