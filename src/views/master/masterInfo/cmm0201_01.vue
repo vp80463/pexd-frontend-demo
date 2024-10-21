@@ -742,7 +742,7 @@ const getPointLabel = (pointId) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="主サイン"
+                label="メインロケーション"
                 prop="mainLocation"
               >
                 <VueCheckbox
@@ -794,7 +794,7 @@ const getPointLabel = (pointId) => {
               align="left"
               :sortable="true"
               width="180px"
-              title="ロケーション別"
+              title="ロケーションタイプ"
               header-align="center"
             />
             <VueSelectColumn
@@ -820,9 +820,9 @@ const getPointLabel = (pointId) => {
               :edit-render="gridCopy0_viy2TableTemplateColumn_b3l7VEditRender"
               align="center"
               :sortable="true"
-              title="主サイン"
+              title="メインロケーション"
               header-align="center"
-              width="135px"
+              width="160px"
             >
               <template #default="scope">
                 <VueCheckbox
