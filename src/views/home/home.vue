@@ -346,7 +346,7 @@ const skipTo4 = (row) => {
   // router导航到页面并传递参数
   router.push({ name: 'spm0406_01', data });
 };
-// 発注オーダー照会（部品別）
+// 発注照会（部品別）
 const skipTo5 = (row) => {
 // 跳转到详情页的必要参数
   const data = {};
@@ -354,7 +354,7 @@ const skipTo5 = (row) => {
     name: 'spq0401_01', // 路由名称
   });
   // 详情页标签名
-  useMultiTags().getTag({ name: 'spq0401_01' }).meta.title = t('発注オーダー照会（部品別）');
+  useMultiTags().getTag({ name: 'spq0401_01' }).meta.title = t('発注照会（部品別）');
   // router导航到页面并传递参数
   router.push({ name: 'spq0401_01', data });
 };
@@ -584,7 +584,7 @@ const skipTo9 = (row) => {
                   :md="{ span: 8 }"
                 >
                   <VueButton id="viy2Button_6Z5sG2" ref="viy2Button_6Z5sG2" icon-position="left" class="btn1" @click="viy2Button_6Z5sG2Click">
-                    発注オーダー照会（部品別）
+                    発注照会（部品別）
                   </VueButton>
                 </VueCol>
                 <VueCol
