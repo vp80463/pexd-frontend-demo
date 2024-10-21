@@ -497,6 +497,7 @@ const getPartsData2 = async (row) => {
           field="orderPartsNm"
           show-overflow="tooltip"
           title="部品名称"
+          width="260px"
           min-width="160px"
         />
         <VueNumberColumn
