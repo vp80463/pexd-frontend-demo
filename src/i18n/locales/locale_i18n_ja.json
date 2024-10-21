@@ -887,6 +887,7 @@
   },
   "title" : {
     "detail" : "詳細の行",
+    "warn" : "警告",
     "detailAmount" : "詳細金額"
   },
   "chart" : {
