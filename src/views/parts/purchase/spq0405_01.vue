@@ -477,8 +477,6 @@ const getPartsData = async () => {
                   v-model="queryFormData.dateFrom"
                   type="date"
                   :style="{ width: '130px' }"
-                  :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                  :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                 />
               </VueFormItem>
               <!-- BEGIN CUSTOM DIV CODE -->
