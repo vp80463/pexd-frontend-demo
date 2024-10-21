@@ -335,8 +335,9 @@ onMounted(() => {
 // 初始化targetMonth 和 point
   queryFormData.pointCd = uc.defaultPointCd;
   queryFormData.pointId = uc.defaultPointId;
-  queryFormData.dateFrom = firstDay;
-  queryFormData.dateTo = lastDay;
+  // queryFormData.dateFrom = firstDay;
+  // queryFormData.dateTo = lastDay;
+  queryFormData.targetMonth = currentMonth;
 });
 // 条件改变，清空明细
 watch(() => queryFormData, (newVal, oldVal) => {
