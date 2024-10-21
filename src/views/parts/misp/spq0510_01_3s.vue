@@ -300,6 +300,17 @@ const gridSalesStoreEditRender = computed(() => {
     },
   };
 });
+const gridSalesStoreNmFormatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const gridSalesStoreNmEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
 const gridLargeCategoryFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
@@ -501,7 +512,7 @@ const skipToDetail = (row) => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.pcType')"
+                :label="t('label.productDiff')"
                 label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
@@ -542,7 +553,7 @@ const skipToDetail = (row) => {
             style="height:100%;"
             :model="viy2Form_IZmIkData"
           >
-            <VueTable id="grid" ref="grid" header-align="center" :show-footer="false" height="100%" :data="findStockAccountList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
+            <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="100%" :data="findStockAccountList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
               <VueRow
                 id="viy2Row_7fBlfh"
                 ref="viy2Row_7fBlfh"
@@ -567,7 +578,6 @@ const skipToDetail = (row) => {
                 :edit-render="gridSalesStoredEditRender"
                 field="salesStored"
                 align="right"
-                aggregate="sum"
                 footer-align="right"
                 :sortable="true"
                 width="200px"
@@ -579,7 +589,6 @@ const skipToDetail = (row) => {
                 :edit-render="gridGroupEditRender"
                 field="group"
                 align="right"
-                aggregate="sum"
                 footer-align="right"
                 :visible="groupShow"
                 :sortable="true"
@@ -592,12 +601,23 @@ const skipToDetail = (row) => {
                 :edit-render="gridSalesStoreEditRender"
                 field="salesStore"
                 align="right"
-                aggregate="sum"
                 footer-align="right"
                 :visible="!groupShow"
                 :sortable="true"
                 width="200px"
-                title="販売店"
+                :title="t('label.salesStore')"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="gridSalesStoreNmFormatter"
+                :edit-render="gridSalesStoreNmEditRender"
+                field="salesStoreNm"
+                align="right"
+                footer-align="right"
+                :visible="!groupShow"
+                :sortable="true"
+                width="200px"
+                :title="t('label.salesStoreNm')"
                 header-align="center"
               />
               <VueNumberColumn
@@ -605,7 +625,6 @@ const skipToDetail = (row) => {
                 :edit-render="gridLargeCategoryEditRender"
                 field="largeCategory"
                 align="right"
-                aggregate="sum"
                 footer-align="right"
                 :sortable="true"
                 width="200px"
@@ -617,6 +636,8 @@ const skipToDetail = (row) => {
                 field="largeGroupName"
                 show-overflow="tooltip"
                 :sortable="true"
+                :aggregate-label="t('label.total')"
+                footer-align="right"
                 :title="t('label.productDiffNm')"
                 width="130px"
                 header-align="center"

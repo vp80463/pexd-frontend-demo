@@ -427,7 +427,7 @@ const skipToDetail = (row) => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.pcType')"
+                :label="t('label.productDiff')"
                 prop="datafieldviy2Cascader_LmE9w"
               >
                 <VueCascader
@@ -461,7 +461,7 @@ const skipToDetail = (row) => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" header-align="center" height="auto" :data="findStockAccountList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
+          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="auto" :data="findStockAccountList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
             <VueRow
               id="viy2Row_soVPC"
               ref="viy2Row_soVPC"
@@ -486,7 +486,6 @@ const skipToDetail = (row) => {
               :edit-render="gridTargetMonthEditRender"
               field="targetMonth"
               align="right"
-              aggregate="sum"
               footer-align="right"
               :sortable="true"
               width="200px"
@@ -498,11 +497,10 @@ const skipToDetail = (row) => {
               :edit-render="gridLargeGroupCd1EditRender"
               field="largeGroupCd1"
               align="right"
-              aggregate="sum"
               footer-align="right"
               :sortable="true"
               width="200px"
-              title="商品区分"
+              :title="t('label.productDiff')"
               header-align="center"
             />
             <VueNumberColumn
@@ -510,11 +508,11 @@ const skipToDetail = (row) => {
               :edit-render="gridLargeGroupCd5EditRender"
               field="largeGroupCd5"
               align="right"
-              aggregate="sum"
               footer-align="right"
+              :aggregate-label="t('label.total')"
               :sortable="true"
               width="200px"
-              title="区分名称"
+              :title="t('label.productDiffNm')"
               header-align="center"
             />
             <VueNumberColumn

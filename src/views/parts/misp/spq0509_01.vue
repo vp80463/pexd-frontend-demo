@@ -738,7 +738,7 @@ const skipToDetail = (row) => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.pcType')"
+                :label="t('label.productDiff')"
                 label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
@@ -798,7 +798,6 @@ const skipToDetail = (row) => {
               field="targetYear"
               show-overflow="tooltip"
               :sortable="true"
-              aggregate-label="Total"
               :title="t('label.targetYear')"
               width="130px"
               header-align="center"
@@ -836,6 +835,7 @@ const skipToDetail = (row) => {
               field="productDiffNm"
               align="right"
               footer-align="right"
+              :aggregate-label="t('label.total')"
               :sortable="true"
               width="200px"
               :title="t('label.productDiffNm')"

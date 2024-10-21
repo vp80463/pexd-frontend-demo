@@ -259,12 +259,12 @@ const grid2SearchTyped2EditRender = computed(() => {
     enabled: false,
   };
 });
-const grid2Consumer22EditRender = computed(() => {
+const grid2SalesStoreEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const grid2Consumer2EditRender = computed(() => {
+const grid2SalesStoreNmEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -539,7 +539,7 @@ const percentFormat = (cellValue) => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.pcType')"
+                :label="t('label.productDiff')"
                 prop="datafieldviy2Cascader_LmE9w"
               >
                 <VueCascader
@@ -588,7 +588,6 @@ const percentFormat = (cellValue) => {
             </VueRow>
             <VueIndexColumn
               align="center"
-              aggregate-label="total:"
               width="50px"
               min-width="50px"
               header-align="center"
@@ -622,22 +621,22 @@ const percentFormat = (cellValue) => {
               header-align="center"
             />
             <VueInputColumn
-              :edit-render="grid2Consumer22EditRender"
-              field="consumer22"
+              :edit-render="grid2SalesStoreEditRender"
+              field="salesStore"
               show-overflow="tooltip"
               :sortable="true"
               :visible="gridStoreShow"
-              title="販売店"
+              :title="t('label.salesStore')"
               width="210px"
               header-align="center"
             />
             <VueInputColumn
-              :edit-render="grid2Consumer2EditRender"
-              field="consumer2"
+              :edit-render="grid2SalesStoreNmEditRender"
+              field="salesStoreNm"
               show-overflow="tooltip"
               :sortable="true"
               :visible="gridStoreShow"
-              title="販売店名称"
+              :title="t('label.salesStoreNm')"
               width="210px"
               header-align="center"
             />
@@ -646,7 +645,7 @@ const percentFormat = (cellValue) => {
               field="pcType"
               show-overflow="tooltip"
               :sortable="true"
-              title="商品区分"
+              :title="t('label.productDiff')"
               width="100px"
               header-align="center"
             />
@@ -655,7 +654,9 @@ const percentFormat = (cellValue) => {
               field="pcTypeNm"
               show-overflow="tooltip"
               :sortable="true"
-              title="区分名称"
+              :aggregate-label="t('label.total')"
+              footer-align="right"
+              :title="t('label.productDiffNm')"
               width="100px"
               header-align="center"
             />
@@ -736,7 +737,6 @@ const percentFormat = (cellValue) => {
               :edit-render="grid2AllocateRateEditRender"
               field="allocateRate"
               align="right"
-              aggregate="sum"
               footer-align="right"
               :sortable="true"
               width="140px"

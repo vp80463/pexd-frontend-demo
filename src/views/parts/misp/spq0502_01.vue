@@ -579,7 +579,7 @@ const percentFormat = (cellValue) => {
             </VueRow>
             <VueIndexColumn
               align="center"
-              aggregate-label="total:"
+              :aggregate-label="t('label.total')"
               width="50px"
               min-width="50px"
               header-align="center"

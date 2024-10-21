@@ -440,7 +440,7 @@ const percentFormat = (cellValue) => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.pcType')"
+                :label="t('label.productDiff')"
                 label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
@@ -500,7 +500,6 @@ const percentFormat = (cellValue) => {
               field="targetMonth"
               show-overflow="tooltip"
               :sortable="true"
-              aggregate-label="Total:"
               :title="t('label.targetMonth')"
               width="130px"
               header-align="center"
@@ -539,9 +538,10 @@ const percentFormat = (cellValue) => {
               field="groupTypeNm"
               align="left"
               footer-align="right"
+              :aggregate-label="t('label.total')"
               :sortable="true"
               width="130px"
-              title="商品区分名称"
+              :title="t('label.productDiffNm')"
               header-align="center"
             />
             <VueNumberColumn

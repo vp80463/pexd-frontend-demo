@@ -64,6 +64,70 @@ const largeGroupDsApi = useApi({
   },
 });
 const largeGroupDs = largeGroupDsApi.data;
+const pcTypeDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
+const pcTypeDs = pcTypeDsApi.data;
 const pointDsApi = useApi({
   url: '/common/helper/pointList.json',
   method: 'post',
@@ -402,7 +466,7 @@ const skipToDetail = (row) => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.pcType')"
+                :label="t('label.productDiff')"
                 label-width="100px"
                 prop="datafieldviy2Cascader_LmE9w"
               >
@@ -462,7 +526,6 @@ const skipToDetail = (row) => {
               field="targetYear"
               show-overflow="tooltip"
               :sortable="true"
-              aggregate-label="Total"
               title="对象年"
               width="130px"
               header-align="center"
@@ -493,6 +556,7 @@ const skipToDetail = (row) => {
               field="targetTypeCategory"
               align="right"
               footer-align="right"
+              :aggregate-label="t('label.total')"
               :sortable="true"
               width="200px"
               title="タイプ"
