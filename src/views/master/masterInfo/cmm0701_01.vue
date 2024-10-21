@@ -28,11 +28,10 @@ const viy2Button_5heznY = ref();
 const resetBtn = ref();
 const viy2Row_4Hp8hY = ref();
 const viy2ValueList_OqyCL = ref();
-const viy2InputBox_Oldnm = ref();
+const orgnizationAbbr = ref();
 const viy2InputBox_7PsTYg = ref();
-const viy2InputBox_Olecl = ref();
-const viy2InputBox_7PwZem = ref();
 const viy2Radio_Okggq = ref();
+const viy2Radio_2wODsc = ref();
 const viy2Flex_LUasz = ref();
 const viy2Panel_GvVUq = ref();
 const grid = ref();
@@ -63,7 +62,7 @@ const asideGrid = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  shop: '', tel: '', zipCode: '', cityGove: '', city: '', activeStatus: '有効',
+  shop: '', orgnizationAbbr: '', rank: '', stopshipflag: 'する', activeStatus: '有効',
 });
 const viy2Form_MFuoeData = reactive({
   orgCd: '01234', orgAbbr: '特金製造', attribute: '販売店', orgRequestCd: '01234', regularRank: '05', stopFlag: [], orgNm: '特金製造株式会社', orgNm: '特金製造', proDpCd: '5001', resscutFlag: '', shipflag: 'する', status: '有効',
@@ -142,6 +141,10 @@ const asideGridViy2TableButtonColumn_T1ELOButtons = (scope) => {
   ];
 };
 const viy2Radio_OkggqOpts = reactive([
+  { value: 'する', label: 'する' },
+  { value: 'しない', label: 'しない' },
+]);
+const viy2Radio_2wODscOpts = reactive([
   { value: '有効', label: '有効' },
   { value: '無効', label: '無効' },
 ]);
@@ -295,30 +298,27 @@ const gridDsApi = useApi({
       orgnizationCd: '01234',
       orgnizationNm: '特金製造株式会社',
       orgnizationAbbr: '特金製造',
-      postCode: '4544-6454',
-      tel: '15154545644',
-      cityGove: '大阪府',
-      city: '堺市',
+      rank: '05',
+      stopshipflag: 'する',
+      code: '5001',
       activeStatus: '有効',
     },
     {
       orgnizationCd: '01235',
       orgnizationNm: '特金製造222株式会社',
       orgnizationAbbr: '特金製造2',
-      postCode: '4544-6454',
-      tel: '15154545644',
-      cityGove: '京都府',
-      city: '宇治市',
+      rank: '05',
+      stopshipflag: 'する',
+      code: '5001',
       activeStatus: '有効',
     },
     {
       orgnizationCd: '01236',
       orgnizationNm: '特金製造333株式会社',
       orgnizationAbbr: '特金製造3',
-      postCode: '4544-6454',
-      tel: '15154545644',
-      cityGove: '大阪府',
-      city: '堺市',
+      rank: '05',
+      stopshipflag: 'する',
+      code: '5001',
       activeStatus: '有効',
     },
   ],
@@ -374,22 +374,17 @@ const gridOrgnizationAbbrEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridTelEditRender = computed(() => {
+const gridRankEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridPostCodeEditRender = computed(() => {
+const gridStopshipflagEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridCityGoveEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridCityEditRender = computed(() => {
+const gridCodeEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -620,59 +615,60 @@ const isNewInput = (value) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="電話番号"
-                prop="tel"
+                label="漢字略称"
+                prop="orgnizationAbbr"
               >
                 <VueInput
-                  id="viy2InputBox_Oldnm"
-                  ref="viy2InputBox_Oldnm"
-                  v-model="queryFormData.tel"
+                  id="orgnizationAbbr"
+                  ref="orgnizationAbbr"
+                  v-model="queryFormData.orgnizationAbbr"
                 />
               </VueFormItem>
               <VueFormItem
-                label="郵便番号"
-                prop="zipCode"
+                label="純掛掛率ランク"
+                prop="rank"
               >
                 <VueInput
                   id="viy2InputBox_7PsTYg"
                   ref="viy2InputBox_7PsTYg"
-                  v-model="queryFormData.zipCode"
+                  v-model="queryFormData.rank"
                 />
               </VueFormItem>
               <VueFormItem
-                label="都道府県"
-                prop="cityGove"
-              >
-                <VueInput
-                  id="viy2InputBox_Olecl"
-                  ref="viy2InputBox_Olecl"
-                  v-model="queryFormData.cityGove"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="市町村"
-                prop="city"
-              >
-                <VueInput
-                  id="viy2InputBox_7PwZem"
-                  ref="viy2InputBox_7PwZem"
-                  v-model="queryFormData.city"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="有効状態"
-                prop="activeStatus"
+                label="出荷可否"
+                prop="stopshipflag"
               >
                 <VueRadioGroup
                   id="viy2Radio_Okggq"
                   ref="viy2Radio_Okggq"
-                  v-model="queryFormData.activeStatus"
+                  v-model="queryFormData.stopshipflag"
                   radio-style="button"
                   direction="horizontal"
                   split-size="default"
                 >
                   <VueRadioButton
                     v-for="option in viy2Radio_OkggqOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
+              </VueFormItem>
+              <VueFormItem
+                label="有効状態"
+                prop="activeStatus"
+              >
+                <VueRadioGroup
+                  id="viy2Radio_2wODsc"
+                  ref="viy2Radio_2wODsc"
+                  v-model="queryFormData.activeStatus"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_2wODscOpts"
                     :key="option.value"
                     :label="option.value"
                   >
@@ -723,34 +719,26 @@ const isNewInput = (value) => {
               header-align="center"
             />
             <VueInputColumn
-              :edit-render="gridTelEditRender"
-              field="tel"
+              :edit-render="gridRankEditRender"
+              field="rank"
               :sortable="true"
-              title="電話番号"
+              title="純掛掛率ランク"
               width="150px"
               header-align="center"
             />
             <VueInputColumn
-              :edit-render="gridPostCodeEditRender"
-              field="postCode"
+              :edit-render="gridStopshipflagEditRender"
+              field="stopshipflag"
               :sortable="true"
-              title="郵便番号"
+              title="出荷可否"
               width="150px"
               header-align="center"
             />
             <VueInputColumn
-              :edit-render="gridCityGoveEditRender"
-              field="cityGove"
+              :edit-render="gridCodeEditRender"
+              field="code"
               :sortable="true"
-              title="都道府県"
-              width="150px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridCityEditRender"
-              field="city"
-              :sortable="true"
-              title="市町村"
+              title="受注代行拠点"
               width="150px"
               header-align="center"
             />
@@ -777,10 +765,11 @@ const isNewInput = (value) => {
       ref="aside001"
       v-model="aside001002"
       :modal="true"
-      size="50%"
+      size="60%"
       :close-on-click-modal="false"
       :show-close="false"
       :with-header="false"
+      direction="rtl"
     >
       <VueRow
         id="viy2Row_TBVFW"
