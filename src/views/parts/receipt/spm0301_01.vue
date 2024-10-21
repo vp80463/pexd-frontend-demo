@@ -92,6 +92,7 @@ const gridDsApi = useApi({
       seqNo: '1',
       importDate: '20241015',
       invoiceNo: 'IV202410002',
+      orderType: 'RO',
       deliveryNo: 'S2410000056',
       lines: '1',
       receiptQty: '5',
