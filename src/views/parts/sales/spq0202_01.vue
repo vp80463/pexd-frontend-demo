@@ -796,7 +796,6 @@ const onLeavePartsCode = async (code) => {
               field="sellingPrice"
               footer-align="right"
               align="right"
-              aggregate-label="合計:"
               :sortable="true"
               title="仕切単価"
               width="120px"
