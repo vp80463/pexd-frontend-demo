@@ -307,6 +307,7 @@ color: rgb(245, 108, 108);
 .vue-table--render-default .vue-table-cell{
   height: 30px;
   line-height: 28px;
+  overflow: hidden;
 }
 
 .vue-panel__header-bar{
