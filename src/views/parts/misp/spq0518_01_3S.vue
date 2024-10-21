@@ -450,7 +450,7 @@ const skipToDetail = (row) => {
               :md="{ span: 24 }"
             >
               <VueFormItem
-                label="对象年"
+                :label="t('label.targetYear')"
                 label-width="110px"
                 prop="targetYearFrom"
                 :rules="rules.viy2DateTimePicker_1yEexGRules"
@@ -526,7 +526,7 @@ const skipToDetail = (row) => {
               field="targetYear"
               show-overflow="tooltip"
               :sortable="true"
-              title="对象年"
+              :title="t('label.targetYear')"
               width="130px"
               header-align="center"
             />
@@ -715,7 +715,7 @@ const skipToDetail = (row) => {
               footer-align="right"
               :sortable="true"
               width="100px"
-              title="合计"
+              :title="t('label.total')"
               header-align="center"
             />
           </VueTable>
