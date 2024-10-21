@@ -238,22 +238,22 @@ const gridMakerAbbrEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridBrand1EditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridBrand2EditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 const gridQmakerCdEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
 const gridAutoFlagEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridBrand1EditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridBrand2EditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -528,24 +528,6 @@ const getTotalRate = () => {
               header-align="center"
             />
             <VueInputColumn
-              :edit-render="gridBrand1EditRender"
-              field="brand1"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="ブランド1"
-              width="130px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridBrand2EditRender"
-              field="brand2"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="ブランド2"
-              width="130px"
-              header-align="center"
-            />
-            <VueInputColumn
               :edit-render="gridQmakerCdEditRender"
               field="QmakerCd"
               show-overflow="tooltip"
@@ -561,6 +543,24 @@ const getTotalRate = () => {
               :sortable="true"
               title="自動発注"
               width="140px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridBrand1EditRender"
+              field="brand1"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="ブランド1"
+              width="130px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridBrand2EditRender"
+              field="brand2"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="ブランド2"
+              width="130px"
               header-align="center"
             />
           </VueTable>
