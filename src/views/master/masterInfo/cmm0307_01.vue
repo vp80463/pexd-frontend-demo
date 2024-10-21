@@ -519,6 +519,7 @@ const closeConsumerAside = () => {
               width="50px"
               min-width="50px"
               header-align="center"
+              title="No."
             />
             <VueInputColumn
               :edit-render="gridOrgEditRender"
@@ -627,7 +628,7 @@ const closeConsumerAside = () => {
               field="selfInventoryQty"
               :sortable="true"
               header-align="center"
-              title="在庫数"
+              title="自在庫"
               width="100px"
             />
           </VueTable>
