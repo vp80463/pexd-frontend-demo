@@ -1184,6 +1184,7 @@
     "purchaseOrderHOLines" : "PO(H)行数",
     "tableOrderSerializedItemFaultInfo" : "订单序列号产品故障信息",
     "catalogCode" : "车辆目录代码",
+    "initMonthPrice" : "月初在库金额",
     "assortParts" : "配套配件",
     "forth" : "4",
     "brandAbbr" : "品牌简称",
