@@ -683,7 +683,6 @@ const skipToDetail = (row) => {
                 :edit-render="gridT12EditRender"
                 field="t12"
                 align="right"
-                aggregate="sum"
                 footer-align="right"
                 :sortable="true"
                 width="200px"
