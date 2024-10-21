@@ -33,7 +33,7 @@ const viy2Table_8XEr2t = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  deliveryPointId: '', targetMonth: '', datafieldviy2Cascader_LmE9w: [], abcType: '',
+  deliveryPointId: '', targetMonth: '', productDiff: [], abcType: '',
 });
 const rules = reactive({
   viy2DateTimePicker_L6xsiRules: [
@@ -579,12 +579,12 @@ const resetTblResults = () => {
               </VueFormItem>
               <VueFormItem
                 :label="t('label.productDiff')"
-                prop="datafieldviy2Cascader_LmE9w"
+                prop="productDiff"
               >
                 <VueCascader
                   id="viy2Cascader_LmE9w"
                   ref="viy2Cascader_LmE9w"
-                  v-model="queryFormData.datafieldviy2Cascader_LmE9w"
+                  v-model="queryFormData.productDiff"
                   display-member="label"
                   value-member="value"
                   :filterable="true"
@@ -639,7 +639,7 @@ const resetTblResults = () => {
           >
             <VueTabPane
               name="viy2Tabs_elXw6Tab0"
-              label="明细行"
+              label="明細行"
             >
               <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="auto" :data="findSpartsMIList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
                 <VueIndexColumn
@@ -821,7 +821,7 @@ const resetTblResults = () => {
             </VueTabPane>
             <VueTabPane
               name="viy2Tabs_elXw6Tab1"
-              label="明细金额"
+              label="明細金額"
             >
               <VueTable id="viy2Table_8XEr2t" ref="viy2Table_8XEr2t" header-align="center" :show-footer="true" height="auto" :data="findSpartsMIList" :edit-config="viy2Table_8XEr2tEditConfig" :mouse-config="viy2Table_8XEr2tMouseConfig">
                 <VueIndexColumn
