@@ -20,13 +20,12 @@ const viy2Row_rFsZl = ref();
 const copy8_viy2Row_rFsZl_col1 = ref();
 const viy2InputBox_4y5p9E = ref();
 const viy2InputBox_aK1dSU = ref();
-const viy2InputBox_aKdSBE = ref();
-const viy2InputBox_aKdS6Q = ref();
-const viy2InputBox_9geMAm = ref();
-const viy2InputBox_aKfw80 = ref();
-const viy2InputBox_aKfvDc = ref();
 const viy2InputNumber_ZLhoe = ref();
 const viy2InputNumber_ZLaLM = ref();
+const viy2InputBox_aKdS6Q = ref();
+const viy2InputBox_aKdSBE = ref();
+const viy2InputBox_aKfw80 = ref();
+const viy2InputBox_9geMAm = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_G2WaG = ref();
 const grid = ref();
@@ -34,7 +33,7 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  productCd: '', productNm: '', productNm: '', productNm: '', QmakerCd: '', QmakerCd: '', QmakerCd: '', priceFrom: undefined, datafieldviy2InputNumber_ZLaLM: undefined,
+  productCd: '', productNm: '', priceFrom: undefined, datafieldviy2InputNumber_ZLaLM: undefined, productNm: '', productNm: '', QmakerCd: '', QmakerCd: '',
 });
 const gridEditConfig = reactive({
   trigger: 'click',
@@ -214,17 +213,32 @@ const gridProductNmEditRender = computed(() => {
     enabled: false,
   };
 });
+const gridStdPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridOpenFlagEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridInpriceEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridShopRateEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const gridSupplierCdEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
 const gridMakerAbbrEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridQmakerCdEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -239,27 +253,12 @@ const gridBrand2EditRender = computed(() => {
     enabled: false,
   };
 });
-const gridStdPriceEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridAgencyRateEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridShopRateEditRender = computed(() => {
+const gridQmakerCdEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
 const gridAutoFlagEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridOpenFlagEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -364,66 +363,6 @@ const getTotalRate = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="メーカーコード"
-                prop="productNm"
-              >
-                <VueInput
-                  id="viy2InputBox_aKdSBE"
-                  ref="viy2InputBox_aKdSBE"
-                  v-model="queryFormData.productNm"
-                  :clearable="true"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="メーカー略号"
-                prop="productNm"
-              >
-                <VueInput
-                  id="viy2InputBox_aKdS6Q"
-                  ref="viy2InputBox_aKdS6Q"
-                  v-model="queryFormData.productNm"
-                  :clearable="true"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="相手先品番"
-                prop="QmakerCd"
-              >
-                <VueInput
-                  id="viy2InputBox_9geMAm"
-                  ref="viy2InputBox_9geMAm"
-                  v-model="queryFormData.QmakerCd"
-                  :clearable="true"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="ブランド1"
-                prop="QmakerCd"
-              >
-                <VueInput
-                  id="viy2InputBox_aKfw80"
-                  ref="viy2InputBox_aKfw80"
-                  v-model="queryFormData.QmakerCd"
-                  :clearable="true"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="ブランド2"
-                prop="QmakerCd"
-              >
-                <VueInput
-                  id="viy2InputBox_aKfvDc"
-                  ref="viy2InputBox_aKfvDc"
-                  v-model="queryFormData.QmakerCd"
-                  :clearable="true"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
                 label="標準小売単価"
                 prop="priceFrom"
               >
@@ -449,6 +388,54 @@ const getTotalRate = () => {
                   :clearable="true"
                   :min="0"
                   :style="{ width: '100px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="メーカー略号"
+                prop="productNm"
+              >
+                <VueInput
+                  id="viy2InputBox_aKdS6Q"
+                  ref="viy2InputBox_aKdS6Q"
+                  v-model="queryFormData.productNm"
+                  :clearable="true"
+                  :style="{ width: '200px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="メーカーコード"
+                prop="productNm"
+              >
+                <VueInput
+                  id="viy2InputBox_aKdSBE"
+                  ref="viy2InputBox_aKdSBE"
+                  v-model="queryFormData.productNm"
+                  :clearable="true"
+                  :style="{ width: '200px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="ブランド"
+                prop="QmakerCd"
+              >
+                <VueInput
+                  id="viy2InputBox_aKfw80"
+                  ref="viy2InputBox_aKfw80"
+                  v-model="queryFormData.QmakerCd"
+                  :clearable="true"
+                  :style="{ width: '200px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="相手先品番"
+                prop="QmakerCd"
+              >
+                <VueInput
+                  id="viy2InputBox_9geMAm"
+                  ref="viy2InputBox_9geMAm"
+                  v-model="queryFormData.QmakerCd"
+                  :clearable="true"
+                  :style="{ width: '200px' }"
                 />
               </VueFormItem>
             </VueCol>
@@ -502,6 +489,40 @@ const getTotalRate = () => {
               width="130px"
               header-align="center"
             />
+            <VueNumberColumn
+              :edit-render="gridStdPriceEditRender"
+              field="stdPrice"
+              :sortable="true"
+              title="標準小売単価"
+              width="130px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridOpenFlagEditRender"
+              field="openFlag"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="オープン価格"
+              width="130px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridInpriceEditRender"
+              field="inprice"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="仕入価格"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridShopRateEditRender"
+              field="shopRate"
+              :sortable="true"
+              title="販売店掛率"
+              width="130px"
+              header-align="center"
+            />
             <VueInputColumn
               :edit-render="gridSupplierCdEditRender"
               field="supplierCd"
@@ -517,15 +538,6 @@ const getTotalRate = () => {
               show-overflow="tooltip"
               :sortable="true"
               title="メーカー略称"
-              width="130px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridQmakerCdEditRender"
-              field="QmakerCd"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="相手先品番"
               width="130px"
               header-align="center"
             />
@@ -547,27 +559,12 @@ const getTotalRate = () => {
               width="130px"
               header-align="center"
             />
-            <VueNumberColumn
-              :edit-render="gridStdPriceEditRender"
-              field="stdPrice"
+            <VueInputColumn
+              :edit-render="gridQmakerCdEditRender"
+              field="QmakerCd"
+              show-overflow="tooltip"
               :sortable="true"
-              title="標準小売単価"
-              width="130px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridAgencyRateEditRender"
-              field="agencyRate"
-              :sortable="true"
-              title="特約店掛率"
-              width="130px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridShopRateEditRender"
-              field="shopRate"
-              :sortable="true"
-              title="販売店掛率"
+              title="相手先品番"
               width="130px"
               header-align="center"
             />
@@ -576,17 +573,8 @@ const getTotalRate = () => {
               field="autoFlag"
               show-overflow="tooltip"
               :sortable="true"
-              title="自動発注サイン"
+              title="自動発注"
               width="140px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridOpenFlagEditRender"
-              field="openFlag"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="OPENサイン"
-              width="130px"
               header-align="center"
             />
           </VueTable>

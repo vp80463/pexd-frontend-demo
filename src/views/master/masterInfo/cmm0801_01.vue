@@ -17,25 +17,42 @@ const viy2Button_5FbWKc = ref();
 const viy2Button_2gh3Ey = ref();
 const viy2Row_O5tKr = ref();
 const viy2InputBox_O5F3m = ref();
-const viy2InputBox_86aQio = ref();
-const viy2InputNumber_g1O3B = ref();
-const viy2CheckBox_T2LG6 = ref();
-const viy2InputBox_86aQOE = ref();
-const viy2InputBox_86aRqI = ref();
-const viy2InputNumber_34kt0e = ref();
-const viy2CheckBox_8SufCS = ref();
-const viy2InputBox_86bzTk = ref();
-const viy2InputBox_86c0gy = ref();
-const viy2InputBox_86bykS = ref();
-const viy2CheckBox_8StWhQ = ref();
-const viy2InputBox_86bzoG = ref();
 const viy2InputBox_86c8aE = ref();
-const viy2Radio_iWHDU = ref();
+const viy2InputNumber_g1O3B = ref();
+const viy2InputBox_86aQio = ref();
+const viy2InputBox_86bzTk = ref();
+const viy2InputNumber_34kt0e = ref();
+const viy2InputBox_86aRqI = ref();
+const viy2InputBox_86bzoG = ref();
+const viy2CheckBox_8StWhQ = ref();
+const viy2InputBox_86c0gy = ref();
+const viy2CheckBox_T2LG6 = ref();
+const viy2CheckBox_8SufCS = ref();
 const formData = reactive({
 });
 const companyFormData = reactive({
-  teat1: '', teat5: '', rate1: undefined, test12: false, teat2: '', teat6: '', rate2: undefined, test13: false, teat3: '', teat7: '', teat11: '', test14: false, teat4: '', teat8: '', hasStockFlag: '1',
+  teat1: '', teat8: '', rate1: undefined, teat5: '', teat3: '', rate2: undefined, teat6: '', teat4: '', test14: false, teat7: '', test12: false, test13: false,
 });
+const viy2CheckBox_8StWhQOpts = [
+  {
+    label:
+'Option 1',
+    value:
+'Option 1',
+  },
+  {
+    label:
+'Option 2',
+    value:
+'Option 2',
+  },
+  {
+    label:
+'Option 3',
+    value:
+'Option 3',
+  },
+];
 const viy2CheckBox_T2LG6Opts = [
   {
     label:
@@ -76,30 +93,6 @@ const viy2CheckBox_8SufCSOpts = [
 'Option 3',
   },
 ];
-const viy2CheckBox_8StWhQOpts = [
-  {
-    label:
-'Option 1',
-    value:
-'Option 1',
-  },
-  {
-    label:
-'Option 2',
-    value:
-'Option 2',
-  },
-  {
-    label:
-'Option 3',
-    value:
-'Option 3',
-  },
-];
-const viy2Radio_iWHDUOpts = reactive([
-  { value: '1', label: '在庫有り' },
-  { value: '0', label: '在庫無し' },
-]);
 const companyDsApi = useApi({
   url: '/master/cmm0204/getCompanyInfo.json',
   method: 'post',
@@ -190,6 +183,7 @@ onMounted(() => {
           >
             <VueFormItem
               label="拠点コード"
+              label-width="150px"
               prop="teat1"
             >
               <VueInput
@@ -198,22 +192,25 @@ onMounted(() => {
                 v-model="companyFormData.teat1"
                 :readonly="true"
                 class="no-border"
-                :style="{ width: '300px' }"
+                :style="{ width: '200px' }"
               />
             </VueFormItem>
             <VueFormItem
-              label="漢字名称"
-              prop="teat5"
+              label="短縮カナ"
+              label-width="150px"
+              prop="teat8"
             >
               <VueInput
-                id="viy2InputBox_86aQio"
-                ref="viy2InputBox_86aQio"
-                v-model="companyFormData.teat5"
-                :style="{ width: '300px' }"
+                id="viy2InputBox_86c8aE"
+                ref="viy2InputBox_86c8aE"
+                v-model="companyFormData.teat8"
+                class="no-border"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
             <VueFormItem
               label="部品レス率"
+              label-width="150px"
               prop="rate1"
             >
               <VueInputNumber
@@ -223,17 +220,7 @@ onMounted(() => {
                 :precision="2"
                 :max="99999.99"
                 :min="0"
-                :style="{ width: '300px' }"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="受発注停止サイン"
-              prop="test12"
-            >
-              <VueCheckbox
-                id="viy2CheckBox_T2LG6"
-                ref="viy2CheckBox_T2LG6"
-                v-model="companyFormData.test12"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
           </VueCol>
@@ -242,31 +229,33 @@ onMounted(() => {
             :md="{ span: 6 }"
           >
             <VueFormItem
-              label="会社コード"
-              prop="teat2"
+              label="漢字名称"
+              label-width="150px"
+              prop="teat5"
             >
               <VueInput
-                id="viy2InputBox_86aQOE"
-                ref="viy2InputBox_86aQOE"
-                v-model="companyFormData.teat2"
-                class="no-border"
-                :style="{ width: '300px' }"
+                id="viy2InputBox_86aQio"
+                ref="viy2InputBox_86aQio"
+                v-model="companyFormData.teat5"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
             <VueFormItem
-              label="漢字略称"
-              prop="teat6"
+              label="ＴＥＬ"
+              label-width="150px"
+              prop="teat3"
             >
               <VueInput
-                id="viy2InputBox_86aRqI"
-                ref="viy2InputBox_86aRqI"
-                v-model="companyFormData.teat6"
+                id="viy2InputBox_86bzTk"
+                ref="viy2InputBox_86bzTk"
+                v-model="companyFormData.teat3"
                 class="no-border"
-                :style="{ width: '300px' }"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
             <VueFormItem
               label="用品レス率"
+              label-width="150px"
               prop="rate2"
             >
               <VueInputNumber
@@ -276,17 +265,7 @@ onMounted(() => {
                 :precision="2"
                 :min="0"
                 :max="99999.99"
-                :style="{ width: '300px' }"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="自動発注サイン"
-              prop="test13"
-            >
-              <VueCheckbox
-                id="viy2CheckBox_8SufCS"
-                ref="viy2CheckBox_8SufCS"
-                v-model="companyFormData.test13"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
           </VueCol>
@@ -295,44 +274,34 @@ onMounted(() => {
             :md="{ span: 6 }"
           >
             <VueFormItem
-              label="ＴＥＬ"
-              prop="teat3"
+              label="漢字略称"
+              label-width="150px"
+              prop="teat6"
             >
               <VueInput
-                id="viy2InputBox_86bzTk"
-                ref="viy2InputBox_86bzTk"
-                v-model="companyFormData.teat3"
+                id="viy2InputBox_86aRqI"
+                ref="viy2InputBox_86aRqI"
+                v-model="companyFormData.teat6"
                 class="no-border"
-                :style="{ width: '300px' }"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
             <VueFormItem
-              label="カナ名称"
-              prop="teat7"
+              label="ＦＡＸ"
+              label-width="150px"
+              prop="teat4"
             >
               <VueInput
-                id="viy2InputBox_86c0gy"
-                ref="viy2InputBox_86c0gy"
-                v-model="companyFormData.teat7"
+                id="viy2InputBox_86bzoG"
+                ref="viy2InputBox_86bzoG"
+                v-model="companyFormData.teat4"
                 class="no-border"
-                :style="{ width: '300px' }"
-              />
-            </VueFormItem>
-            <VueFormItem
-              label="管轄ＰＣコード"
-              prop="teat11"
-            >
-              <VueInput
-                id="viy2InputBox_86bykS"
-                ref="viy2InputBox_86bykS"
-                v-model="companyFormData.teat11"
-                :readonly="true"
-                class="no-border"
-                :style="{ width: '300px' }"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
             <VueFormItem
               label="特殊単価適用サイン"
+              label-width="150px"
               prop="test14"
             >
               <VueCheckbox
@@ -347,50 +316,39 @@ onMounted(() => {
             :md="{ span: 6 }"
           >
             <VueFormItem
-              label="ＦＡＸ"
-              prop="teat4"
+              label="カナ名称"
+              label-width="150px"
+              prop="teat7"
             >
               <VueInput
-                id="viy2InputBox_86bzoG"
-                ref="viy2InputBox_86bzoG"
-                v-model="companyFormData.teat4"
+                id="viy2InputBox_86c0gy"
+                ref="viy2InputBox_86c0gy"
+                v-model="companyFormData.teat7"
                 class="no-border"
-                :style="{ width: '300px' }"
+                :style="{ width: '250px' }"
               />
             </VueFormItem>
             <VueFormItem
-              label="短縮カナ"
-              prop="teat8"
+              label="受発注停止サイン"
+              label-width="150px"
+              prop="test12"
             >
-              <VueInput
-                id="viy2InputBox_86c8aE"
-                ref="viy2InputBox_86c8aE"
-                v-model="companyFormData.teat8"
-                class="no-border"
-                :style="{ width: '300px' }"
+              <VueCheckbox
+                id="viy2CheckBox_T2LG6"
+                ref="viy2CheckBox_T2LG6"
+                v-model="companyFormData.test12"
               />
             </VueFormItem>
             <VueFormItem
-              v-if="false"
-              label="在庫有無"
-              prop="hasStockFlag"
+              label="自動発注サイン"
+              label-width="150px"
+              prop="test13"
             >
-              <VueRadioGroup
-                id="viy2Radio_iWHDU"
-                ref="viy2Radio_iWHDU"
-                v-model="companyFormData.hasStockFlag"
-                radio-style="button"
-                direction="horizontal"
-                split-size="default"
-              >
-                <VueRadioButton
-                  v-for="option in viy2Radio_iWHDUOpts"
-                  :key="option.value"
-                  :label="option.value"
-                >
-                  {{ option.label }}
-                </VueRadioButton>
-              </VueRadioGroup>
+              <VueCheckbox
+                id="viy2CheckBox_8SufCS"
+                ref="viy2CheckBox_8SufCS"
+                v-model="companyFormData.test13"
+              />
             </VueFormItem>
           </VueCol>
         </VueRow>
