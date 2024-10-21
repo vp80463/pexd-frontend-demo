@@ -416,8 +416,9 @@ onMounted(() => {
   queryFormData.pointCd = uc.defaultPointCd;
   queryFormData.pointId = uc.defaultPointId;
   queryFormData.customerCd = '';
-  queryFormData.dateFrom = firstDay;
-  queryFormData.dateTo = lastDay;
+  queryFormData.targetMonth = currentMonth;
+// queryFormData.dateFrom = firstDay;
+// queryFormData.dateTo = lastDay;
 });
 // 条件改变，清空明细
 watch(() => queryFormData, (newVal, oldVal) => {
