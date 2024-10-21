@@ -512,7 +512,7 @@ const resetTblResults = () => {
     <VueFlex
       id="viy2Flex_uF7QC"
       ref="viy2Flex_uF7QC"
-      style="height:88vh;"
+      style="height:89vh;"
       direction="column"
     >
       <VueForm
