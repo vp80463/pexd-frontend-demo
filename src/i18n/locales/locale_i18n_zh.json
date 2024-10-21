@@ -1170,7 +1170,7 @@
     "tableOrderServiceItemRelation" : "订单服务明细关联",
     "createDate" : "制作日期",
     "cBPDate" : "当前车辆采购年月",
-    "productDiffNm" : "商品区分名称",
+    "productDiffNm" : "商品名称",
     "orderParts" : "订单配件",
     "thirdFSC" : "FSC 3",
     "operationFinishTime" : "结束操作时间",

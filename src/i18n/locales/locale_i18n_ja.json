@@ -103,7 +103,7 @@
     "purchaseOrderWAmount" : "PO(W)総額",
     "reporter" : "  Reporter",
     "createDate" : " Create Date",
-    "productDiffNm" : "商品区分名称",
+    "productDiffNm" : "商品名称",
     "emailAddress" : "  Email  Address",
     "stockOfOtherStores" : " Stock Of Other Stores",
     "disposalCost" : "削除コスト",
