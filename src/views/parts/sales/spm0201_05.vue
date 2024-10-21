@@ -496,7 +496,7 @@ const gridBoQtyEditRender = computed(() => {
     },
   };
 });
-const gridPcAllocatedQtyEditRender = computed(() => {
+const gridAllocatedQtyEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -505,14 +505,6 @@ const gridPcAllocatedQtyEditRender = computed(() => {
   };
 });
 const gridOtherAllocatedQtyEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const gridAllocatedQtyEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -964,15 +956,14 @@ const closeMultiPartsAside = (row) => {
             />
             <VueNumberColumn
               v-if="false"
-              :edit-render="gridPcAllocatedQtyEditRender"
-              field="pcAllocatedQty"
-              :visible="false"
+              v-show="'S015SPCREATED' !== orderStatus"
+              :edit-render="gridAllocatedQtyEditRender"
+              field="allocatedQty"
+              :visible="'S015SPCREATED' !== orderStatus"
               align="right"
-              aggregate="sum"
-              footer-align="right"
               :sortable="true"
-              title="自引当数"
-              width="110px"
+              title="引当数"
+              width="130px"
               header-align="center"
             />
             <VueNumberColumn
@@ -986,18 +977,6 @@ const closeMultiPartsAside = (row) => {
               :sortable="true"
               title="他引当数"
               width="110px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              v-if="false"
-              v-show="'S015SPCREATED' !== orderStatus"
-              :edit-render="gridAllocatedQtyEditRender"
-              field="allocatedQty"
-              :visible="'S015SPCREATED' !== orderStatus"
-              align="right"
-              :sortable="true"
-              title="引当数"
-              width="130px"
               header-align="center"
             />
             <VueNumberColumn
