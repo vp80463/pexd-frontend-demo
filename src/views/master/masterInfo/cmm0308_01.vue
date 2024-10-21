@@ -223,11 +223,6 @@ const gridOpenFlagEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridInpriceEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 const gridShopRateEditRender = computed(() => {
   return {
     enabled: false,
@@ -503,15 +498,6 @@ const getTotalRate = () => {
               show-overflow="tooltip"
               :sortable="true"
               title="オープン価格"
-              width="130px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridInpriceEditRender"
-              field="inprice"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="仕入価格"
               width="130px"
               header-align="center"
             />
