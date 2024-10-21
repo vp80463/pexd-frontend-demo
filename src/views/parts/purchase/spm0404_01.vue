@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
+import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import detailPagePage from '/src/views/parts/purchase/spm0404_02.vue';
 import { formatCodeInput, warn_msg } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -562,8 +562,6 @@ const checkFilter = () => {
                     v-model="queryFormData.dateFrom"
                     type="date"
                     :style="{ width: '130px' }"
-                    :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                    :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                   />
                 </VueFormItem>
                 <!-- BEGIN CUSTOM DIV CODE -->
@@ -580,8 +578,6 @@ const checkFilter = () => {
                     v-model="queryFormData.dateTo"
                     type="date"
                     :style="{ width: '130px' }"
-                    :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                    :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                   />
                 </VueFormItem>
                 <VueButton id="viy2Button_hVBByI" ref="viy2Button_hVBByI" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_hVBByIClick" />
