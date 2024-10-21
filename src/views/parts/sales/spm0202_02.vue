@@ -1,11 +1,10 @@
 <script setup>
 import { IconArrowLeftBold, IconEdit, IconRefreshRight, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
+import detailPagePage from '/src/views/parts/sales/spm0202_03.vue';
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
-import detailPagePage from '/src/views/parts/sales/spm0202_03.vue';
 import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
 import { formatUpper } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -185,8 +184,6 @@ const headerGridReturnDateEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
