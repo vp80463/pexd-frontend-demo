@@ -976,7 +976,7 @@ const getPointLabel = (pointId) => {
               </VueFormItem>
               <VueFormItem
                 label="ロケーション"
-                label-width="150px"
+                label-width="180px"
                 prop="location"
                 :rules="rules.viy2InputBox_6Wsa95Rules"
               >
@@ -1050,7 +1050,7 @@ const getPointLabel = (pointId) => {
               </VueFormItem>
               <VueFormItem
                 label="主サイン"
-                label-width="110px"
+                label-width="180px"
                 prop="mainLocation"
               >
                 <VueCheckbox
