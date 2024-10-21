@@ -480,10 +480,10 @@ const doClose = () => {
             <VueTable id="grid" ref="grid" header-align="center" height="98%" :data="gridDs.list" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
               <VueIndexColumn
                 align="center"
-                width="50px"
                 min-width="50px"
                 header-align="center"
                 title="No."
+                width="45px"
               />
               <VueInputColumn
                 :formatter="gridCodeFormatter"
@@ -502,7 +502,7 @@ const doClose = () => {
                 :sortable="true"
                 title="部品名称"
                 header-align="center"
-                width="180px"
+                width="150px"
               />
               <VueInputColumn
                 :edit-render="gridLargeGroupEditRender"
@@ -511,7 +511,7 @@ const doClose = () => {
                 :sortable="true"
                 title="大区分"
                 header-align="center"
-                width="130px"
+                width="95px"
               />
               <VueInputColumn
                 :edit-render="gridMiddleGroupEditRender"
@@ -520,7 +520,7 @@ const doClose = () => {
                 :sortable="true"
                 title="中区分"
                 header-align="center"
-                width="130px"
+                width="100px"
               />
               <VueInputColumn
                 :edit-render="gridJanCodeEditRender"
@@ -529,7 +529,7 @@ const doClose = () => {
                 :sortable="true"
                 title="JANコード"
                 header-align="center"
-                width="120px"
+                width="110px"
               />
               <VueInputColumn
                 :edit-render="gridMakerPartsNoEditRender"
@@ -553,7 +553,7 @@ const doClose = () => {
                 align="right"
                 fixed="right"
                 title="選択"
-                width="60px"
+                width="50px"
                 :buttons="gridViy2TableButtonColumn_NpfPpButtons"
               />
             </VueTable>
@@ -602,10 +602,10 @@ const doClose = () => {
             <VueTable id="chosenGrid" ref="chosenGrid" height="98%" :data="chosenGridDs" :edit-config="chosenGridEditConfig" :mouse-config="chosenGridMouseConfig" @cell-dblclick="chosenGridCellDblclick">
               <VueIndexColumn
                 align="center"
-                width="50px"
                 min-width="50px"
                 header-align="center"
                 title="No."
+                width="45px"
               />
               <VueInputColumn
                 :formatter="chosenGridPartsNoFormatter"
@@ -621,14 +621,14 @@ const doClose = () => {
                 show-overflow="tooltip"
                 :sortable="true"
                 title="部品名称"
-                width="180px"
+                width="150px"
               />
               <VueNumberColumn
                 :edit-render="chosenGridQtyEditRender"
                 field="qty"
                 align="right"
                 :sortable="true"
-                width="90px"
+                width="85px"
                 title="数量"
                 header-align="center"
               />
