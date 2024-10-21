@@ -649,7 +649,7 @@ const closeMultiPartsAside = (row) => {
               </VueRow>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" :stripe="true" header-align="center" :highlight-current-row="true" height="auto" :border="true" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" :stripe="true" header-align="center" :highlight-current-row="true" height="97%" :border="true" :show-footer="true" :edit-rules="gridRules" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
             <VueRow
               id="viy2Row_AsHNi"
               ref="viy2Row_AsHNi"

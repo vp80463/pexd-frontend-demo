@@ -484,7 +484,7 @@ const viewDetail = (row) => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="headerGrid" ref="headerGrid" header-align="center" height="99%" :data="headerGridDs" :edit-config="headerGridEditConfig" :mouse-config="headerGridMouseConfig" @cell-click="headerGridCellClick">
+          <VueTable id="headerGrid" ref="headerGrid" header-align="center" height="98%" :data="headerGridDs" :edit-config="headerGridEditConfig" :mouse-config="headerGridMouseConfig" @cell-click="headerGridCellClick">
             <VueIndexColumn
               align="center"
               width="50px"

@@ -509,7 +509,7 @@ const closeConsumerAside = () => {
         grow="1"
       >
         <VuePanel id="viy2Panel_2SEB61" ref="viy2Panel_2SEB61" title="明細情報" height="100%">
-          <VueTable id="grid" ref="grid" height="98%" :data="gridDs.content" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
+          <VueTable id="grid" ref="grid" height="97%" :data="gridDs.content" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
             <VueRow
               id="viy2Row_90bZkP"
               ref="viy2Row_90bZkP"

@@ -587,7 +587,7 @@ const closeAside = () => {
               </VueButton>
             </div>
           </template>
-          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="99%" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-click="gridCellClick" @cell-dblclick="gridCellDblclick">
+          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="97%" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-click="gridCellClick" @cell-dblclick="gridCellDblclick">
             <VueRow
               id="viy2Row_soVPC"
               ref="viy2Row_soVPC"
