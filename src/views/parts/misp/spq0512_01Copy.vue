@@ -40,11 +40,7 @@ const viy2Button_6My7VA = ref();
 const viy2Row_hLmD = ref();
 const viy2Row_uVYww = ref();
 const viy2Row_4HoKa = ref();
-const viy2Radio_ANhIC = ref();
 const viy2DateTimePicker_RRgLG = ref();
-const viy2Row_4ZrBT2 = ref();
-const viy2Radio_4ZrBT6 = ref();
-const viy2Radio_4ZrBT8 = ref();
 const viy2Flex_ztw91 = ref();
 const viy2Panel_50igpm = ref();
 const viy2Button_50q5go = ref();
@@ -63,10 +59,20 @@ const viy2Row_a2fXN = ref();
 const viy2InputBox_a1I0p = ref();
 const viy2Panel_zDFko = ref();
 const viy2Table_zDKIo = ref();
+const viy2Dialog_g97sg = ref();
+const viy2Row_g9xnA = ref();
+const viy2Row_gcVwu = ref();
+const viy2Radio_gbENi = ref();
+const viy2Row_2C5zwI = ref();
+const viy2Radio_2BTFZ8 = ref();
+const viy2Row_gcavA = ref();
+const viy2Button_gc7GC = ref();
+const viy2Button_2BYA6i = ref();
 const formData = reactive({
+  newLineCode: 'CR+LF', signConversion: 'する',
 });
 const queryFormDataData = reactive({
-  Type: '1', datafieldviy2DateTimePicker_RRgLG: '', NewLineCode: 'CR + LF', SignConversion: 'する',
+  datafieldviy2DateTimePicker_RRgLG: '',
 });
 const viy2Form_zCww8Data = reactive({
   billingTo: 'consumer1',
@@ -78,15 +84,12 @@ const viy2Table_zDKIoEditConfig = reactive({
 const viy2Table_zDKIoMouseConfig = reactive({
   extension: true,
 });
-const viy2Radio_ANhICOpts = reactive([
-  { value: '1', label: '鑑データ' },
-  { value: '2', label: '請求書データ' },
-]);
-const viy2Radio_4ZrBT6Opts = reactive([
-  { value: 'CR + LF', label: 'CR + LF' },
+const referenceDataOutput = ref(false);
+const viy2Radio_gbENiOpts = reactive([
+  { value: 'CR+LF', label: 'CR+LF' },
   { value: 'LF', label: 'LF' },
 ]);
-const viy2Radio_4ZrBT8Opts = reactive([
+const viy2Radio_2BTFZ8Opts = reactive([
   { value: 'する', label: 'する' },
   { value: 'しない', label: 'しない' },
 ]);
@@ -169,37 +172,9 @@ const viy2Button_50kiOCClick = () => {
 const viy2Button_6My7VAClick = () => {
   doExport();
 };
-const viy2Radio_ANhICChange = (value) => {
-  if (value == '1') {
-    formatFlag.value = true;
-    gridShow.value = false;
-    grid1Show.value = true;
-  } else {
-    formatFlag.value = false;
-    gridShow.value = false;
-    grid1Show.value = true;
-  }
-};
-(value) => {
-  const displayTypeDS = displayTypeDSApi.data;
-  if (value == 'companyWide') {
-    // 隐藏 表示タイプ、
-    defaultShow();
-    displayTypeShow.value = false;
-    object1Show.value = false;
-    displayTypeDS.value = displayInitTypeDS.value;
-  } else if (value == '1') {
-    defaultShow();
-    displayTypeDS.value = displayInitTypeDS.value;
-  } else if (value == '2') {
-    defaultShow();
-    displayTypeShow.value = false;
-    object1Show.value = false;
-    displayTypeDS.value = displayInitTypeDS.value;
-  }
-};
 const viy2Button_50q5goClick = () => {
-  doExport();
+// doExport();
+  referenceDataOutput.value = true;
 };
 const viy2Button_50lG5oClick = () => {
   doExport();
@@ -256,7 +231,7 @@ const viy2Button_MHEphClick = () => {
   VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
-    aside001002.value = false;
+    skipDetailShow.value = false;
   });
 };
 const viy2Table_zDKIoData1EditRender = computed(() => {
@@ -329,6 +304,9 @@ const viy2Table_zDKIoData14EditRender = computed(() => {
     enabled: false,
   };
 });
+const viy2Button_2BYA6iClick = () => {
+  referenceDataOutput.value = false;
+};
 onMounted(() => {
   paginationPageSize.value = PAGE_SIZE;
   queryFormData.dateStart = lastDay;
@@ -461,28 +439,6 @@ const skipDetailFc = () => {
                       :md="{ span: 24 }"
                     >
                       <VueFormItem
-                        :label="t('label.type')"
-                        label-width="100px"
-                        prop="Type"
-                      >
-                        <VueRadioGroup
-                          id="viy2Radio_ANhIC"
-                          ref="viy2Radio_ANhIC"
-                          v-model="queryFormDataData.Type"
-                          radio-style="button"
-                          direction="horizontal"
-                          @change="viy2Radio_ANhICChange"
-                        >
-                          <VueRadioButton
-                            v-for="option in viy2Radio_ANhICOpts"
-                            :key="option.value"
-                            :label="option.value"
-                          >
-                            {{ option.label }}
-                          </VueRadioButton>
-                        </VueRadioGroup>
-                      </VueFormItem>
-                      <VueFormItem
                         :label="t('label.exportDateLange')"
                         label-width="100px"
                         prop="datafieldviy2DateTimePicker_RRgLG"
@@ -495,63 +451,6 @@ const skipDetailFc = () => {
                           :style="{ width: '250px' }"
                           :format="CONST_SYSTEM_DATE_FORMAT.ym"
                         />
-                      </VueFormItem>
-                    </VueCol>
-                  </VueRow>
-                  <VueRow
-                    id="viy2Row_4ZrBT2"
-                    ref="viy2Row_4ZrBT2"
-                  >
-                    <VueCol
-                      item-key="item"
-                      :inline="true"
-                      :md="{ span: 24 }"
-                    >
-                      <VueFormItem
-                        v-show="formatFlag"
-                        :label="t('label.NewLineCode')"
-                        label-width="100px"
-                        prop="NewLineCode"
-                      >
-                        <VueRadioGroup
-                          id="viy2Radio_4ZrBT6"
-                          ref="viy2Radio_4ZrBT6"
-                          v-model="queryFormDataData.NewLineCode"
-                          radio-style="button"
-                          direction="horizontal"
-                          split-size="default"
-                        >
-                          <VueRadioButton
-                            v-for="option in viy2Radio_4ZrBT6Opts"
-                            :key="option.value"
-                            :label="option.value"
-                          >
-                            {{ option.label }}
-                          </VueRadioButton>
-                        </VueRadioGroup>
-                      </VueFormItem>
-                      <VueFormItem
-                        v-show="formatFlag"
-                        label="符号変換"
-                        label-width="100px"
-                        prop="SignConversion"
-                      >
-                        <VueRadioGroup
-                          id="viy2Radio_4ZrBT8"
-                          ref="viy2Radio_4ZrBT8"
-                          v-model="queryFormDataData.SignConversion"
-                          radio-style="button"
-                          direction="horizontal"
-                          split-size="default"
-                        >
-                          <VueRadioButton
-                            v-for="option in viy2Radio_4ZrBT8Opts"
-                            :key="option.value"
-                            :label="option.value"
-                          >
-                            {{ option.label }}
-                          </VueRadioButton>
-                        </VueRadioGroup>
                       </VueFormItem>
                     </VueCol>
                   </VueRow>
@@ -644,9 +543,10 @@ const skipDetailFc = () => {
       ref="viy2Aside_zwSA3"
       v-model="skipDetailShow"
       :modal="true"
-      size="50%"
+      size="90%"
       :with-header="false"
       :show-close="false"
+      direction="btt"
     >
       <VueRow
         id="viy2Row_v8prN"
@@ -799,11 +699,118 @@ const skipDetailFc = () => {
               :edit-render="viy2Table_zDKIoData14EditRender"
               field="data14"
               title="メーカー手数料"
-              width="100px"
+              width="120px"
             />
           </VueTable>
         </VuePanel>
       </VueForm>
     </VueAside>
+    <VueDialog
+      id="viy2Dialog_g97sg"
+      ref="viy2Dialog_g97sg"
+      v-model="referenceDataOutput"
+      title="出力形式"
+      width="600px"
+    >
+      <template #default>
+        <VueRow
+          id="viy2Row_g9xnA"
+          ref="viy2Row_g9xnA"
+        >
+          <VueCol
+            item-key="item"
+            align="center"
+            :md="{ span: 24 }"
+          >
+            <VueRow
+              id="viy2Row_gcVwu"
+              ref="viy2Row_gcVwu"
+            >
+              <VueCol
+                item-key="item"
+                align="center"
+                :inline="true"
+                :md="{ span: 24 }"
+              >
+                <VueFormItem
+                  :label="t('label.NewLineCode')"
+                  prop="newLineCode"
+                >
+                  <VueRadioGroup
+                    id="viy2Radio_gbENi"
+                    ref="viy2Radio_gbENi"
+                    v-model="formData.newLineCode"
+                    radio-style="button"
+                    direction="horizontal"
+                    split-size="default"
+                  >
+                    <VueRadioButton
+                      v-for="option in viy2Radio_gbENiOpts"
+                      :key="option.value"
+                      :label="option.value"
+                    >
+                      {{ option.label }}
+                    </VueRadioButton>
+                  </VueRadioGroup>
+                </VueFormItem>
+              </VueCol>
+            </VueRow>
+            <VueRow
+              id="viy2Row_2C5zwI"
+              ref="viy2Row_2C5zwI"
+            >
+              <VueCol
+                item-key="item"
+                align="center"
+                :inline="true"
+                :md="{ span: 24 }"
+              >
+                <VueFormItem
+                  label="符号変换"
+                  prop="signConversion"
+                >
+                  <VueRadioGroup
+                    id="viy2Radio_2BTFZ8"
+                    ref="viy2Radio_2BTFZ8"
+                    v-model="formData.signConversion"
+                    radio-style="button"
+                    direction="horizontal"
+                    split-size="default"
+                  >
+                    <VueRadioButton
+                      v-for="option in viy2Radio_2BTFZ8Opts"
+                      :key="option.value"
+                      :label="option.value"
+                    >
+                      {{ option.label }}
+                    </VueRadioButton>
+                  </VueRadioGroup>
+                </VueFormItem>
+              </VueCol>
+            </VueRow>
+          </VueCol>
+        </VueRow>
+      </template>
+      <template #footer>
+        <VueRow
+          id="viy2Row_gcavA"
+          ref="viy2Row_gcavA"
+        >
+          <VueCol
+            item-key="item"
+            align="right"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueButton id="viy2Button_gc7GC" ref="viy2Button_gc7GC" icon-position="left" type="info">
+              出力する
+            </VueButton>
+            <VueButton id="viy2Button_2BYA6i" ref="viy2Button_2BYA6i" icon-position="left" @click="viy2Button_2BYA6iClick">
+              閉じる
+            </VueButton>
+          </VueCol>
+        </VueRow>
+      </template>
+    </VueDialog>
   </VueForm>
 </template>

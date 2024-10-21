@@ -564,7 +564,7 @@ const percentFormat = (cellValue) => {
               aggregate="sum"
               :sortable="true"
               width="130px"
-              title="販売原価"
+              :title="t('label.salesCost')"
               header-align="center"
             />
             <VueNumberColumn

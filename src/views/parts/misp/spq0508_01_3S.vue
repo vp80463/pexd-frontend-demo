@@ -527,7 +527,7 @@ const skipToDetail = (row) => {
               footer-align="right"
               :sortable="true"
               width="130px"
-              title="月初在庫金額"
+              :title="t('label.initMonthPrice')"
               header-align="center"
             />
             <VueNumberColumn
@@ -540,7 +540,7 @@ const skipToDetail = (row) => {
               footer-align="right"
               :sortable="true"
               width="130px"
-              title="受領金額"
+              :title="t('label.receiptAmount')"
               header-align="center"
             />
             <VueNumberColumn
@@ -553,7 +553,7 @@ const skipToDetail = (row) => {
               footer-align="right"
               :sortable="true"
               width="130px"
-              title="販売原価"
+              :title="t('label.salesCost')"
               header-align="center"
             />
             <VueNumberColumn

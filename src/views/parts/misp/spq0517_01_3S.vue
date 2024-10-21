@@ -608,7 +608,7 @@ const percentFormat = (cellValue) => {
               field="consumer15"
               show-overflow="tooltip"
               :visible="gridGroupShow"
-              title="グルーブコード "
+              title="グルーブ"
               width="210px"
               header-align="center"
             />
@@ -668,7 +668,7 @@ const percentFormat = (cellValue) => {
               footer-align="right"
               :sortable="true"
               width="140px"
-              title="注文行数"
+              :title="t('label.salesOrderLines')"
               header-align="center"
             />
             <VueNumberColumn
@@ -728,7 +728,7 @@ const percentFormat = (cellValue) => {
               footer-align="right"
               :sortable="true"
               width="140px"
-              title="取消行数"
+              :title="t('label.cancelLines')"
               header-align="center"
             />
             <VueNumberColumn
@@ -800,7 +800,7 @@ const percentFormat = (cellValue) => {
               footer-align="right"
               :sortable="true"
               width="140px"
-              title="出荷利益"
+              title="出荷粗利"
               header-align="center"
             />
           </VueTable>

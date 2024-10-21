@@ -22,18 +22,16 @@ const viy2Button_2gh3Ey = ref();
 const viy2Row_1d3oa = ref();
 const viy2Select_1rPSyEH = ref();
 const viy2DateTimePicker_L6xsi = ref();
-const viy2Select_KWCrU = ref();
+const viy2Cascader_LmE9w = ref();
 const viy2Select_7zu8YI = ref();
-const viy2Flex_uFkkE = ref();
-const viy2Panel_GXUTM = ref();
-const viy2Button_5heur2 = ref();
+const viy2Flex_eVSTe = ref();
+const viy2Tabs_elXw6 = ref();
 const grid = ref();
-const viy2Panel_GY0d8 = ref();
 const viy2Table_8XEr2t = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  deliveryPointId: '', targetMonth: '', middleGroupCd: '', abcType: '',
+  deliveryPointId: '', targetMonth: '', datafieldviy2Cascader_LmE9w: [], abcType: '',
 });
 const rules = reactive({
   viy2DateTimePicker_L6xsiRules: [
@@ -43,6 +41,11 @@ const rules = reactive({
     },
   ],
 });
+const viy2Cascader_LmE9wProps = reactive({
+  label: 'label',
+  value: 'value',
+});
+const viy2Tabs_elXw6ActiveName = ref('viy2Tabs_elXw6Tab0');
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -64,6 +67,69 @@ const middleGroupDsApi = useApi({
   },
 });
 const middleGroupDs = middleGroupDsApi.data;
+const findSpartsMIListApi = useApi({
+  url: '/parts/spq0501/findPartsMIList.json',
+  method: 'post',
+  data: () => {
+    return queryFormData;
+  },
+  lockScreen: true,
+}, {
+  onSuccess: (data, params) => {
+    if (data.length !== 0) {
+      exportFlag.value = false;
+    }
+  },
+  manual: true,
+});
+const findSpartsMIList = findSpartsMIListApi.data;
+const pcTypeDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      value: '0',
+      label: 'Ｍ／Ｃ部品',
+      children: [
+        {
+          value: '0',
+          label: 'オートバイ',
+        },
+        {
+          value: '4',
+          label: 'スノーモービル、除雪機',
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '特機',
+      children: [
+        {
+          value: '9',
+          label: 'ボート純正オプション',
+        },
+      ],
+    },
+  ],
+});
+const pcTypeDs = pcTypeDsApi.data;
+const costUsageDsApi = useApi({
+  url: '/common/helper/getCostUsageList.json',
+  method: 'post',
+}, {
+  initialData: {
+    data: [],
+  },
+});
+const costUsageDs = costUsageDsApi.data;
+const pointDsApi = useApi({
+  url: '/common/helper/pointList.json',
+  method: 'post',
+  data: {
+    arg0: 'SHOP', // CONSIGNEE | WO | ALL
+  },
+});
+const pointDs = pointDsApi.data;
 const exportDsApi = useApi({
   url: '/parts/spq0501/doDownload.json',
   method: 'post',
@@ -86,39 +152,6 @@ const exportDsApi = useApi({
   manual: true,
 });
 const exportDs = exportDsApi.data;
-const findSpartsMIListApi = useApi({
-  url: '/parts/spq0501/findPartsMIList.json',
-  method: 'post',
-  data: () => {
-    return queryFormData;
-  },
-  lockScreen: true,
-}, {
-  onSuccess: (data, params) => {
-    if (data.length !== 0) {
-      exportFlag.value = false;
-    }
-  },
-  manual: true,
-});
-const findSpartsMIList = findSpartsMIListApi.data;
-const costUsageDsApi = useApi({
-  url: '/common/helper/getCostUsageList.json',
-  method: 'post',
-}, {
-  initialData: {
-    data: [],
-  },
-});
-const costUsageDs = costUsageDsApi.data;
-const pointDsApi = useApi({
-  url: '/common/helper/pointList.json',
-  method: 'post',
-  data: {
-    arg0: 'SHOP', // CONSIGNEE | WO | ALL
-  },
-});
-const pointDs = pointDsApi.data;
 const viy2Button_5FbWKcClick = () => {
   queryForm.value.validate((valid) => {
     if (valid) {
@@ -136,9 +169,6 @@ const viy2Button_2gh3EyClick = () => {
 };
 const viy2Select_1rPSyEHChange = (value, data) => {
   queryFormData.pointCd = data.code;
-};
-const viy2Button_5heur2Click = () => {
-  exportDsApi.runAsync();
 };
 const gridTargetMonthEditRender = computed(() => {
   return {
@@ -412,50 +442,6 @@ const viy2Table_8XEr2tPoRoAmtRateEditRender = computed(() => {
     },
   };
 });
-const viy2Table_8XEr2tPoHoAmtFormatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
-const viy2Table_8XEr2tPoHoAmtEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const viy2Table_8XEr2tPoHoAmtRateFormatter = (row, columnConfig, cellValue) => {
-  return percentFormat(row.cellValue);
-};
-const viy2Table_8XEr2tPoHoAmtRateEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const viy2Table_8XEr2tPoWoAmtFormatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
-const viy2Table_8XEr2tPoWoAmtEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const viy2Table_8XEr2tPoWoAmtRateFormatter = (row, columnConfig, cellValue) => {
-  return percentFormat(row.cellValue);
-};
-const viy2Table_8XEr2tPoWoAmtRateEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
 const viy2Table_8XEr2tReceiveAmtFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
@@ -506,8 +492,8 @@ const resetTblResults = () => {
     <VueFlex
       id="viy2Flex_uF7QC"
       ref="viy2Flex_uF7QC"
+      style="height: 90vh;"
       direction="column"
-      class="full-height"
     >
       <VueForm
         id="queryForm"
@@ -572,22 +558,20 @@ const resetTblResults = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                :label="t('label.middleCategory')"
-                prop="middleGroupCd"
+                :label="t('label.pcType')"
+                prop="datafieldviy2Cascader_LmE9w"
               >
-                <VueSelect
-                  id="viy2Select_KWCrU"
-                  ref="viy2Select_KWCrU"
-                  v-model="queryFormData.middleGroupCd"
-                  :style="{ width: '200px' }"
-                  :collapse-tags="true"
-                  :collapse-tags-tooltip="true"
+                <VueCascader
+                  id="viy2Cascader_LmE9w"
+                  ref="viy2Cascader_LmE9w"
+                  v-model="queryFormData.datafieldviy2Cascader_LmE9w"
+                  display-member="label"
+                  value-member="value"
+                  :filterable="true"
                   :clearable="true"
-                  :options="middleGroupDs"
-                  :props="{
-                    label: 'categoryNm',
-                    value: 'categoryCd',
-                  }"
+                  :style="{ width: '250px' }"
+                  :options="pcTypeDs"
+                  :props="viy2Cascader_LmE9wProps"
                 />
               </VueFormItem>
               <VueFormItem
@@ -614,425 +598,398 @@ const resetTblResults = () => {
         </VuePanel>
       </VueForm>
       <VueFlex
-        id="viy2Flex_uFkkE"
-        ref="viy2Flex_uFkkE"
+        id="viy2Flex_eVSTe"
+        ref="viy2Flex_eVSTe"
         direction="column"
         grow="1"
       >
-        <VuePanel id="viy2Panel_GXUTM" ref="viy2Panel_GXUTM" :title="t('label.detailInfo')" height="50%">
-          <template #header>
-            <div style="width: auto">
-              <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" icon-position="left" :disabled="exportFlag" @click="viy2Button_5heur2Click">
-                {{ t('button.export') }}
-              </VueButton>
-            </div>
-          </template>
-          <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="auto" :data="findSpartsMIList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
-            <VueIndexColumn
-              align="center"
-              width="50px"
-              min-width="50px"
-              header-align="center"
-              :title="t('label.seqNo')"
-            />
-            <VueInputColumn
-              :edit-render="gridTargetMonthEditRender"
-              field="targetMonth"
-              show-overflow="tooltip"
-              :sortable="true"
-              aggregate-label="Total"
-              :title="t('label.targetMonth')"
-              width="160px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridMiddleGroupNmEditRender"
-              field="middleGroupNm"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="中分类"
-              width="160px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="gridAbcTypeEditRender"
-              field="abcType"
-              show-overflow="tooltip"
-              :sortable="true"
-              :title="t('label.costUsage')"
-              width="160px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridSoLineEditRender"
-              field="soLine"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.salesOrderLines')"
-              width="130px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridAllocateLineEditRender"
-              field="allocateLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.allocatedLines')"
-              width="210px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridBoLineEditRender"
-              field="boLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.backOrderLines')"
-              width="130px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridCancelLineEditRender"
-              field="cancelLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.cancelLines')"
-              width="130px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :formatter="gridAllocateRateFormatter"
-              :edit-render="gridAllocateRateEditRender"
-              field="allocateRate"
-              :sortable="true"
-              align="right"
-              :title="t('label.allocateRate')"
-              width="140px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridShipmentLineEditRender"
-              field="shipmentLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.shipmentLine')"
-              width="150px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridReturnLineEditRender"
-              field="returnLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.returnLines')"
-              width="140px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridPoEoLineEditRender"
-              field="poEoLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderEOLines')"
-              width="170px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="gridPoEoRateFormatter"
-              :edit-render="gridPoEoRateEditRender"
-              field="poEoRate"
-              align="right"
-              :precision="2"
-              :sortable="true"
-              :title="t('label.purchaseOrderEORate')"
-              width="175px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridPoRoLineEditRender"
-              field="poRoLine"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderROLines')"
-              width="190px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="gridPoRoRateFormatter"
-              :edit-render="gridPoRoRateEditRender"
-              field="poRoRate"
-              footer-align="right"
-              align="right"
-              :precision="2"
-              :sortable="true"
-              :title="t('label.purchaseOrderRORate')"
-              width="190px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :edit-render="gridReceiptLineEditRender"
-              field="receiptLine"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              title="受領行数"
-              width="150px"
-              header-align="center"
-            />
-          </VueTable>
-        </VuePanel>
-        <VuePanel id="viy2Panel_GY0d8" ref="viy2Panel_GY0d8" :title="t('title.detailAmount')" height="50%">
-          <VueTable id="viy2Table_8XEr2t" ref="viy2Table_8XEr2t" header-align="center" :show-footer="true" height="auto" :data="findSpartsMIList" :edit-config="viy2Table_8XEr2tEditConfig" :mouse-config="viy2Table_8XEr2tMouseConfig">
-            <VueIndexColumn
-              align="center"
-              width="50px"
-              min-width="50px"
-              header-align="center"
-              :title="t('label.seqNo')"
-            />
-            <VueInputColumn
-              :edit-render="viy2Table_8XEr2tTargetMonthEditRender"
-              field="targetMonth"
-              show-overflow="tooltip"
-              :sortable="true"
-              aggregate-label="Total"
-              :title="t('label.targetMonth')"
-              width="160px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="viy2Table_8XEr2tMiddleGroupNmEditRender"
-              field="middleGroupNm"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="中分类"
-              width="160px"
-              header-align="center"
-            />
-            <VueInputColumn
-              :edit-render="viy2Table_8XEr2tAbcTypeEditRender"
-              field="abcType"
-              show-overflow="tooltip"
-              :sortable="true"
-              :title="t('label.costUsage')"
-              width="160px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tSoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tSoAmtEditRender"
-              field="soAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.saleOrderAmount')"
-              width="170px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tAllocatedAmtFormatter"
-              :edit-render="viy2Table_8XEr2tAllocatedAmtEditRender"
-              field="allocatedAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.allocatedAmount')"
-              width="160px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tBoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tBoAmtEditRender"
-              field="boAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.boAmount')"
-              width="140px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tCancelAmtFormatter"
-              :edit-render="viy2Table_8XEr2tCancelAmtEditRender"
-              field="cancelAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.cancelAmount')"
-              width="140px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tAllocateAmtRateFormatter"
-              :edit-render="viy2Table_8XEr2tAllocateAmtRateEditRender"
-              field="allocateAmtRate"
-              footer-align="right"
-              align="right"
-              :precision="2"
-              :sortable="true"
-              :title="t('label.allocateRate')"
-              width="140px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tShipmentAmtFormatter"
-              :edit-render="viy2Table_8XEr2tShipmentAmtEditRender"
-              field="shipmentAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.shipmentAmount')"
-              width="195px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tReturnAmtFormatter"
-              :edit-render="viy2Table_8XEr2tReturnAmtEditRender"
-              field="returnAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.returnAmount')"
-              width="170px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tPoAmtEditRender"
-              field="poAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseAmount')"
-              width="170px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoEoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tPoEoAmtEditRender"
-              field="poEoAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderEAmount')"
-              width="210px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoEoAmtRateFormatter"
-              :edit-render="viy2Table_8XEr2tPoEoAmtRateEditRender"
-              field="poEoAmtRate"
-              footer-align="right"
-              align="right"
-              :precision="2"
-              :sortable="true"
-              :title="t('label.purchaseOrderEORate')"
-              width="190px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoRoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tPoRoAmtEditRender"
-              field="poRoAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderRAmount')"
-              width="220px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoRoAmtRateFormatter"
-              :edit-render="viy2Table_8XEr2tPoRoAmtRateEditRender"
-              field="poRoAmtRate"
-              footer-align="right"
-              align="right"
-              :precision="2"
-              :sortable="true"
-              :title="t('label.purchaseOrderRORate')"
-              width="190px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoHoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tPoHoAmtEditRender"
-              field="poHoAmt"
-              footer-align="right"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderHAmount')"
-              width="210px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoHoAmtRateFormatter"
-              :edit-render="viy2Table_8XEr2tPoHoAmtRateEditRender"
-              field="poHoAmtRate"
-              align="right"
-              :sortable="true"
-              :title="t('label.purchaseOrderHORate')"
-              width="160px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoWoAmtFormatter"
-              :edit-render="viy2Table_8XEr2tPoWoAmtEditRender"
-              field="poWoAmt"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.purchaseOrderWAmount')"
-              width="210px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tPoWoAmtRateFormatter"
-              :edit-render="viy2Table_8XEr2tPoWoAmtRateEditRender"
-              field="poWoAmtRate"
-              align="right"
-              :sortable="true"
-              :title="t('label.purchaseOrderWORate')"
-              width="160px"
-              header-align="center"
-            />
-            <VueNumberColumn
-              :formatter="viy2Table_8XEr2tReceiveAmtFormatter"
-              :edit-render="viy2Table_8XEr2tReceiveAmtEditRender"
-              field="receiveAmt"
-              align="right"
-              aggregate="sum"
-              :sortable="true"
-              :title="t('label.receiptAmount')"
-              width="180px"
-              header-align="center"
-            />
-          </VueTable>
-        </VuePanel>
+        <VueTabs
+          id="viy2Tabs_elXw6"
+          ref="viy2Tabs_elXw6"
+          v-model="viy2Tabs_elXw6ActiveName"
+          type="border-card" :style="{ height: '100%' }"
+        >
+          <VueTabPane
+            name="viy2Tabs_elXw6Tab0"
+            label="明细行"
+          >
+            <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="100%" :data="findSpartsMIList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+              <VueIndexColumn
+                align="center"
+                width="50px"
+                min-width="50px"
+                header-align="center"
+                :title="t('label.seqNo')"
+              />
+              <VueInputColumn
+                :edit-render="gridTargetMonthEditRender"
+                field="targetMonth"
+                show-overflow="tooltip"
+                :sortable="true"
+                aggregate-label="Total"
+                :title="t('label.targetMonth')"
+                width="160px"
+                header-align="center"
+              />
+              <VueInputColumn
+                :edit-render="gridMiddleGroupNmEditRender"
+                field="middleGroupNm"
+                show-overflow="tooltip"
+                :sortable="true"
+                title="中分类"
+                width="160px"
+                header-align="center"
+              />
+              <VueInputColumn
+                :edit-render="gridAbcTypeEditRender"
+                field="abcType"
+                show-overflow="tooltip"
+                :sortable="true"
+                :title="t('label.costUsage')"
+                width="160px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridSoLineEditRender"
+                field="soLine"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.salesOrderLines')"
+                width="130px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridAllocateLineEditRender"
+                field="allocateLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.allocatedLines')"
+                width="210px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridBoLineEditRender"
+                field="boLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.backOrderLines')"
+                width="130px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridCancelLineEditRender"
+                field="cancelLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.cancelLines')"
+                width="130px"
+                header-align="center"
+              />
+              <VueInputColumn
+                :formatter="gridAllocateRateFormatter"
+                :edit-render="gridAllocateRateEditRender"
+                field="allocateRate"
+                :sortable="true"
+                align="right"
+                :title="t('label.allocateRate')"
+                width="140px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridShipmentLineEditRender"
+                field="shipmentLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.shipmentLine')"
+                width="150px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridReturnLineEditRender"
+                field="returnLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.returnLines')"
+                width="140px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridPoEoLineEditRender"
+                field="poEoLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.purchaseOrderEOLines')"
+                width="170px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="gridPoEoRateFormatter"
+                :edit-render="gridPoEoRateEditRender"
+                field="poEoRate"
+                align="right"
+                :precision="2"
+                :sortable="true"
+                :title="t('label.purchaseOrderEORate')"
+                width="175px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridPoRoLineEditRender"
+                field="poRoLine"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.purchaseOrderROLines')"
+                width="190px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="gridPoRoRateFormatter"
+                :edit-render="gridPoRoRateEditRender"
+                field="poRoRate"
+                footer-align="right"
+                align="right"
+                :precision="2"
+                :sortable="true"
+                :title="t('label.purchaseOrderRORate')"
+                width="190px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :edit-render="gridReceiptLineEditRender"
+                field="receiptLine"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.receiptLines')"
+                width="150px"
+                header-align="center"
+              />
+            </VueTable>
+          </VueTabPane>
+          <VueTabPane
+            name="viy2Tabs_elXw6Tab1"
+            label="明细金额"
+          >
+            <VueTable id="viy2Table_8XEr2t" ref="viy2Table_8XEr2t" header-align="center" :show-footer="true" height="auto" :data="findSpartsMIList" :edit-config="viy2Table_8XEr2tEditConfig" :mouse-config="viy2Table_8XEr2tMouseConfig">
+              <VueIndexColumn
+                align="center"
+                width="50px"
+                min-width="50px"
+                header-align="center"
+                :title="t('label.seqNo')"
+              />
+              <VueInputColumn
+                :edit-render="viy2Table_8XEr2tTargetMonthEditRender"
+                field="targetMonth"
+                show-overflow="tooltip"
+                :sortable="true"
+                aggregate-label="Total"
+                :title="t('label.targetMonth')"
+                width="160px"
+                header-align="center"
+              />
+              <VueInputColumn
+                :edit-render="viy2Table_8XEr2tMiddleGroupNmEditRender"
+                field="middleGroupNm"
+                show-overflow="tooltip"
+                :sortable="true"
+                title="中分类"
+                width="160px"
+                header-align="center"
+              />
+              <VueInputColumn
+                :edit-render="viy2Table_8XEr2tAbcTypeEditRender"
+                field="abcType"
+                show-overflow="tooltip"
+                :sortable="true"
+                :title="t('label.costUsage')"
+                width="160px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tSoAmtFormatter"
+                :edit-render="viy2Table_8XEr2tSoAmtEditRender"
+                field="soAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.saleOrderAmount')"
+                width="170px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tAllocatedAmtFormatter"
+                :edit-render="viy2Table_8XEr2tAllocatedAmtEditRender"
+                field="allocatedAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.allocatedAmount')"
+                width="160px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tBoAmtFormatter"
+                :edit-render="viy2Table_8XEr2tBoAmtEditRender"
+                field="boAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.boAmount')"
+                width="140px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tCancelAmtFormatter"
+                :edit-render="viy2Table_8XEr2tCancelAmtEditRender"
+                field="cancelAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.cancelAmount')"
+                width="140px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tAllocateAmtRateFormatter"
+                :edit-render="viy2Table_8XEr2tAllocateAmtRateEditRender"
+                field="allocateAmtRate"
+                footer-align="right"
+                align="right"
+                :precision="2"
+                :sortable="true"
+                :title="t('label.allocateRate')"
+                width="140px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tShipmentAmtFormatter"
+                :edit-render="viy2Table_8XEr2tShipmentAmtEditRender"
+                field="shipmentAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.shipmentAmount')"
+                width="195px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tReturnAmtFormatter"
+                :edit-render="viy2Table_8XEr2tReturnAmtEditRender"
+                field="returnAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.returnAmount')"
+                width="170px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tPoAmtFormatter"
+                :edit-render="viy2Table_8XEr2tPoAmtEditRender"
+                field="poAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.purchaseAmount')"
+                width="170px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tPoEoAmtFormatter"
+                :edit-render="viy2Table_8XEr2tPoEoAmtEditRender"
+                field="poEoAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.purchaseOrderEAmount')"
+                width="210px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tPoEoAmtRateFormatter"
+                :edit-render="viy2Table_8XEr2tPoEoAmtRateEditRender"
+                field="poEoAmtRate"
+                footer-align="right"
+                align="right"
+                :precision="2"
+                :sortable="true"
+                :title="t('label.purchaseOrderEORate')"
+                width="190px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tPoRoAmtFormatter"
+                :edit-render="viy2Table_8XEr2tPoRoAmtEditRender"
+                field="poRoAmt"
+                footer-align="right"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.purchaseOrderRAmount')"
+                width="220px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tPoRoAmtRateFormatter"
+                :edit-render="viy2Table_8XEr2tPoRoAmtRateEditRender"
+                field="poRoAmtRate"
+                footer-align="right"
+                align="right"
+                :precision="2"
+                :sortable="true"
+                :title="t('label.purchaseOrderRORate')"
+                width="190px"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="viy2Table_8XEr2tReceiveAmtFormatter"
+                :edit-render="viy2Table_8XEr2tReceiveAmtEditRender"
+                field="receiveAmt"
+                align="right"
+                aggregate="sum"
+                :sortable="true"
+                :title="t('label.receiptAmount')"
+                width="180px"
+                header-align="center"
+              />
+            </VueTable>
+          </VueTabPane>
+        </VueTabs>
       </VueFlex>
     </VueFlex>
   </VueForm>
 </template>
+
+<style type="text/css" scoped>
+::v-deep .vue-tabs__content{
+height:100% !important;
+padding: 0 !important;
+}
+::v-deep .vue-tab-pane{
+height:95% !important;
+}
+</style>
