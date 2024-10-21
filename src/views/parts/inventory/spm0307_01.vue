@@ -112,15 +112,15 @@ const viy2ValueList_90dteyPopupQueryMethod = parts_pop_query_method;
 const viy2Select_5zamoxOpts = reactive([
   {
     codeData1:
-'新発見(増)',
+'発見(増)',
     codeDbid:
-'新発見(増)',
+'発見(増)',
   },
   {
     codeData1:
-'失う(減)',
+'紛失(減)',
     codeDbid:
-'失う(減)',
+'紛失(減)',
   },
   {
     codeData1:
@@ -130,9 +130,9 @@ const viy2Select_5zamoxOpts = reactive([
   },
   {
     codeData1:
-'廃却(減)',
+'削除',
     codeDbid:
-'廃却(減)',
+'削除',
   },
   {
     codeData1:
@@ -654,7 +654,7 @@ const getPartsData = async () => {
           :md="{ span: 24 }"
         >
           <VueFormItem
-            label="調整原因"
+            label="調整理由"
             prop="reason"
             :rules="rules.viy2Select_5zamoxRules"
           >

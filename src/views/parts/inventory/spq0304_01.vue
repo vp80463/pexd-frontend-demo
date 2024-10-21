@@ -84,15 +84,15 @@ const viy2ValueList_hNGbc5PopupQueryMethod = parts_pop_query_method;
 const viy2Select_D7GEqOpts = reactive([
   {
     label:
-'調整入',
+'変動入',
     value:
-'調整入',
+'変動入',
   },
   {
     label:
-'調整出',
+'変動出',
     value:
-'調整出',
+'変動出',
   },
 ]);
 const gridEditConfig = reactive({
@@ -145,7 +145,7 @@ const gridDsApi = useApi({
       transactionTime: '16:26:18',
       partsNo: '11H-81844-00',
       partsNm: 'シフトレバーアセンブリ',
-      transactionType: '出荷',
+      transactionType: '調整出',
       from: '雅仕汇上海',
       to: '成都雅宏汇门',
       inQty: '0',
@@ -160,7 +160,7 @@ const gridDsApi = useApi({
       transactionTime: '14:30:33',
       partsNo: '11H-81844-00',
       partsNm: 'シフトレバーアセンブリ',
-      transactionType: '返品',
+      transactionType: '調整入',
       from: '成都雅宏汇门',
       to: '雅仕汇上海',
       inQty: '5',
@@ -687,7 +687,7 @@ const onLeavePartsCode = async (code) => {
               field="from"
               show-overflow="tooltip"
               :sortable="true"
-              title="元"
+              title="在庫変動元"
               width="140px"
             />
             <VueInputColumn
@@ -696,7 +696,7 @@ const onLeavePartsCode = async (code) => {
               :sortable="true"
               aggregate-label="合計"
               footer-align="right"
-              title="先"
+              title="在庫変動先"
               width="140px"
             />
             <VueNumberColumn
@@ -706,7 +706,7 @@ const onLeavePartsCode = async (code) => {
               field="inQty"
               aggregate="sum"
               :sortable="true"
-              title="入庫数量"
+              title="入庫数"
               header-align="center"
               min-width="95px"
             />
@@ -717,7 +717,7 @@ const onLeavePartsCode = async (code) => {
               field="outQty"
               aggregate="sum"
               :sortable="true"
-              title="出庫数量"
+              title="出庫数"
               header-align="center"
               min-width="100px"
             />
@@ -728,7 +728,7 @@ const onLeavePartsCode = async (code) => {
               field="afterQty"
               :sortable="true"
               width="120px"
-              title="残高数量"
+              title="残数"
               header-align="center"
             />
             <VueNumberColumn

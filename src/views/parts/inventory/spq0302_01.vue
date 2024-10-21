@@ -70,15 +70,15 @@ const rules = reactive({
 const viy2Select_1PZzk4Opts = reactive([
   {
     codeData1:
-'新発見(増)',
+'発見(増)',
     codeDbid:
-'新発見(増)',
+'発見(増)',
   },
   {
     codeData1:
-'失う(減)',
+'紛失(減)',
     codeDbid:
-'失う(減)',
+'紛失(減)',
   },
   {
     codeData1:
@@ -88,9 +88,9 @@ const viy2Select_1PZzk4Opts = reactive([
   },
   {
     codeData1:
-'廃却(減)',
+'削除',
     codeDbid:
-'廃却(減)',
+'削除',
   },
   {
     codeData1:
@@ -595,7 +595,7 @@ const onLeavePartsCode = async (code) => {
               <VueButton id="viy2Button_1MmOIz" ref="viy2Button_1MmOIz" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_1MmOIzClick" />
               <VueButton id="viy2Button_hNGbam" ref="viy2Button_hNGbam" icon-position="left" class="icon-button-small" :icon="IconRefreshRight" @click="viy2Button_hNGbamClick" />
               <VueFormItem
-                label="調整原因"
+                label="調整理由"
                 prop="stockAdjustmentReason"
               >
                 <VueSelect
@@ -752,7 +752,7 @@ const onLeavePartsCode = async (code) => {
               align="right"
               aggregate="sum"
               :sortable="false"
-              title="入庫数量"
+              title="入庫数"
               width="100px"
               header-align="center"
             />
@@ -785,7 +785,7 @@ const onLeavePartsCode = async (code) => {
               align="right"
               aggregate="sum"
               :sortable="false"
-              title="出庫数量"
+              title="出庫数"
               width="100px"
               header-align="center"
             />
@@ -816,7 +816,7 @@ const onLeavePartsCode = async (code) => {
               field="adjustmentReason"
               show-overflow="tooltip"
               :sortable="true"
-              title="調整原因"
+              title="調整理由"
               header-align="center"
               min-width="160px"
             />
