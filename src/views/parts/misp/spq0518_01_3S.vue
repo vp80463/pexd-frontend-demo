@@ -10,7 +10,7 @@ import { formatAmount } from '@/pj-commonutils.js';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
 const uc = useUser().userInfo;
-const currentMonth = dayjs().format('YYYYMM');
+const currentYear = dayjs().format('YYYY');
 const exportFlag = ref(true);
 const router = useRouter();
 const selectTypeDisabled = ref(false);
@@ -34,7 +34,7 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  targetYearFrom: '', datafieldviy2Cascader_LmE9w: [],
+  targetYear: '', datafieldviy2Cascader_LmE9w: [],
 });
 const rules = reactive({
   viy2DateTimePicker_1yEexGRules: [
@@ -373,7 +373,7 @@ onMounted(() => {
 // 初始化targetMonth 和 point
   queryFormData.pointCd = uc.defaultPointCd;
   queryFormData.pointId = uc.defaultPointId;
-  queryFormData.targetMonth = currentMonth;
+  queryFormData.targetYear = targetYear;
 });
 // 条件改变，清空明细
 watch(() => queryFormData, (newVal, oldVal) => {
@@ -452,13 +452,13 @@ const skipToDetail = (row) => {
               <VueFormItem
                 :label="t('label.targetYear')"
                 label-width="110px"
-                prop="targetYearFrom"
+                prop="targetYear"
                 :rules="rules.viy2DateTimePicker_1yEexGRules"
               >
                 <VueDatePicker
                   id="viy2DateTimePicker_1yEexG"
                   ref="viy2DateTimePicker_1yEexG"
-                  v-model="queryFormData.targetYearFrom"
+                  v-model="queryFormData.targetYear"
                   type="year"
                   :style="{ width: '110px' }"
                   :format="CONST_SYSTEM_DATE_FORMAT.y"
