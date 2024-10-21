@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { nextTick } from 'vue';
 import { useParams, useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
+import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import detailPagePage from '/src/views/parts/receipt/spq0301_02.vue';
 import { parts_column, parts_pop_column, parts_pop_query_method, parts_query_method } from '@/settings/valuelistSetting.js';
 import { formatCodeInput, formatCost, formatPartNo, formatQty } from '@/pj-commonutils.js';
@@ -688,8 +688,6 @@ const closeSpq030102 = () => {
                   type="date"
                   :disabled="inputFlg"
                   :style="{ width: '130px' }"
-                  :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                  :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                 />
               </VueFormItem>
               <!-- BEGIN CUSTOM DIV CODE -->
@@ -707,8 +705,6 @@ const closeSpq030102 = () => {
                   type="date"
                   :disabled="inputFlg"
                   :style="{ width: '130px' }"
-                  :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                  :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                 />
               </VueFormItem>
               <VueButton id="viy2Button_5hElpb" ref="viy2Button_5hElpb" icon-position="left" :disabled="inputFlg" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_5hElpbClick" />
