@@ -305,31 +305,9 @@ const gridPlanarriveDateEditRender = computed(() => {
     },
   };
 });
-const gridDeliveryingQtyEditRender = computed(() => {
+const gridScheStatusEditRender = computed(() => {
   return {
     enabled: false,
-    attrs: {
-      useSeparator: true,
-      textAlign: 'right',
-    },
-  };
-});
-const gridFlexdeliveryQtyEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      useSeparator: true,
-      textAlign: 'right',
-    },
-  };
-});
-const gridCancelQtyEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      useSeparator: true,
-      textAlign: 'right',
-    },
   };
 });
 const paginationCurrentChange = (currentPage) => {
@@ -753,29 +731,13 @@ const getPartsData = async () => {
               title="納入予定日"
               width="140px"
             />
-            <VueNumberColumn
-              :edit-render="gridDeliveryingQtyEditRender"
-              field="deliveryingQty"
-              align="right"
+            <VueInputColumn
+              :edit-render="gridScheStatusEditRender"
+              field="scheStatus"
+              show-overflow="tooltip"
               :sortable="true"
-              title="FLEX出庫中数"
-              width="120px"
-            />
-            <VueNumberColumn
-              :edit-render="gridFlexdeliveryQtyEditRender"
-              field="flexdeliveryQty"
-              align="right"
-              :sortable="true"
-              title="FLEX出荷数"
-              width="150px"
-            />
-            <VueNumberColumn
-              :edit-render="gridCancelQtyEditRender"
-              field="cancelQty"
-              align="right"
-              :sortable="true"
-              title="FLEX取消数"
-              width="110px"
+              title="納入状況"
+              width="140px"
             />
           </VueTable>
         </VuePanel>
