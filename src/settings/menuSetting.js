@@ -729,7 +729,7 @@ const staticMenus = [
         meta: {
           rank: 8,
           activePath: '/master/masterInfo/cmm0308_01',
-          title: '仕入先部品番号照会',
+          title: 'Q品番照会',
         },
       },
       {
