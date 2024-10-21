@@ -511,7 +511,7 @@ const doClose = () => {
                 :sortable="true"
                 title="大区分"
                 header-align="center"
-                width="150px"
+                width="130px"
               />
               <VueInputColumn
                 :edit-render="gridMiddleGroupEditRender"
@@ -520,7 +520,7 @@ const doClose = () => {
                 :sortable="true"
                 title="中区分"
                 header-align="center"
-                width="150px"
+                width="130px"
               />
               <VueInputColumn
                 :edit-render="gridJanCodeEditRender"
@@ -529,7 +529,7 @@ const doClose = () => {
                 :sortable="true"
                 title="JANコード"
                 header-align="center"
-                width="150px"
+                width="120px"
               />
               <VueInputColumn
                 :edit-render="gridMakerPartsNoEditRender"
@@ -538,7 +538,7 @@ const doClose = () => {
                 :sortable="true"
                 title="メーカー商品コード"
                 header-align="center"
-                width="180px"
+                width="170px"
               />
               <VueInputColumn
                 :edit-render="gridBrandEditRender"
@@ -547,10 +547,10 @@ const doClose = () => {
                 :sortable="true"
                 title="ブランド"
                 header-align="center"
-                width="180px"
+                width="110px"
               />
               <VueButtonColumn
-                align="center"
+                align="right"
                 fixed="right"
                 title="選択"
                 width="60px"
@@ -628,7 +628,7 @@ const doClose = () => {
                 field="qty"
                 align="right"
                 :sortable="true"
-                width="100px"
+                width="90px"
                 title="数量"
                 header-align="center"
               />

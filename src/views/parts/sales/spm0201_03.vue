@@ -407,6 +407,9 @@ const gridCancelledQtyEditRender = computed(() => {
 const onDelRow = (row) => {
   grid.value.remove(row);
 };
+const closeMultiPartsAside = (row) => {
+  showPartsMultiWin.value = false;
+};
 </script>
 
 <template>
@@ -978,12 +981,11 @@ const onDelRow = (row) => {
       id="viy2Aside_92y0kC"
       ref="viy2Aside_92y0kC"
       v-model="showPartsMultiWin"
-      :modal="true"
       direction="btt"
       size="90%"
       :with-header="false"
       :show-close="false"
-      :close-on-click-modal="true"
+      :close-on-press-escape="true"
     >
       <viy2Subpage_92y0kPPage
         id="viy2Subpage_92y0kP"

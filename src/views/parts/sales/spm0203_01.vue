@@ -481,6 +481,12 @@ const calculation = (obj, value) => {
     obj.row.returnAmount = Number(price) * Number(qty);
   }
 };
+const closeMultiPartsAside = (row) => {
+  showPartsMultiWin.value = false;
+};
+const onDelRow = (row) => {
+  grid.value.remove(row);
+};
 </script>
 
 <template>

@@ -539,6 +539,9 @@ const gridFacilityIdEditRender = computed(() => {
 const onDelRow = (row) => {
   grid.value.remove(row);
 };
+const closeMultiPartsAside = (row) => {
+  showPartsMultiWin.value = false;
+};
 </script>
 
 <template>
