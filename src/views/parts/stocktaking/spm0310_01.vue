@@ -524,7 +524,7 @@ const onPrintBtn = () => {
               :edit-render="gridItemsEditRender"
               field="items"
               align="right"
-              title="部品種類数"
+              title="部品点数"
               width="150px"
               header-align="center"
             />
