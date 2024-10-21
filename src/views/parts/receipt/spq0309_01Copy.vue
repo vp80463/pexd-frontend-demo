@@ -26,7 +26,7 @@ let point;
 let pointId;
 let supplier;
 defineOptions({
-  name: 'spq0309_01',
+  name: 'spq0309_01Copy',
 });
 const form = ref();
 const viy2Flex_ytYhM = ref();
