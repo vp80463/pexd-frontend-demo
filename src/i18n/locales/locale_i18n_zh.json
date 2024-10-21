@@ -670,6 +670,7 @@
     "selectFlag" : "选择",
     "foqOrderAmount" : "点量采购金额",
     "supplyShopName" : "供货店铺名称",
+    "salesStoreNm" : "销售点名称",
     "quantity" : "数量",
     "manPowerDetail" : "人件费部分",
     "allocateDueToDate" : "分配截止日期至",

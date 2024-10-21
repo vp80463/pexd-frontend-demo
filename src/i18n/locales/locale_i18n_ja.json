@@ -129,6 +129,7 @@
     "code" : "コード",
     "selectFlag" : " Select",
     "engineNumber" : "  Engine Number",
+    "salesStoreNm" : "販売店名称",
     "quantity" : "数量",
     "partsDetail" : "  Parts Detail",
     "manPowerDetail" : " ManPower Detail",
