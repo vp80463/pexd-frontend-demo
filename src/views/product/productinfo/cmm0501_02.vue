@@ -24,7 +24,6 @@ defineOptions({
   name: 'cmm0501_02',
 });
 const form = ref();
-const viy2Row_zgSti = ref();
 const queryForm = ref();
 const viy2Panel_wL3n9 = ref();
 const viy2Row_tsyUF = ref();
@@ -366,28 +365,9 @@ const calculateVolume = () => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_zgSti"
-      ref="viy2Row_zgSti"
-      class="fixed-button-area"
-    >
-      <VueCol
-        item-key="item"
-        align="left"
-        :inline="true"
-        :md="{ span: 12 }"
-      />
-      <VueCol
-        item-key="item"
-        align="right"
-        :inline="true"
-        :md="{ span: 12 }"
-      />
-    </VueRow>
     <VueForm
       id="queryForm"
       ref="queryForm"
-      class="margin-top-div except-height-css"
       :model="queryFormData"
     >
       <VuePanel id="viy2Panel_wL3n9" ref="viy2Panel_wL3n9" title="基本情報" :collapse="true">
@@ -401,7 +381,7 @@ const calculateVolume = () => {
           >
             <VueFormItem
               label="部品番号"
-              label-width="140px"
+              label-width="160px"
               prop="partsCd"
             >
               <VueInput
@@ -414,7 +394,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="正代替部品番号"
-              label-width="135px"
+              label-width="160px"
               prop="supersedingParts"
             >
               <VueInput
@@ -428,7 +408,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="幅(mm)"
-              label-width="135px"
+              label-width="160px"
               prop="width"
               :rules="rules.viy2InputNumber_LvND1PRules"
             >
@@ -447,7 +427,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="容積(cm³)"
-              label-width="140px"
+              label-width="160px"
               prop="volumn"
             >
               <VueInputNumber
@@ -473,6 +453,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="価格統一"
+              label-width="160px"
               prop="intgPriceFlag"
             >
               <VueRadioGroup
@@ -495,6 +476,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="オープン価格"
+              label-width="160px"
               prop="openPriceFlag"
             >
               <VueRadioGroup
@@ -642,7 +624,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="重量"
-              label-width="120px"
+              label-width="160px"
               prop="weight"
               :rules="rules.viy2InputNumber_LvND8gRules"
             >
@@ -714,6 +696,7 @@ const calculateVolume = () => {
           >
             <VueFormItem
               label="チェーニング落ち"
+              label-width="160px"
               prop="chainFlag"
             >
               <VueRadioGroup
@@ -748,7 +731,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="長さ(mm)"
-              label-width="140px"
+              label-width="160px"
               prop="length"
               :rules="rules.viy2InputNumber_LvND0cRules"
             >
@@ -791,7 +774,7 @@ const calculateVolume = () => {
             </VueFormItem>
             <VueFormItem
               label="登録日"
-              label-width="135px"
+              label-width="160px"
               prop="registrationDate"
               :rules="rules.viy2DateTimePicker_4KzXFfRules"
             >
@@ -832,7 +815,7 @@ const calculateVolume = () => {
           >
             <VueFormItem
               label="最小販売単位 "
-              label-width="140px"
+              label-width="160px"
               prop="minSaleSize"
               :rules="rules.viy2InputNumber_4KV30iRules"
             >
@@ -857,7 +840,7 @@ const calculateVolume = () => {
           >
             <VueFormItem
               label="標準小売単価"
-              label-width="140px"
+              label-width="160px"
               prop="stdRetailPrice"
               :rules="rules.viy2InputNumber_8qR92IRules"
             >
@@ -899,7 +882,7 @@ const calculateVolume = () => {
           >
             <VueFormItem
               label="単価適用開始日"
-              label-width="135px"
+              label-width="160px"
               prop="stdPriceUpdateDate"
             >
               <VueDatePicker
@@ -962,6 +945,7 @@ const calculateVolume = () => {
           >
             <VueFormItem
               label="点量対象"
+              label-width="160px"
               prop="chainFlag"
             >
               <VueRadioGroup

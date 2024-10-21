@@ -66,7 +66,7 @@ const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_y03H5 = ref();
 const formData = reactive({
-  partsCd: '', partsNm: '', width: 0, volume: 0, makerCd: '', falg2: 'する', falg4: 'する', partsNm: '', partsNm: '', height: 0, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', partsNm: '', lastPart: '', weight: 0, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', falg１: 'する', lastPartNm: '', length: 0, partsNm: '', makerProductCd: '', registrationDate: '', partsNm: '', minSaleSize: 0, stdRetailPrice: 0, supplyManageType: '', stdPriceUpdateDate: '',
+  partsCd: '24-M138-6005', partsNm: '', width: 10, volume: 2400, makerCd: '', falg2: 'する', falg4: 'する', partsNm: '', partsNm: '', height: 15, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', partsNm: '', lastPart: '', weight: 40, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', falg１: 'する', lastPartNm: '', length: 16, partsNm: '', makerProductCd: '', registrationDate: '20241010', partsNm: '', minSaleSize: 0, stdRetailPrice: 0, supplyManageType: '', stdPriceUpdateDate: '20241010',
 });
 const queryFormData = reactive({
   parts: '',
@@ -373,7 +373,6 @@ const onLeavePartsCode = async (code) => {
     queryFormData.partsId = partsData.id;
   }
 };
-formData.stdPriceUpdateDate = new Date();
 </script>
 
 <template>
@@ -421,6 +420,7 @@ formData.stdPriceUpdateDate = new Date();
           >
             <VueFormItem
               label="部品"
+              label-width="160px"
               prop="parts"
               :rules="rules.viy2ValueList_hNGbc5Rules"
             >
@@ -488,6 +488,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="部品番号"
+            label-width="160px"
             prop="partsCd"
           >
             <VueInput
@@ -496,11 +497,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsCd"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="正代替部品番号"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -509,11 +510,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="幅(mm)"
+            label-width="160px"
             prop="width"
           >
             <VueInputNumber
@@ -527,6 +528,7 @@ formData.stdPriceUpdateDate = new Date();
           </VueFormItem>
           <VueFormItem
             label="容積(cm³)"
+            label-width="160px"
             prop="volume"
           >
             <VueInputNumber
@@ -540,6 +542,7 @@ formData.stdPriceUpdateDate = new Date();
           </VueFormItem>
           <VueFormItem
             label="メーカーコード"
+            label-width="160px"
             prop="makerCd"
           >
             <VueInput
@@ -548,11 +551,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.makerCd"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="価格統一"
+            label-width="160px"
             prop="falg2"
           >
             <VueRadioGroup
@@ -575,6 +578,7 @@ formData.stdPriceUpdateDate = new Date();
           </VueFormItem>
           <VueFormItem
             label="オープン価格"
+            label-width="160px"
             prop="falg4"
           >
             <VueRadioGroup
@@ -602,6 +606,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="部品名称"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -610,11 +615,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="正代替部品名称"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -623,11 +628,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="高さ(mm)"
+            label-width="160px"
             prop="height"
           >
             <VueInputNumber
@@ -641,6 +646,7 @@ formData.stdPriceUpdateDate = new Date();
           </VueFormItem>
           <VueFormItem
             label="大区分"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -649,11 +655,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="メーカー部品コード"
+            label-width="160px"
             prop="makerProductCd"
           >
             <VueInput
@@ -662,11 +668,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.makerProductCd"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="特掛仕切コード"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -675,11 +681,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="中５コード"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -688,7 +694,6 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
         </VueCol>
@@ -698,6 +703,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="ＱＩ品番区分"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -706,11 +712,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="最終商品コード"
+            label-width="160px"
             prop="lastPart"
           >
             <VueInput
@@ -719,11 +725,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.lastPart"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="重量"
+            label-width="160px"
             prop="weight"
           >
             <VueInputNumber
@@ -738,6 +744,7 @@ formData.stdPriceUpdateDate = new Date();
           </VueFormItem>
           <VueFormItem
             label="中区分"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -746,11 +753,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="ブランド1"
+            label-width="160px"
             prop="makerProductCd"
           >
             <VueInput
@@ -759,11 +766,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.makerProductCd"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="販売店仕切率"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -772,11 +779,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="受注警告区分"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -785,7 +792,6 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
         </VueCol>
@@ -795,6 +801,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="チェーニング落ち"
+            label-width="160px"
             prop="falg１"
           >
             <VueRadioGroup
@@ -817,6 +824,7 @@ formData.stdPriceUpdateDate = new Date();
           </VueFormItem>
           <VueFormItem
             label="最終商品名称"
+            label-width="160px"
             prop="lastPartNm"
           >
             <VueInput
@@ -825,11 +833,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.lastPartNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="長さ(mm)"
+            label-width="160px"
             prop="length"
           >
             <VueInputNumber
@@ -839,10 +847,12 @@ formData.stdPriceUpdateDate = new Date();
               :disabled="true"
               text-align="right"
               class="no-border"
+              :style="{ width: '300px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="小区分"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -851,11 +861,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="ブランド2"
+            label-width="160px"
             prop="makerProductCd"
           >
             <VueInput
@@ -864,11 +874,11 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.makerProductCd"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
           <VueFormItem
             label="登録日"
+            label-width="160px"
             prop="registrationDate"
           >
             <VueDatePicker
@@ -879,12 +889,11 @@ formData.stdPriceUpdateDate = new Date();
               :readonly="true"
               class="no-border"
               :style="{ width: '130px' }"
-              :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-              :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
             />
           </VueFormItem>
           <VueFormItem
             label="劇毒物区分"
+            label-width="160px"
             prop="partsNm"
           >
             <VueInput
@@ -893,7 +902,6 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.partsNm"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
         </VueCol>
@@ -910,7 +918,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="最小販売単位 "
-            label-width="140px"
+            label-width="160px"
             prop="minSaleSize"
             :rules="rules.viy2InputNumber_12GPGBFRules"
           >
@@ -925,7 +933,6 @@ formData.stdPriceUpdateDate = new Date();
               :precision="0"
               :use-separator="true"
               class="no-border"
-              :style="{ width: '208px' }"
               @change="viy2InputNumber_12GPGBFChange"
             />
           </VueFormItem>
@@ -936,7 +943,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="標準小売単価"
-            label-width="140px"
+            label-width="160px"
             prop="stdRetailPrice"
             :rules="rules.viy2InputNumber_6tnLXgRules"
           >
@@ -951,7 +958,6 @@ formData.stdPriceUpdateDate = new Date();
               :precision="0"
               :use-separator="true"
               class="no-border"
-              :style="{ width: '208px' }"
               @change="viy2InputNumber_6tnLXgChange"
             />
           </VueFormItem>
@@ -962,6 +968,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="供給管理区分"
+            label-width="160px"
             prop="supplyManageType"
           >
             <VueInput
@@ -970,7 +977,6 @@ formData.stdPriceUpdateDate = new Date();
               v-model="formData.supplyManageType"
               :readonly="true"
               class="no-border"
-              :style="{ width: '200px' }"
             />
           </VueFormItem>
         </VueCol>
@@ -980,6 +986,7 @@ formData.stdPriceUpdateDate = new Date();
         >
           <VueFormItem
             label="単価適用開始日"
+            label-width="160px"
             prop="stdPriceUpdateDate"
           >
             <VueDatePicker
@@ -1092,7 +1099,7 @@ formData.stdPriceUpdateDate = new Date();
           field="onPickingQty"
           align="right"
           :sortable="true"
-          title="出荷中数量"
+          title="ピック中数量"
           width="100px"
           header-align="center"
         />
