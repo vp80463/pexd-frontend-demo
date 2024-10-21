@@ -4,7 +4,6 @@ import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import detailPagePage from '/src/views/parts/delivery/spq0203_02.vue';
 import {
   customer_column, customer_query_method,
@@ -222,8 +221,6 @@ const gridInvoiceDateEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });

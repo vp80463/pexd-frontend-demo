@@ -1,12 +1,11 @@
 <script setup>
 import { IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
+import viy2Subpage_RoWUZPage from '/src/views/parts/delivery/spq0206_02.vue';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { merge } from 'lodash-es';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
-import viy2Subpage_RoWUZPage from '/src/views/parts/delivery/spq0206_02.vue';
 import { formatCodeInput } from '@/pj-commonutils.js';
 import { PAGE_SIZE, YES_NO_FLAG } from '@/constants/pj-constants.js';
 import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
@@ -204,8 +203,6 @@ const gridInstructionDateEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
@@ -220,8 +217,6 @@ const gridDateFromEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
