@@ -72,7 +72,7 @@ const formData = reactive({
   newLineCode: 'CR+LF', signConversion: 'する',
 });
 const queryFormDataData = reactive({
-  datafieldviy2DateTimePicker_RRgLG: '',
+  datafieldviy2DateTimePicker_RRgLG: [],
 });
 const viy2Form_zCww8Data = reactive({
   billingTo: 'consumer1',
@@ -447,7 +447,7 @@ const skipDetailFc = () => {
                           id="viy2DateTimePicker_RRgLG"
                           ref="viy2DateTimePicker_RRgLG"
                           v-model="queryFormDataData.datafieldviy2DateTimePicker_RRgLG"
-                          type="month"
+                          type="daterange"
                           :style="{ width: '250px' }"
                           :format="CONST_SYSTEM_DATE_FORMAT.ym"
                         />
