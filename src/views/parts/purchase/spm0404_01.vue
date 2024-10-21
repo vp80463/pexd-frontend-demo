@@ -1,5 +1,5 @@
 <script setup>
-import { IconArrowDownBold, IconArrowLeftBold, IconDelete, IconEdit, IconRefreshRight, useLockScreen } from 'viy-ui';
+import { IconArrowDownBold, IconArrowLeftBold, IconEdit, IconRefreshRight, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
@@ -175,7 +175,7 @@ const gridViy2TableButtonColumn_1HvzCButtons = (scope) => {
     {
       label: '',
       type: 'text',
-      icon: IconDelete,
+      icon: IconEdit,
       click: cancelRow,
       title: 'Delete',
       disabled: !scope.row.deleteFlag,
