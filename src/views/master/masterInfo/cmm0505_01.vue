@@ -347,7 +347,7 @@ const handle = (formData) => {
         direction="column"
         grow="1"
       >
-        <VuePanel id="viy2Panel_GVTke" ref="viy2Panel_GVTke" title="明細情報" height="100%">
+        <VuePanel id="viy2Panel_GVTke" ref="viy2Panel_GVTke" title="メインロケーション情報" height="100%">
           <template #header>
             <div style="width: auto">
               <VueButton id="viy2Button_9AIw0" ref="viy2Button_9AIw0" icon-position="left" :disabled="exportFlag" @click="viy2Button_9AIw0Click">

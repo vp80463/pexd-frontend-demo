@@ -30,7 +30,7 @@ defineOptions({
   name: 'spm0312_01',
 });
 const form = ref();
-const viy2Row_10QMyC = ref();
+const viy2Panel_yxZOa = ref();
 const confirmBtn = ref();
 const resetBtn = ref();
 const queryForm = ref();
@@ -415,323 +415,309 @@ const getPartsData = async () => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_10QMyC"
-      ref="viy2Row_10QMyC"
-      class="fixed-button-area"
-    >
-      <VueCol
-        item-key="item"
-        align="left"
-        :inline="true"
-        :md="{ span: 12 }"
-      />
-      <VueCol
-        item-key="item"
-        align="right"
-        :inline="true"
-        :md="{ span: 12 }"
+    <VuePanel id="viy2Panel_yxZOa" ref="viy2Panel_yxZOa" title="凍結在庫解消">
+      <template #header>
+        <div style="width: auto">
+          <VueButton id="confirmBtn" ref="confirmBtn" icon-position="left" type="info" :disabled="confirmFlag" @click="confirmBtnClick">
+            保存
+          </VueButton>
+          <VueButton id="resetBtn" ref="resetBtn" icon-position="left" @click="resetBtnClick">
+            クリア
+          </VueButton>
+        </div>
+      </template>
+      <VueForm
+        id="queryForm"
+        ref="queryForm"
+        label-width="145px"
+        :model="queryFormData"
       >
-        <VueButton id="confirmBtn" ref="confirmBtn" icon-position="left" type="info" :disabled="confirmFlag" @click="confirmBtnClick">
-          保存
-        </VueButton>
-        <VueButton id="resetBtn" ref="resetBtn" icon-position="left" @click="resetBtnClick">
-          クリア
-        </VueButton>
-      </VueCol>
-    </VueRow>
-    <VueForm
-      id="queryForm"
-      ref="queryForm"
-      label-width="145px"
-      class="margin-top-div0 except-height-css"
-      :model="queryFormData"
-    >
-      <VueRow
-        id="viy2Row_2TS6Ai"
-        ref="viy2Row_2TS6Ai"
-      >
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
+        <VueRow
+          id="viy2Row_2TS6Ai"
+          ref="viy2Row_2TS6Ai"
         >
-          <VueFormItem
-            v-if="false"
-            :label="t('label.point')"
-            prop="pointId"
-            :rules="rules.viy2Select_oOtAFRules"
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
           >
-            <VueSelect
-              id="viy2Select_oOtAF"
-              ref="viy2Select_oOtAF"
-              v-model="queryFormData.pointId"
-              :style="{ width: '250px' }"
-              :filterable="true"
-              :options="pointDs"
-              :props="{
-                label: 'desc',
-                value: 'id',
-              }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="部品"
-            prop="partsNo"
-            :rules="rules.viy2ValueList_11tMBxRules"
-          >
-            <VueValueList
-              id="viy2ValueList_11tMBx"
-              ref="viy2ValueList_11tMBx"
-              v-model="queryFormData.partsNo"
-              :use-popover="true"
-              :use-popup="true"
-              width="200px"
-            />
-          </VueFormItem>
-          <VueFormItem
-            v-if="false"
-            :label="t('label.parts')"
-            label-width="150px"
-            prop="newPart"
-            :rules="rules.viy2ValueList_2TS6AzRules"
-          >
-            <VueValueList
-              :use-common-popover="true"
-              :use-common-popup="true"
-              aside-size="60%"
-              id="viy2ValueList_2TS6Az"
-              :toggle-popover-on-click="queryFormData.newPart.length > 3"
-              ref="viy2ValueList_2TS6Az"
-              select-field="desc"
-              v-model="queryFormData.newPart"
-              :popover-min-query-length="3"
-              :close-on-click-modal="true"
-              :use-popup="true"
-              :clearable="true"
-              :disabled="confirmFlag"
-              :popover-width="500"
-              width="250px"
-              :popover-columns="viy2ValueList_2TS6AzPopoverColumns"
-              :popover-query-method="viy2ValueList_2TS6AzPopoverQueryMethod"
-              :popup-columns="viy2ValueList_2TS6AzPopupColumns"
-              :popup-conditions="viy2ValueList_2TS6AzPopupConditions"
-              :popup-query-method="viy2ValueList_2TS6AzPopupQueryMethod"
-              @select="viy2ValueList_2TS6AzSelect"
-              @clear="viy2ValueList_2TS6AzClear"
-              @leave="viy2ValueList_2TS6AzLeave"
+            <VueFormItem
+              v-if="false"
+              :label="t('label.point')"
+              prop="pointId"
+              :rules="rules.viy2Select_oOtAFRules"
             >
-              <template #asideHeader>
-                <VueRow
-                  id="viy2Row_2TS6AB"
-                  ref="viy2Row_2TS6AB"
-                  class="aside-title-row"
-                >
-                  <VueCol
-                    item-key="item"
-                    class="aside-title-text"
-                    :md="{ span: 7 }"
-                  >
-                    <VueText id="viy2Text_t0G3Ui" ref="viy2Text_t0G3Ui" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                      {{ t('title.partNoRef') }}
-                    </VueText>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    align="right"
-                    :inline="true"
-                    class="aside-title-button"
-                    :md="{ span: 17 }"
-                  />
-                </VueRow>
-              </template>
-            </VueValueList>
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="凍結数量"
-            label-width="150px"
-            prop="frozenQty"
+              <VueSelect
+                id="viy2Select_oOtAF"
+                ref="viy2Select_oOtAF"
+                v-model="queryFormData.pointId"
+                :style="{ width: '250px' }"
+                :filterable="true"
+                :options="pointDs"
+                :props="{
+                  label: 'desc',
+                  value: 'id',
+                }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
           >
-            <VueInputNumber
-              id="viy2InputNumber_t0G3Ul"
-              ref="viy2InputNumber_t0G3Ul"
-              v-model="queryFormData.frozenQty"
-              text-align="right"
-              :use-separator="true"
-              :controls="false"
-              :disabled="true"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="メインロケーション"
-            label-width="150px"
-            prop="mainLocation"
-          >
-            <VueInput
-              id="viy2InputBox_t0G3Um"
-              ref="viy2InputBox_t0G3Um"
-              v-model="queryFormData.mainLocation"
-              type="text"
-              :readonly="true"
-              class="no-border"
-              :style="{ width: '200px' }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="解消タイプ"
-            label-width="150px"
-            prop="releaseType"
-            :rules="rules.viy2Radio_t0G3W1Rules"
-            :show-message="true"
-          >
-            <VueRadioGroup
-              id="viy2Radio_t0G3W1"
-              ref="viy2Radio_t0G3W1"
-              v-model="queryFormData.releaseType"
-              radio-style="button"
-              direction="horizontal"
-              :disabled="confirmFlag"
-              split-size="default"
-              @change="viy2Radio_t0G3W1Change"
+            <VueFormItem
+              label="部品"
+              prop="partsNo"
+              :rules="rules.viy2ValueList_11tMBxRules"
             >
-              <VueRadioButton
-                v-for="option in viy2Radio_t0G3W1Opts"
-                :key="option.value"
-                :label="option.value"
+              <VueValueList
+                id="viy2ValueList_11tMBx"
+                ref="viy2ValueList_11tMBx"
+                v-model="queryFormData.partsNo"
+                :use-popover="true"
+                :use-popup="true"
+                width="200px"
+              />
+            </VueFormItem>
+            <VueFormItem
+              v-if="false"
+              :label="t('label.parts')"
+              label-width="150px"
+              prop="newPart"
+              :rules="rules.viy2ValueList_2TS6AzRules"
+            >
+              <VueValueList
+                :use-common-popover="true"
+                :use-common-popup="true"
+                aside-size="60%"
+                id="viy2ValueList_2TS6Az"
+                :toggle-popover-on-click="queryFormData.newPart.length > 3"
+                ref="viy2ValueList_2TS6Az"
+                select-field="desc"
+                v-model="queryFormData.newPart"
+                :popover-min-query-length="3"
+                :close-on-click-modal="true"
+                :use-popup="true"
+                :clearable="true"
+                :disabled="confirmFlag"
+                :popover-width="500"
+                width="250px"
+                :popover-columns="viy2ValueList_2TS6AzPopoverColumns"
+                :popover-query-method="viy2ValueList_2TS6AzPopoverQueryMethod"
+                :popup-columns="viy2ValueList_2TS6AzPopupColumns"
+                :popup-conditions="viy2ValueList_2TS6AzPopupConditions"
+                :popup-query-method="viy2ValueList_2TS6AzPopupQueryMethod"
+                @select="viy2ValueList_2TS6AzSelect"
+                @clear="viy2ValueList_2TS6AzClear"
+                @leave="viy2ValueList_2TS6AzLeave"
               >
-                {{ option.label }}
-              </VueRadioButton>
-            </VueRadioGroup>
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="元ロケーション"
-            label-width="150px"
-            prop="fromLocation"
-            :rules="rules.viy2InputBox_8YGkWWRules"
+                <template #asideHeader>
+                  <VueRow
+                    id="viy2Row_2TS6AB"
+                    ref="viy2Row_2TS6AB"
+                    class="aside-title-row"
+                  >
+                    <VueCol
+                      item-key="item"
+                      class="aside-title-text"
+                      :md="{ span: 7 }"
+                    >
+                      <VueText id="viy2Text_t0G3Ui" ref="viy2Text_t0G3Ui" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
+                        {{ t('title.partNoRef') }}
+                      </VueText>
+                    </VueCol>
+                    <VueCol
+                      item-key="item"
+                      align="right"
+                      :inline="true"
+                      class="aside-title-button"
+                      :md="{ span: 17 }"
+                    />
+                  </VueRow>
+                </template>
+              </VueValueList>
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
           >
-            <VueInput
-              id="viy2InputBox_8YGkWW"
-              ref="viy2InputBox_8YGkWW"
-              v-model="queryFormData.fromLocation"
-              type="text"
-              :disabled="confirmFlag"
-              class="no-border"
-              :on-suffix-icon-click="viy2InputBox_8YGkWWOnSuffixIconClick"
-              :style="{ width: '200px' }"
-              @blur="viy2InputBox_8YGkWWBlur"
+            <VueFormItem
+              label="凍結数量"
+              label-width="150px"
+              prop="frozenQty"
             >
-              <template #append>
-                <VueButton id="viy2Button_vNVUi" ref="viy2Button_vNVUi" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_vNVUiClick" />
-              </template>
-            </VueInput>
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="元ロケーション数量"
-            label-width="150px"
-            prop="fromLocationQty"
+              <VueInputNumber
+                id="viy2InputNumber_t0G3Ul"
+                ref="viy2InputNumber_t0G3Ul"
+                v-model="queryFormData.frozenQty"
+                text-align="right"
+                :use-separator="true"
+                :controls="false"
+                :disabled="true"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
           >
-            <VueInputNumber
-              id="viy2InputNumber_30PSWo"
-              ref="viy2InputNumber_30PSWo"
-              v-model="queryFormData.fromLocationQty"
-              text-align="right"
-              :use-separator="true"
-              :controls="false"
-              :disabled="true"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="解消数量"
-            label-width="150px"
-            prop="releaseQty"
-            :rules="rules.viy2InputNumber_t0G3ZtRules"
-          >
-            <VueInputNumber
-              id="viy2InputNumber_t0G3Zt"
-              ref="viy2InputNumber_t0G3Zt"
-              v-model="queryFormData.releaseQty"
-              :use-separator="true"
-              :controls="false"
-              text-align="right"
-              :disabled="confirmFlag"
-              :precision="0"
-              :style="{ width: '200px' }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            v-show="hiddenFlag"
-            label="移動先ロケーション"
-            label-width="160px"
-            prop="toLocation"
-            :rules="rules.viy2InputBox_3LnuUKRules"
-          >
-            <VueInput
-              id="viy2InputBox_3LnuUK"
-              ref="viy2InputBox_3LnuUK"
-              v-model="queryFormData.toLocation"
-              type="text"
-              :disabled="confirmFlag"
-              class="no-border"
-              :on-suffix-icon-click="viy2InputBox_3LnuUKOnSuffixIconClick"
-              :style="{ width: '200px' }"
-              @blur="viy2InputBox_3LnuUKBlur"
+            <VueFormItem
+              label="メインロケーション"
+              label-width="150px"
+              prop="mainLocation"
             >
-              <template #append>
-                <VueButton id="viy2Button_vQ4P1" ref="viy2Button_vQ4P1" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_vQ4P1Click" />
-              </template>
-            </VueInput>
-          </VueFormItem>
-        </VueCol>
-      </VueRow>
-    </VueForm>
+              <VueInput
+                id="viy2InputBox_t0G3Um"
+                ref="viy2InputBox_t0G3Um"
+                v-model="queryFormData.mainLocation"
+                type="text"
+                :readonly="true"
+                class="no-border"
+                :style="{ width: '200px' }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="解消タイプ"
+              label-width="150px"
+              prop="releaseType"
+              :rules="rules.viy2Radio_t0G3W1Rules"
+              :show-message="true"
+            >
+              <VueRadioGroup
+                id="viy2Radio_t0G3W1"
+                ref="viy2Radio_t0G3W1"
+                v-model="queryFormData.releaseType"
+                radio-style="button"
+                direction="horizontal"
+                :disabled="confirmFlag"
+                split-size="default"
+                @change="viy2Radio_t0G3W1Change"
+              >
+                <VueRadioButton
+                  v-for="option in viy2Radio_t0G3W1Opts"
+                  :key="option.value"
+                  :label="option.value"
+                >
+                  {{ option.label }}
+                </VueRadioButton>
+              </VueRadioGroup>
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="元ロケーション"
+              label-width="150px"
+              prop="fromLocation"
+              :rules="rules.viy2InputBox_8YGkWWRules"
+            >
+              <VueInput
+                id="viy2InputBox_8YGkWW"
+                ref="viy2InputBox_8YGkWW"
+                v-model="queryFormData.fromLocation"
+                type="text"
+                :disabled="confirmFlag"
+                class="no-border"
+                :on-suffix-icon-click="viy2InputBox_8YGkWWOnSuffixIconClick"
+                :style="{ width: '200px' }"
+                @blur="viy2InputBox_8YGkWWBlur"
+              >
+                <template #append>
+                  <VueButton id="viy2Button_vNVUi" ref="viy2Button_vNVUi" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_vNVUiClick" />
+                </template>
+              </VueInput>
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="元ロケーション数量"
+              label-width="150px"
+              prop="fromLocationQty"
+            >
+              <VueInputNumber
+                id="viy2InputNumber_30PSWo"
+                ref="viy2InputNumber_30PSWo"
+                v-model="queryFormData.fromLocationQty"
+                text-align="right"
+                :use-separator="true"
+                :controls="false"
+                :disabled="true"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="解消数量"
+              label-width="150px"
+              prop="releaseQty"
+              :rules="rules.viy2InputNumber_t0G3ZtRules"
+            >
+              <VueInputNumber
+                id="viy2InputNumber_t0G3Zt"
+                ref="viy2InputNumber_t0G3Zt"
+                v-model="queryFormData.releaseQty"
+                :use-separator="true"
+                :controls="false"
+                text-align="right"
+                :disabled="confirmFlag"
+                :precision="0"
+                :style="{ width: '200px' }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              v-show="hiddenFlag"
+              label="移動先ロケーション"
+              label-width="160px"
+              prop="toLocation"
+              :rules="rules.viy2InputBox_3LnuUKRules"
+            >
+              <VueInput
+                id="viy2InputBox_3LnuUK"
+                ref="viy2InputBox_3LnuUK"
+                v-model="queryFormData.toLocation"
+                type="text"
+                :disabled="confirmFlag"
+                class="no-border"
+                :on-suffix-icon-click="viy2InputBox_3LnuUKOnSuffixIconClick"
+                :style="{ width: '200px' }"
+                @blur="viy2InputBox_3LnuUKBlur"
+              >
+                <template #append>
+                  <VueButton id="viy2Button_vQ4P1" ref="viy2Button_vQ4P1" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_vQ4P1Click" />
+                </template>
+              </VueInput>
+            </VueFormItem>
+          </VueCol>
+        </VueRow>
+      </VueForm>
+    </VuePanel>
     <VueAside
       id="locationAside"
       ref="locationAside"

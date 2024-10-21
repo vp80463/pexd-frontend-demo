@@ -119,30 +119,10 @@ const groupDsApi = useApi({
         {
           value: '0',
           label: 'オートバイ',
-          children: [
-            {
-              value: 'A4',
-              label: 'モトクロス',
-            },
-            {
-              value: 'A5',
-              label: 'トライアル',
-            },
-          ],
         },
         {
           value: '4',
           label: 'スノーモービル、除雪機',
-          children: [
-            {
-              value: 'G7',
-              label: '小型除雪機',
-            },
-            {
-              value: 'G8',
-              label: 'トロ除雪機',
-            },
-          ],
         },
       ],
     },
@@ -153,20 +133,6 @@ const groupDsApi = useApi({
         {
           value: '9',
           label: 'ボート純正オプション',
-          children: [
-            {
-              value: 'G1',
-              label: '２．発電機',
-            },
-            {
-              value: 'G2',
-              label: '４．発電機',
-            },
-            {
-              value: 'G3',
-              label: 'Ｄ．発電機',
-            },
-          ],
         },
       ],
     },
@@ -177,39 +143,14 @@ const groupDsApi = useApi({
         {
           value: 'C',
           label: 'ヘルメット',
-          children: [
-            {
-              value: 'B5',
-              label: 'モトクロス',
-            },
-            {
-              value: 'A6',
-              label: 'エンデューロ',
-            },
-          ],
         },
         {
           value: '6',
           label: 'ＧＨＰ',
-          children: [
-            {
-              value: 'F8',
-              label: 'スプロケットドライブ',
-            },
-            {
-              value: 'L0',
-              label: 'ＭＵマリンジェット',
-            },
-            {
-              value: 'F5',
-              label: 'チェーン．Ｊチェーン',
-            },
-          ],
         },
       ],
     },
-  ]
-  ,
+  ],
 });
 const groupDs = groupDsApi.data;
 const jobDsApi = useApi({
@@ -261,6 +202,11 @@ const gridSamllGroupCdEditRender = computed(() => {
   };
 });
 const gridSamllGroupNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridFlagEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -406,6 +352,15 @@ const resetTblResults = () => {
               :sortable="true"
               title="小区分名称"
               width="200px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridFlagEditRender"
+              field="flag"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="特殊単価適用除外サイン"
+              width="230px"
               header-align="center"
             />
           </VueTable>

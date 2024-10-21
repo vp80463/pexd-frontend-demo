@@ -27,30 +27,37 @@ const gridDsApi = useApi({
   localData: [
     {
       largeGroupCd: '0',
+      partAccFlag: '部品',
       largeGroupNm: 'Ｍ／Ｃ部品',
     },
     {
       largeGroupCd: '2',
+      partAccFlag: '部品',
       largeGroupNm: '特機',
     },
     {
       largeGroupCd: '7',
+      partAccFlag: '部品',
       largeGroupNm: '船外機',
     },
     {
       largeGroupCd: '8',
+      partAccFlag: '部品',
       largeGroupNm: 'マリン',
     },
     {
       largeGroupCd: 'C',
+      partAccFlag: '部品',
       largeGroupNm: 'ヘルメット',
     },
     {
       largeGroupCd: 'D',
+      partAccFlag: '部品',
       largeGroupNm: 'アパレル',
     },
     {
       largeGroupCd: 'H',
+      partAccFlag: '部品',
       largeGroupNm: 'ボルトオン',
     },
   ]
@@ -71,6 +78,16 @@ const viy2Grid_18ZDtLargeGroupCdEditRender = computed(() => {
   };
 });
 const viy2Grid_18ZDtLargeGroupNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Grid_18ZDtPartAccFlagEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Grid_18ZDtDepartFlagEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -129,6 +146,22 @@ const viy2Grid_18ZDtLargeGroupNmEditRender = computed(() => {
               field="largeGroupNm"
               :sortable="true"
               title="大区分名称"
+              width="165px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="viy2Grid_18ZDtPartAccFlagEditRender"
+              field="partAccFlag"
+              :sortable="true"
+              title="部品用品区分"
+              width="165px"
+              header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="viy2Grid_18ZDtDepartFlagEditRender"
+              field="departFlag"
+              :sortable="true"
+              title="部門区分"
               width="165px"
               header-align="center"
             />

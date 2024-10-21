@@ -111,101 +111,16 @@ const groupDsApi = useApi({
     {
       value: '0',
       label: 'Ｍ／Ｃ部品',
-      children: [
-        {
-          value: '0',
-          label: 'オートバイ',
-          children: [
-            {
-              value: 'A4',
-              label: 'モトクロス',
-            },
-            {
-              value: 'A5',
-              label: 'トライアル',
-            },
-          ],
-        },
-        {
-          value: '4',
-          label: 'スノーモービル、除雪機',
-          children: [
-            {
-              value: 'G7',
-              label: '小型除雪機',
-            },
-            {
-              value: 'G8',
-              label: 'トロ除雪機',
-            },
-          ],
-        },
-      ],
     },
     {
       value: '2',
       label: '特機',
-      children: [
-        {
-          value: '9',
-          label: 'ボート純正オプション',
-          children: [
-            {
-              value: 'G1',
-              label: '２．発電機',
-            },
-            {
-              value: 'G2',
-              label: '４．発電機',
-            },
-            {
-              value: 'G3',
-              label: 'Ｄ．発電機',
-            },
-          ],
-        },
-      ],
     },
     {
       value: '7',
       label: '船外機',
-      children: [
-        {
-          value: 'C',
-          label: 'ヘルメット',
-          children: [
-            {
-              value: 'B5',
-              label: 'モトクロス',
-            },
-            {
-              value: 'A6',
-              label: 'エンデューロ',
-            },
-          ],
-        },
-        {
-          value: '6',
-          label: 'ＧＨＰ',
-          children: [
-            {
-              value: 'F8',
-              label: 'スプロケットドライブ',
-            },
-            {
-              value: 'L0',
-              label: 'ＭＵマリンジェット',
-            },
-            {
-              value: 'F5',
-              label: 'チェーン．Ｊチェーン',
-            },
-          ],
-        },
-      ],
     },
-  ]
-  ,
+  ],
 });
 const groupDs = groupDsApi.data;
 const viy2Button_83YdClick = () => {
@@ -237,6 +152,11 @@ const gridMiddleGroupCdEditRender = computed(() => {
   };
 });
 const gridMiddleGroupNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridFlagEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -366,6 +286,14 @@ const resetTblResults = () => {
               :sortable="true"
               title="中区分名"
               width="200px"
+            />
+            <VueInputColumn
+              :edit-render="gridFlagEditRender"
+              field="flag"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="特殊単価適用除外サイン"
+              width="230px"
             />
           </VueTable>
         </VuePanel>

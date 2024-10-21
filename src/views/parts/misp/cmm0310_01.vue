@@ -562,7 +562,7 @@ const isNewInput = (value) => {
       ref="aside001"
       v-model="aside001002"
       :modal="true"
-      size="30%"
+      size="40%"
       :close-on-click-modal="false"
       :show-close="false"
       :with-header="false"
@@ -587,7 +587,7 @@ const isNewInput = (value) => {
               :md="{ span: 12 }"
             >
               <VueText id="viy2Text_TD8p4" ref="viy2Text_TD8p4" class="aside-title-text" :style="{ width: '300px', display: 'inline-block' }">
-                売上集計グループ明細
+                売上グループ明細
               </VueText>
             </VueCol>
             <VueCol

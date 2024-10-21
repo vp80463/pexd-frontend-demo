@@ -30,7 +30,7 @@ defineOptions({
   name: 'spm0307_01',
 });
 const form = ref();
-const viy2Row_10QMyC = ref();
+const viy2Panel_yxvIp = ref();
 const confirmBtn = ref();
 const resetBtn = ref();
 const conditionForm = ref();
@@ -521,356 +521,342 @@ const getPartsData = async () => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_10QMyC"
-      ref="viy2Row_10QMyC"
-      class="fixed-button-area"
-    >
-      <VueCol
-        item-key="item"
-        align="left"
-        :inline="true"
-        :md="{ span: 12 }"
-      />
-      <VueCol
-        item-key="item"
-        align="right"
-        :inline="true"
-        :md="{ span: 12 }"
+    <VuePanel id="viy2Panel_yxvIp" ref="viy2Panel_yxvIp" title="在庫調整">
+      <template #header>
+        <div style="width: auto">
+          <VueButton id="confirmBtn" ref="confirmBtn" icon-position="left" type="info" :disabled="confirmFlag" @click="confirmBtnClick">
+            保存
+          </VueButton>
+          <VueButton id="resetBtn" ref="resetBtn" icon-position="left" @click="resetBtnClick">
+            クリア
+          </VueButton>
+        </div>
+      </template>
+      <VueForm
+        id="conditionForm"
+        ref="conditionForm"
+        label-width="145px"
+        :model="conditionFormData"
       >
-        <VueButton id="confirmBtn" ref="confirmBtn" icon-position="left" type="info" :disabled="confirmFlag" @click="confirmBtnClick">
-          保存
-        </VueButton>
-        <VueButton id="resetBtn" ref="resetBtn" icon-position="left" @click="resetBtnClick">
-          クリア
-        </VueButton>
-      </VueCol>
-    </VueRow>
-    <VueForm
-      id="conditionForm"
-      ref="conditionForm"
-      label-width="145px"
-      class="margin-top-div0 except-height-css"
-      :model="conditionFormData"
-    >
-      <VueRow
-        id="viy2Row_3mqzSt"
-        ref="viy2Row_3mqzSt"
-      >
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
+        <VueRow
+          id="viy2Row_3mqzSt"
+          ref="viy2Row_3mqzSt"
         >
-          <VueFormItem
-            v-if="false"
-            :label="t('label.point')"
-            prop="pointId"
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
           >
-            <VueSelect
-              id="viy2Select_oStty"
-              ref="viy2Select_oStty"
-              v-model="conditionFormData.pointId"
-              :style="{ width: '250px' }"
-              :filterable="true"
-              :options="pointDs"
-              :props="{
-                label: 'desc',
-                value: 'id',
-              }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="部品"
-            prop="newPart"
-            :rules="rules.viy2ValueList_90dteyRules"
-          >
-            <VueValueList
-              :use-common-popover="true"
-              :use-common-popup="true"
-              aside-size="60%"
-              id="viy2ValueList_90dtey"
-              :toggle-popover-on-click="conditionFormData.newPart.length > 3"
-              ref="viy2ValueList_90dtey"
-              select-field="desc"
-              v-model="conditionFormData.newPart"
-              :popover-min-query-length="3"
-              :close-on-click-modal="true"
-              :use-popup="true"
-              :clearable="true"
-              :disabled="confirmFlag"
-              :popover-width="500"
-              width="250px"
-              :popover-columns="viy2ValueList_90dteyPopoverColumns"
-              :popover-query-method="viy2ValueList_90dteyPopoverQueryMethod"
-              :popup-columns="viy2ValueList_90dteyPopupColumns"
-              :popup-conditions="viy2ValueList_90dteyPopupConditions"
-              :popup-query-method="viy2ValueList_90dteyPopupQueryMethod"
-              @select="viy2ValueList_90dteySelect"
-              @clear="viy2ValueList_90dteyClear"
-              @leave="viy2ValueList_90dteyLeave"
+            <VueFormItem
+              v-if="false"
+              :label="t('label.point')"
+              prop="pointId"
             >
-              <template #asideHeader>
-                <VueRow
-                  id="viy2Row_9EyxON"
-                  ref="viy2Row_9EyxON"
-                  class="aside-title-row"
-                >
-                  <VueCol
-                    item-key="item"
-                    class="aside-title-text"
-                    :md="{ span: 7 }"
+              <VueSelect
+                id="viy2Select_oStty"
+                ref="viy2Select_oStty"
+                v-model="conditionFormData.pointId"
+                :style="{ width: '250px' }"
+                :filterable="true"
+                :options="pointDs"
+                :props="{
+                  label: 'desc',
+                  value: 'id',
+                }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="部品"
+              prop="newPart"
+              :rules="rules.viy2ValueList_90dteyRules"
+            >
+              <VueValueList
+                :use-common-popover="true"
+                :use-common-popup="true"
+                aside-size="60%"
+                id="viy2ValueList_90dtey"
+                :toggle-popover-on-click="conditionFormData.newPart.length > 3"
+                ref="viy2ValueList_90dtey"
+                select-field="desc"
+                v-model="conditionFormData.newPart"
+                :popover-min-query-length="3"
+                :close-on-click-modal="true"
+                :use-popup="true"
+                :clearable="true"
+                :disabled="confirmFlag"
+                :popover-width="500"
+                width="250px"
+                :popover-columns="viy2ValueList_90dteyPopoverColumns"
+                :popover-query-method="viy2ValueList_90dteyPopoverQueryMethod"
+                :popup-columns="viy2ValueList_90dteyPopupColumns"
+                :popup-conditions="viy2ValueList_90dteyPopupConditions"
+                :popup-query-method="viy2ValueList_90dteyPopupQueryMethod"
+                @select="viy2ValueList_90dteySelect"
+                @clear="viy2ValueList_90dteyClear"
+                @leave="viy2ValueList_90dteyLeave"
+              >
+                <template #asideHeader>
+                  <VueRow
+                    id="viy2Row_9EyxON"
+                    ref="viy2Row_9EyxON"
+                    class="aside-title-row"
                   >
-                    <VueText id="viy2Text_9EyxOY" ref="viy2Text_9EyxOY" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                      {{ t('title.partNoRef') }}
-                    </VueText>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    align="right"
-                    :inline="true"
-                    class="aside-title-button"
-                    :md="{ span: 17 }"
-                  />
-                </VueRow>
-              </template>
-            </VueValueList>
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="調整理由"
-            prop="reason"
-            :rules="rules.viy2Select_5zamoxRules"
+                    <VueCol
+                      item-key="item"
+                      class="aside-title-text"
+                      :md="{ span: 7 }"
+                    >
+                      <VueText id="viy2Text_9EyxOY" ref="viy2Text_9EyxOY" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
+                        {{ t('title.partNoRef') }}
+                      </VueText>
+                    </VueCol>
+                    <VueCol
+                      item-key="item"
+                      align="right"
+                      :inline="true"
+                      class="aside-title-button"
+                      :md="{ span: 17 }"
+                    />
+                  </VueRow>
+                </template>
+              </VueValueList>
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :md="{ span: 24 }"
           >
-            <VueSelect
-              id="viy2Select_5zamox"
-              ref="viy2Select_5zamox"
-              v-model="conditionFormData.reason"
-              :style="{ width: '200px' }"
-              :disabled="confirmFlag"
-              :filterable="true"
-              :clearable="true"
-              :options="viy2Select_5zamoxOpts"
-              :props="{
-                label: 'codeData1',
-                value: 'codeDbid',
-              }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="調整タイプ"
-            prop="adjustmentType"
-            :rules="rules.viy2Select_5ze3KyRules"
-          >
-            <VueSelect
-              id="viy2Select_5ze3Ky"
-              ref="viy2Select_5ze3Ky"
-              v-model="conditionFormData.adjustmentType"
-              :style="{ width: '200px' }"
-              :disabled="confirmFlag"
-              :filterable="true"
-              :clearable="true"
-              :options="viy2Select_5ze3KyOpts"
-              :props="{
-                label: 'codeData1',
-                value: 'codeDbid',
-              }"
-              @change="viy2Select_5ze3KyChange"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="マイナスを選択"
-            prop="checkForMinus"
-          >
-            <VueCheckbox
-              id="checkForMinus"
-              ref="checkForMinus"
-              v-model="conditionFormData.checkForMinus"
-              :disabled="forzenTypeFlag || confirmFlag"
-              true-label="Y"
-              false-label="N"
-              @change="checkForMinusChange"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="ロケーション"
-            prop="fromLocation"
-            :rules="rules.viy2InputBox_m4EiXRules"
-          >
-            <VueInput
-              id="viy2InputBox_m4EiX"
-              ref="viy2InputBox_m4EiX"
-              v-model="conditionFormData.fromLocation"
-              :disabled="confirmFlag"
-              :on-suffix-icon-click="viy2InputBox_m4EiXOnSuffixIconClick"
-              :style="{ width: '200px' }"
-              @blur="viy2InputBox_m4EiXBlur"
+            <VueFormItem
+              label="調整理由"
+              prop="reason"
+              :rules="rules.viy2Select_5zamoxRules"
             >
-              <template #append>
-                <VueButton id="viy2Button_m4NdU" ref="viy2Button_m4NdU" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_m4NdUClick" />
-              </template>
-            </VueInput>
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="在庫中"
-            prop="currentStockQty"
+              <VueSelect
+                id="viy2Select_5zamox"
+                ref="viy2Select_5zamox"
+                v-model="conditionFormData.reason"
+                :style="{ width: '200px' }"
+                :disabled="confirmFlag"
+                :filterable="true"
+                :clearable="true"
+                :options="viy2Select_5zamoxOpts"
+                :props="{
+                  label: 'codeData1',
+                  value: 'codeDbid',
+                }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :md="{ span: 24 }"
           >
-            <VueInputNumber
-              id="viy2InputNumber_manYy"
-              ref="viy2InputNumber_manYy"
-              v-model="conditionFormData.currentStockQty"
-              :use-separator="true"
-              text-align="right"
-              :controls="false"
-              :disabled="true"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="調整数量"
-            prop="adjustmentQuantity"
-            :rules="rules.viy2InputBox_5DsVs8Rules"
-          >
-            <VueInput
-              id="viy2InputBox_5DsVs8"
-              ref="viy2InputBox_5DsVs8"
-              v-model="conditionFormData.adjustmentQuantity"
-              :clearable="false"
-              :readonly="true"
-              class="no-border"
-              :style="{ width: '35px' }"
-            />
-          </VueFormItem>
-          <VueFormItem
-            label-width="2px"
-            prop="adjustmentQty"
-            :rules="rules.viy2InputNumber_5Cb6aORules"
-          >
-            <VueInputNumber
-              id="viy2InputNumber_5Cb6aO"
-              ref="viy2InputNumber_5Cb6aO"
-              v-model="conditionFormData.adjustmentQty"
-              :use-separator="true"
-              :controls="false"
-              text-align="right"
-              :disabled="confirmFlag"
-              :precision="0"
-              :style="{ width: '130px' }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            label="平均原価"
-            prop="averageCost"
-          >
-            <VueInputNumber
-              id="viy2InputNumber_3A58xa"
-              ref="viy2InputNumber_3A58xa"
-              v-model="conditionFormData.averageCost"
-              :use-separator="true"
-              text-align="right"
-              :controls="false"
-              :disabled="true"
-              :precision="2"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            v-show="vShowHidden"
-            label="部品原価"
-            prop="partsCost"
-            :rules="rules.viy2InputNumber_5EiGcwRules"
-          >
-            <VueInputNumber
-              id="viy2InputNumber_5EiGcw"
-              ref="viy2InputNumber_5EiGcw"
-              v-model="conditionFormData.partsCost"
-              :readonly="partsCostReadOnlyFlag"
-              :use-separator="true"
-              :controls="false"
-              text-align="right"
-              :precision="2"
-              :disabled="confirmFlag"
-              :style="{ width: '200px' }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :inline="true"
-          :md="{ span: 24 }"
-        >
-          <VueFormItem
-            v-show="forzenTypeFlag"
-            label="移動先ロケーション"
-            label-width="160px"
-            prop="toLocation"
-            :rules="rules.viy2InputBox_3AhznARules"
-          >
-            <VueInput
-              id="viy2InputBox_3AhznA"
-              ref="viy2InputBox_3AhznA"
-              v-model="conditionFormData.toLocation"
-              :disabled="confirmFlag"
-              :on-suffix-icon-click="viy2InputBox_3AhznAOnSuffixIconClick"
-              :style="{ width: '200px' }"
-              @blur="viy2InputBox_3AhznABlur"
+            <VueFormItem
+              label="調整タイプ"
+              prop="adjustmentType"
+              :rules="rules.viy2Select_5ze3KyRules"
             >
-              <template #append>
-                <VueButton id="viy2Button_3Ahzor" ref="viy2Button_3Ahzor" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_3AhzorClick" />
-              </template>
-            </VueInput>
-          </VueFormItem>
-        </VueCol>
-      </VueRow>
-    </VueForm>
+              <VueSelect
+                id="viy2Select_5ze3Ky"
+                ref="viy2Select_5ze3Ky"
+                v-model="conditionFormData.adjustmentType"
+                :style="{ width: '200px' }"
+                :disabled="confirmFlag"
+                :filterable="true"
+                :clearable="true"
+                :options="viy2Select_5ze3KyOpts"
+                :props="{
+                  label: 'codeData1',
+                  value: 'codeDbid',
+                }"
+                @change="viy2Select_5ze3KyChange"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="マイナスを選択"
+              prop="checkForMinus"
+            >
+              <VueCheckbox
+                id="checkForMinus"
+                ref="checkForMinus"
+                v-model="conditionFormData.checkForMinus"
+                :disabled="forzenTypeFlag || confirmFlag"
+                true-label="Y"
+                false-label="N"
+                @change="checkForMinusChange"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="ロケーション"
+              prop="fromLocation"
+              :rules="rules.viy2InputBox_m4EiXRules"
+            >
+              <VueInput
+                id="viy2InputBox_m4EiX"
+                ref="viy2InputBox_m4EiX"
+                v-model="conditionFormData.fromLocation"
+                :disabled="confirmFlag"
+                :on-suffix-icon-click="viy2InputBox_m4EiXOnSuffixIconClick"
+                :style="{ width: '200px' }"
+                @blur="viy2InputBox_m4EiXBlur"
+              >
+                <template #append>
+                  <VueButton id="viy2Button_m4NdU" ref="viy2Button_m4NdU" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_m4NdUClick" />
+                </template>
+              </VueInput>
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="在庫中"
+              prop="currentStockQty"
+            >
+              <VueInputNumber
+                id="viy2InputNumber_manYy"
+                ref="viy2InputNumber_manYy"
+                v-model="conditionFormData.currentStockQty"
+                :use-separator="true"
+                text-align="right"
+                :controls="false"
+                :disabled="true"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="調整数量"
+              prop="adjustmentQuantity"
+              :rules="rules.viy2InputBox_5DsVs8Rules"
+            >
+              <VueInput
+                id="viy2InputBox_5DsVs8"
+                ref="viy2InputBox_5DsVs8"
+                v-model="conditionFormData.adjustmentQuantity"
+                :clearable="false"
+                :readonly="true"
+                class="no-border"
+                :style="{ width: '35px' }"
+              />
+            </VueFormItem>
+            <VueFormItem
+              label-width="2px"
+              prop="adjustmentQty"
+              :rules="rules.viy2InputNumber_5Cb6aORules"
+            >
+              <VueInputNumber
+                id="viy2InputNumber_5Cb6aO"
+                ref="viy2InputNumber_5Cb6aO"
+                v-model="conditionFormData.adjustmentQty"
+                :use-separator="true"
+                :controls="false"
+                text-align="right"
+                :disabled="confirmFlag"
+                :precision="0"
+                :style="{ width: '130px' }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              label="平均原価"
+              prop="averageCost"
+            >
+              <VueInputNumber
+                id="viy2InputNumber_3A58xa"
+                ref="viy2InputNumber_3A58xa"
+                v-model="conditionFormData.averageCost"
+                :use-separator="true"
+                text-align="right"
+                :controls="false"
+                :disabled="true"
+                :precision="2"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              v-show="vShowHidden"
+              label="部品原価"
+              prop="partsCost"
+              :rules="rules.viy2InputNumber_5EiGcwRules"
+            >
+              <VueInputNumber
+                id="viy2InputNumber_5EiGcw"
+                ref="viy2InputNumber_5EiGcw"
+                v-model="conditionFormData.partsCost"
+                :readonly="partsCostReadOnlyFlag"
+                :use-separator="true"
+                :controls="false"
+                text-align="right"
+                :precision="2"
+                :disabled="confirmFlag"
+                :style="{ width: '200px' }"
+              />
+            </VueFormItem>
+          </VueCol>
+          <VueCol
+            item-key="item"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueFormItem
+              v-show="forzenTypeFlag"
+              label="移動先ロケーション"
+              label-width="160px"
+              prop="toLocation"
+              :rules="rules.viy2InputBox_3AhznARules"
+            >
+              <VueInput
+                id="viy2InputBox_3AhznA"
+                ref="viy2InputBox_3AhznA"
+                v-model="conditionFormData.toLocation"
+                :disabled="confirmFlag"
+                :on-suffix-icon-click="viy2InputBox_3AhznAOnSuffixIconClick"
+                :style="{ width: '200px' }"
+                @blur="viy2InputBox_3AhznABlur"
+              >
+                <template #append>
+                  <VueButton id="viy2Button_3Ahzor" ref="viy2Button_3Ahzor" icon-position="left" class="icon-button-width" :icon="IconSearch" @click="viy2Button_3AhzorClick" />
+                </template>
+              </VueInput>
+            </VueFormItem>
+          </VueCol>
+        </VueRow>
+      </VueForm>
+    </VuePanel>
   </VueForm>
 </template>
