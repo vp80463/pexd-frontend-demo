@@ -4019,6 +4019,9 @@
     "MEDIUM" : "dd/MM/yyyy",
     "LONG" : "MM-dd-yyyy"
   },
+  "message" : {
+    "closeMsg" : "Confirm close?"
+  },
   "Z" : {
     "E" : {
       "00019" : "Z.E.00019 : Invlid user group, please contact system administrator.",

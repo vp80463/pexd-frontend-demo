@@ -4006,6 +4006,9 @@
     "MEDIUM" : "dd/MM/yyyy",
     "LONG" : "MM-dd-yyyy"
   },
+  "message" : {
+    "closeMsg" : "确认关闭吗？"
+  },
   "Z" : {
     "E" : {
       "00019" : "Z.E.00019 : 改用户处于无效的用户组，请联系系统管理员。",
