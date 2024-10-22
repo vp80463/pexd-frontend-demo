@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router';
 import { useUser } from 'viy-menu';
 import dayjs from 'dayjs';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
+import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import { formatPartNo } from '@/pj-commonutils.js';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
 import { parts_column, parts_pop_column, parts_pop_query_method, parts_query_method } from '@/settings/valuelistSetting.js';
@@ -492,8 +492,6 @@ const getPartsData = async () => {
                   v-model="queryFormData.dateTo"
                   type="date"
                   :style="{ width: '130px' }"
-                  :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                  :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                 />
               </VueFormItem>
               <VueButton id="viy2Button_1SUzI7" ref="viy2Button_1SUzI7" icon-position="left" class="icon-button-small" :icon="IconArrowLeftBold" @click="viy2Button_1SUzI7Click" />

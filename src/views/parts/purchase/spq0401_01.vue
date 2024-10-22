@@ -82,12 +82,6 @@ const viy2Select_iR7Le1Opts = reactive([
   },
   {
     codeData1:
-'積送中',
-    codeDbid:
-'積送中',
-  },
-  {
-    codeData1:
 '入荷中',
     codeDbid:
 '入荷中',
