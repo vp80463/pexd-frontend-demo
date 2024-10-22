@@ -191,13 +191,6 @@ const viy2Button_NKS0zClick = () => {
   router.push({ name: 'spm0202_02', data: query });
 };
 const retrieveBtnClick = () => {
-  VueMessageBox.confirm(t('ymc-commons.P.00006'), t('title.warn'), {
-    type: 'warning',
-  }).then(() => {
-    invoiceBtnFlag.value = true;
-    resetCondition();
-  }).catch(() => {
-  });
 };
 const resetBtnClick = () => {
   VueMessageBox.confirm(t('ymc-commons.P.00006'), t('title.warn'), {
