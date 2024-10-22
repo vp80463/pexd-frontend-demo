@@ -64,12 +64,6 @@ const gridRules = {
       message: t('errors.required', [t('label.location')]),
     },
   ],
-  registerQty: [
-    {
-      required: true,
-      message: t('errors.required', [t('label.location')]),
-    },
-  ],
 };
 const showLocationWin = ref(false);
 const gridEditConfig = reactive({
@@ -201,7 +195,7 @@ const gridRegisterQtyFormatter = (row, columnConfig, cellValue) => {
 };
 const gridRegisterQtyEditRender = computed(() => {
   return {
-    enabled: true,
+    enabled: false,
     attrs: {
       min: 0,
       textAlign: 'right',
