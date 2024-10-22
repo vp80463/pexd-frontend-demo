@@ -2,10 +2,14 @@ name: Test
 
 on:
   push:
+    tags:  
+      - v* 
     branches:
       - main
 
   pull_request:
+    tags:  
+      - v* 
     branches:
       - main
 
