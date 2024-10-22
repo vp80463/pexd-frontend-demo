@@ -394,7 +394,7 @@ const skipToDetail = (row) => {
           <template #header>
             <div style="width: auto">
               <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" icon-position="left" :disabled="exportFlag" @click="viy2Button_5heur2Click">
-                {{ t('button.export') }}
+                請求データ出力
               </VueButton>
             </div>
           </template>
