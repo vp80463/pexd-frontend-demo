@@ -1719,6 +1719,7 @@
     "scrapReason" : "报废原因",
     "basicPrice" : "基准价格",
     "estimatedTimeOfArrival" : "预计到达时间",
+    "targetDates" : "目标期间",
     "shipment" : "出库",
     "vipNumber" : "VIP号",
     "purchaseOrderEAmount" : "采购(急)金额",
