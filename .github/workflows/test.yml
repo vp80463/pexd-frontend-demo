@@ -3,15 +3,15 @@ name: Test
 on:
   push:
     tags:  
-      - v* 
-    branches:
-      - main
+      - vvv* 
+#   branches:
+#     - main
 
   pull_request:
     tags:  
-      - v* 
-    branches:
-      - main
+      - vvv* 
+#    branches:
+#      - main
 
 jobs:
   build:
