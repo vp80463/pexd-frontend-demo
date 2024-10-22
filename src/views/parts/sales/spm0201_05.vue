@@ -482,7 +482,7 @@ const gridOrderAmtEditRender = computed(() => {
 });
 const gridBoCancelSignEditRender = computed(() => {
   return {
-    enabled: false,
+    enabled: true,
     attrs: {
       textAlign: 'center',
     },
@@ -930,7 +930,7 @@ const closeMultiPartsAside = (row) => {
               :sortable="true"
               field="boCancelSign"
               title="B/Oキャンセル"
-              width="140px"
+              width="170px"
             >
               <template #default="scope">
                 <VueCheckbox

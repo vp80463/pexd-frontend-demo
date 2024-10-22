@@ -52,8 +52,7 @@ const viy2DateTimePicker_hFmWUQ = ref();
 const viy2DateTimePicker_hFmWUS = ref();
 const viy2Button_hFmWUT = ref();
 const viy2Button_hFmWWw = ref();
-const viy2CodeInput_Dav6w = ref();
-const viy2InputBox_DaBRe = ref();
+const viy2ValueList_sloqw2 = ref();
 const viy2Select_1rPSyEH = ref();
 const viy2Flex_oKqG6 = ref();
 const viy2Panel_2UFK51 = ref();
@@ -66,7 +65,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  dateFrom: '', dateTo: '', datafieldviy2Select_s6VWy: '', orderNo: '', orderDateFrom: '', orderDateTo: '', partsNo: '', partsNm: '', pointId: '',
+  dateFrom: '', dateTo: '', datafieldviy2Select_s6VWy: '', orderNo: '', orderDateFrom: '', orderDateTo: '', parts: '', pointId: '',
 });
 const rules = reactive({
   viy2DateTimePicker_hFmWWxRules: [
@@ -497,25 +496,15 @@ const getPartsData = async () => {
                 </VueCol>
               </VueRow>
               <VueFormItem
-                label="部品番号"
-                prop="partsNo"
+                label="部品"
+                prop="parts"
               >
-                <VueCodeInput
-                  id="viy2CodeInput_Dav6w"
-                  ref="viy2CodeInput_Dav6w"
-                  v-model="queryFormData.partsNo"
-                  :style="{ width: '150px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                label="部品名称"
-                prop="partsNm"
-              >
-                <VueInput
-                  id="viy2InputBox_DaBRe"
-                  ref="viy2InputBox_DaBRe"
-                  v-model="queryFormData.partsNm"
-                  :style="{ width: '180px' }"
+                <VueValueList
+                  id="viy2ValueList_sloqw2"
+                  ref="viy2ValueList_sloqw2"
+                  v-model="queryFormData.parts"
+                  :use-popover="true"
+                  width="300px"
                 />
               </VueFormItem>
               <VueFormItem

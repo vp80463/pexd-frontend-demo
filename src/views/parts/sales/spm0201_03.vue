@@ -366,7 +366,7 @@ const gridOrderAmtEditRender = computed(() => {
 });
 const gridBoCancelSignEditRender = computed(() => {
   return {
-    enabled: false,
+    enabled: true,
     attrs: {
       textAlign: 'center',
     },
@@ -642,7 +642,7 @@ const closeMultiPartsAside = (row) => {
             </VueCol>
             <VueCol
               item-key="item"
-              :md="{ span: 8 }"
+              :md="{ span: 16 }"
             >
               <VueFormItem
                 label="コメント"
@@ -653,7 +653,7 @@ const closeMultiPartsAside = (row) => {
                   id="viy2InputBox_Aevce"
                   ref="viy2InputBox_Aevce"
                   v-model="viy2Form_3gckrwData.datafieldviy2InputBox_kxtHQ"
-                  :style="{ width: '350px' }"
+                  :style="{ width: '500px' }"
                 />
               </VueFormItem>
             </VueCol>
@@ -904,7 +904,7 @@ const closeMultiPartsAside = (row) => {
               :sortable="true"
               field="boCancelSign"
               title=" B/O キャンセル"
-              width="140px"
+              width="170px"
             >
               <template #default="scope">
                 <VueCheckbox
