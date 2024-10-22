@@ -369,6 +369,11 @@ const gridOrderShapeEditRender = computed(() => {
     enabled: false,
   };
 });
+const gridCommentEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const gridConsigneecdEditRender = computed(() => {
   return {
     enabled: false,
@@ -740,6 +745,13 @@ const checkFilter = () => {
               show-overflow="tooltip"
               title="発注形態"
               width="110px"
+            />
+            <VueInputColumn
+              :edit-render="gridCommentEditRender"
+              field="comment"
+              show-overflow="tooltip"
+              title="コメント"
+              width="180px"
             />
             <VueInputColumn
               :edit-render="gridConsigneecdEditRender"
