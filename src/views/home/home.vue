@@ -41,6 +41,7 @@ const viy2Flex_H1Ncg = ref();
 const viy2Row_HaXU4 = ref();
 const viy2Form_HbkDw = ref();
 const viy2Panel_6PeN3i = ref();
+const viy2Button_Cgepo = ref();
 const viy2Row_Hl07P = ref();
 const viy2Row_6Z5sIw = ref();
 const viy2Button_6ZrFZO = ref();
@@ -60,11 +61,16 @@ const grid = ref();
 const viy2Row_H2TUO = ref();
 const commonMenuAside = ref();
 const viy2Button_CIWYt = ref();
+const asideTree = ref();
+const viy2Panel_6b4EcA = ref();
+const viy2Button_6b4EcB = ref();
+const viy2Tree_6b4EcC = ref();
 const formData = reactive({
 });
 const viy2Form_HbkDwData = reactive({
 });
 const commonMenuShowFlag = ref(false);
+const treeShow = ref(false);
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -164,6 +170,72 @@ const gridDsApi = useApi({
   ],
 });
 const gridDs = gridDsApi.data;
+const treeDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      id: 'sales',
+      label: '受注',
+      children: [
+        {
+          id: 'spm0201_03',
+          label: '受注登録',
+        },
+        {
+          id: 'spm0201_02',
+          label: '来店客受注登録',
+        },
+        {
+          id: 'spm0201_05',
+          label: '複数受注登録',
+        },
+        {
+          id: 'spm0201_01',
+          label: '受注一覧',
+        },
+        {
+          id: 'spq0202_01',
+          label: '受注照会（部品別）',
+        },
+        {
+          id: 'spq0207_01',
+          label: '受注キャンセル履歴',
+        },
+      ],
+    },
+    {
+      id: 'delivery',
+      label: '出荷',
+      children: [
+        {
+          id: 'spq0205_01',
+          label: '出庫指示',
+        },
+        {
+          id: 'spm0209_01',
+          label: '出庫差異調整',
+        },
+        {
+          id: 'spm0211_01',
+          label: '出荷完了',
+        },
+        {
+          id: 'spq0206_01',
+          label: '出庫指示照会',
+        },
+        {
+          id: 'spq0203_01',
+          label: '出荷履歴照会（販売店別）',
+        },
+        {
+          id: 'spm0214_01',
+          label: '特殊売上',
+        },
+      ],
+    },
+  ],
+});
+const treeDs = treeDsApi.data;
 const homePageDataSrcApi = useApi({
   url: '/common/homePage/homePageData.json',
   method: 'post',
@@ -203,6 +275,9 @@ const homePageDataSrcApi = useApi({
   manual: true,
 });
 const homePageDataSrc = homePageDataSrcApi.data;
+const viy2Button_CgepoClick = () => {
+  treeShow.value = true;
+};
 const viy2Button_6ZrFZOClick = () => {
   skipTo1();
 };
@@ -255,6 +330,16 @@ const gridMessageEditRender = computed(() => {
   return {
     enabled: false,
   };
+});
+const viy2Button_6b4EcBClick = () => {
+// do some thing
+  treeShow.value = false;
+};
+const viy2Tree_6b4EcCProps = reactive({
+  value: 'id',
+  label: 'label',
+  children: 'children',
+  disabled: 'disabled',
 });
 const onEditWin = (selectedRow) => {
   const data = {
@@ -507,7 +592,7 @@ const skipTo9 = (row) => {
         direction="horizontal"
       >
         <template #default>
-          本ページ情報
+          ホームページ情報
         </template>
       </vue-divider>
       <VueForm
@@ -516,6 +601,13 @@ const skipTo9 = (row) => {
         :model="viy2Form_HbkDwData"
       >
         <VuePanel id="viy2Panel_6PeN3i" ref="viy2Panel_6PeN3i" title="マイメニュー">
+          <template #header>
+            <div style="width: auto">
+              <VueButton id="viy2Button_Cgepo" ref="viy2Button_Cgepo" icon-position="left" size="large" @click="viy2Button_CgepoClick">
+                編集
+              </VueButton>
+            </div>
+          </template>
           <VueRow
             id="viy2Row_Hl07P"
             ref="viy2Row_Hl07P"
@@ -729,6 +821,35 @@ const skipTo9 = (row) => {
       <VueButton id="viy2Button_CIWYt" ref="viy2Button_CIWYt" icon-position="left">
         Button
       </VueButton>
+    </VueAside>
+    <VueAside
+      id="asideTree"
+      ref="asideTree"
+      v-model="treeShow"
+      size="30%"
+      :modal="true"
+      :show-close="false"
+    >
+      <VuePanel id="viy2Panel_6b4EcA" ref="viy2Panel_6b4EcA" title="メニュー選択" height="100%">
+        <template #header>
+          <div style="width: auto">
+            <VueButton id="viy2Button_6b4EcB" ref="viy2Button_6b4EcB" icon-position="left" @click="viy2Button_6b4EcBClick">
+              閉じる
+            </VueButton>
+          </div>
+        </template>
+        <VueTree
+          id="viy2Tree_6b4EcC"
+          ref="viy2Tree_6b4EcC"
+          :show-checkbox="true"
+          :default-expand-all="true"
+          :show-filter="true"
+          height="80%"
+          filter-placeholder="入力してください。"
+          :data="treeDs"
+          :props="viy2Tree_6b4EcCProps"
+        />
+      </VuePanel>
     </VueAside>
   </VueForm>
 </template>
