@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
 import { LocationType, YES_NO_FLAG } from '@/constants/pj-constants.js';
 import { formatPrice, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -40,7 +39,7 @@ const viy2InputBox_81yI7a = ref();
 const viy2Panel_2KN3Z = ref();
 const viy2Row_8ZlKIC = ref();
 const viy2Select_8ZlKIR = ref();
-const viy2ValueList_NS4lK = ref();
+const viy2InputBox_6eCE2g = ref();
 const viy2InputBox_1rTvxe2 = ref();
 const viy2DateTimePicker_1rTvxfG = ref();
 const viy2Flex_TGAGL = ref();
@@ -92,7 +91,6 @@ const gridRules = {
     { required: true, message: t('errors.required', [t('label.returnQuantity')]) },
   ],
 };
-const viy2ValueList_NS4lKPopoverQueryMethod = customer_query_method;
 const gridEditConfig = reactive({
   trigger: 'click',
   beforeEditMethod: (obj) => {
@@ -222,20 +220,14 @@ const viy2InputBox_NKS0MChange = (event) => {
     invoiceBtnFlag.value = true;
   }
 };
-const viy2ValueList_NS4lKSelect = (params) => {
-  queryFormData.customerId = params.id;
-};
-const viy2ValueList_NS4lKClear = () => {
-  queryFormData.customerId = '';
-};
-const viy2ValueList_NS4lKLeave = (obj) => {
-  if (obj.currentValue != obj.lastSelectedValue) {
-    queryFormData.customerId = '';
+const viy2InputBox_6eCE2gChange = (event) => {
+  resetTblResults();
+  if (event.length > 0) {
+    invoiceBtnFlag.value = false;
+  } else {
+    invoiceBtnFlag.value = true;
   }
 };
-const viy2ValueList_NS4lKPopoverColumns = computed(() => {
-  return customer_column;
-});
 const gridCellClick = (obj) => {
   rowValue.value = obj.row;
 };
@@ -548,23 +540,17 @@ const calculation = (obj, value) => {
                 label="コメント"
                 prop="comment"
               >
-                <VueValueList
-                  id="viy2ValueList_NS4lK"
-                  ref="viy2ValueList_NS4lK"
-                  :popover-component="valulistWin"
+                <VueInput
+                  id="viy2InputBox_6eCE2g"
+                  ref="viy2InputBox_6eCE2g"
                   v-model="queryFormData.comment"
-                  :use-common-popover="true"
-                  :toggle-popover-on-click="true"
-                  select-field="desc"
-                  :use-popover="true"
-                  :popover-width="500"
-                  :use-popup="false"
-                  width="250px"
-                  :popover-columns="viy2ValueList_NS4lKPopoverColumns"
-                  :popover-query-method="viy2ValueList_NS4lKPopoverQueryMethod"
-                  @select="viy2ValueList_NS4lKSelect"
-                  @clear="viy2ValueList_NS4lKClear"
-                  @leave="viy2ValueList_NS4lKLeave"
+                  :formatter="(value) => value.toUpperCase()"
+                  :parser="(value) => value.toUpperCase()"
+                  autofocus
+                  :clearable="true"
+                  :disabled="returnFlag"
+                  :style="{ width: '500px' }"
+                  @change="viy2InputBox_6eCE2gChange"
                 />
               </VueFormItem>
               <VueFormItem

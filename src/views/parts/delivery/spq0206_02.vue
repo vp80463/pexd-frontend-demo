@@ -199,7 +199,7 @@ const doClose = () => {
               :md="{ span: 8 }"
             >
               <VueFormItem
-                label="出庫番号"
+                label="出荷番号"
                 prop="duNo"
               >
                 <VueInput
@@ -327,7 +327,7 @@ const doClose = () => {
               field="pickingListNo"
               show-overflow="tooltip"
               :sortable="true"
-              title="ピッキング番号"
+              title="ピッキング順番"
               width="180px"
             />
             <VueInputColumn

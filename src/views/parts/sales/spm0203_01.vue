@@ -578,7 +578,7 @@ const onDelRow = (row) => {
                   id="viy2InputBox_Ol655"
                   ref="viy2InputBox_Ol655"
                   v-model="queryFormData.memo"
-                  :style="{ width: '200px' }"
+                  :style="{ width: '500px' }"
                 />
               </VueFormItem>
               <VueFormItem

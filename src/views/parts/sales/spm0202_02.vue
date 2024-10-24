@@ -39,6 +39,7 @@ const viy2Select_1rPSyEH = ref();
 const viy2Flex_xPuVG = ref();
 const viy2Panel_2NshZ1 = ref();
 const viy2Button_5x1pwE = ref();
+const viy2Button_7cV2uu = ref();
 const headerGrid = ref();
 const detailAside = ref();
 const detailPage = ref();
@@ -166,6 +167,9 @@ const viy2ValueList_7PNQmPopoverColumns = computed(() => {
   return customer_column;
 });
 const viy2Button_5x1pwEClick = () => {
+  onPrintBtn();
+};
+const viy2Button_7cV2uuClick = () => {
   onPrintBtn();
 };
 const headerGridCellClick = (obj) => {
@@ -415,7 +419,7 @@ const viewDetail = (row) => {
                 />
               </VueFormItem>
               <VueFormItem
-                v-show="false"
+                v-show="true"
                 label="受注先"
                 prop="customer"
               >
@@ -474,6 +478,9 @@ const viewDetail = (row) => {
             <div style="width: auto">
               <VueButton id="viy2Button_5x1pwE" ref="viy2Button_5x1pwE" icon-position="left" :disabled="printFlag" @click="viy2Button_5x1pwEClick">
                 印刷
+              </VueButton>
+              <VueButton id="viy2Button_7cV2uu" ref="viy2Button_7cV2uu" icon-position="left" :disabled="printFlag" @click="viy2Button_7cV2uuClick">
+                ファイル出力
               </VueButton>
             </div>
           </template>

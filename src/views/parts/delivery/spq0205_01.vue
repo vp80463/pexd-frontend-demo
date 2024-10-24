@@ -1,16 +1,17 @@
 <script setup>
 import { IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
-import viy2Subpage_RoWUZPage from '/src/views/parts/delivery/spq0206_02.vue';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { merge } from 'lodash-es';
+import { useRouter } from 'vue-router';
 import { useApi } from '@/composables/useApi';
 import { formatCodeInput } from '@/pj-commonutils.js';
 import { PAGE_SIZE, YES_NO_FLAG } from '@/constants/pj-constants.js';
 import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
+const router = useRouter();
 const asideParams = ref();
 const uc = useUser().userInfo;
 // 获取当前月份的第一天
@@ -43,8 +44,6 @@ const grid = ref();
 const viy2Row_soVPC = ref();
 const viy2Row_M0Opx = ref();
 const pagination = ref();
-const detailAside = ref();
-const viy2Subpage_RoWUZ = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
@@ -64,7 +63,6 @@ const rules = reactive({
     },
   ],
 });
-const showAsideWin = ref(false);
 const viy2Radio_ng8mROpts = reactive([
   { value: '受注別', label: '受注別' },
   { value: 'ロケーション別', label: 'ロケーション別' },
@@ -90,7 +88,7 @@ const gridViy2TableButtonColumn_odGQQButtons = (scope) => {
       label: '',
       type: 'text',
       icon: IconEdit,
-      click: viewDetail,
+      click: onRowDetail,
       title: 'Detail',
     },
   ];
@@ -108,7 +106,8 @@ const pointDs = pointDsApi.data;
 const gridDsApi = useApi({
   method: 'post',
   localData: [
-    { pickingListNo: 'PL241000001', customerCd: '1', customerNm: 'テスト販売店', instructionDate: '20241010', orderAmount: 10000, dateFrom: '20241001', pickingLines: 10, boOrderAmount: 200000, boRowCount: 10 },
+    { pickingListNo: 'SO241000001', customerCd: '1', customerNm: 'テスト販売店', instructionDate: '20241010', orderAmount: 10000, dateFrom: '20241001', pickingLines: 10, boOrderAmount: 200000, boRowCount: 10, orderInputType: 1, salesOrderId: '1' },
+    { pickingListNo: 'SO241000002', customerCd: '2', customerNm: 'テスト販売店2', instructionDate: '20241011', orderAmount: 20000, dateFrom: '20241002', pickingLines: 20, boOrderAmount: 400000, boRowCount: 20, orderInputType: 2, salesOrderId: '2' },
   ],
 }, {
   onSuccess: (data, params) => {
@@ -238,6 +237,11 @@ const gridBoRowCountEditRender = computed(() => {
     enabled: false,
   };
 });
+const gridOrderInputTypeEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const paginationCurrentChange = (currentPage) => {
   if (gridDs.value.totalElements === 0) {
     return;
@@ -349,13 +353,21 @@ const onPrintByPickingListNoBtn = () => {
     },
   );
 };
-const viewDetail = (row) => {
-  showAsideWin.value = true;
-  asideParams.value = {
-    deliveryOrderId: row.deliveryOrderId,
-    pickingListId: row.pickingListId,
-    pickingListNo: row.pickingListNo,
-  };
+const onRowDetail = (row) => {
+  const query = { salesOrderId: row.salesOrderId };
+  let name = 'spm0201_03';
+  let title = '受注登録';
+  if (row.orderInputType === '2') {
+    name = 'spm0201_02';
+    title = '来店客受注登録';
+  }
+  useMultiTags().openTag({
+    name, // 路由名称
+  });
+  // 详情页标签名
+  useMultiTags().getTag({ name }).meta.title = t(title);
+  // router导航到页面并传递参数
+  router.push({ name, data: query });
 };
 const closeAside = () => {
   showAsideWin.value = false;
@@ -598,6 +610,14 @@ const closeAside = () => {
               title="受注残行数"
               width="130px"
             />
+            <VueInputColumn
+              :edit-render="gridOrderInputTypeEditRender"
+              field="orderInputType"
+              :sortable="true"
+              :visible="false"
+              title="受注入力種類"
+              width="130px"
+            />
             <VueButtonColumn
               fixed="right"
               align="center"
@@ -637,21 +657,5 @@ const closeAside = () => {
         </VueCol>
       </VueRow>
     </VueFlex>
-    <VueAside
-      id="detailAside"
-      ref="detailAside"
-      v-model="showAsideWin"
-      :modal="true"
-      direction="btt"
-      size="90%"
-      :with-header="false"
-    >
-      <viy2Subpage_RoWUZPage
-        id="viy2Subpage_RoWUZ"
-        ref="viy2Subpage_RoWUZ"
-        :params="asideParams"
-        @close="closeAside"
-      />
-    </VueAside>
   </VueForm>
 </template>
