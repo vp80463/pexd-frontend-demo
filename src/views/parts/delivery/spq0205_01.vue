@@ -208,6 +208,9 @@ const gridInstructionDateEditRender = computed(() => {
 const gridOrderAmountEditRender = computed(() => {
   return {
     enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
   };
 });
 const gridDateFromEditRender = computed(() => {
@@ -230,11 +233,17 @@ const gridPickingLinesEditRender = computed(() => {
 const gridBoOrderAmountEditRender = computed(() => {
   return {
     enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
   };
 });
 const gridBoRowCountEditRender = computed(() => {
   return {
     enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
   };
 });
 const gridOrderInputTypeEditRender = computed(() => {
@@ -576,6 +585,7 @@ const closeAside = () => {
               :edit-render="gridOrderAmountEditRender"
               field="orderAmount"
               :sortable="true"
+              align="right"
               title="受注金額"
               width="130px"
             />
@@ -600,6 +610,7 @@ const closeAside = () => {
               :edit-render="gridBoOrderAmountEditRender"
               field="boOrderAmount"
               :sortable="true"
+              align="right"
               title="受注残金額"
               width="130px"
             />
@@ -607,6 +618,7 @@ const closeAside = () => {
               :edit-render="gridBoRowCountEditRender"
               field="boRowCount"
               :sortable="true"
+              align="right"
               title="受注残行数"
               width="130px"
             />
