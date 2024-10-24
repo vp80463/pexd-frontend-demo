@@ -145,7 +145,7 @@ const doClose = () => {
         :md="{ span: 16 }"
       >
         <VueText id="viy2Text_RrUe8" ref="viy2Text_RrUe8" class="aside-title-text">
-          出荷指示明細
+          出庫指示明細
         </VueText>
       </VueCol>
       <VueCol
