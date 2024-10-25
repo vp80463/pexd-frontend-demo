@@ -40,7 +40,7 @@ const viy2Table_aGgKDk = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  datafieldviy2Radio_UzePB: '1', targetDate: '', outRadius: '1', markDate: [],
+  datafieldviy2Radio_UzePB: '1', targetDate: [], outRadius: '1', markDate: [],
 });
 const viy2Radio_UzePBOpts = reactive([
   { value: '1', label: '売上データ' },
@@ -624,7 +624,7 @@ const skipToDetail = (row) => {
                       id="viy2DateTimePicker_LXukK"
                       ref="viy2DateTimePicker_LXukK"
                       v-model="queryFormData.targetDate"
-                      type="date"
+                      type="daterange"
                     />
                   </VueFormItem>
                   <VueFormItem
