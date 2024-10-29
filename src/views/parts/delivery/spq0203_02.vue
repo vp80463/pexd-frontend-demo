@@ -92,6 +92,11 @@ const gridOrderPartsNoEditRender = computed(() => {
     enabled: false,
   };
 });
+const gridOrderPartsNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const gridAllocatedPartsNoEditRender = computed(() => {
   return {
     enabled: false,
@@ -364,6 +369,13 @@ const doClose = () => {
               :sortable="true"
               title="受注部品番号"
               width="140px"
+            />
+            <VueInputColumn
+              :edit-render="gridOrderPartsNmEditRender"
+              field="orderPartsNm"
+              :sortable="true"
+              title="受注部品名称"
+              width="150px"
             />
             <VueInputColumn
               :edit-render="gridAllocatedPartsNoEditRender"
