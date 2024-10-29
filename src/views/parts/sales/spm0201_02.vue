@@ -19,6 +19,7 @@ const viy2Row_x5ZiW6 = ref();
 const viy2InputBox_2FYzgw = ref();
 const viy2Radio_x5Zg4g = ref();
 const viy2CheckBox_x5Zg5W = ref();
+const viy2InputBox_99VCHy = ref();
 const viy2ValueList_sloqw = ref();
 const viy2ValueList_slGns = ref();
 const viy2Row_3V3IZ = ref();
@@ -43,7 +44,7 @@ const viy2Subpage_92y0kP = ref();
 const formData = reactive({
 });
 const viy2Form_3gckrwData = reactive({
-  orderNo: '', orderType: '1', orderOutSign: 'N', salesShop: '', deliveryAddress: '', siwakecd: '', saimokucd: '', datafieldviy2InputBox_kxtHQ: '', point: 'YSP 傘下',
+  orderNo: '', orderType: '1', orderOutSign: 'N', datafieldviy2InputBox_kxtHQ: '', salesShop: '', deliveryAddress: '', siwakecd: '', saimokucd: '', datafieldviy2InputBox_kxtHQ: '', point: 'YSP 傘下',
 });
 const rules = reactive({
   viy2ValueList_sloqwRules: [
@@ -527,7 +528,20 @@ const closeMultiPartsAside = (row) => {
             <VueCol
               item-key="item"
               :md="{ span: 8 }"
-            />
+            >
+              <VueFormItem
+                label="お客様情報"
+                label-width="120px"
+                prop="datafieldviy2InputBox_kxtHQ"
+              >
+                <VueInput
+                  id="viy2InputBox_99VCHy"
+                  ref="viy2InputBox_99VCHy"
+                  v-model="viy2Form_3gckrwData.datafieldviy2InputBox_kxtHQ"
+                  :style="{ width: '350px' }"
+                />
+              </VueFormItem>
+            </VueCol>
             <VueCol
               item-key="item"
               :md="{ span: 8 }"

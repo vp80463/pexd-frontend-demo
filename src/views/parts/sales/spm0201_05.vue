@@ -24,6 +24,7 @@ const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_972Qhd = ref();
 const viy2Row_973olD = ref();
+const viy2Row_99XXgy = ref();
 const viy2Row_98XSoa = ref();
 const viy2CheckBox_98qsnk = ref();
 const viy2CheckBox_98ut2U = ref();
@@ -40,6 +41,11 @@ const gridRules = {
   },
   ],
   deliveryAddress: [{
+    required: true,
+    message: t('errors.required', [t('label.partsNo')]),
+  },
+  ],
+  customerInfo: [{
     required: true,
     message: t('errors.required', [t('label.partsNo')]),
   },
@@ -286,6 +292,25 @@ const gridSalesShopEditRender = computed(() => {
   };
 });
 const gridDeliveryAddressEditRender = computed(() => {
+  return {
+    enabled: true,
+    attrs: {
+      clearable: true,
+      selectField: 'code',
+      usePopover: true,
+      popoverWidth: 500,
+      popoverMinQueryLength: 3,
+      useCommonPopover: true,
+      usePopup: true,
+      popupType: 'aside',
+      asideSize: '60%',
+      useCommonPopup: true,
+      popupPagable: true,
+      closeOnClickModal: true,
+    },
+  };
+});
+const gridCustomerInfoEditRender = computed(() => {
   return {
     enabled: true,
     attrs: {
@@ -683,6 +708,40 @@ const closeMultiPartsAside = (row) => {
                     :md="{ span: 10 }"
                   >
                     <VueText id="viy2Text_973olE" ref="viy2Text_973olE" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
+                      {{ t('title.partItemRef') }}
+                    </VueText>
+                  </VueCol>
+                  <VueCol
+                    item-key="item"
+                    align="right"
+                    :inline="true"
+                    class="aside-title-button"
+                    :md="{ span: 14 }"
+                  />
+                </VueRow>
+              </template>
+            </VueValueListColumn>
+            <VueValueListColumn
+              :edit-render="gridCustomerInfoEditRender"
+              field="customerInfo"
+              :clearable="true"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="お客様情報"
+              width="145px"
+            >
+              <template #asideHeader="scope">
+                <VueRow
+                  id="viy2Row_99XXgy"
+                  ref="viy2Row_99XXgy"
+                  class="aside-title-row"
+                >
+                  <VueCol
+                    item-key="item"
+                    class="aside-title-text"
+                    :md="{ span: 10 }"
+                  >
+                    <VueText id="viy2Text_99XXgz" ref="viy2Text_99XXgz" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
                       {{ t('title.partItemRef') }}
                     </VueText>
                   </VueCol>

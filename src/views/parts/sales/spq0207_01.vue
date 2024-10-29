@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { merge } from 'lodash-es';
 import { useApi } from '@/composables/useApi';
 import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
+import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
 import { formatPartNo, formatQty, formatUpper } from '@/pj-commonutils.js';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
 const { t } = useI18n();
@@ -41,6 +42,7 @@ const viy2Panel_2UFK5 = ref();
 const viy2Button_5FbWKc = ref();
 const viy2Button_2gh3Ey = ref();
 const viy2Row_lOY8w = ref();
+const viy2ValueList_1GTRdhc = ref();
 const viy2DateTimePicker_hFmWWx = ref();
 const viy2DateTimePicker_hFmWWz = ref();
 const viy2Button_hFmWWA = ref();
@@ -56,7 +58,6 @@ const viy2ValueList_sloqw2 = ref();
 const viy2Select_1rPSyEH = ref();
 const viy2Flex_oKqG6 = ref();
 const viy2Panel_2UFK51 = ref();
-const viy2Button_7C7edE = ref();
 const viy2Button_1GMy1q = ref();
 const grid = ref();
 const viy2Row_soVPC = ref();
@@ -65,7 +66,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  dateFrom: '', dateTo: '', datafieldviy2Select_s6VWy: '', orderNo: '', orderDateFrom: '', orderDateTo: '', parts: '', pointId: '',
+  customer: '', dateFrom: '', dateTo: '', datafieldviy2Select_s6VWy: '', orderNo: '', orderDateFrom: '', orderDateTo: '', parts: '', pointId: '',
 });
 const rules = reactive({
   viy2DateTimePicker_hFmWWxRules: [
@@ -97,6 +98,7 @@ const rules = reactive({
     },
   ],
 });
+const viy2ValueList_1GTRdhcPopoverQueryMethod = customer_query_method;
 const viy2Select_s6VWyOpts = reactive([
   {
     label:
@@ -192,6 +194,20 @@ const viy2Button_2gh3EyClick = () => {
   }).catch(() => {
   });
 };
+const viy2ValueList_1GTRdhcSelect = (params) => {
+  queryFormData.customerId = params.id;
+};
+const viy2ValueList_1GTRdhcClear = () => {
+  queryFormData.customerId = '';
+};
+const viy2ValueList_1GTRdhcLeave = (obj) => {
+  if (obj.currentValue != obj.lastSelectedValue) {
+    queryFormData.customerId = '';
+  }
+};
+const viy2ValueList_1GTRdhcPopoverColumns = computed(() => {
+  return customer_column;
+});
 const viy2Button_hFmWWAClick = () => {
   queryFormData.dateTo = dayjs(queryFormData.dateFrom, 'YYYYMMDD').subtract(1, 'month').endOf('month').format('YYYYMMDD');
   queryFormData.dateFrom = dayjs(queryFormData.dateFrom, 'YYYYMMDD').subtract(1, 'month').startOf('month').format('YYYYMMDD');
@@ -208,12 +224,19 @@ const viy2Button_hFmWWwClick = () => {
   queryFormData.orderDateFrom = firstDay;
   queryFormData.orderDateTo = lastDay;
 };
-const viy2Button_7C7edEClick = () => {
-  exportBtn();
-};
 const viy2Button_1GMy1qClick = () => {
   exportBtn();
 };
+const gridConsumerEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridConsumerNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const gridCancelDateEditRender = computed(() => {
   return {
     enabled: false,
@@ -396,6 +419,29 @@ const getPartsData = async () => {
               :md="{ span: 24 }"
             >
               <VueFormItem
+                label="受注先"
+                prop="customer"
+              >
+                <VueValueList
+                  id="viy2ValueList_1GTRdhc"
+                  ref="viy2ValueList_1GTRdhc"
+                  :popover-component="valulistWin"
+                  v-model="queryFormData.customer"
+                  :use-common-popover="true"
+                  :toggle-popover-on-click="true"
+                  select-field="desc"
+                  :use-popover="true"
+                  :popover-width="500"
+                  :use-popup="false"
+                  width="250px"
+                  :popover-columns="viy2ValueList_1GTRdhcPopoverColumns"
+                  :popover-query-method="viy2ValueList_1GTRdhcPopoverQueryMethod"
+                  @select="viy2ValueList_1GTRdhcSelect"
+                  @clear="viy2ValueList_1GTRdhcClear"
+                  @leave="viy2ValueList_1GTRdhcLeave"
+                />
+              </VueFormItem>
+              <VueFormItem
                 label="キャンセル日"
                 prop="dateFrom"
                 :rules="rules.viy2DateTimePicker_hFmWWxRules"
@@ -542,9 +588,6 @@ const getPartsData = async () => {
         <VuePanel id="viy2Panel_2UFK51" ref="viy2Panel_2UFK51" title="明細情報" height="100%">
           <template #header>
             <div style="width: auto">
-              <VueButton id="viy2Button_7C7edE" ref="viy2Button_7C7edE" icon-position="left" :disabled="exportDisabledFlag" @click="viy2Button_7C7edEClick">
-                印刷
-              </VueButton>
               <VueButton id="viy2Button_1GMy1q" ref="viy2Button_1GMy1q" icon-position="left" :disabled="exportDisabledFlag" @click="viy2Button_1GMy1qClick">
                 ファイル出力
               </VueButton>
@@ -569,6 +612,24 @@ const getPartsData = async () => {
               min-width="50px"
               header-align="center"
               title="No."
+            />
+            <VueInputColumn
+              :edit-render="gridConsumerEditRender"
+              field="consumer"
+              aggregate="sum"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="受注先"
+              width="110px"
+            />
+            <VueInputColumn
+              :edit-render="gridConsumerNmEditRender"
+              field="consumerNm"
+              aggregate="sum"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="受注先名称"
+              width="150px"
             />
             <VueDateTimeColumn
               :edit-render="gridCancelDateEditRender"

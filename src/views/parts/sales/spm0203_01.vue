@@ -38,8 +38,6 @@ const viy2Row_8ZlKIC = ref();
 const viy2ValueList_2BBTFi = ref();
 const viy2Select_8ZlKIR = ref();
 const viy2InputBox_Ol655 = ref();
-const viy2InputBox_2FIYWG = ref();
-const viy2DateTimePicker_1rTvxfG = ref();
 const viy2InputBox_1rTvxdW = ref();
 const viy2Flex_OlNcU = ref();
 const viy2Panel_Oma6Z = ref();
@@ -58,7 +56,7 @@ const viy2Subpage_889MXh = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  customer: '', reason: '', memo: '', returnInvoiceNo: '', invoiceDate: '', point: 'YSP 傘下',
+  customer: '', reason: '', memo: '', point: 'YSP 傘下',
 });
 const rules = reactive({
   viy2ValueList_2BBTFiRules: [
@@ -579,36 +577,6 @@ const onDelRow = (row) => {
                   ref="viy2InputBox_Ol655"
                   v-model="queryFormData.memo"
                   :style="{ width: '500px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                v-if="false"
-                label="返品インボイス番号"
-                label-width="150px"
-                prop="returnInvoiceNo"
-              >
-                <VueInput
-                  id="viy2InputBox_2FIYWG"
-                  ref="viy2InputBox_2FIYWG"
-                  v-model="queryFormData.returnInvoiceNo"
-                  :readonly="true"
-                  class="no-border"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                v-if="false"
-                label="返品日"
-                prop="invoiceDate"
-              >
-                <VueDatePicker
-                  id="viy2DateTimePicker_1rTvxfG"
-                  ref="viy2DateTimePicker_1rTvxfG"
-                  v-model="queryFormData.invoiceDate"
-                  type="date"
-                  :readonly="true"
-                  class="no-border"
-                  :style="{ width: '130px' }"
                 />
               </VueFormItem>
               <VueFormItem

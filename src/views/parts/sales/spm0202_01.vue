@@ -40,19 +40,21 @@ const viy2Panel_2KN3Z = ref();
 const viy2Row_8ZlKIC = ref();
 const viy2Select_8ZlKIR = ref();
 const viy2InputBox_6eCE2g = ref();
-const viy2InputBox_1rTvxe2 = ref();
-const viy2DateTimePicker_1rTvxfG = ref();
 const viy2Flex_TGAGL = ref();
 const viy2Panel_2LCLT = ref();
 const grid = ref();
 const viy2Row_8Zmr8t = ref();
 const viy2Button_8Zmr8A = ref();
+const viy2Button_99hpmP = ref();
+const viy2Button_99fuv9 = ref();
+const viy2Button_99ltrx = ref();
+const viy2Button_99flU5 = ref();
 const viy2Button_1rTCnmI = ref();
 const viy2Button_1rTCnoo = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  invoiceNo: '', point: '', reason: '', comment: '', returnInvoiceNo: '', invoiceDate: '',
+  invoiceNo: '', point: '', reason: '', comment: '',
 });
 const rules = reactive({
   viy2InputBox_81yI7aRules: [
@@ -238,6 +240,26 @@ const gridCheckboxChange = (obj) => {
     confirmFlag.value = true;
   }
 };
+const gridCustomerCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridCustomerNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridConsigneeCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridConsigneeNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
 const gridPartsCdEditRender = computed(() => {
   return {
     enabled: false,
@@ -553,36 +575,6 @@ const calculation = (obj, value) => {
                   @change="viy2InputBox_6eCE2gChange"
                 />
               </VueFormItem>
-              <VueFormItem
-                v-if="false"
-                label="返品インボイス番号"
-                label-width="150px"
-                prop="returnInvoiceNo"
-              >
-                <VueInput
-                  id="viy2InputBox_1rTvxe2"
-                  ref="viy2InputBox_1rTvxe2"
-                  v-model="queryFormData.returnInvoiceNo"
-                  :readonly="true"
-                  class="no-border"
-                  :style="{ width: '200px' }"
-                />
-              </VueFormItem>
-              <VueFormItem
-                v-if="false"
-                label="返品日"
-                prop="invoiceDate"
-              >
-                <VueDatePicker
-                  id="viy2DateTimePicker_1rTvxfG"
-                  ref="viy2DateTimePicker_1rTvxfG"
-                  v-model="queryFormData.invoiceDate"
-                  type="date"
-                  :readonly="true"
-                  class="no-border"
-                  :style="{ width: '130px' }"
-                />
-              </VueFormItem>
             </VueCol>
           </VueRow>
         </VuePanel>
@@ -622,6 +614,50 @@ const calculation = (obj, value) => {
               type="checkbox"
             />
             <VueInputColumn
+              :edit-render="gridCustomerCdEditRender"
+              field="customerCd"
+              :sortable="true"
+              title="受注先"
+              width="100px"
+            >
+              <template #append="scope">
+                <VueButton id="viy2Button_8Zmr8A" ref="viy2Button_8Zmr8A" icon-position="left" class="icon-button-width" :icon="IconMoreFilled" />
+              </template>
+            </VueInputColumn>
+            <VueInputColumn
+              :edit-render="gridCustomerNmEditRender"
+              field="customerNm"
+              :sortable="true"
+              title="受注先名称"
+              width="150px"
+            >
+              <template #append="scope">
+                <VueButton id="viy2Button_99hpmP" ref="viy2Button_99hpmP" icon-position="left" class="icon-button-width" :icon="IconMoreFilled" />
+              </template>
+            </VueInputColumn>
+            <VueInputColumn
+              :edit-render="gridConsigneeCdEditRender"
+              field="consigneeCd"
+              :sortable="true"
+              title="出荷先"
+              width="100px"
+            >
+              <template #append="scope">
+                <VueButton id="viy2Button_99fuv9" ref="viy2Button_99fuv9" icon-position="left" class="icon-button-width" :icon="IconMoreFilled" />
+              </template>
+            </VueInputColumn>
+            <VueInputColumn
+              :edit-render="gridConsigneeNmEditRender"
+              field="consigneeNm"
+              :sortable="true"
+              title="出荷先名称"
+              width="150px"
+            >
+              <template #append="scope">
+                <VueButton id="viy2Button_99ltrx" ref="viy2Button_99ltrx" icon-position="left" class="icon-button-width" :icon="IconMoreFilled" />
+              </template>
+            </VueInputColumn>
+            <VueInputColumn
               :edit-render="gridPartsCdEditRender"
               field="partsCd"
               :sortable="true"
@@ -629,7 +665,7 @@ const calculation = (obj, value) => {
               width="150px"
             >
               <template #append="scope">
-                <VueButton id="viy2Button_8Zmr8A" ref="viy2Button_8Zmr8A" icon-position="left" class="icon-button-width" :icon="IconMoreFilled" />
+                <VueButton id="viy2Button_99flU5" ref="viy2Button_99flU5" icon-position="left" class="icon-button-width" :icon="IconMoreFilled" />
               </template>
             </VueInputColumn>
             <VueInputColumn

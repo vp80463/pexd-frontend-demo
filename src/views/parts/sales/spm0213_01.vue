@@ -368,7 +368,7 @@ const closeConsumerAside = () => {
                 クリア
               </VueButton>
               <VueButton id="viy2Button_7Lhg02" ref="viy2Button_7Lhg02" icon-position="left" type="info" @click="viy2Button_7Lhg02Click">
-                BO解消
+                BOリリース
               </VueButton>
             </div>
           </template>
