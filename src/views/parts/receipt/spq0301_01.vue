@@ -794,7 +794,7 @@ const closeSpq030102 = () => {
               show-overflow="tooltip"
               :sortable="true"
               :resizable="true"
-              title="インボイス番号"
+              title="納品書番号"
               width="160px"
             />
             <VueNumberColumn
