@@ -585,7 +585,7 @@ const getPartsData = async (row) => {
               :md="{ span: 24 }"
             >
               <VueFormItem
-                label="発注タイプ"
+                label="発注種類"
                 prop="type"
                 :rules="rules.viy2Select_qMAgwRules"
               >
