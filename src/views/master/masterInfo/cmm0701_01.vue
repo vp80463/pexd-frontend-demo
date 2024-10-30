@@ -67,6 +67,14 @@ const queryFormData = reactive({
 const viy2Form_MFuoeData = reactive({
   orgCd: '01234', orgAbbr: '特金製造', attribute: '販売店', orgRequestCd: '01234', regularRank: '05', stopFlag: [], orgNm: '特金製造株式会社', orgNm: '特金製造', proDpCd: '5001', resscutFlag: '', shipflag: 'する', status: '有効',
 });
+const asideGridRules = {
+  consigneeCd: [
+    { required: true, message: 'name required' },
+  ],
+  consigneeNm: [
+    { required: true, message: 'name required' },
+  ],
+};
 const aside001002 = ref(false);
 const viy2Radio_UbcrSOpts = reactive([
   { value: '販売店', label: '販売店' },
@@ -403,12 +411,12 @@ const viy2Button_MHEphClick = () => {
 };
 const asideGridConsigneeCdEditRender = computed(() => {
   return {
-    enabled: false,
+    enabled: true,
   };
 });
 const asideGridConsigneeNmEditRender = computed(() => {
   return {
-    enabled: false,
+    enabled: true,
   };
 });
 const asideGridTelEditRender = computed(() => {
@@ -1033,7 +1041,7 @@ const isNewInput = (value) => {
             </VueRow>
           </div>
         </template>
-        <VueTable id="asideGrid" ref="asideGrid" height="auto" :data="asideGridDs" :edit-config="asideGridEditConfig" :mouse-config="asideGridMouseConfig">
+        <VueTable id="asideGrid" ref="asideGrid" height="auto" :data="asideGridDs" :edit-rules="asideGridRules" :edit-config="asideGridEditConfig" :mouse-config="asideGridMouseConfig">
           <VueIndexColumn
             align="center"
             width="50px"

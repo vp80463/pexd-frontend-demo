@@ -28,6 +28,7 @@ const viy2Button_5SkH4A = ref();
 const resetBtn = ref();
 const viy2Row_4Hp8hY = ref();
 const viy2InputBox_2Uqfv = ref();
+const viy2InputBox_92mNuM = ref();
 const viy2Flex_LUasz = ref();
 const viy2Panel_GvVUq = ref();
 const viy2Button_Ar1oV = ref();
@@ -49,7 +50,7 @@ const asideGrid = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  datafieldviy2InputBox_2Uqfv: '',
+  datafieldviy2InputBox_2Uqfv: '', datafieldviy2InputBox_2Uqfv: '',
 });
 const viy2Form_SRIEFData = reactive({
   orgCd: '01234', orgNm: 'グループA',
@@ -69,7 +70,7 @@ const rules = reactive({
   ],
 });
 const asideGridRules = {
-  orgCd: [
+  org1: [
     { required: true, message: 'name required' },
   ],
 };
@@ -328,14 +329,15 @@ const viy2Button_Au5XfClick = () => {
     aside001002.value = false;
   });
 };
-const asideGridOrgCdEditRender = computed(() => {
+const asideGridOrg1EditRender = computed(() => {
   return {
     enabled: true,
+    options: gridDs.value,
   };
 });
 const asideGridOrgNmEditRender = computed(() => {
   return {
-    enabled: true,
+    enabled: false,
   };
 });
 // 条件改变，清空明细
@@ -501,6 +503,17 @@ const isNewInput = (value) => {
                 <VueInput
                   id="viy2InputBox_2Uqfv"
                   ref="viy2InputBox_2Uqfv"
+                  v-model="queryFormData.datafieldviy2InputBox_2Uqfv"
+                  :style="{ width: '200px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="売上グループ名称"
+                prop="datafieldviy2InputBox_2Uqfv"
+              >
+                <VueInput
+                  id="viy2InputBox_92mNuM"
+                  ref="viy2InputBox_92mNuM"
                   v-model="queryFormData.datafieldviy2InputBox_2Uqfv"
                   :style="{ width: '200px' }"
                 />
@@ -682,12 +695,11 @@ const isNewInput = (value) => {
             min-width="50px"
             header-align="center"
           />
-          <VueInputColumn
-            :edit-render="asideGridOrgCdEditRender"
-            field="orgCd"
+          <VueSelectColumn
+            :edit-render="asideGridOrg1EditRender"
+            field="org1"
+            width="200px"
             title="販売店コード"
-            width="150px"
-            header-align="center"
           />
           <VueInputColumn
             :edit-render="asideGridOrgNmEditRender"

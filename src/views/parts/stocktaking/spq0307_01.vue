@@ -34,6 +34,7 @@ const inputSign = ref();
 const showDifferentOnly = ref();
 const viy2Flex_KLBCX = ref();
 const viy2Panel_IGxcT = ref();
+const viy2Button_in3lB = ref();
 const viy2Button_5heur2 = ref();
 const grid = ref();
 const viy2Row_soVPC = ref();
@@ -570,6 +571,9 @@ const onLeavePartsCode = async (code) => {
         <VuePanel id="viy2Panel_IGxcT" ref="viy2Panel_IGxcT" title="明細情報" height="100%">
           <template #header>
             <div style="width: auto">
+              <VueButton id="viy2Button_in3lB" ref="viy2Button_in3lB" icon-position="left">
+                ファイル出力
+              </VueButton>
               <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" icon-position="left" :disabled="printFlg" @click="viy2Button_5heur2Click">
                 印刷
               </VueButton>
@@ -620,7 +624,6 @@ const onLeavePartsCode = async (code) => {
             <VueInputColumn
               :edit-render="gridPartsNmEditRender"
               field="partsNm"
-              :aggregate-label="t('label.total')"
               footer-align="center"
               :sortable="true"
               title="部品名称"
@@ -636,6 +639,7 @@ const onLeavePartsCode = async (code) => {
               field="location"
               show-overflow="tooltip"
               :sortable="true"
+              aggregate-label="合計"
               title="ロケーション"
               width="150px"
               header-align="center"

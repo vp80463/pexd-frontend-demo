@@ -32,6 +32,9 @@ const viy2Cascader_14yp9qProps = reactive({
 const gridEditConfig = reactive({
   trigger: 'click',
 });
+const gridCheckboxConfig = reactive({
+  trigger: 'cell',
+});
 const gridMouseConfig = reactive({
   extension: true,
 });
@@ -156,11 +159,6 @@ const gridMiddleGroupNmEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridFlagEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 onMounted(() => {
 });
 watch(() => conditionFormData, (newVal, oldVal) => {
@@ -241,7 +239,7 @@ const resetTblResults = () => {
         grow="1"
       >
         <VuePanel id="viy2Panel_g8SzT" ref="viy2Panel_g8SzT" title="明細情報" height="100%">
-          <VueTable id="grid" ref="grid" header-align="center" height="auto" :data="gridDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" header-align="center" height="auto" :data="gridDs" :edit-config="gridEditConfig" :checkbox-config="gridCheckboxConfig" :mouse-config="gridMouseConfig">
             <VueRow
               id="viy2Row_18ZEg"
               ref="viy2Row_18ZEg"
@@ -287,13 +285,12 @@ const resetTblResults = () => {
               title="中区分名"
               width="200px"
             />
-            <VueInputColumn
-              :edit-render="gridFlagEditRender"
-              field="flag"
-              show-overflow="tooltip"
-              :sortable="true"
+            <VueSelectionColumn
+              align="center"
+              header-align="center"
               title="特殊単価適用除外サイン"
-              width="230px"
+              width="200px"
+              type="checkbox"
             />
           </VueTable>
         </VuePanel>

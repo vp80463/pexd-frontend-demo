@@ -26,6 +26,7 @@ const viy2InputBox_4y5p9E = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_IXTRe = ref();
 const viy2Row_IZL02 = ref();
+const viy2Button_gfQPv = ref();
 const viy2Button_IZNZa = ref();
 const grid = ref();
 const viy2Row_soVPC = ref();
@@ -220,6 +221,12 @@ const resetBtnClick = () => {
   }).catch(() => {
   });
 };
+const viy2Button_gfQPvClick = () => {
+  const row = {};
+  grid.value.insertAt(row, -1).then((newRow) => {
+    grid.value.setCurrentRow(newRow.row);
+  });
+};
 const viy2Button_IZNZaClick = () => {
   asideParams.value = {
     facilityId: uc.defaultPointId,
@@ -233,7 +240,7 @@ const gridOrgEditRender = computed(() => {
 });
 const gridProductCdEditRender = computed(() => {
   return {
-    enabled: false,
+    enabled: true,
   };
 });
 const gridProductNmEditRender = computed(() => {
@@ -494,7 +501,10 @@ const closeConsumerAside = () => {
                   :inline="true"
                   :md="{ span: 24 }"
                 >
-                  <VueButton id="viy2Button_IZNZa" ref="viy2Button_IZNZa" icon-position="left" @click="viy2Button_IZNZaClick">
+                  <VueButton id="viy2Button_gfQPv" ref="viy2Button_gfQPv" icon-position="left" @click="viy2Button_gfQPvClick">
+                    行追加
+                  </VueButton>
+                  <VueButton v-if="false" id="viy2Button_IZNZa" ref="viy2Button_IZNZa" icon-position="left" @click="viy2Button_IZNZaClick">
                     部品選択
                   </VueButton>
                 </VueCol>

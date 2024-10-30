@@ -41,6 +41,7 @@ const viy2Flex_H1Ncg = ref();
 const viy2Row_HaXU4 = ref();
 const viy2Form_HbkDw = ref();
 const viy2Panel_6PeN3i = ref();
+const viy2Button_BGiGF = ref();
 const viy2Row_Hl07P = ref();
 const viy2Row_6Z5sIw = ref();
 const viy2Button_6ZrFZO = ref();
@@ -60,11 +61,16 @@ const grid = ref();
 const viy2Row_H2TUO = ref();
 const commonMenuAside = ref();
 const viy2Button_CIWYt = ref();
+const asideTree = ref();
+const viy2Panel_ChAgH = ref();
+const viy2Button_ChMba = ref();
+const viy2Tree_BIoYt = ref();
 const formData = reactive({
 });
 const viy2Form_HbkDwData = reactive({
 });
 const commonMenuShowFlag = ref(false);
+const treeShow = ref(false);
 const gridEditConfig = reactive({
   trigger: 'click',
 });
@@ -164,6 +170,56 @@ const gridDsApi = useApi({
   ],
 });
 const gridDs = gridDsApi.data;
+const treeDsApi = useApi({
+  method: 'post',
+  localData: [
+    {
+      id: 'sales01',
+      label: '受注',
+      children: [
+        {
+          id: 'spm0201_03',
+          label: '受注登録',
+        },
+        {
+          id: 'spm0201_02',
+          label: '来店客受注登録',
+        },
+        {
+          id: 'spm0201_05',
+          label: '複数受注登録',
+        },
+        {
+          id: 'spm0201_01',
+          label: '受注一覧',
+        },
+        {
+          id: 'spq0202_01',
+          label: '受注照会（部品別）',
+        },
+        {
+          id: 'spq0207_01',
+          label: '受注キャンセル履歴',
+        },
+      ],
+    },
+    {
+      id: 'sales02',
+      label: '出荷',
+      children: [
+        {
+          id: '2001',
+          label: '受注登録',
+        },
+        {
+          id: '2002',
+          label: '来店客受注登録',
+        },
+      ],
+    },
+  ],
+});
+const treeDs = treeDsApi.data;
 const homePageDataSrcApi = useApi({
   url: '/common/homePage/homePageData.json',
   method: 'post',
@@ -203,6 +259,10 @@ const homePageDataSrcApi = useApi({
   manual: true,
 });
 const homePageDataSrc = homePageDataSrcApi.data;
+const viy2Button_BGiGFClick = () => {
+  treeShow.value = true;
+}
+;
 const viy2Button_6ZrFZOClick = () => {
   skipTo1();
 };
@@ -255,6 +315,16 @@ const gridMessageEditRender = computed(() => {
   return {
     enabled: false,
   };
+});
+const viy2Button_ChMbaClick = () => {
+// do some thing
+  treeShow.value = true;
+};
+const viy2Tree_BIoYtProps = reactive({
+  value: 'id',
+  label: 'label',
+  children: 'children',
+  disabled: 'disabled',
 });
 const onEditWin = (selectedRow) => {
   const data = {
@@ -498,6 +568,13 @@ const skipTo9 = (row) => {
         :model="viy2Form_HbkDwData"
       >
         <VuePanel id="viy2Panel_6PeN3i" ref="viy2Panel_6PeN3i" title="マイメニュー">
+          <template #header>
+            <div style="width: auto">
+              <VueButton id="viy2Button_BGiGF" ref="viy2Button_BGiGF" icon-position="left" size="large" @click="viy2Button_BGiGFClick">
+                常用画面設定
+              </VueButton>
+            </div>
+          </template>
           <VueRow
             id="viy2Row_Hl07P"
             ref="viy2Row_Hl07P"
@@ -711,6 +788,34 @@ const skipTo9 = (row) => {
       <VueButton id="viy2Button_CIWYt" ref="viy2Button_CIWYt" icon-position="left">
         Button
       </VueButton>
+    </VueAside>
+    <VueAside
+      id="asideTree"
+      ref="asideTree"
+      v-model="treeShow"
+      :modal="true"
+      size="30%"
+    >
+      <VuePanel id="viy2Panel_ChAgH" ref="viy2Panel_ChAgH" title="メニュー選択" height="100%">
+        <template #header>
+          <div style="width: auto">
+            <VueButton id="viy2Button_ChMba" ref="viy2Button_ChMba" icon-position="left" @click="viy2Button_ChMbaClick">
+              閉じる
+            </VueButton>
+          </div>
+        </template>
+        <VueTree
+          id="viy2Tree_BIoYt"
+          ref="viy2Tree_BIoYt"
+          :show-checkbox="true"
+          :default-expand-all="true"
+          :show-filter="true"
+          height="80%"
+          filter-placeholder="入力してください。"
+          :data="treeDs"
+          :props="viy2Tree_BIoYtProps"
+        />
+      </VuePanel>
     </VueAside>
   </VueForm>
 </template>

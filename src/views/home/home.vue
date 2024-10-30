@@ -63,6 +63,7 @@ const commonMenuAside = ref();
 const viy2Button_CIWYt = ref();
 const asideTree = ref();
 const viy2Panel_6b4EcA = ref();
+const viy2Button_CnACk = ref();
 const viy2Button_6b4EcB = ref();
 const viy2Tree_6b4EcC = ref();
 const formData = reactive({
@@ -95,70 +96,70 @@ const gridDsApi = useApi({
       item: '原価未定',
       qty: '3',
       flag: '0',
-      message: '原価未定の部品を含む受注があります。',
+      message: '原価が未定の受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '価格未定',
       qty: '4',
       flag: '0',
-      message: '価格未定の部品を含む受注があります。',
+      message: '価格が未定の受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '粗利不足',
       qty: '6',
       flag: '0',
-      message: '粗利不足の受注があります。',
+      message: '粗利がパラメータの下限を超える受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '粗利オーバー',
       qty: '1',
       flag: '0',
-      message: '粗利オーバーの受注があります。',
+      message: '粗利がパラメータの上限を超える受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '標準単価オーバー',
       qty: '2',
       flag: '0',
-      message: '標準単価オーバーの受注があります。',
+      message: '仕切価格が標準小売単価より大きい受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '受注数チェック',
       qty: '3',
       flag: '0',
-      message: '受注数が多い受注があります。',
+      message: 'パラメータの上限値を超える受注数の受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '受注金額チェック',
       qty: '5',
       flag: '0',
-      message: '受注金額が大きい受注があります。',
+      message: 'パラメータの上限を超える受注金額の受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '受注キャンセル',
       qty: '4',
       flag: '2',
-      message: 'キャンセルされた受注があります。',
+      message: 'キャンセルした受注があれば警告する。',
     },
     {
       date: '20240101',
       item: '発注キャンセル',
       qty: '1',
       flag: '3',
-      message: 'キャンセルされた発注があります。',
+      message: '発注キャンセルがあれば警告する。',
     },
     {
       date: '20240101',
       item: 'まとめ出荷',
       qty: '1',
       flag: '0',
-      message: '出荷されていないまとめ出荷の受注があります。',
+      message: 'まとめ出荷がパラメータで設定されたLT以上出荷されていなければ警告する。',
     },
     {
       date: '20240102',
@@ -331,6 +332,10 @@ const gridMessageEditRender = computed(() => {
     enabled: false,
   };
 });
+const viy2Button_CnACkClick = () => {
+// do some thing
+  treeShow.value = false;
+};
 const viy2Button_6b4EcBClick = () => {
 // do some thing
   treeShow.value = false;
@@ -833,6 +838,9 @@ const skipTo9 = (row) => {
       <VuePanel id="viy2Panel_6b4EcA" ref="viy2Panel_6b4EcA" title="メニュー選択" height="100%">
         <template #header>
           <div style="width: auto">
+            <VueButton id="viy2Button_CnACk" ref="viy2Button_CnACk" icon-position="left" @click="viy2Button_CnACkClick">
+              セット
+            </VueButton>
             <VueButton id="viy2Button_6b4EcB" ref="viy2Button_6b4EcB" icon-position="left" @click="viy2Button_6b4EcBClick">
               閉じる
             </VueButton>

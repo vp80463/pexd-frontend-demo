@@ -206,11 +206,6 @@ const gridSamllGroupNmEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridFlagEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 onMounted(() => {
 });
 watch(() => conditionFormData, (newVal, oldVal) => {
@@ -354,14 +349,12 @@ const resetTblResults = () => {
               width="200px"
               header-align="center"
             />
-            <VueInputColumn
-              :edit-render="gridFlagEditRender"
-              field="flag"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="特殊単価適用除外サイン"
-              width="230px"
+            <VueSelectionColumn
+              align="center"
               header-align="center"
+              title="特殊単価適用除外サイン"
+              width="200px"
+              type="checkbox"
             />
           </VueTable>
         </VuePanel>

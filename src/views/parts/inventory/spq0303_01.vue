@@ -31,11 +31,12 @@ const viy2Row_lOY8w = ref();
 const viy2Select_1rPSyEH = ref();
 const Parts = ref();
 const viy2Row_1Ms8Aa = ref();
-const viy2ValueList_IxhGR = ref();
+const viy2Select_Tf6ne = ref();
 const viy2Cascader_qHUEk = ref();
 const viy2Cascader_3OfGH = ref();
 const viy2Flex_KcTfE = ref();
 const viy2Panel_gTNDt = ref();
+const viy2Button_ggxbK = ref();
 const Export = ref();
 const grid = ref();
 const viy2Row_soVPC = ref();
@@ -46,7 +47,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  pointId: '', parts: '', partsTest: '', productCategory: [], Groupcd: [],
+  pointId: '', parts: '', partsTest: [], productCategory: [], Groupcd: [],
 });
 const rules = reactive({
   viy2Select_1rPSyEHRules: [
@@ -59,6 +60,44 @@ const rules = reactive({
 const PartsPopoverQueryMethod = parts_query_method;
 const PartsPopupColumns = ref(parts_pop_column);
 const PartsPopupQueryMethod = parts_pop_query_method;
+const viy2Select_Tf6neOpts = reactive([
+  {
+    label:
+'90-79V-402 電子ディスク001',
+    value:
+'90-79V-402 電子ディスク001',
+  },
+  {
+    label:
+'4D-1F7-100 電子ディスク002',
+    value:
+'4D-1F7-100 電子ディスク002',
+  },
+  {
+    label:
+'24-M18-600 電子ディスク003',
+    value:
+'24-M18-600 電子ディスク003',
+  },
+  {
+    label:
+'LC-RTT-040 電子ディスク004',
+    value:
+'LC-RTT-040 電子ディスク004',
+  },
+  {
+    label:
+'e',
+    value:
+'e',
+  },
+  {
+    label:
+'f',
+    value:
+'f',
+  },
+]);
 const viy2Cascader_qHUEkProps = reactive({
   checkStrictly: true,
   expandTrigger: 'click',
@@ -361,6 +400,12 @@ const PartsPopupConditions = computed(() => {
     { compType: 'VueCascader', field: 'prodCtg', label: t('label.productCategory'), options: largeGroupDs.value, clearable: true, props: { checkStrictly: true }, style: { width: '150px' } },
   ];
 });
+const viy2Button_ggxbKClick = () => {
+  const row = {};
+  grid.value.insertAt(row, -1).then((newRow) => {
+    grid.value.setCurrentRow(newRow.row);
+  });
+};
 const ExportClick = () => {
   onExport();
 };
@@ -381,17 +426,20 @@ const gridPartsNmEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridLargeGroupEditRender = computed(() => {
+const gridProductnewCdEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridMiddleGroupEditRender = computed(() => {
+const gridFinalNewProductCdEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridSmallGroupEditRender = computed(() => {
+const gridSupersedingPartsNewFormatter = (row, columnConfig, cellValue) => {
+  return formatPartNo(row.cellValue);
+};
+const gridSupersedingPartsNewEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -541,6 +589,21 @@ const gridAverageCostEditRender = computed(() => {
     attrs: {
       textAlign: 'right',
     },
+  };
+});
+const gridLargeGroupEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridMiddleGroupEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridSmallGroupEditRender = computed(() => {
+  return {
+    enabled: false,
   };
 });
 const paginationCurrentChange = () => {
@@ -756,13 +819,14 @@ const onLeavePartsCode = async (code) => {
                 label="部品"
                 prop="partsTest"
               >
-                <VueValueList
-                  id="viy2ValueList_IxhGR"
-                  ref="viy2ValueList_IxhGR"
+                <VueSelect
+                  id="viy2Select_Tf6ne"
+                  ref="viy2Select_Tf6ne"
                   v-model="queryFormData.partsTest"
-                  :use-popover="true"
-                  :use-popup="true"
-                  width="200px"
+                  :style="{ width: '300px' }"
+                  :filterable="true"
+                  :multiple="true"
+                  :options="viy2Select_Tf6neOpts"
                 />
               </VueFormItem>
               <VueFormItem
@@ -806,6 +870,9 @@ const onLeavePartsCode = async (code) => {
         <VuePanel id="viy2Panel_gTNDt" ref="viy2Panel_gTNDt" title="明細情報" height="100%">
           <template #header>
             <div style="width: auto">
+              <VueButton id="viy2Button_ggxbK" ref="viy2Button_ggxbK" icon-position="left" @click="viy2Button_ggxbKClick">
+                行追加
+              </VueButton>
               <VueButton id="Export" ref="Export" icon-position="left" :disabled="exportFlg" @click="ExportClick">
                 ファイル出力
               </VueButton>
@@ -858,30 +925,34 @@ const onLeavePartsCode = async (code) => {
               </template>
             </VueInputColumn>
             <VueInputColumn
-              :edit-render="gridLargeGroupEditRender"
-              field="largeGroup"
+              :edit-render="gridProductnewCdEditRender"
+              field="productnewCd"
               show-overflow="tooltip"
               :sortable="true"
-              title="商品大区分"
+              title="正代替部品"
               width="130px"
             />
             <VueInputColumn
-              :edit-render="gridMiddleGroupEditRender"
-              field="middleGroup"
+              :edit-render="gridFinalNewProductCdEditRender"
+              field="finalNewProductCd"
               show-overflow="tooltip"
               :sortable="true"
-              title="商品中区分"
+              title="最終商品コード"
               width="130px"
             />
             <VueInputColumn
-              :edit-render="gridSmallGroupEditRender"
-              field="smallGroup"
+              :formatter="gridSupersedingPartsNewFormatter"
+              :edit-render="gridSupersedingPartsNewEditRender"
+              field="supersedingPartsNew"
               show-overflow="tooltip"
               :sortable="true"
-              title="商品小区分"
-              width="130px"
+              aggregate-label="合計"
+              footer-align="center"
+              title="代替部品(新品)"
+              width="175px"
             />
             <VueInputColumn
+              v-if="false"
               :formatter="gridSupersedingPartsFormatter"
               :edit-render="gridSupersedingPartsEditRender"
               field="supersedingParts"
@@ -893,6 +964,7 @@ const onLeavePartsCode = async (code) => {
               width="175px"
             />
             <VueNumberColumn
+              v-if="false"
               :formatter="gridOnHandQtyFormatter"
               :edit-render="gridOnHandQtyEditRender"
               field="onHandQty"
@@ -1057,6 +1129,30 @@ const onLeavePartsCode = async (code) => {
               title="平均原価"
               width="130px"
               header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridLargeGroupEditRender"
+              field="largeGroup"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="商品大区分"
+              width="130px"
+            />
+            <VueInputColumn
+              :edit-render="gridMiddleGroupEditRender"
+              field="middleGroup"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="商品中区分"
+              width="130px"
+            />
+            <VueInputColumn
+              :edit-render="gridSmallGroupEditRender"
+              field="smallGroup"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="商品小区分"
+              width="130px"
             />
             <VueButtonColumn
               align="center"

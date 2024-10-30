@@ -1,5 +1,5 @@
 <script setup>
-import { useLockScreen } from 'viy-ui';
+import { IconDelete, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
@@ -23,6 +23,7 @@ const viy2InputBox_4y5p9E = ref();
 const viy2Cascader_4o8AI = ref();
 const viy2Flex_pVGDy = ref();
 const viy2Panel_GEM7N = ref();
+const viy2Button_ObnH2 = ref();
 const viy2Button_5FbWKc = ref();
 const grid = ref();
 const viy2Row_soVPC = ref();
@@ -70,6 +71,17 @@ const gridEditConfig = reactive({
 const gridMouseConfig = reactive({
   extension: true,
 });
+const gridViy2TableButtonColumn_ObDVKButtons = (scope) => {
+  return [
+    {
+      label: '',
+      type: 'text',
+      icon: IconDelete,
+      click: onDelRoleRow,
+      title: 'Delete',
+    },
+  ];
+};
 const mstCodeDsApi = useApi({
   url: '/common/helper/getMstCodeInfos.json',
   method: 'post',
@@ -221,6 +233,12 @@ const resetBtnClick = () => {
   }).catch(() => {
   });
 };
+const viy2Button_ObnH2Click = () => {
+  const row = {};
+  grid.value.insertAt(row, -1).then((newRow) => {
+    grid.value.setCurrentRow(newRow.row);
+  });
+};
 const viy2Button_5FbWKcClick = () => {
   queryForm.value.validate((valid) => {
     if (valid) {
@@ -292,6 +310,20 @@ const getTotalRate = () => {
     return VueUtil.formatNumber(Number(totalInUseQty / totalTotalQty) * 100, { digits: 2 });
   }
   return VueUtil.formatNumber(Number(0), { digits: 2 });
+};
+const onDelRoleRow = (row) => {
+  if (row.largeGroupCd != null && typeof (row.largeGroupCd) != 'undefined') {
+    VueMessageBox.confirm(t('削除を確認しますか？'), t('title.warn'), {
+      type: 'warning',
+    }).then(() => {
+      grid.value.remove(row);
+      // deleteGridDsApi.runAsync();
+      // resetCondition();
+    }).catch(() => {
+    });
+  } else {
+    grid.value.remove(row);
+  }
 };
 </script>
 
@@ -383,6 +415,9 @@ const getTotalRate = () => {
         <VuePanel id="viy2Panel_GEM7N" ref="viy2Panel_GEM7N" title="明細情報" height="100%">
           <template #header>
             <div style="width: auto">
+              <VueButton id="viy2Button_ObnH2" ref="viy2Button_ObnH2" icon-position="left" @click="viy2Button_ObnH2Click">
+                行追加
+              </VueButton>
               <VueButton id="viy2Button_5FbWKc" ref="viy2Button_5FbWKc" icon-position="left" type="info" @click="viy2Button_5FbWKcClick">
                 保存
               </VueButton>
@@ -430,7 +465,7 @@ const getTotalRate = () => {
               field="largeGroupCd"
               show-overflow="tooltip"
               :sortable="true"
-              title="大区分"
+              title="大区分コード"
               width="130px"
               header-align="center"
             />
@@ -451,6 +486,10 @@ const getTotalRate = () => {
               width="150px"
               title="特掛ランク"
               header-align="center"
+            />
+            <VueButtonColumn
+              width="40px"
+              :buttons="gridViy2TableButtonColumn_ObDVKButtons"
             />
           </VueTable>
         </VuePanel>
