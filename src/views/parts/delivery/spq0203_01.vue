@@ -48,6 +48,7 @@ const viy2DateTimePicker_hHcWwO = ref();
 const viy2Button_hHcWwP = ref();
 const viy2Button_hHcWwQ = ref();
 const viy2ValueList_4PhPy0 = ref();
+const viy2InputBox_2YK6gQ = ref();
 const viy2InputBox_1GTRdfl = ref();
 const viy2Select_oYzPK = ref();
 const viy2Flex_AEGgC = ref();
@@ -62,7 +63,7 @@ const detailPage = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  dateFrom: '', dateTo: '', customer: '', orderNo: '', point: '',
+  dateFrom: '', dateTo: '', customer: '', invoiceNo: '', orderNo: '', point: '',
 });
 const rules = reactive({
   viy2DateTimePicker_hHcWwMRules: [
@@ -429,6 +430,20 @@ const closeSpq020302 = () => {
                   @select="viy2ValueList_4PhPy0Select"
                   @clear="viy2ValueList_4PhPy0Clear"
                   @leave="viy2ValueList_4PhPy0Leave"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="納品書番号"
+                prop="invoiceNo"
+              >
+                <VueInput
+                  id="viy2InputBox_2YK6gQ"
+                  ref="viy2InputBox_2YK6gQ"
+                  v-model="queryFormData.invoiceNo"
+                  :formatter="(value) => value.toUpperCase()"
+                  :parser="(value) => value.toUpperCase()"
+                  :clearable="true"
+                  :style="{ width: '150px' }"
                 />
               </VueFormItem>
               <VueFormItem
