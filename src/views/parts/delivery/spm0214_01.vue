@@ -22,6 +22,7 @@ const viy2ValueList_sloqw = ref();
 const viy2Row_3V3IZ = ref();
 const viy2InputBox_kxtHQ = ref();
 const viy2InputBox_CYeZS = ref();
+const viy2InputBox_9aVkgo = ref();
 const viy2InputBox_Aevce = ref();
 const viy2Select_x5ZiXG = ref();
 const viy2Flex_lymUW = ref();
@@ -39,7 +40,7 @@ const viy2Subpage_92y0kP = ref();
 const formData = reactive({
 });
 const viy2Form_3gckrwData = reactive({
-  orderNo: '', orderType: '直送売上', datafieldviy2Radio_ksdEB: 'する', salesShop: '', siwakecd: '', saimokucd: '', datafieldviy2InputBox_kxtHQ: '', point: 'YSP 傘下',
+  orderNo: '', orderType: '直送売上', datafieldviy2Radio_ksdEB: 'する', salesShop: '', siwakecd: '', saimokucd: '', customerInfo: '', datafieldviy2InputBox_kxtHQ: '', point: 'YSP 傘下',
 });
 const rules = reactive({
   viy2ValueList_sloqwRules: [
@@ -560,10 +561,23 @@ const closeMultiPartsAside = (row) => {
                 <VueCol
                   item-key="item"
                   :md="{ span: 8 }"
-                />
+                >
+                  <VueFormItem
+                    label="お客様情報"
+                    label-width="120px"
+                    prop="customerInfo"
+                  >
+                    <VueInput
+                      id="viy2InputBox_9aVkgo"
+                      ref="viy2InputBox_9aVkgo"
+                      v-model="viy2Form_3gckrwData.customerInfo"
+                      :style="{ width: '350px' }"
+                    />
+                  </VueFormItem>
+                </VueCol>
                 <VueCol
                   item-key="item"
-                  :md="{ span: 8 }"
+                  :md="{ span: 16 }"
                 >
                   <VueFormItem
                     label="コメント"
@@ -574,7 +588,7 @@ const closeMultiPartsAside = (row) => {
                       id="viy2InputBox_Aevce"
                       ref="viy2InputBox_Aevce"
                       v-model="viy2Form_3gckrwData.datafieldviy2InputBox_kxtHQ"
-                      :style="{ width: '350px' }"
+                      :style="{ width: '500px' }"
                     />
                   </VueFormItem>
                 </VueCol>
@@ -604,10 +618,6 @@ const closeMultiPartsAside = (row) => {
                     />
                   </VueFormItem>
                 </VueCol>
-                <VueCol
-                  item-key="item"
-                  :md="{ span: 8 }"
-                />
               </VueRow>
             </VuePanel>
           </VueCol>
