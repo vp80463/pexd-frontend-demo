@@ -45,11 +45,6 @@ const gridRules = {
     message: t('errors.required', [t('label.partsNo')]),
   },
   ],
-  customerInfo: [{
-    required: true,
-    message: t('errors.required', [t('label.partsNo')]),
-  },
-  ],
   siwakecd: [{
     required: true,
     message: t('errors.required', [t('label.partsNo')]),
