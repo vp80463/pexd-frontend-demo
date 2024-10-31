@@ -799,7 +799,6 @@ const getPartsData = async () => {
                 text-align="right"
                 :controls="false"
                 :disabled="true"
-                :precision="2"
               />
             </VueFormItem>
           </VueCol>
@@ -822,7 +821,6 @@ const getPartsData = async () => {
                 :use-separator="true"
                 :controls="false"
                 text-align="right"
-                :precision="2"
                 :disabled="confirmFlag"
                 :style="{ width: '200px' }"
               />

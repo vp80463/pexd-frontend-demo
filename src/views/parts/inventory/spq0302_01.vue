@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useApi } from '@/composables/useApi';
 import { parts_column, parts_pop_column, parts_pop_query_method, parts_query_method } from '@/settings/valuelistSetting.js';
-import { formatAmount, formatCost, formatPartNo, formatQty } from '@/pj-commonutils.js';
+import { formatAmount, formatPartNo, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
 const initializedFlag = ref(true);
@@ -346,9 +346,6 @@ const gridLocationEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridInQtyFormatter = (row, columnConfig, cellValue) => {
-  return formatQty(row.cellValue);
-};
 const gridInQtyEditRender = computed(() => {
   return {
     enabled: false,
@@ -357,9 +354,6 @@ const gridInQtyEditRender = computed(() => {
     },
   };
 });
-const gridInCostFormatter = (row, columnConfig, cellValue) => {
-  return formatCost(row.cellValue);
-};
 const gridInCostEditRender = computed(() => {
   return {
     enabled: false,
@@ -368,9 +362,6 @@ const gridInCostEditRender = computed(() => {
     },
   };
 });
-const gridInAmountFormatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
 const gridInAmountEditRender = computed(() => {
   return {
     enabled: false,
@@ -390,9 +381,6 @@ const gridOutQtyEditRender = computed(() => {
     },
   };
 });
-const gridOutCostFormatter = (row, columnConfig, cellValue) => {
-  return formatCost(row.cellValue);
-};
 const gridOutCostEditRender = computed(() => {
   return {
     enabled: false,
@@ -746,7 +734,6 @@ const onLeavePartsCode = async (code) => {
               header-align="center"
             />
             <VueNumberColumn
-              :formatter="gridInQtyFormatter"
               :edit-render="gridInQtyEditRender"
               field="inQty"
               align="right"
@@ -757,7 +744,6 @@ const onLeavePartsCode = async (code) => {
               header-align="center"
             />
             <VueNumberColumn
-              :formatter="gridInCostFormatter"
               :edit-render="gridInCostEditRender"
               field="inCost"
               align="right"
@@ -768,7 +754,6 @@ const onLeavePartsCode = async (code) => {
               header-align="center"
             />
             <VueNumberColumn
-              :formatter="gridInAmountFormatter"
               :edit-render="gridInAmountEditRender"
               field="inAmount"
               align="right"
@@ -790,7 +775,6 @@ const onLeavePartsCode = async (code) => {
               header-align="center"
             />
             <VueNumberColumn
-              :formatter="gridOutCostFormatter"
               :edit-render="gridOutCostEditRender"
               field="outCost"
               align="right"
