@@ -475,7 +475,7 @@ const getPartsData2 = async (row) => {
             field="orderPartsNm"
             show-overflow="tooltip"
             title="発注部品名"
-            min-width="160px"
+            width="220px"
           />
           <VueValueListColumn
             :formatter="gridReceiptPartsNoFormatter"
@@ -490,7 +490,7 @@ const getPartsData2 = async (row) => {
             field="receiptPartsNm"
             show-overflow="tooltip"
             title="受付部品名"
-            min-width="170px"
+            width="220px"
           />
           <VueNumberColumn
             :edit-render="gridOnPurchaseQtyEditRender"
