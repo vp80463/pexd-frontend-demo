@@ -24,13 +24,13 @@ const viy2Panel_1FmkD = ref();
 const viy2Row_fsSal = ref();
 const viy2InputBox_fsX54 = ref();
 const viy2Cascader_87KXO = ref();
-const viy2Cascader_gokMA = ref();
 const viy2InputBox_1DNhb = ref();
 const viy2InputBox_gqHuI = ref();
 const viy2InputBox_878tiK = ref();
 const viy2Panel_27SSr = ref();
 const viy2Button_2uA36e = ref();
 const viy2Flex_Wqy6W = ref();
+const viy2Row_nOoFn = ref();
 const viy2Flex_WqNqv = ref();
 const grid = ref();
 const viy2Row_lMpgE = ref();
@@ -42,13 +42,9 @@ const chosenGrid = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  content: '', productCategory: [], productMiddleCategory: [], datafieldviy2InputBox_1DNhb: '', datafieldviy2InputBox_1DNhb: '', datafieldviy2InputBox_1DNhb: '',
+  content: '', productCategory: [], datafieldviy2InputBox_1DNhb: '', datafieldviy2InputBox_1DNhb: '', datafieldviy2InputBox_1DNhb: '',
 });
 const viy2Cascader_87KXOProps = reactive({
-  checkStrictly: true,
-  expandTrigger: 'click',
-});
-const viy2Cascader_gokMAProps = reactive({
   checkStrictly: true,
   expandTrigger: 'click',
 });
@@ -186,6 +182,11 @@ const gridLargeGroupEditRender = computed(() => {
   };
 });
 const gridMiddleGroupEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridSmallGroupEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -410,20 +411,6 @@ const doClose = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="中区分"
-                prop="productMiddleCategory"
-              >
-                <VueCascader
-                  id="viy2Cascader_gokMA"
-                  ref="viy2Cascader_gokMA"
-                  v-model="queryFormData.productMiddleCategory"
-                  :clearable="true"
-                  :style="{ width: '200px' }"
-                  :options="middleGroupDs"
-                  :props="viy2Cascader_gokMAProps"
-                />
-              </VueFormItem>
-              <VueFormItem
                 label="JANコード"
                 prop="datafieldviy2InputBox_1DNhb"
               >
@@ -471,175 +458,206 @@ const doClose = () => {
           direction="row"
           class="full-height-b4t"
         >
-          <VueFlex
-            id="viy2Flex_WqNqv"
-            ref="viy2Flex_WqNqv"
-            direction="column"
-            grow="1"
+          <VueRow
+            id="viy2Row_nOoFn"
+            ref="viy2Row_nOoFn"
           >
-            <VueTable id="grid" ref="grid" header-align="center" height="98%" :data="gridDs.list" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
-              <VueIndexColumn
-                align="center"
-                min-width="50px"
-                header-align="center"
-                title="No."
-                width="45px"
-              />
-              <VueInputColumn
-                :formatter="gridCodeFormatter"
-                :edit-render="gridCodeEditRender"
-                field="code"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="部品番号"
-                header-align="center"
-                width="125px"
-              />
-              <VueInputColumn
-                :edit-render="gridNameEditRender"
-                field="name"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="部品名称"
-                header-align="center"
-                width="150px"
-              />
-              <VueInputColumn
-                :edit-render="gridLargeGroupEditRender"
-                field="largeGroup"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="大区分"
-                header-align="center"
-                width="95px"
-              />
-              <VueInputColumn
-                :edit-render="gridMiddleGroupEditRender"
-                field="middleGroup"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="中区分"
-                header-align="center"
-                width="100px"
-              />
-              <VueInputColumn
-                :edit-render="gridJanCodeEditRender"
-                field="janCode"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="JANコード"
-                header-align="center"
-                width="110px"
-              />
-              <VueInputColumn
-                :edit-render="gridMakerPartsNoEditRender"
-                field="makerPartsNo"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="メーカー商品コード"
-                header-align="center"
-                width="170px"
-              />
-              <VueInputColumn
-                :edit-render="gridBrandEditRender"
-                field="brand"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="ブランド"
-                header-align="center"
-                width="110px"
-              />
-              <VueButtonColumn
-                align="right"
-                fixed="right"
-                title="選択"
-                width="50px"
-                :buttons="gridViy2TableButtonColumn_NpfPpButtons"
-              />
-            </VueTable>
-            <VueRow
-              id="viy2Row_lMpgE"
-              ref="viy2Row_lMpgE"
-              class="pagine-margin-top"
+            <VueCol
+              item-key="item"
+              :md="{ span: 14 }"
             >
-              <VueCol
-                item-key="item"
-                align="right"
-                :inline="true"
-                :md="{ span: 24 }"
+              <VueFlex
+                id="viy2Flex_WqNqv"
+                ref="viy2Flex_WqNqv"
+                direction="column"
+                grow="1"
+                class="full-height-b4t"
               >
-                <VuePagination
-                  id="pagination"
-                  ref="pagination"
-                  v-model:current-page="paginationCurrentPage"
-                  v-model:page-size="paginationPageSize"
-                  :page-sizes="[3, 15, 20, 50, 100]"
-                  layout="prev, pager, next,sizes,->, total"
-                  :background="true"
-                  :small="true"
-                  :total="total || 0"
-                  @current-change="paginationCurrentChange"
-                />
-              </VueCol>
-            </VueRow>
-          </VueFlex>
-          <VueFlex
-            id="viy2Flex_WqSVy"
-            ref="viy2Flex_WqSVy"
-            justify="center"
-            class="align-center"
-          >
-            <VueButton id="viy2Button_NtkrQ" ref="viy2Button_NtkrQ" icon-position="left" size="large" type="text" class="choose-all-button" @click="viy2Button_NtkrQClick">
-              >>
-            </VueButton>
-          </VueFlex>
-          <VueFlex
-            id="viy2Flex_WqGVc"
-            ref="viy2Flex_WqGVc"
-            direction="column"
-            grow="1"
-          >
-            <VueTable id="chosenGrid" ref="chosenGrid" height="98%" :data="chosenGridDs" :edit-config="chosenGridEditConfig" :mouse-config="chosenGridMouseConfig" @cell-dblclick="chosenGridCellDblclick">
-              <VueIndexColumn
-                align="center"
-                min-width="50px"
-                header-align="center"
-                title="No."
-                width="45px"
-              />
-              <VueInputColumn
-                :formatter="chosenGridPartsNoFormatter"
-                :edit-render="chosenGridPartsNoEditRender"
-                field="partsNo"
-                :sortable="true"
-                title="部品番号"
-                width="125px"
-              />
-              <VueInputColumn
-                :edit-render="chosenGridPartsNmEditRender"
-                field="partsNm"
-                show-overflow="tooltip"
-                :sortable="true"
-                title="部品名称"
-                width="150px"
-              />
-              <VueNumberColumn
-                :edit-render="chosenGridQtyEditRender"
-                field="qty"
-                align="right"
-                :sortable="true"
-                width="85px"
-                title="数量"
-                header-align="center"
-              />
-              <VueButtonColumn
-                align="center"
-                fixed="right"
-                width="40px"
-                :buttons="chosenGridViy2TableButtonColumn_NrCHLButtons"
-              />
-            </VueTable>
-          </VueFlex>
+                <VueTable id="grid" ref="grid" header-align="center" height="98%" :data="gridDs.list" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
+                  <VueIndexColumn
+                    align="center"
+                    min-width="50px"
+                    header-align="center"
+                    title="No."
+                    width="45px"
+                  />
+                  <VueInputColumn
+                    :formatter="gridCodeFormatter"
+                    :edit-render="gridCodeEditRender"
+                    field="code"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="部品番号"
+                    header-align="center"
+                    width="125px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridNameEditRender"
+                    field="name"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="部品名称"
+                    header-align="center"
+                    width="150px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridLargeGroupEditRender"
+                    field="largeGroup"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="大区分"
+                    header-align="center"
+                    width="95px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridMiddleGroupEditRender"
+                    field="middleGroup"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="中区分"
+                    header-align="center"
+                    width="100px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridSmallGroupEditRender"
+                    field="smallGroup"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="小区分"
+                    header-align="center"
+                    width="100px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridJanCodeEditRender"
+                    field="janCode"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="JANコード"
+                    header-align="center"
+                    width="110px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridMakerPartsNoEditRender"
+                    field="makerPartsNo"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="メーカー商品コード"
+                    header-align="center"
+                    width="170px"
+                  />
+                  <VueInputColumn
+                    :edit-render="gridBrandEditRender"
+                    field="brand"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="ブランド"
+                    header-align="center"
+                    width="110px"
+                  />
+                  <VueButtonColumn
+                    align="right"
+                    fixed="right"
+                    title="選択"
+                    width="50px"
+                    :buttons="gridViy2TableButtonColumn_NpfPpButtons"
+                  />
+                </VueTable>
+              </VueFlex>
+              <VueRow
+                id="viy2Row_lMpgE"
+                ref="viy2Row_lMpgE"
+                class="pagine-margin-top"
+              >
+                <VueCol
+                  item-key="item"
+                  align="right"
+                  :inline="true"
+                  :md="{ span: 24 }"
+                >
+                  <VuePagination
+                    id="pagination"
+                    ref="pagination"
+                    v-model:current-page="paginationCurrentPage"
+                    v-model:page-size="paginationPageSize"
+                    :page-sizes="[3, 15, 20, 50, 100]"
+                    layout="prev, pager, next,sizes,->, total"
+                    :background="true"
+                    :small="true"
+                    :total="total || 0"
+                    @current-change="paginationCurrentChange"
+                  />
+                </VueCol>
+              </VueRow>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 2 }"
+            >
+              <VueFlex
+                id="viy2Flex_WqSVy"
+                ref="viy2Flex_WqSVy"
+                justify="center"
+                class="align-center"
+              >
+                <VueButton id="viy2Button_NtkrQ" ref="viy2Button_NtkrQ" icon-position="left" size="large" type="text" class="choose-all-button" @click="viy2Button_NtkrQClick">
+                  >>
+                </VueButton>
+              </VueFlex>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :md="{ span: 8 }"
+            >
+              <VueFlex
+                id="viy2Flex_WqGVc"
+                ref="viy2Flex_WqGVc"
+                direction="column"
+                grow="1"
+                class="full-height-b4t"
+              >
+                <VueTable id="chosenGrid" ref="chosenGrid" height="98%" :data="chosenGridDs" :edit-config="chosenGridEditConfig" :mouse-config="chosenGridMouseConfig" @cell-dblclick="chosenGridCellDblclick">
+                  <VueIndexColumn
+                    align="center"
+                    min-width="50px"
+                    header-align="center"
+                    title="No."
+                    width="45px"
+                  />
+                  <VueInputColumn
+                    :formatter="chosenGridPartsNoFormatter"
+                    :edit-render="chosenGridPartsNoEditRender"
+                    field="partsNo"
+                    :sortable="true"
+                    title="部品番号"
+                    width="125px"
+                  />
+                  <VueInputColumn
+                    :edit-render="chosenGridPartsNmEditRender"
+                    field="partsNm"
+                    show-overflow="tooltip"
+                    :sortable="true"
+                    title="部品名称"
+                    width="150px"
+                  />
+                  <VueNumberColumn
+                    :edit-render="chosenGridQtyEditRender"
+                    field="qty"
+                    align="right"
+                    :sortable="true"
+                    width="85px"
+                    title="数量"
+                    header-align="center"
+                  />
+                  <VueButtonColumn
+                    align="center"
+                    fixed="right"
+                    width="40px"
+                    :buttons="chosenGridViy2TableButtonColumn_NrCHLButtons"
+                  />
+                </VueTable>
+              </VueFlex>
+            </VueCol>
+          </VueRow>
         </VueFlex>
       </VuePanel>
     </VueFlex>
