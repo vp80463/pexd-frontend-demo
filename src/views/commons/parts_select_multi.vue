@@ -397,7 +397,7 @@ const doClose = () => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="大区分"
+                label="商品区分"
                 prop="productCategory"
               >
                 <VueCascader
