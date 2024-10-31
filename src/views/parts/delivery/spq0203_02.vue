@@ -18,7 +18,6 @@ defineOptions({
 });
 const form = ref();
 const viy2Row_zgSti = ref();
-const BackBtn = ref();
 const viy2Button_1M67GZ = ref();
 const viy2Flex_13qVCS = ref();
 const viy2Panel_2rs6nZ = ref();
@@ -26,10 +25,16 @@ const orderForm = ref();
 const viy2Row_95TIyi = ref();
 const viy2InputBox_56ddTC = ref();
 const viy2DateTimePicker_95TIyw = ref();
-const viy2InputBox_95TIyx = ref();
 const viy2InputBox_95TIyK = ref();
-const viy2InputNumber_1sWZbAg = ref();
 const viy2InputBox_95TIyt = ref();
+const viy2InputBox_48oW7U = ref();
+const viy2InputBox_48rSGw = ref();
+const viy2InputBox_48t01E = ref();
+const viy2InputBox_95TIyx = ref();
+const viy2InputBox_48wueO = ref();
+const viy2InputBox_48wdeW = ref();
+const viy2InputBox_48vKDy = ref();
+const viy2InputBox_48tGmi = ref();
 const viy2Flex_13qYsD = ref();
 const viy2Panel_wZlWr = ref();
 const grid = ref();
@@ -39,7 +44,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const orderFormData = reactive({
-  duNo: '', invoiceDate: '', point: '', customer: '', invoiceAmount: undefined, invoiceNo: '',
+  duNo: '', invoiceDate: '', customer: '', invoiceNo: '', customer: '', customerAddress: '', customerTel: '', point: '', customerFrom: '', customerFromAddress: '', customerFromTel: '', customerFromTel: '',
 });
 const gridEditConfig = reactive({
   trigger: 'click',
@@ -61,24 +66,6 @@ const gridDsApi = useApi({
   manual: true,
 });
 const gridDs = gridDsApi.data;
-const BackBtnClick = () => {
-  const tableDataList = grid.value.getTableData().fullData;
-  useApi({
-    url: '/parts/spq0203/printFastSalesOrderReportForDO.json',
-    method: 'post',
-    responseType: 'blob',
-    data: () => {
-      return {
-        salesOrderId: tableDataList[0].salesOrderId,
-      };
-    },
-    timeout: 30000,
-  }, {
-    onSuccess: (data, params) => {
-      VueUtil.saveAs(data, 'FastSalesOrderReportForDO.pdf');
-    },
-  });
-};
 const viy2Button_1M67GZClick = () => {
   doClose();
 };
@@ -107,13 +94,7 @@ const gridAllocatedPartsNmEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridSellingPriceFormatter = (row, columnConfig, cellValue) => {
-  if (!isNoValue(row.cellValue)) {
-    return formatPrice(row.cellValue);
-  }
-  return row.cellValue;
-};
-const gridSellingPriceEditRender = computed(() => {
+const gridSalesQtyEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -129,11 +110,127 @@ const gridShippedQtyEditRender = computed(() => {
     },
   };
 });
-const gridShipmentAmountEditRender = computed(() => {
+const gridStandPriceFormatter = (row, columnConfig, cellValue) => {
+  if (!isNoValue(row.cellValue)) {
+    return formatPrice(row.cellValue);
+  }
+  return row.cellValue;
+};
+const gridStandPriceEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
       textAlign: 'right',
+    },
+  };
+});
+const gridSellingPriceFormatter = (row, columnConfig, cellValue) => {
+  if (!isNoValue(row.cellValue)) {
+    return formatPrice(row.cellValue);
+  }
+  return row.cellValue;
+};
+const gridSellingPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridSellingPermissonFormatter = (row, columnConfig, cellValue) => {
+  if (!isNoValue(row.cellValue)) {
+    return formatPrice(row.cellValue);
+  }
+  return row.cellValue;
+};
+const gridSellingPermissonEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridShipmentAmountNoTaxEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridShipmentAmountTaxEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridSalesDateEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'center',
+      type: 'date',
+    },
+  };
+});
+const gridSiwakecdEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      clearable: true,
+      selectField: 'code',
+      usePopover: true,
+      popoverWidth: 500,
+      popoverMinQueryLength: 3,
+      useCommonPopover: true,
+      usePopup: true,
+      popupType: 'aside',
+      asideSize: '60%',
+      useCommonPopup: true,
+      popupPagable: true,
+      closeOnClickModal: true,
+    },
+  };
+});
+const gridCommentEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      clearable: true,
+      selectField: 'code',
+      usePopover: true,
+      popoverWidth: 500,
+      popoverMinQueryLength: 3,
+      useCommonPopover: true,
+      usePopup: true,
+      popupType: 'aside',
+      asideSize: '60%',
+      useCommonPopup: true,
+      popupPagable: true,
+      closeOnClickModal: true,
+    },
+  };
+});
+const gridCustomerInfoEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      clearable: true,
+      selectField: 'code',
+      usePopover: true,
+      popoverWidth: 500,
+      popoverMinQueryLength: 3,
+      useCommonPopover: true,
+      usePopup: true,
+      popupType: 'aside',
+      asideSize: '60%',
+      useCommonPopup: true,
+      popupPagable: true,
+      closeOnClickModal: true,
     },
   };
 });
@@ -187,9 +284,6 @@ const doClose = () => {
         :inline="true"
         :md="{ span: 8 }"
       >
-        <VueButton id="BackBtn" ref="BackBtn" icon-position="left" type="info" @click="BackBtnClick">
-          印刷
-        </VueButton>
         <VueButton id="viy2Button_1M67GZ" ref="viy2Button_1M67GZ" icon-position="left" @click="viy2Button_1M67GZClick">
           閉じる
         </VueButton>
@@ -215,7 +309,7 @@ const doClose = () => {
             <VueCol
               item-key="item"
               :inline="true"
-              :md="{ span: 8 }"
+              :md="{ span: 6 }"
             >
               <VueFormItem
                 label="出荷番号"
@@ -233,7 +327,7 @@ const doClose = () => {
             <VueCol
               item-key="item"
               :inline="true"
-              :md="{ span: 8 }"
+              :md="{ span: 6 }"
             >
               <VueFormItem
                 label="出荷日"
@@ -253,7 +347,97 @@ const doClose = () => {
             <VueCol
               item-key="item"
               :inline="true"
-              :md="{ span: 8 }"
+              :md="{ span: 6 }"
+            >
+              <VueFormItem
+                label="受注先"
+                prop="customer"
+              >
+                <VueInput
+                  id="viy2InputBox_95TIyK"
+                  ref="viy2InputBox_95TIyK"
+                  v-model="orderFormData.customer"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 6 }"
+            >
+              <VueFormItem
+                label="納品書番号"
+                prop="invoiceNo"
+              >
+                <VueInput
+                  id="viy2InputBox_95TIyt"
+                  ref="viy2InputBox_95TIyt"
+                  v-model="orderFormData.invoiceNo"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 6 }"
+            >
+              <VueFormItem
+                label="出荷先"
+                prop="customer"
+              >
+                <VueInput
+                  id="viy2InputBox_48oW7U"
+                  ref="viy2InputBox_48oW7U"
+                  v-model="orderFormData.customer"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 6 }"
+            >
+              <VueFormItem
+                label="出荷先住所"
+                prop="customerAddress"
+              >
+                <VueInput
+                  id="viy2InputBox_48rSGw"
+                  ref="viy2InputBox_48rSGw"
+                  v-model="orderFormData.customerAddress"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 6 }"
+            >
+              <VueFormItem
+                label="出荷先電話番号"
+                prop="customerTel"
+              >
+                <VueInput
+                  id="viy2InputBox_48t01E"
+                  ref="viy2InputBox_48t01E"
+                  v-model="orderFormData.customerTel"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 6 }"
             >
               <VueFormItem
                 v-show="false"
@@ -272,16 +456,16 @@ const doClose = () => {
             <VueCol
               item-key="item"
               :inline="true"
-              :md="{ span: 8 }"
+              :md="{ span: 6 }"
             >
               <VueFormItem
-                label="受注先"
-                prop="customer"
+                label="出荷元"
+                prop="customerFrom"
               >
                 <VueInput
-                  id="viy2InputBox_95TIyK"
-                  ref="viy2InputBox_95TIyK"
-                  v-model="orderFormData.customer"
+                  id="viy2InputBox_48wueO"
+                  ref="viy2InputBox_48wueO"
+                  v-model="orderFormData.customerFrom"
                   :readonly="true"
                   class="no-border"
                 />
@@ -290,20 +474,17 @@ const doClose = () => {
             <VueCol
               item-key="item"
               :inline="true"
-              :md="{ span: 8 }"
+              :md="{ span: 6 }"
             >
               <VueFormItem
-                label="販売価格"
-                label-width="150px"
-                prop="invoiceAmount"
+                label="出荷元住所"
+                prop="customerFromAddress"
               >
-                <VueInputNumber
-                  id="viy2InputNumber_1sWZbAg"
-                  ref="viy2InputNumber_1sWZbAg"
-                  v-model="orderFormData.invoiceAmount"
-                  :disabled="true"
-                  text-align="right"
-                  :controls="false"
+                <VueInput
+                  id="viy2InputBox_48wdeW"
+                  ref="viy2InputBox_48wdeW"
+                  v-model="orderFormData.customerFromAddress"
+                  :readonly="true"
                   class="no-border"
                 />
               </VueFormItem>
@@ -311,16 +492,34 @@ const doClose = () => {
             <VueCol
               item-key="item"
               :inline="true"
-              :md="{ span: 8 }"
+              :md="{ span: 6 }"
             >
               <VueFormItem
-                label="納品書番号"
-                prop="invoiceNo"
+                label="出荷元電話番号"
+                prop="customerFromTel"
               >
                 <VueInput
-                  id="viy2InputBox_95TIyt"
-                  ref="viy2InputBox_95TIyt"
-                  v-model="orderFormData.invoiceNo"
+                  id="viy2InputBox_48vKDy"
+                  ref="viy2InputBox_48vKDy"
+                  v-model="orderFormData.customerFromTel"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+            <VueCol
+              item-key="item"
+              :inline="true"
+              :md="{ span: 6 }"
+            >
+              <VueFormItem
+                label="出荷元FAX"
+                prop="customerFromTel"
+              >
+                <VueInput
+                  id="viy2InputBox_48tGmi"
+                  ref="viy2InputBox_48tGmi"
+                  v-model="orderFormData.customerFromTel"
                   :readonly="true"
                   class="no-border"
                 />
@@ -360,6 +559,7 @@ const doClose = () => {
               :edit-render="gridOrderNoEditRender"
               field="orderNo"
               :sortable="true"
+              aggregate-label="合計"
               title="受注番号"
               width="120px"
             />
@@ -392,34 +592,108 @@ const doClose = () => {
               width="150px"
             />
             <VueNumberColumn
-              :formatter="gridSellingPriceFormatter"
-              :edit-render="gridSellingPriceEditRender"
-              field="sellingPrice"
+              :edit-render="gridSalesQtyEditRender"
+              field="salesQty"
               align="right"
               :sortable="true"
-              title="単価"
-              width="110px"
+              title="受注数"
+              width="100px"
               header-align="center"
             />
             <VueNumberColumn
               :edit-render="gridShippedQtyEditRender"
               field="shippedQty"
               align="right"
-              aggregate="sum"
               :sortable="true"
               title="出荷数"
               width="100px"
               header-align="center"
             />
             <VueNumberColumn
-              :edit-render="gridShipmentAmountEditRender"
-              field="shipmentAmount"
+              :formatter="gridStandPriceFormatter"
+              :edit-render="gridStandPriceEditRender"
+              field="standPrice"
+              align="right"
+              :sortable="true"
+              title="希望小売価格"
+              width="130px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :formatter="gridSellingPriceFormatter"
+              :edit-render="gridSellingPriceEditRender"
+              field="sellingPrice"
+              align="right"
+              :sortable="true"
+              title="仕切価格"
+              width="110px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :formatter="gridSellingPermissonFormatter"
+              :edit-render="gridSellingPermissonEditRender"
+              field="sellingPermisson"
               align="right"
               aggregate="sum"
               :sortable="true"
-              title="出荷金額"
+              title="手数料"
+              width="110px"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridShipmentAmountNoTaxEditRender"
+              field="shipmentAmountNoTax"
+              align="right"
+              aggregate="sum"
+              :sortable="true"
+              title="金額(税抜)"
               width="140px"
               header-align="center"
+            />
+            <VueNumberColumn
+              :edit-render="gridShipmentAmountTaxEditRender"
+              field="shipmentAmountTax"
+              align="right"
+              aggregate="sum"
+              :sortable="true"
+              title="金額(税込)"
+              width="140px"
+              header-align="center"
+            />
+            <VueDateTimeColumn
+              :edit-render="gridSalesDateEditRender"
+              field="salesDate"
+              align="center"
+              :sortable="true"
+              title="受注日"
+              width="130px"
+            />
+            <VueValueListColumn
+              :edit-render="gridSiwakecdEditRender"
+              field="siwakecd"
+              :clearable="true"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="仕訳コード"
+              width="145px"
+            />
+            <VueValueListColumn
+              :edit-render="gridCommentEditRender"
+              field="comment"
+              :clearable="true"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="コメント"
+              width="395px"
+            />
+            <VueValueListColumn
+              :edit-render="gridCustomerInfoEditRender"
+              field="customerInfo"
+              :clearable="true"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="お客様情報"
+              width="305px"
             />
           </VueTable>
         </VuePanel>

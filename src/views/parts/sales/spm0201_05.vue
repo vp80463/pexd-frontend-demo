@@ -24,8 +24,6 @@ const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_972Qhd = ref();
 const viy2Row_973olD = ref();
-const viy2Row_99XXgy = ref();
-const viy2Row_98XSoa = ref();
 const viy2CheckBox_98qsnk = ref();
 const viy2CheckBox_98ut2U = ref();
 const viy2Row_99De62 = ref();
@@ -47,12 +45,12 @@ const gridRules = {
   ],
   siwakecd: [{
     required: true,
-    message: t('errors.required', [t('label.partsNo')]),
+    message: t('errors.required', [t('科目コード')]),
   },
   ],
   saimokucd: [{
     required: true,
-    message: t('errors.required', [t('label.partsNo')]),
+    message: t('errors.required', [t('摘要コード')]),
   },
   ],
   partsNo: [{
@@ -308,58 +306,16 @@ const gridDeliveryAddressEditRender = computed(() => {
 const gridCustomerInfoEditRender = computed(() => {
   return {
     enabled: true,
-    attrs: {
-      clearable: true,
-      selectField: 'code',
-      usePopover: true,
-      popoverWidth: 500,
-      popoverMinQueryLength: 3,
-      useCommonPopover: true,
-      usePopup: true,
-      popupType: 'aside',
-      asideSize: '60%',
-      useCommonPopup: true,
-      popupPagable: true,
-      closeOnClickModal: true,
-    },
   };
 });
 const gridSiwakecdEditRender = computed(() => {
   return {
     enabled: true,
-    attrs: {
-      clearable: true,
-      selectField: 'code',
-      usePopover: true,
-      popoverWidth: 500,
-      popoverMinQueryLength: 3,
-      useCommonPopover: true,
-      usePopup: true,
-      popupType: 'aside',
-      asideSize: '60%',
-      useCommonPopup: true,
-      popupPagable: true,
-      closeOnClickModal: true,
-    },
   };
 });
 const gridSaimokucdEditRender = computed(() => {
   return {
     enabled: true,
-    attrs: {
-      clearable: true,
-      selectField: 'code',
-      usePopover: true,
-      popoverWidth: 500,
-      popoverMinQueryLength: 3,
-      useCommonPopover: true,
-      usePopup: true,
-      popupType: 'aside',
-      asideSize: '60%',
-      useCommonPopup: true,
-      popupPagable: true,
-      closeOnClickModal: true,
-    },
   };
 });
 const gridDemandExceptionSignEditRender = computed(() => {
@@ -716,83 +672,27 @@ const closeMultiPartsAside = (row) => {
                 </VueRow>
               </template>
             </VueValueListColumn>
-            <VueValueListColumn
+            <VueInputColumn
               :edit-render="gridCustomerInfoEditRender"
               field="customerInfo"
-              :clearable="true"
-              show-overflow="tooltip"
               :sortable="true"
               title="お客様情報"
-              width="145px"
-            >
-              <template #asideHeader="scope">
-                <VueRow
-                  id="viy2Row_99XXgy"
-                  ref="viy2Row_99XXgy"
-                  class="aside-title-row"
-                >
-                  <VueCol
-                    item-key="item"
-                    class="aside-title-text"
-                    :md="{ span: 10 }"
-                  >
-                    <VueText id="viy2Text_99XXgz" ref="viy2Text_99XXgz" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                      {{ t('title.partItemRef') }}
-                    </VueText>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    align="right"
-                    :inline="true"
-                    class="aside-title-button"
-                    :md="{ span: 14 }"
-                  />
-                </VueRow>
-              </template>
-            </VueValueListColumn>
-            <VueValueListColumn
+              width="305px"
+            />
+            <VueInputColumn
               :edit-render="gridSiwakecdEditRender"
               field="siwakecd"
-              :clearable="true"
-              show-overflow="tooltip"
               :sortable="true"
               title="科目コード"
               width="145px"
             />
-            <VueValueListColumn
+            <VueInputColumn
               :edit-render="gridSaimokucdEditRender"
               field="saimokucd"
-              :clearable="true"
-              show-overflow="tooltip"
               :sortable="true"
               title="摘要コード"
               width="145px"
-            >
-              <template #asideHeader="scope">
-                <VueRow
-                  id="viy2Row_98XSoa"
-                  ref="viy2Row_98XSoa"
-                  class="aside-title-row"
-                >
-                  <VueCol
-                    item-key="item"
-                    class="aside-title-text"
-                    :md="{ span: 10 }"
-                  >
-                    <VueText id="viy2Text_98XSob" ref="viy2Text_98XSob" :style="{ width: '100%', display: 'inline-block', fontSize: '16px', fontWeight: 'bold' }">
-                      {{ t('title.partItemRef') }}
-                    </VueText>
-                  </VueCol>
-                  <VueCol
-                    item-key="item"
-                    align="right"
-                    :inline="true"
-                    class="aside-title-button"
-                    :md="{ span: 14 }"
-                  />
-                </VueRow>
-              </template>
-            </VueValueListColumn>
+            />
             <VueTemplateColumn
               :edit-render="gridDemandExceptionSignEditRender"
               align="center"

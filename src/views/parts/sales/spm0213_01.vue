@@ -65,7 +65,7 @@ const rules = reactive({
 const showConsumerWin = ref(false);
 const viy2Radio_x5Zg2GOpts = reactive([
   { value: '全て', label: '全て' },
-  { value: '解消可能', label: '解消可能' },
+  { value: 'BOリリース可能', label: 'BOリリース可能' },
 ]);
 const gridEditConfig = reactive({
   trigger: 'click',
@@ -384,7 +384,7 @@ const closeConsumerAside = () => {
               :md="{ span: 24 }"
             >
               <VueFormItem
-                label="BO解消状態"
+                label="BOリリース状態"
                 prop="datafieldviy2Radio_ksdEB"
                 size="default"
               >

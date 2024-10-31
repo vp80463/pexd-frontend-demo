@@ -54,8 +54,10 @@ const viy2Select_oYzPK = ref();
 const viy2Flex_AEGgC = ref();
 const viy2Panel_2Yg0N1 = ref();
 const viy2Button_5heur2 = ref();
+const viy2Button_48f7Xs = ref();
 const grid = ref();
 const viy2Row_soVPC = ref();
+const viy2CheckBox_484b2T = ref();
 const viy2Row_AQU3S = ref();
 const pagination = ref();
 const detailAside = ref();
@@ -99,6 +101,26 @@ const gridEditConfig = reactive({
 const gridMouseConfig = reactive({
   extension: true,
 });
+const viy2CheckBox_484b2TOpts = [
+  {
+    label:
+'Option 1',
+    value:
+'Option 1',
+  },
+  {
+    label:
+'Option 2',
+    value:
+'Option 2',
+  },
+  {
+    label:
+'Option 3',
+    value:
+'Option 3',
+  },
+];
 const gridViy2TableButtonColumn_g34UEButtons = (scope) => {
   return [
     {
@@ -201,6 +223,32 @@ const viy2Button_5heur2Click = () => {
     },
   );
 };
+const viy2Button_48f7XsClick = () => {
+  useApi(
+    {
+      url: '/parts/spq0203/export.json',
+      method: 'post',
+      responseType: 'blob',
+      data: () => {
+        return { ...queryFormData };
+      },
+      timeout: 30000,
+    },
+    {
+      onSuccess: (data, params) => {
+        VueUtil.saveAs(data, 'SPQ0203_01.xlsx');
+      },
+    },
+  );
+};
+const gridRePrintFlagEditRender = computed(() => {
+  return {
+    enabled: true,
+    attrs: {
+      textAlign: 'center',
+    },
+  };
+});
 const gridCustomerCdEditRender = computed(() => {
   return {
     enabled: false,
@@ -226,6 +274,16 @@ const gridInvoiceDateEditRender = computed(() => {
   };
 });
 const gridInvoiceTypeEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridDeliveryCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridDeliveryNmEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -268,6 +326,16 @@ const gridInvoiceAmountWithVATEditRender = computed(() => {
       useSeparator: true,
       textAlign: 'right',
     },
+  };
+});
+const gridDeliveryFromCdEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridDeliveryFromNmEditRender = computed(() => {
+  return {
+    enabled: false,
   };
 });
 const gridPointEditRender = computed(() => {
@@ -497,6 +565,9 @@ const closeSpq020302 = () => {
           <template #header>
             <div style="width: auto">
               <VueButton id="viy2Button_5heur2" ref="viy2Button_5heur2" icon-position="left" :disabled="exportDisable" @click="viy2Button_5heur2Click">
+                納品書再印刷
+              </VueButton>
+              <VueButton id="viy2Button_48f7Xs" ref="viy2Button_48f7Xs" icon-position="left" :disabled="exportDisable" @click="viy2Button_48f7XsClick">
                 ファイル出力
               </VueButton>
             </div>
@@ -521,6 +592,24 @@ const closeSpq020302 = () => {
               header-align="center"
               title="No."
             />
+            <VueTemplateColumn
+              :edit-render="gridRePrintFlagEditRender"
+              align="center"
+              :sortable="true"
+              field="rePrintFlag"
+              title="再印刷対象"
+              width="130px"
+            >
+              <template #default="scope">
+                <VueCheckbox
+                  id="viy2CheckBox_484b2T"
+                  ref="viy2CheckBox_484b2T"
+                  v-model="scope.row.boCancelSign"
+                  true-label="Y"
+                  false-label="N"
+                />
+              </template>
+            </VueTemplateColumn>
             <VueInputColumn
               :edit-render="gridCustomerCdEditRender"
               field="customerCd"
@@ -561,6 +650,20 @@ const closeSpq020302 = () => {
               width="130px"
             />
             <VueInputColumn
+              :edit-render="gridDeliveryCdEditRender"
+              field="deliveryCd"
+              :sortable="true"
+              title="出荷先"
+              width="120px"
+            />
+            <VueInputColumn
+              :edit-render="gridDeliveryNmEditRender"
+              field="deliveryNm"
+              :sortable="true"
+              title="出荷先名称"
+              width="200px"
+            />
+            <VueInputColumn
               :edit-render="gridInvoiceNoEditRender"
               field="invoiceNo"
               show-overflow="tooltip"
@@ -584,7 +687,7 @@ const closeSpq020302 = () => {
               align="right"
               aggregate="sum"
               :sortable="true"
-              title="販売価格"
+              title="販売価格(税抜)"
               width="160px"
               header-align="center"
             />
@@ -599,6 +702,20 @@ const closeSpq020302 = () => {
               title="販売価格（税込）"
               width="200px"
               header-align="center"
+            />
+            <VueInputColumn
+              :edit-render="gridDeliveryFromCdEditRender"
+              field="deliveryFromCd"
+              :sortable="true"
+              title="出荷元"
+              width="120px"
+            />
+            <VueInputColumn
+              :edit-render="gridDeliveryFromNmEditRender"
+              field="deliveryFromNm"
+              :sortable="true"
+              title="出荷元名称"
+              width="200px"
             />
             <VueInputColumn
               v-if="false"

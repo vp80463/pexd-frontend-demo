@@ -571,7 +571,7 @@ const calculation = (obj, value) => {
                   autofocus
                   :clearable="true"
                   :disabled="returnFlag"
-                  :style="{ width: '500px' }"
+                  :style="{ width: '435px' }"
                   @change="viy2InputBox_6eCE2gChange"
                 />
               </VueFormItem>

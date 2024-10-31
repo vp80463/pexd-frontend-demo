@@ -571,7 +571,7 @@ const closeMultiPartsAside = (row) => {
                       id="viy2InputBox_9aVkgo"
                       ref="viy2InputBox_9aVkgo"
                       v-model="viy2Form_3gckrwData.customerInfo"
-                      :style="{ width: '350px' }"
+                      :style="{ width: '345px' }"
                     />
                   </VueFormItem>
                 </VueCol>
@@ -588,7 +588,7 @@ const closeMultiPartsAside = (row) => {
                       id="viy2InputBox_Aevce"
                       ref="viy2InputBox_Aevce"
                       v-model="viy2Form_3gckrwData.datafieldviy2InputBox_kxtHQ"
-                      :style="{ width: '500px' }"
+                      :style="{ width: '435px' }"
                     />
                   </VueFormItem>
                 </VueCol>
