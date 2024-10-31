@@ -468,6 +468,7 @@ const closeSpm030102 = () => {
               width="50px"
               min-width="50px"
               header-align="center"
+              title="No."
             />
             <VueSelectionColumn
               align="center"
