@@ -3,7 +3,6 @@ import { IconDelete, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_DATE_VALUE_FORMAT } from '@/constants';
 import {
   parts_column, parts_pop_column,
 } from '@/settings/valuelistSetting.js';
@@ -452,8 +451,6 @@ const getPartsData = async (row) => {
                   :disabled="false"
                   :readonly="true"
                   class="no-border"
-                  :format="CONST_SYSTEM_DATE_FORMAT.ymd"
-                  :value-format="CONST_SYSTEM_DATE_VALUE_FORMAT.ymd"
                 />
               </VueFormItem>
             </VueCol>
