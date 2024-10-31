@@ -360,6 +360,28 @@ const gridT13EditRender = computed(() => {
     },
   };
 });
+const gridT18Formatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const gridT18EditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridT17Formatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const gridT17EditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
 const gridT12Formatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
@@ -664,7 +686,7 @@ const skipToDetail = (row) => {
                 footer-align="right"
                 :sortable="true"
                 width="200px"
-                title="今月計画"
+                title="当月計画"
                 header-align="center"
               />
               <VueNumberColumn
@@ -676,7 +698,30 @@ const skipToDetail = (row) => {
                 footer-align="right"
                 :sortable="true"
                 width="200px"
-                title="今月実績"
+                title="当月実績"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="gridT18Formatter"
+                :edit-render="gridT18EditRender"
+                field="t18"
+                align="right"
+                footer-align="right"
+                :sortable="true"
+                width="200px"
+                title="当月売上伸長率"
+                header-align="center"
+              />
+              <VueNumberColumn
+                :formatter="gridT17Formatter"
+                :edit-render="gridT17EditRender"
+                field="t17"
+                align="right"
+                aggregate="sum"
+                footer-align="right"
+                :sortable="true"
+                width="200px"
+                title="販売計画差"
                 header-align="center"
               />
               <VueNumberColumn

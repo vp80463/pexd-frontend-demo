@@ -19,6 +19,13 @@ const router = useRouter();
 const placeholderNm = ref('');
 const assignShow = ref(false);
 const validataFlag = ref(true);
+const dateType = ref('date');
+const targetDayShow = ref(true);
+const targetMonthShow = ref(false);
+const targetYearShow = ref(false);
+const largeShow = ref(true);
+const middleShow = ref(false);
+const smallShow = ref(false);
 defineOptions({
   name: 'spq0508_01_3S',
 });
@@ -29,8 +36,11 @@ const viy2Panel_1GFuq = ref();
 const viy2Button_6Eq86q = ref();
 const viy2Button_2gh3Ey = ref();
 const viy2Row_28hKZ = ref();
-const viy2DateTimePicker_L6xsi = ref();
-const viy2Cascader_LmE9w = ref();
+const viy2Radio_HQ4ST = ref();
+const viy2DateTimePicker_1GTRddE = ref();
+const viy2DateTimePicker_74AEeK = ref();
+const viy2Radio_3KmPQS = ref();
+const viy2Cascader_73Cugw = ref();
 const viy2Flex_THsL1 = ref();
 const viy2Panel_7m7hlM = ref();
 const viy2Button_7m7hlO = ref();
@@ -39,17 +49,19 @@ const viy2Row_soVPC = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  targetMonth: '', datafieldviy2Cascader_LmE9w: [],
+  dateType: 'month', dateFrom: '', dateTo: '', productType: 'large', productDiff: [],
 });
-const rules = reactive({
-  viy2DateTimePicker_L6xsiRules: [
-    {
-      required: true,
-      message: t('errors.required', [t('label.targetMonth')]),
-    },
-  ],
-});
-const viy2Cascader_LmE9wProps = reactive({
+const viy2Radio_HQ4STOpts = reactive([
+  { value: 'day', label: '日' },
+  { value: 'month', label: '月' },
+  { value: 'year', label: '年' },
+]);
+const viy2Radio_3KmPQSOpts = reactive([
+  { value: 'large', label: '大' },
+  { value: 'middle', label: '中' },
+  { value: 'small', label: '小' },
+]);
+const viy2Cascader_73CugwProps = reactive({
   checkStrictly: true,
   label: 'label',
   value: 'value',
@@ -193,16 +205,53 @@ const viy2Button_2gh3EyClick = () => {
   }).catch(() => {
   });
 };
+const viy2Radio_HQ4STChange = (value) => {
+  if (value == 'day') {
+    dateType.value = 'date';
+    targetDayShow.value = true;
+    targetMonthShow.value = false;
+    targetYearShow.value = false;
+  } else if (value == 'month') {
+    dateType.value = 'month';
+    targetDayShow.value = false;
+    targetMonthShow.value = true;
+    targetYearShow.value = false;
+  } else if (value == 'year') {
+    dateType.value = 'year';
+    targetDayShow.value = false;
+    targetMonthShow.value = false;
+    targetYearShow.value = true;
+  }
+};
+const viy2Radio_3KmPQSChange = (value) => {
+  if (value == 'large') {
+    largeShow.value = true;
+    middleShow.value = false;
+    smallShow.value = false;
+  } else if (value == 'middle') {
+    largeShow.value = true;
+    middleShow.value = true;
+    smallShow.value = false;
+  } else {
+    largeShow.value = true;
+    middleShow.value = true;
+    smallShow.value = true;
+  }
+}
+;
+const viy2Cascader_73CugwChange = (value) => {
+  queryFormData.productType = '';
+};
 const viy2Button_7m7hlOClick = () => {
   onExport();
 };
 const gridCellDblclick = (row) => {
   skipToDetail(row);
 };
-const gridTargetMonthFormatter = (row, columnConfig, cellValue) => {
+const gridLargeFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
-const gridTargetMonthEditRender = computed(() => {
+const gridLargeEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -210,10 +259,21 @@ const gridTargetMonthEditRender = computed(() => {
     },
   };
 });
-const gridLargeGroupCd1Formatter = (row, columnConfig, cellValue) => {
+const gridMiddleFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
-const gridLargeGroupCd1EditRender = computed(() => {
+const gridMiddleEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const gridSmallFormatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const gridSmallEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -414,34 +474,93 @@ const skipToDetail = (row) => {
               :md="{ span: 24 }"
             >
               <VueFormItem
-                :label="t('label.targetMonth')"
-                label-width="110px"
-                prop="targetMonth"
-                :rules="rules.viy2DateTimePicker_L6xsiRules"
+                :label="t('label.targetDates')"
+                prop="dateType"
+              >
+                <VueRadioGroup
+                  id="viy2Radio_HQ4ST"
+                  ref="viy2Radio_HQ4ST"
+                  v-model="queryFormData.dateType"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                  @change="viy2Radio_HQ4STChange"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_HQ4STOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
+              </VueFormItem>
+              <VueFormItem
+                label-width="10px"
+                prop="dateFrom"
               >
                 <VueDatePicker
-                  id="viy2DateTimePicker_L6xsi"
-                  ref="viy2DateTimePicker_L6xsi"
-                  v-model="queryFormData.targetMonth"
-                  type="month"
-                  :style="{ width: '100px' }"
+                  id="viy2DateTimePicker_1GTRddE"
+                  ref="viy2DateTimePicker_1GTRddE"
+                  v-model="queryFormData.dateFrom"
+                  :type="dateType"
+                  :style="{ width: '130px' }"
+                />
+              </VueFormItem>
+              <!-- BEGIN CUSTOM DIV CODE -->
+              <span style="padding-left:10px;">
+                -
+              </span>
+              <!-- END CUSTOM DIV CODE -->
+              <VueFormItem
+                label-width="10px"
+                prop="dateTo"
+              >
+                <VueDatePicker
+                  id="viy2DateTimePicker_74AEeK"
+                  ref="viy2DateTimePicker_74AEeK"
+                  v-model="queryFormData.dateTo"
+                  :type="dateType"
+                  :style="{ width: '130px' }"
                 />
               </VueFormItem>
               <VueFormItem
                 :label="t('label.productDiff')"
-                prop="datafieldviy2Cascader_LmE9w"
+                prop="productType"
+              >
+                <VueRadioGroup
+                  id="viy2Radio_3KmPQS"
+                  ref="viy2Radio_3KmPQS"
+                  v-model="queryFormData.productType"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                  @change="viy2Radio_3KmPQSChange"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_3KmPQSOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
+              </VueFormItem>
+              <VueFormItem
+                label-width="10px"
+                prop="productDiff"
               >
                 <VueCascader
-                  id="viy2Cascader_LmE9w"
-                  ref="viy2Cascader_LmE9w"
-                  v-model="queryFormData.datafieldviy2Cascader_LmE9w"
+                  id="viy2Cascader_73Cugw"
+                  ref="viy2Cascader_73Cugw"
+                  v-model="queryFormData.productDiff"
                   display-member="label"
                   value-member="value"
                   :filterable="true"
-                  :clearable="true"
                   :style="{ width: '250px' }"
                   :options="pcTypeDs"
-                  :props="viy2Cascader_LmE9wProps"
+                  :props="viy2Cascader_73CugwProps"
+                  @change="viy2Cascader_73CugwChange"
                 />
               </VueFormItem>
             </VueCol>
@@ -483,25 +602,39 @@ const skipToDetail = (row) => {
               :title="t('label.seqNo')"
             />
             <VueNumberColumn
-              :formatter="gridTargetMonthFormatter"
-              :edit-render="gridTargetMonthEditRender"
-              field="targetMonth"
+              :formatter="gridLargeFormatter"
+              :edit-render="gridLargeEditRender"
+              field="large"
               align="right"
               footer-align="right"
+              :visible="largeShow"
               :sortable="true"
-              width="200px"
-              :title="t('label.targetMonth')"
+              width="50px"
+              title="大"
               header-align="center"
             />
             <VueNumberColumn
-              :formatter="gridLargeGroupCd1Formatter"
-              :edit-render="gridLargeGroupCd1EditRender"
-              field="largeGroupCd1"
+              :formatter="gridMiddleFormatter"
+              :edit-render="gridMiddleEditRender"
+              field="middle"
               align="right"
               footer-align="right"
+              :visible="middleShow"
               :sortable="true"
-              width="200px"
-              :title="t('label.productDiff')"
+              width="50px"
+              title="中"
+              header-align="center"
+            />
+            <VueNumberColumn
+              :formatter="gridSmallFormatter"
+              :edit-render="gridSmallEditRender"
+              field="small"
+              align="right"
+              footer-align="right"
+              :visible="smallShow"
+              :sortable="true"
+              width="50px"
+              title="小"
               header-align="center"
             />
             <VueNumberColumn
@@ -513,7 +646,7 @@ const skipToDetail = (row) => {
               :aggregate-label="t('label.total')"
               :sortable="true"
               width="200px"
-              :title="t('label.productDiffNm')"
+              title="区分名称"
               header-align="center"
             />
             <VueNumberColumn
@@ -526,7 +659,7 @@ const skipToDetail = (row) => {
               footer-align="right"
               :sortable="true"
               width="130px"
-              :title="t('label.initMonthPrice')"
+              title="在庫金額"
               header-align="center"
             />
             <VueNumberColumn

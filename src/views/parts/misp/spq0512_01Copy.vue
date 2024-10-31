@@ -5,9 +5,8 @@ import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
 import { useRouter } from 'vue-router';
 import { merge } from 'lodash-es';
-import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT } from '@/constants';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
+import { useApi } from '@/composables/useApi';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
 const total = ref();
@@ -228,7 +227,7 @@ const gridTotalPriceEditRender = computed(() => {
   };
 });
 const viy2Button_MHEphClick = () => {
-  VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
+  VueMessageBox.confirm(t('message.closeMsg'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
     skipDetailShow.value = false;
@@ -449,7 +448,6 @@ const skipDetailFc = () => {
                           v-model="queryFormDataData.datafieldviy2DateTimePicker_RRgLG"
                           type="daterange"
                           :style="{ width: '250px' }"
-                          :format="CONST_SYSTEM_DATE_FORMAT.ym"
                         />
                       </VueFormItem>
                     </VueCol>
@@ -615,7 +613,7 @@ const skipDetailFc = () => {
             </VueCol>
           </VueRow>
         </VuePanel>
-        <VuePanel id="viy2Panel_zDFko" ref="viy2Panel_zDFko" title="明細情報">
+        <VuePanel id="viy2Panel_zDFko" ref="viy2Panel_zDFko" title="明細情報" height="100%">
           <VueTable id="viy2Table_zDKIo" ref="viy2Table_zDKIo" height="auto" :edit-config="viy2Table_zDKIoEditConfig" :mouse-config="viy2Table_zDKIoMouseConfig">
             <VueInputColumn
               :edit-render="viy2Table_zDKIoData1EditRender"

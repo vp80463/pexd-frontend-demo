@@ -10,6 +10,18 @@ const { lockScreen } = useLockScreen();
 const uc = useUser().userInfo;
 const currentMonth = dayjs().format('YYYYMM');
 const exportFlag = ref(true);
+// 该程序取当天为最后一天
+const lastDay = dayjs().format('YYYYMMDD');
+const validataFlag = ref(true);
+// 获取当前月份的第一天
+const firstDay = dayjs().startOf('month').format('YYYYMMDD');
+const dateType = ref('date');
+const targetDayShow = ref(true);
+const targetMonthShow = ref(false);
+const targetYearShow = ref(false);
+const largeShow = ref(true);
+const middleShow = ref(false);
+const smallShow = ref(false);
 defineOptions({
   name: 'spq0501_01',
 });
@@ -20,9 +32,11 @@ const viy2Panel_1bFXT = ref();
 const viy2Button_5FbWKc = ref();
 const viy2Button_5liHpi = ref();
 const viy2Row_1d3oa = ref();
-const viy2Select_1rPSyEH = ref();
-const viy2DateTimePicker_L6xsi = ref();
-const viy2Cascader_LmE9w = ref();
+const viy2Radio_HQ4ST = ref();
+const viy2DateTimePicker_1GTRddE = ref();
+const viy2DateTimePicker_74AEeK = ref();
+const viy2Radio_3KmPQS = ref();
+const viy2Cascader_73Cugw = ref();
 const viy2Select_7zu8YI = ref();
 const viy2Flex_eVSTe = ref();
 const viy2Panel_x7ssG = ref();
@@ -33,17 +47,20 @@ const viy2Table_8XEr2t = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  deliveryPointId: '', targetMonth: '', productDiff: [], abcType: '',
+  dateType: 'month', dateFrom: '', dateTo: '', productType: 'large', productDiff: [], abcType: '',
 });
-const rules = reactive({
-  viy2DateTimePicker_L6xsiRules: [
-    {
-      required: true,
-      message: t('errors.required', [t('label.targetMonth')]),
-    },
-  ],
-});
-const viy2Cascader_LmE9wProps = reactive({
+const viy2Radio_HQ4STOpts = reactive([
+  { value: 'day', label: '日' },
+  { value: 'month', label: '月' },
+  { value: 'year', label: '年' },
+]);
+const viy2Radio_3KmPQSOpts = reactive([
+  { value: 'large', label: '大' },
+  { value: 'middle', label: '中' },
+  { value: 'small', label: '小' },
+]);
+const viy2Cascader_73CugwProps = reactive({
+  checkStrictly: true,
   label: 'label',
   value: 'value',
 });
@@ -95,10 +112,30 @@ const pcTypeDsApi = useApi({
         {
           value: '0',
           label: 'オートバイ',
+          children: [
+            {
+              value: 'A4',
+              label: 'モトクロス',
+            },
+            {
+              value: 'A5',
+              label: 'トライアル',
+            },
+          ],
         },
         {
           value: '4',
           label: 'スノーモービル、除雪機',
+          children: [
+            {
+              value: 'G7',
+              label: '小型除雪機',
+            },
+            {
+              value: 'G8',
+              label: 'トロ除雪機',
+            },
+          ],
         },
       ],
     },
@@ -109,6 +146,20 @@ const pcTypeDsApi = useApi({
         {
           value: '9',
           label: 'ボート純正オプション',
+          children: [
+            {
+              value: 'G1',
+              label: '２．発電機',
+            },
+            {
+              value: 'G2',
+              label: '４．発電機',
+            },
+            {
+              value: 'G3',
+              label: 'Ｄ．発電機',
+            },
+          ],
         },
       ],
     },
@@ -154,6 +205,15 @@ const exportDsApi = useApi({
   manual: true,
 });
 const exportDs = exportDsApi.data;
+const dateTypeDsApi = useApi({
+  method: 'post',
+  localData: [
+    { value: 'day', label: '日' },
+    { value: 'month', label: '月' },
+    { value: 'year', label: '年' },
+  ],
+});
+const dateTypeDs = dateTypeDsApi.data;
 const viy2Button_5FbWKcClick = () => {
   queryForm.value.validate((valid) => {
     if (valid) {
@@ -169,9 +229,40 @@ const viy2Button_5liHpiClick = () => {
   }).catch(() => {
   });
 };
-const viy2Select_1rPSyEHChange = (value, data) => {
-  queryFormData.pointCd = data.code;
+const viy2Radio_HQ4STChange = (value) => {
+  if (value == 'day') {
+    dateType.value = 'date';
+    targetDayShow.value = true;
+    targetMonthShow.value = false;
+    targetYearShow.value = false;
+  } else if (value == 'month') {
+    dateType.value = 'month';
+    targetDayShow.value = false;
+    targetMonthShow.value = true;
+    targetYearShow.value = false;
+  } else if (value == 'year') {
+    dateType.value = 'year';
+    targetDayShow.value = false;
+    targetMonthShow.value = false;
+    targetYearShow.value = true;
+  }
 };
+const viy2Radio_3KmPQSChange = (value) => {
+  if (value == 'large') {
+    largeShow.value = true;
+    middleShow.value = false;
+    smallShow.value = false;
+  } else if (value == 'middle') {
+    largeShow.value = true;
+    middleShow.value = true;
+    smallShow.value = false;
+  } else {
+    largeShow.value = true;
+    middleShow.value = true;
+    smallShow.value = true;
+  }
+}
+;
 const viy2Button_2gh3EyClick = () => {
   VueMessageBox.confirm(t('ymc-commons.P.00006'), t('title.warn'), {
     type: 'warning',
@@ -180,12 +271,17 @@ const viy2Button_2gh3EyClick = () => {
   }).catch(() => {
   });
 };
-const gridTargetMonthEditRender = computed(() => {
+const gridLargeEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const gridProductDistinguishEditRender = computed(() => {
+const gridMiddleEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridSmallEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -307,12 +403,17 @@ const gridReceiptLineEditRender = computed(() => {
     },
   };
 });
-const viy2Table_8XEr2tTargetMonthEditRender = computed(() => {
+const viy2Table_8XEr2tLargeEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
-const viy2Table_8XEr2tProductDistinguishEditRender = computed(() => {
+const viy2Table_8XEr2tMiddleEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const viy2Table_8XEr2tSmallEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -473,11 +574,36 @@ const viy2Table_8XEr2tReceiveAmtEditRender = computed(() => {
     },
   };
 });
+const viy2Table_8XEr2tSalesAndOutStoreAmtFormatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const viy2Table_8XEr2tSalesAndOutStoreAmtEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
+const viy2Table_8XEr2tSalesPlanRateFormatter = (row, columnConfig, cellValue) => {
+  return formatAmount(row.cellValue);
+};
+const viy2Table_8XEr2tSalesPlanRateEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'right',
+    },
+  };
+});
 onMounted(() => {
 // 初始化targetMonth 和 point
   queryFormData.pointId = uc.defaultPointId;
   queryFormData.pointCd = uc.defaultPointCd;
-  queryFormData.targetMonth = currentMonth;
+  queryFormData.dateStart = lastDay;
+  queryFormData.dateEnd = lastDay;
+  queryFormData.dateFrom = firstDay;
+  queryFormData.dateTo = lastDay;
 });
 // 条件改变，清空明细
 watch(() => queryFormData, (newVal, oldVal) => {
@@ -542,56 +668,92 @@ const resetTblResults = () => {
               :md="{ span: 24 }"
             >
               <VueFormItem
-                v-if="false"
-                label="出荷倉庫"
-                prop="deliveryPointId"
+                :label="t('label.targetDates')"
+                prop="dateType"
               >
-                <VueSelect
-                  id="viy2Select_1rPSyEH"
-                  ref="viy2Select_1rPSyEH"
-                  v-model="queryFormData.deliveryPointId"
-                  :style="{ width: '250px' }"
-                  :collapse-tags="true"
-                  :clearable="true"
-                  :filterable="true"
-                  :collapse-tags-tooltip="true"
-                  :options="pointDs"
-                  :props="{
-                    label: 'desc',
-                    value: 'id',
-                  }"
-                  @change="viy2Select_1rPSyEHChange"
-                />
+                <VueRadioGroup
+                  id="viy2Radio_HQ4ST"
+                  ref="viy2Radio_HQ4ST"
+                  v-model="queryFormData.dateType"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                  @change="viy2Radio_HQ4STChange"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_HQ4STOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
               </VueFormItem>
               <VueFormItem
-                :label="t('label.targetMonth')"
-                label-width="110px"
-                prop="targetMonth"
-                :rules="rules.viy2DateTimePicker_L6xsiRules"
+                label-width="10px"
+                prop="dateFrom"
               >
                 <VueDatePicker
-                  id="viy2DateTimePicker_L6xsi"
-                  ref="viy2DateTimePicker_L6xsi"
-                  v-model="queryFormData.targetMonth"
-                  type="month"
-                  :style="{ width: '110px' }"
+                  id="viy2DateTimePicker_1GTRddE"
+                  ref="viy2DateTimePicker_1GTRddE"
+                  v-model="queryFormData.dateFrom"
+                  :type="dateType"
+                  :style="{ width: '130px' }"
+                />
+              </VueFormItem>
+              <!-- BEGIN CUSTOM DIV CODE -->
+              <span style="padding-left:10px;">
+                -
+              </span>
+              <!-- END CUSTOM DIV CODE -->
+              <VueFormItem
+                label-width="10px"
+                prop="dateTo"
+              >
+                <VueDatePicker
+                  id="viy2DateTimePicker_74AEeK"
+                  ref="viy2DateTimePicker_74AEeK"
+                  v-model="queryFormData.dateTo"
+                  :type="dateType"
+                  :style="{ width: '130px' }"
                 />
               </VueFormItem>
               <VueFormItem
                 :label="t('label.productDiff')"
+                prop="productType"
+              >
+                <VueRadioGroup
+                  id="viy2Radio_3KmPQS"
+                  ref="viy2Radio_3KmPQS"
+                  v-model="queryFormData.productType"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                  @change="viy2Radio_3KmPQSChange"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_3KmPQSOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
+              </VueFormItem>
+              <VueFormItem
+                label-width="10px"
                 prop="productDiff"
               >
                 <VueCascader
-                  id="viy2Cascader_LmE9w"
-                  ref="viy2Cascader_LmE9w"
+                  id="viy2Cascader_73Cugw"
+                  ref="viy2Cascader_73Cugw"
                   v-model="queryFormData.productDiff"
                   display-member="label"
                   value-member="value"
                   :filterable="true"
-                  :clearable="true"
                   :style="{ width: '250px' }"
                   :options="pcTypeDs"
-                  :props="viy2Cascader_LmE9wProps"
+                  :props="viy2Cascader_73CugwProps"
                 />
               </VueFormItem>
               <VueFormItem
@@ -650,21 +812,33 @@ const resetTblResults = () => {
                   :title="t('label.seqNo')"
                 />
                 <VueInputColumn
-                  :edit-render="gridTargetMonthEditRender"
-                  field="targetMonth"
+                  :edit-render="gridLargeEditRender"
+                  field="large"
                   show-overflow="tooltip"
                   :sortable="true"
-                  :title="t('label.targetMonth')"
-                  width="160px"
+                  :visible="largeShow"
+                  title="大"
+                  width="50px"
                   header-align="center"
                 />
                 <VueInputColumn
-                  :edit-render="gridProductDistinguishEditRender"
-                  field="productDistinguish"
+                  :edit-render="gridMiddleEditRender"
+                  field="middle"
                   show-overflow="tooltip"
                   :sortable="true"
-                  :title="t('label.productDiff')"
-                  width="160px"
+                  :visible="middleShow"
+                  title="中"
+                  width="50px"
+                  header-align="center"
+                />
+                <VueInputColumn
+                  :edit-render="gridSmallEditRender"
+                  field="small"
+                  show-overflow="tooltip"
+                  :sortable="true"
+                  :visible="smallShow"
+                  title="小"
+                  width="50px"
                   header-align="center"
                 />
                 <VueInputColumn
@@ -672,7 +846,7 @@ const resetTblResults = () => {
                   field="productDistinguishNm"
                   show-overflow="tooltip"
                   :sortable="true"
-                  :title="t('label.productDiffNm')"
+                  title="区分名称"
                   width="160px"
                   header-align="center"
                 />
@@ -832,21 +1006,33 @@ const resetTblResults = () => {
                   :title="t('label.seqNo')"
                 />
                 <VueInputColumn
-                  :edit-render="viy2Table_8XEr2tTargetMonthEditRender"
-                  field="targetMonth"
+                  :edit-render="viy2Table_8XEr2tLargeEditRender"
+                  field="large"
                   show-overflow="tooltip"
                   :sortable="true"
-                  :title="t('label.targetMonth')"
-                  width="160px"
+                  :visible="largeShow"
+                  title="大"
+                  width="50px"
                   header-align="center"
                 />
                 <VueInputColumn
-                  :edit-render="viy2Table_8XEr2tProductDistinguishEditRender"
-                  field="productDistinguish"
+                  :edit-render="viy2Table_8XEr2tMiddleEditRender"
+                  field="middle"
                   show-overflow="tooltip"
                   :sortable="true"
-                  :title="t('label.productDiff')"
-                  width="160px"
+                  :visible="middleShow"
+                  title="中"
+                  width="50px"
+                  header-align="center"
+                />
+                <VueInputColumn
+                  :edit-render="viy2Table_8XEr2tSmallEditRender"
+                  field="small"
+                  show-overflow="tooltip"
+                  :sortable="true"
+                  :visible="smallShow"
+                  title="小"
+                  width="50px"
                   header-align="center"
                 />
                 <VueInputColumn
@@ -854,7 +1040,7 @@ const resetTblResults = () => {
                   field="productDistinguishNm"
                   show-overflow="tooltip"
                   :sortable="true"
-                  :title="t('label.productDiffNm')"
+                  title="区分名称"
                   width="160px"
                   header-align="center"
                 />
@@ -1021,6 +1207,28 @@ const resetTblResults = () => {
                   aggregate="sum"
                   :sortable="true"
                   :title="t('label.receiptAmount')"
+                  width="180px"
+                  header-align="center"
+                />
+                <VueNumberColumn
+                  :formatter="viy2Table_8XEr2tSalesAndOutStoreAmtFormatter"
+                  :edit-render="viy2Table_8XEr2tSalesAndOutStoreAmtEditRender"
+                  field="salesAndOutStoreAmt"
+                  align="right"
+                  aggregate="sum"
+                  :sortable="true"
+                  title="売上＋出庫中金額"
+                  width="180px"
+                  header-align="center"
+                />
+                <VueNumberColumn
+                  :formatter="viy2Table_8XEr2tSalesPlanRateFormatter"
+                  :edit-render="viy2Table_8XEr2tSalesPlanRateEditRender"
+                  field="salesPlanRate"
+                  align="right"
+                  aggregate="sum"
+                  :sortable="true"
+                  title="販売計画達成率仮"
                   width="180px"
                   header-align="center"
                 />
