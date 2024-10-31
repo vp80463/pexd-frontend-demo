@@ -5,10 +5,9 @@ import dayjs from 'dayjs';
 import { nextTick } from 'vue';
 import { useParams, useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT, CONST_SYSTEM_TIME_VALUE_FORMAT } from '@/constants';
 import detailPagePage from '/src/views/parts/receipt/spq0301_02.vue';
 import { parts_column, parts_pop_column, parts_pop_query_method, parts_query_method } from '@/settings/valuelistSetting.js';
-import { formatCodeInput, formatCost, formatPartNo, formatQty } from '@/pj-commonutils.js';
+import { formatCodeInput, formatPartNo, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
 const { lockScreen } = useLockScreen();
 const uc = useUser().userInfo;
@@ -277,8 +276,6 @@ const headerGridReceiptDateEditRender = computed(() => {
     attrs: {
       textAlign: 'center',
       type: 'date',
-      valueFormat: CONST_SYSTEM_TIME_VALUE_FORMAT.ymd,
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
     },
   };
 });
@@ -295,13 +292,16 @@ const headerGridReceiptQtyEditRender = computed(() => {
     enabled: false,
   };
 });
+const headerGridReceiptPriceFormatter = (row, columnConfig, cellValue) => {
+  return formatQty(row.cellValue);
+};
 const headerGridReceiptPriceEditRender = computed(() => {
   return {
     enabled: false,
   };
 });
 const headerGridTotalFormatter = (row, columnConfig, cellValue) => {
-  return formatCost(row.cellValue);
+  return formatQty(row.cellValue);
 };
 const headerGridTotalEditRender = computed(() => {
   return {
@@ -808,6 +808,7 @@ const closeSpq030102 = () => {
               header-align="center"
             />
             <VueNumberColumn
+              :formatter="headerGridReceiptPriceFormatter"
               :edit-render="headerGridReceiptPriceEditRender"
               field="receiptPrice"
               footer-align="center"
