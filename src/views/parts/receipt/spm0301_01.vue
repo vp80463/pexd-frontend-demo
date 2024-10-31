@@ -3,7 +3,6 @@ import { IconDownload, IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import { useUser } from 'viy-menu';
 import { useApi } from '@/composables/useApi';
-import { CONST_SYSTEM_DATE_FORMAT } from '@/constants';
 import detailPagePage from '/src/views/parts/receipt/spm0301_02.vue';
 import { warn_msg } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -193,9 +192,6 @@ const gridCellDblclick = (obj) => {
 const gridImportDateEditRender = computed(() => {
   return {
     enabled: false,
-    attrs: {
-      format: CONST_SYSTEM_DATE_FORMAT.ymd,
-    },
   };
 });
 const gridInvoiceNoEditRender = computed(() => {
