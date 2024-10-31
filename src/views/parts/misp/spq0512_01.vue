@@ -1,5 +1,5 @@
 <script setup>
-import { IconCloseBold, IconEdit, useLockScreen } from 'viy-ui';
+import { IconEdit, useLockScreen } from 'viy-ui';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { useUser } from 'viy-menu';
@@ -26,6 +26,7 @@ const firstDay = dayjs().startOf('month').format('YYYYMMDD');
 const lastDay = dayjs().format('YYYYMMDD');
 const gridShow = ref(true);
 const grid1Show = ref(false);
+const billingTo = '';
 defineOptions({
   name: 'spq0512_01',
 });
@@ -39,34 +40,42 @@ const viy2Button_6My7VA = ref();
 const viy2Row_hLmD = ref();
 const viy2Row_uVYww = ref();
 const viy2Row_4HoKa = ref();
-const viy2Radio_ANhIC = ref();
 const viy2DateTimePicker_RRgLG = ref();
-const viy2Row_4ZrBT2 = ref();
-const viy2Radio_4ZrBT6 = ref();
-const viy2Radio_4ZrBT8 = ref();
 const viy2Flex_ztw91 = ref();
 const viy2Panel_50igpm = ref();
 const viy2Button_50q5go = ref();
 const viy2Button_50lG5o = ref();
 const viy2Button_50v94C = ref();
 const grid = ref();
-const grid1 = ref();
 const viy2Aside_zwSA3 = ref();
 const viy2Row_v8prN = ref();
 const viy2Row_5K6AKO = ref();
 const copy2_viy2Row_v8xMS_col1 = ref();
 const copy2_viy2Row_v8xMS_col2 = ref();
-const viy2Button_5K6ALG = ref();
+const viy2Button_MHEph = ref();
 const viy2Form_zCww8 = ref();
-const viy2FormItem_zCDdW = ref();
+const viy2Panel_a0Ael = ref();
+const viy2Row_a2fXN = ref();
+const viy2InputBox_a1I0p = ref();
 const viy2Panel_zDFko = ref();
 const viy2Table_zDKIo = ref();
+const viy2Dialog_g97sg = ref();
+const viy2Row_g9xnA = ref();
+const viy2Row_gcVwu = ref();
+const viy2Radio_gbENi = ref();
+const viy2Row_2C5zwI = ref();
+const viy2Radio_2BTFZ8 = ref();
+const viy2Row_gcavA = ref();
+const viy2Button_gc7GC = ref();
+const viy2Button_2BYA6i = ref();
 const formData = reactive({
+  newLineCode: 'CR+LF', signConversion: 'する',
 });
 const queryFormDataData = reactive({
-  Type: '1', datafieldviy2DateTimePicker_RRgLG: '', NewLineCode: 'CR + LF', SignConversion: 'する',
+  datafieldviy2DateTimePicker_RRgLG: '',
 });
 const viy2Form_zCww8Data = reactive({
+  billingTo: 'consumer1',
 });
 const skipDetailShow = ref(false);
 const viy2Table_zDKIoEditConfig = reactive({
@@ -75,15 +84,12 @@ const viy2Table_zDKIoEditConfig = reactive({
 const viy2Table_zDKIoMouseConfig = reactive({
   extension: true,
 });
-const viy2Radio_ANhICOpts = reactive([
-  { value: '1', label: '鑑データ' },
-  { value: '2', label: '請求書データ' },
-]);
-const viy2Radio_4ZrBT6Opts = reactive([
-  { value: 'CR + LF', label: 'CR + LF' },
+const referenceDataOutput = ref(false);
+const viy2Radio_gbENiOpts = reactive([
+  { value: 'CR+LF', label: 'CR+LF' },
   { value: 'LF', label: 'LF' },
 ]);
-const viy2Radio_4ZrBT8Opts = reactive([
+const viy2Radio_2BTFZ8Opts = reactive([
   { value: 'する', label: 'する' },
   { value: 'しない', label: 'しない' },
 ]);
@@ -93,13 +99,7 @@ const gridEditConfig = reactive({
 const gridMouseConfig = reactive({
   extension: true,
 });
-const grid1EditConfig = reactive({
-  trigger: 'click',
-});
-const grid1MouseConfig = reactive({
-  extension: true,
-});
-const grid1Viy2TableButtonColumn_zws0GButtons = (scope) => {
+const gridViy2TableButtonColumn_zws0GButtons = (scope) => {
   return [
     {
       label: '',
@@ -172,37 +172,9 @@ const viy2Button_50kiOCClick = () => {
 const viy2Button_6My7VAClick = () => {
   doExport();
 };
-const viy2Radio_ANhICChange = (value) => {
-  if (value == '1') {
-    formatFlag.value = true;
-    gridShow.value = false;
-    grid1Show.value = true;
-  } else {
-    formatFlag.value = false;
-    gridShow.value = false;
-    grid1Show.value = true;
-  }
-};
-(value) => {
-  const displayTypeDS = displayTypeDSApi.data;
-  if (value == 'companyWide') {
-    // 隐藏 表示タイプ、
-    defaultShow();
-    displayTypeShow.value = false;
-    object1Show.value = false;
-    displayTypeDS.value = displayInitTypeDS.value;
-  } else if (value == '1') {
-    defaultShow();
-    displayTypeDS.value = displayInitTypeDS.value;
-  } else if (value == '2') {
-    defaultShow();
-    displayTypeShow.value = false;
-    object1Show.value = false;
-    displayTypeDS.value = displayInitTypeDS.value;
-  }
-};
 const viy2Button_50q5goClick = () => {
-  doExport();
+// doExport();
+  referenceDataOutput.value = true;
 };
 const viy2Button_50lG5oClick = () => {
   doExport();
@@ -210,92 +182,55 @@ const viy2Button_50lG5oClick = () => {
 const viy2Button_50v94CClick = () => {
   doExport();
 };
-const gridIdentificationEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridDealerCodeEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridHeaderIndicatorEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridSalesClosingDateEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridBaseCodeEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridBillingToStoreCodeEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridEntryAndExitCategoryEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridInvoiceSmountEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const grid1BillingToEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const grid1AmountOfPartsSoldEditRender = computed(() => {
+const gridBillingToEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
-      textAlign: 'right',
+      textAlign: 'center',
     },
   };
 });
-const grid1FareEditRender = computed(() => {
+const gridAmountOfPartsSoldEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
-      textAlign: 'right',
+      textAlign: 'center',
     },
   };
 });
-const grid1DirectFeesEditRender = computed(() => {
+const gridFareEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
-      textAlign: 'right',
+      textAlign: 'center',
     },
   };
 });
-const grid1ManufacturerFeesEditRender = computed(() => {
+const gridDirectFeesEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
-      textAlign: 'right',
+      textAlign: 'center',
     },
   };
 });
-const grid1TotalPriceEditRender = computed(() => {
+const gridManufacturerFeesEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
-      textAlign: 'right',
+      textAlign: 'center',
     },
   };
 });
-const viy2Button_5K6ALGClick = () => {
+const gridTotalPriceEditRender = computed(() => {
+  return {
+    enabled: false,
+    attrs: {
+      textAlign: 'center',
+    },
+  };
+});
+const viy2Button_MHEphClick = () => {
   VueMessageBox.confirm(t('閉じるをしますか?'), t('title.warn'), {
     type: 'warning',
   }).then(() => {
@@ -372,6 +307,9 @@ const viy2Table_zDKIoData14EditRender = computed(() => {
     enabled: false,
   };
 });
+const viy2Button_2BYA6iClick = () => {
+  referenceDataOutput.value = false;
+};
 onMounted(() => {
   paginationPageSize.value = PAGE_SIZE;
   queryFormData.dateStart = lastDay;
@@ -504,28 +442,6 @@ const skipDetailFc = () => {
                       :md="{ span: 24 }"
                     >
                       <VueFormItem
-                        :label="t('label.type')"
-                        label-width="100px"
-                        prop="Type"
-                      >
-                        <VueRadioGroup
-                          id="viy2Radio_ANhIC"
-                          ref="viy2Radio_ANhIC"
-                          v-model="queryFormDataData.Type"
-                          radio-style="button"
-                          direction="horizontal"
-                          @change="viy2Radio_ANhICChange"
-                        >
-                          <VueRadioButton
-                            v-for="option in viy2Radio_ANhICOpts"
-                            :key="option.value"
-                            :label="option.value"
-                          >
-                            {{ option.label }}
-                          </VueRadioButton>
-                        </VueRadioGroup>
-                      </VueFormItem>
-                      <VueFormItem
                         :label="t('label.exportDateLange')"
                         label-width="100px"
                         prop="datafieldviy2DateTimePicker_RRgLG"
@@ -538,63 +454,6 @@ const skipDetailFc = () => {
                           :style="{ width: '250px' }"
                           :format="CONST_SYSTEM_DATE_FORMAT.ym"
                         />
-                      </VueFormItem>
-                    </VueCol>
-                  </VueRow>
-                  <VueRow
-                    id="viy2Row_4ZrBT2"
-                    ref="viy2Row_4ZrBT2"
-                  >
-                    <VueCol
-                      item-key="item"
-                      :inline="true"
-                      :md="{ span: 24 }"
-                    >
-                      <VueFormItem
-                        v-show="formatFlag"
-                        :label="t('label.NewLineCode')"
-                        label-width="100px"
-                        prop="NewLineCode"
-                      >
-                        <VueRadioGroup
-                          id="viy2Radio_4ZrBT6"
-                          ref="viy2Radio_4ZrBT6"
-                          v-model="queryFormDataData.NewLineCode"
-                          radio-style="button"
-                          direction="horizontal"
-                          split-size="default"
-                        >
-                          <VueRadioButton
-                            v-for="option in viy2Radio_4ZrBT6Opts"
-                            :key="option.value"
-                            :label="option.value"
-                          >
-                            {{ option.label }}
-                          </VueRadioButton>
-                        </VueRadioGroup>
-                      </VueFormItem>
-                      <VueFormItem
-                        v-show="formatFlag"
-                        label="符号変換"
-                        label-width="100px"
-                        prop="SignConversion"
-                      >
-                        <VueRadioGroup
-                          id="viy2Radio_4ZrBT8"
-                          ref="viy2Radio_4ZrBT8"
-                          v-model="queryFormDataData.SignConversion"
-                          radio-style="button"
-                          direction="horizontal"
-                          split-size="default"
-                        >
-                          <VueRadioButton
-                            v-for="option in viy2Radio_4ZrBT8Opts"
-                            :key="option.value"
-                            :label="option.value"
-                          >
-                            {{ option.label }}
-                          </VueRadioButton>
-                        </VueRadioGroup>
                       </VueFormItem>
                     </VueCol>
                   </VueRow>
@@ -617,14 +476,14 @@ const skipDetailFc = () => {
                 鑑データ出力
               </VueButton>
               <VueButton id="viy2Button_50lG5o" ref="viy2Button_50lG5o" icon-position="left" @click="viy2Button_50lG5oClick">
-                一覧データ出力
+                ファイル出力
               </VueButton>
               <VueButton id="viy2Button_50v94C" ref="viy2Button_50v94C" icon-position="left" @click="viy2Button_50v94CClick">
-                明細データ出力
+                明細ファイル出力
               </VueButton>
             </div>
           </template>
-          <VueTable v-if="gridShow" id="grid" ref="grid" :stripe="true" :show-footer="true" height="auto" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
+          <VueTable id="grid" ref="grid" :stripe="true" :show-footer="true" height="auto" :data="staticDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig">
             <VueIndexColumn
               align="center"
               width="50px"
@@ -633,107 +492,51 @@ const skipDetailFc = () => {
               title="No"
             />
             <VueInputColumn
-              :edit-render="gridIdentificationEditRender"
-              field="identification"
-              title="識別"
-              width="100px"
-            />
-            <VueInputColumn
-              :edit-render="gridDealerCodeEditRender"
-              field="dealerCode"
-              width="200px"
-              title="特約店コード"
-            />
-            <VueInputColumn
-              :edit-render="gridHeaderIndicatorEditRender"
-              field="headerIndicator"
-              title="ヘッダー区分"
-              width="150px"
-            />
-            <VueInputColumn
-              :edit-render="gridSalesClosingDateEditRender"
-              field="salesClosingDate"
-              width="200px"
-              title="売上締日"
-            />
-            <VueInputColumn
-              :edit-render="gridBaseCodeEditRender"
-              field="baseCode"
-              width="200px"
-              title="ベースコード"
-            />
-            <VueInputColumn
-              :edit-render="gridBillingToStoreCodeEditRender"
-              field="billingToStoreCode"
-              width="200px"
-              title="請求先販売店コード"
-            />
-            <VueInputColumn
-              :edit-render="gridEntryAndExitCategoryEditRender"
-              field="entryAndExitCategory"
-              title="入出庫分類"
-              width="150px"
-            />
-            <VueInputColumn
-              :edit-render="gridInvoiceSmountEditRender"
-              field="invoiceSmount"
-              width="200px"
-              title="請求金額"
-            />
-          </VueTable>
-          <VueTable v-if="grid1Show" id="grid1" ref="grid1" :stripe="true" :show-footer="true" height="auto" :data="staticDs" :edit-config="grid1EditConfig" :mouse-config="grid1MouseConfig">
-            <VueIndexColumn
-              align="center"
-              width="50px"
-              min-width="50px"
-              header-align="center"
-              title="No"
-            />
-            <VueInputColumn
-              :edit-render="grid1BillingToEditRender"
+              :edit-render="gridBillingToEditRender"
               field="billingTo"
+              align="center"
               width="200px"
               title="請求先"
             />
             <VueInputColumn
-              :edit-render="grid1AmountOfPartsSoldEditRender"
+              :edit-render="gridAmountOfPartsSoldEditRender"
               field="amountOfPartsSold"
-              align="right"
+              align="center"
               width="200px"
               title="部品売上金額"
             />
             <VueInputColumn
-              :edit-render="grid1FareEditRender"
+              :edit-render="gridFareEditRender"
               field="Fare"
-              align="right"
+              align="center"
               width="200px"
               title="運賃"
             />
             <VueInputColumn
-              :edit-render="grid1DirectFeesEditRender"
+              :edit-render="gridDirectFeesEditRender"
               field="directFees"
-              align="right"
+              align="center"
               width="200px"
               title="直送手数料"
             />
             <VueInputColumn
-              :edit-render="grid1ManufacturerFeesEditRender"
+              :edit-render="gridManufacturerFeesEditRender"
               field="manufacturerFees"
-              align="right"
+              align="center"
               width="200px"
               title="メーカー手数料"
             />
             <VueInputColumn
-              :edit-render="grid1TotalPriceEditRender"
+              :edit-render="gridTotalPriceEditRender"
               field="totalPrice"
-              align="right"
+              align="center"
               width="200px"
               title="合計"
             />
             <VueButtonColumn
               align="center"
               width="80px"
-              :buttons="grid1Viy2TableButtonColumn_zws0GButtons"
+              :buttons="gridViy2TableButtonColumn_zws0GButtons"
             />
           </VueTable>
         </VuePanel>
@@ -744,14 +547,15 @@ const skipDetailFc = () => {
       ref="viy2Aside_zwSA3"
       v-model="skipDetailShow"
       :modal="true"
-      size="50%"
+      size="90%"
       :with-header="false"
       :show-close="false"
+      direction="btt"
     >
       <VueRow
         id="viy2Row_v8prN"
         ref="viy2Row_v8prN"
-        class="aside-title-row"
+        style="padding-bottom:5px;"
       >
         <VueCol
           item-key="item"
@@ -779,7 +583,9 @@ const skipDetailFc = () => {
               :inline="true"
               :md="{ span: 12 }"
             >
-              <VueButton id="viy2Button_5K6ALG" ref="viy2Button_5K6ALG" icon-position="right" type="text" class="icon-button-width" :icon="IconCloseBold" @click="viy2Button_5K6ALGClick" />
+              <VueButton id="viy2Button_MHEph" ref="viy2Button_MHEph" icon-position="left" @click="viy2Button_MHEphClick">
+                閉じる
+              </VueButton>
             </VueCol>
           </VueRow>
         </VueCol>
@@ -789,12 +595,30 @@ const skipDetailFc = () => {
         ref="viy2Form_zCww8"
         :model="viy2Form_zCww8Data"
       >
-        <VueFormItem
-          id="viy2FormItem_zCDdW"
-          ref="viy2FormItem_zCDdW"
-          label="請求先"
-          prop="billingTo"
-        />
+        <VuePanel id="viy2Panel_a0Ael" ref="viy2Panel_a0Ael" title="主信息">
+          <VueRow
+            id="viy2Row_a2fXN"
+            ref="viy2Row_a2fXN"
+          >
+            <VueCol
+              item-key="item"
+              :md="{ span: 24 }"
+            >
+              <VueFormItem
+                label="請求先"
+                prop="billingTo"
+              >
+                <VueInput
+                  id="viy2InputBox_a1I0p"
+                  ref="viy2InputBox_a1I0p"
+                  v-model="viy2Form_zCww8Data.billingTo"
+                  :readonly="true"
+                  class="no-border"
+                />
+              </VueFormItem>
+            </VueCol>
+          </VueRow>
+        </VuePanel>
         <VuePanel id="viy2Panel_zDFko" ref="viy2Panel_zDFko" title="明細情報">
           <VueTable id="viy2Table_zDKIo" ref="viy2Table_zDKIo" height="auto" :edit-config="viy2Table_zDKIoEditConfig" :mouse-config="viy2Table_zDKIoMouseConfig">
             <VueInputColumn
@@ -879,11 +703,118 @@ const skipDetailFc = () => {
               :edit-render="viy2Table_zDKIoData14EditRender"
               field="data14"
               title="メーカー手数料"
-              width="100px"
+              width="120px"
             />
           </VueTable>
         </VuePanel>
       </VueForm>
     </VueAside>
+    <VueDialog
+      id="viy2Dialog_g97sg"
+      ref="viy2Dialog_g97sg"
+      v-model="referenceDataOutput"
+      title="出力形式"
+      width="600px"
+    >
+      <template #default>
+        <VueRow
+          id="viy2Row_g9xnA"
+          ref="viy2Row_g9xnA"
+        >
+          <VueCol
+            item-key="item"
+            align="center"
+            :md="{ span: 24 }"
+          >
+            <VueRow
+              id="viy2Row_gcVwu"
+              ref="viy2Row_gcVwu"
+            >
+              <VueCol
+                item-key="item"
+                align="center"
+                :inline="true"
+                :md="{ span: 24 }"
+              >
+                <VueFormItem
+                  :label="t('label.NewLineCode')"
+                  prop="newLineCode"
+                >
+                  <VueRadioGroup
+                    id="viy2Radio_gbENi"
+                    ref="viy2Radio_gbENi"
+                    v-model="formData.newLineCode"
+                    radio-style="button"
+                    direction="horizontal"
+                    split-size="default"
+                  >
+                    <VueRadioButton
+                      v-for="option in viy2Radio_gbENiOpts"
+                      :key="option.value"
+                      :label="option.value"
+                    >
+                      {{ option.label }}
+                    </VueRadioButton>
+                  </VueRadioGroup>
+                </VueFormItem>
+              </VueCol>
+            </VueRow>
+            <VueRow
+              id="viy2Row_2C5zwI"
+              ref="viy2Row_2C5zwI"
+            >
+              <VueCol
+                item-key="item"
+                align="center"
+                :inline="true"
+                :md="{ span: 24 }"
+              >
+                <VueFormItem
+                  label="符号変换"
+                  prop="signConversion"
+                >
+                  <VueRadioGroup
+                    id="viy2Radio_2BTFZ8"
+                    ref="viy2Radio_2BTFZ8"
+                    v-model="formData.signConversion"
+                    radio-style="button"
+                    direction="horizontal"
+                    split-size="default"
+                  >
+                    <VueRadioButton
+                      v-for="option in viy2Radio_2BTFZ8Opts"
+                      :key="option.value"
+                      :label="option.value"
+                    >
+                      {{ option.label }}
+                    </VueRadioButton>
+                  </VueRadioGroup>
+                </VueFormItem>
+              </VueCol>
+            </VueRow>
+          </VueCol>
+        </VueRow>
+      </template>
+      <template #footer>
+        <VueRow
+          id="viy2Row_gcavA"
+          ref="viy2Row_gcavA"
+        >
+          <VueCol
+            item-key="item"
+            align="right"
+            :inline="true"
+            :md="{ span: 24 }"
+          >
+            <VueButton id="viy2Button_gc7GC" ref="viy2Button_gc7GC" icon-position="left" type="info">
+              出力する
+            </VueButton>
+            <VueButton id="viy2Button_2BYA6i" ref="viy2Button_2BYA6i" icon-position="left" @click="viy2Button_2BYA6iClick">
+              閉じる
+            </VueButton>
+          </VueCol>
+        </VueRow>
+      </template>
+    </VueDialog>
   </VueForm>
 </template>
