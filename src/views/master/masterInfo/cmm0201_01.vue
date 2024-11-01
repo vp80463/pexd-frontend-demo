@@ -777,6 +777,7 @@ const getPointLabel = (pointId) => {
               width="50px"
               min-width="50px"
               header-align="center"
+              title="No."
             />
             <VueValueListColumn
               :edit-render="gridLocationEditRender"

@@ -386,6 +386,7 @@ const getTotalRate = () => {
               width="50px"
               min-width="50px"
               header-align="center"
+              title="No."
             />
             <VueInputColumn
               :edit-render="gridPureRankEditRender"

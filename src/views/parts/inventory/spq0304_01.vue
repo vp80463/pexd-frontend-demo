@@ -640,6 +640,7 @@ const onLeavePartsCode = async (code) => {
               min-width="50px"
               header-align="center"
               width="60px"
+              title="No."
             />
             <VueDateTimeColumn
               :edit-render="gridTransactionDateEditRender"

@@ -596,7 +596,8 @@ const onLeavePartsCode = async (code) => {
               align="center"
               min-width="50px"
               header-align="center"
-              width="40px"
+              width="50px"
+              title="No."
             />
             <VueInputColumn
               v-if="false"

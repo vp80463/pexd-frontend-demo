@@ -573,7 +573,8 @@ const exportFile = () => {
               fixed="left"
               min-width="50px"
               header-align="center"
-              width="60px"
+              width="50px"
+              title="No."
             />
             <VueInputColumn
               :formatter="gridPartsCdFormatter"

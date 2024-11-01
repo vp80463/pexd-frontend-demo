@@ -248,6 +248,7 @@ const resetTblResults = () => {
               width="50px"
               min-width="50px"
               header-align="center"
+              title="No."
             />
             <VueNumberColumn
               :edit-render="gridStdpriceEditRender"
