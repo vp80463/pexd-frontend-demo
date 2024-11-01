@@ -753,6 +753,7 @@ const skipTo9 = (row) => {
               width="50px"
               min-width="50px"
               header-align="center"
+              title="No."
             />
             <VueDateTimeColumn
               :edit-render="gridDateEditRender"
