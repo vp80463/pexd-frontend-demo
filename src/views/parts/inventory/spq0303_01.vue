@@ -431,19 +431,6 @@ const gridProductnewCdEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridFinalNewProductCdEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
-const gridSupersedingPartsNewFormatter = (row, columnConfig, cellValue) => {
-  return formatPartNo(row.cellValue);
-};
-const gridSupersedingPartsNewEditRender = computed(() => {
-  return {
-    enabled: false,
-  };
-});
 const gridSupersedingPartsFormatter = (row, columnConfig, cellValue) => {
   return formatPartNo(row.cellValue);
 };
@@ -931,25 +918,6 @@ const onLeavePartsCode = async (code) => {
               :sortable="true"
               title="正代替部品"
               width="130px"
-            />
-            <VueInputColumn
-              :edit-render="gridFinalNewProductCdEditRender"
-              field="finalNewProductCd"
-              show-overflow="tooltip"
-              :sortable="true"
-              title="最終商品コード"
-              width="130px"
-            />
-            <VueInputColumn
-              :formatter="gridSupersedingPartsNewFormatter"
-              :edit-render="gridSupersedingPartsNewEditRender"
-              field="supersedingPartsNew"
-              show-overflow="tooltip"
-              :sortable="true"
-              aggregate-label="合計"
-              footer-align="center"
-              title="代替部品(新品)"
-              width="175px"
             />
             <VueInputColumn
               v-if="false"

@@ -847,7 +847,7 @@ const calculateVolume = () => {
           </VueCol>
         </VueRow>
       </VuePanel>
-      <VuePanel id="viy2Panel_oqx1Vg" ref="viy2Panel_oqx1Vg" :collapse="true" title="受注" class="except-height-css">
+      <VuePanel id="viy2Panel_oqx1Vg" ref="viy2Panel_oqx1Vg" :collapse="true" title="価格情報" class="except-height-css">
         <VueRow
           id="viy2Row_uaIzS"
           ref="viy2Row_uaIzS"

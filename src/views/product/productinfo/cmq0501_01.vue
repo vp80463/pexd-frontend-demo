@@ -415,7 +415,7 @@ const onLeavePartsCode = async (code) => {
         </VueButton>
       </VueCol>
     </VueRow>
-    <VuePanel id="viy2Panel_E6XQ4" ref="viy2Panel_E6XQ4" title="ヘッド" title-align="left" :collapse="true" class="margin-top-div except-height-css">
+    <VuePanel id="viy2Panel_E6XQ4" ref="viy2Panel_E6XQ4" title="検索条件" title-align="left" :collapse="true" class="margin-top-div except-height-css">
       <VueRow
         id="viy2Row_xChMPR"
         ref="viy2Row_xChMPR"
@@ -953,7 +953,7 @@ const onLeavePartsCode = async (code) => {
         </VueCol>
       </VueRow>
     </VuePanel>
-    <VuePanel id="viy2Panel_oqx1Vg" ref="viy2Panel_oqx1Vg" :collapse="true" title="受注" class="except-height-css">
+    <VuePanel id="viy2Panel_oqx1Vg" ref="viy2Panel_oqx1Vg" :collapse="true" title="価格情報" class="except-height-css">
       <VueRow
         id="viy2Row_6tnLXf"
         ref="viy2Row_6tnLXf"
