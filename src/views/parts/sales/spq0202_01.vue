@@ -40,7 +40,6 @@ const viy2Button_hFmWWA = ref();
 const viy2Button_hFmWWB = ref();
 const viy2CheckBox_68qGMM = ref();
 const viy2Select_1rPSyEH = ref();
-const viy2ValueList_sloqw2 = ref();
 const viy2Select_5RhhYM = ref();
 const viy2Flex_peAv1 = ref();
 const viy2Panel_2U2iU1 = ref();
@@ -52,7 +51,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  dateFrom: '', dateTo: '', orderType: ['通常'], status: ['1', '2', '3'], parts: '', warnType: '',
+  dateFrom: '', dateTo: '', orderType: ['通常'], status: ['1', '2', '3'], warnType: '',
 });
 const rules = reactive({
   viy2DateTimePicker_hFmWWxRules: [
@@ -318,6 +317,14 @@ const gridAllocatedPartsCdEditRender = computed(() => {
   };
 });
 const gridAllocatedPartsNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridProductCategoryFormatter = (row, columnConfig, cellValue) => {
+  return formatPartNo(row.cellValue);
+};
+const gridProductCategoryEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -614,18 +621,6 @@ const onLeavePartsCode = async (code) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="部品"
-                prop="parts"
-              >
-                <VueValueList
-                  id="viy2ValueList_sloqw2"
-                  ref="viy2ValueList_sloqw2"
-                  v-model="queryFormData.parts"
-                  :use-popover="true"
-                  width="300px"
-                />
-              </VueFormItem>
-              <VueFormItem
                 label="警告種別"
                 prop="warnType"
               >
@@ -762,6 +757,14 @@ const onLeavePartsCode = async (code) => {
               :sortable="true"
               title="引当部品名称"
               min-width="250px"
+            />
+            <VueInputColumn
+              :formatter="gridProductCategoryFormatter"
+              :edit-render="gridProductCategoryEditRender"
+              field="productCategory"
+              :sortable="true"
+              title="商品区分"
+              width="150px"
             />
             <VueNumberColumn
               :formatter="gridRetailPriceFormatter"
