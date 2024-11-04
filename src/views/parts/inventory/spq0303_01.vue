@@ -400,10 +400,25 @@ const PartsPopupConditions = computed(() => {
     { compType: 'VueCascader', field: 'prodCtg', label: t('label.productCategory'), options: largeGroupDs.value, clearable: true, props: { checkStrictly: true }, style: { width: '150px' } },
   ];
 });
-const viy2Button_ggxbKClick = () => {
-  const row = {};
-  grid.value.insertAt(row, -1).then((newRow) => {
-    grid.value.setCurrentRow(newRow.row);
+const viy2Button_ggxbKClick // () => {
+// var row = {};
+// grid.value.insertAt(row, -1).then(function(newRow){
+// grid.value.setCurrentRow(newRow.row);
+// });
+// }
+= () => {
+  const insertRows = async (count) => {
+    for (let i = 0; i < count; i++) {
+      const row = {};
+      await grid.value.insertAt(row, -1);
+    }
+    // 如果需要设置最后一行为当前行
+    if (grid.value.rows.length > 0) {
+      grid.value.setCurrentRow(grid.value.rows[grid.value.rows.length - 1]);
+    }
+  };
+  insertRows(20).catch((error) => {
+    console.error('Error inserting rows:', error);
   });
 };
 const ExportClick = () => {
@@ -418,7 +433,7 @@ const gridPartsNoFormatter = (row, columnConfig, cellValue) => {
 };
 const gridPartsNoEditRender = computed(() => {
   return {
-    enabled: false,
+    enabled: true,
   };
 });
 const gridPartsNmEditRender = computed(() => {

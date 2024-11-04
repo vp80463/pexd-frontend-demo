@@ -389,12 +389,12 @@ const onEditWin = (selectedRow) => {
     dataType: 'view',
   };
   useMultiTags().openTag({
-    name: 'cmm0501_02', // 路由名称
+    name: 'cmq0501_01', // 路由名称
   });
   // Update the meta title of the tag if it exists.
-  useMultiTags().getTag({ name: 'cmm0501_02' }).meta.title = t('部品情報詳細', data);
+  useMultiTags().getTag({ name: 'cmq0501_01' }).meta.title = t('部品情報照会', data);
   // Use Vue Router to navigate to the specified route and pass the data parameters
-  router.push({ name: 'cmm0501_02', data });
+  router.push({ name: 'cmq0501_01', data });
 };
 const onEditWi222 = (selectedRow) => {
   const data = {

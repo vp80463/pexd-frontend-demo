@@ -59,15 +59,21 @@ const viy2InputBox_5uQ6Ek = ref();
 const viy2Panel_oqx1Vg = ref();
 const viy2Row_6tnLXf = ref();
 const viy2InputNumber_6tnLXg = ref();
-const viy2DateTimePicker_6txCwS = ref();
 const viy2InputNumber_33tIpX = ref();
+const viy2DateTimePicker_6txCwS = ref();
 const viy2DateTimePicker_36taxO = ref();
+const viy2Panel_MXmeg = ref();
+const viy2Row_7NcS2V = ref();
+const viy2InputBox_7NcS2W = ref();
+const viy2InputBox_7NcS39 = ref();
+const viy2Radio_7NcS3c = ref();
+const viy2InputBox_1fW4IuO = ref();
 const viy2Panel_wZlWr = ref();
 const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_y03H5 = ref();
 const formData = reactive({
-  partsCd: '24-M138-6005', partsNm: '', width: 10, volume: 2400, makerCd: '', falg2: 'する', falg4: 'する', minSaleSize: 0, partsNm: '', partsNm: '', height: 15, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', supplyManageType: '', partsNm: '', lastPart: '', weight: 40, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', falg１: 'する', lastPartNm: '', length: 16, partsNm: '', makerProductCd: '', registrationDate: '20241010', partsNm: '', stdRetailPrice: 0, stdPriceUpdateDate: '20241010', stdRetailPriceold: 0, stdPriceUpdateDateOld: '20231010',
+  partsCd: '24-M138-6005', partsNm: '', width: 10, volume: 2400, makerCd: '', falg2: 'する', falg4: 'する', minSaleSize: 0, partsNm: '', partsNm: '', height: 15, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', supplyManageType: '', partsNm: '', lastPart: '', weight: 40, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', falg１: 'する', lastPartNm: '', length: 16, partsNm: '', makerProductCd: '', registrationDate: '20241010', partsNm: '', stdRetailPrice: 0, stdRetailPriceold: 0, stdPriceUpdateDate: '20241010', stdPriceUpdateDateOld: '20231010', ROP: '', ROQ: '', chainFlag: 'する', CU: '',
 });
 const queryFormData = reactive({
   parts: '',
@@ -113,6 +119,10 @@ const viy2Radio_5vlQpWOpts = reactive([
   { value: 'しない', label: 'しない' },
 ]);
 const viy2Radio_y86KMOpts = reactive([
+  { value: 'する', label: 'する' },
+  { value: 'しない', label: 'しない' },
+]);
+const viy2Radio_7NcS3cOpts = reactive([
   { value: 'する', label: 'する' },
   { value: 'しない', label: 'しない' },
 ]);
@@ -982,31 +992,6 @@ const onLeavePartsCode = async (code) => {
               @change="viy2InputNumber_6tnLXgChange"
             />
           </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :md="{ span: 6 }"
-        >
-          <VueFormItem
-            label="単価適用開始日"
-            label-width="160px"
-            prop="stdPriceUpdateDate"
-          >
-            <VueDatePicker
-              id="viy2DateTimePicker_6txCwS"
-              ref="viy2DateTimePicker_6txCwS"
-              v-model="formData.stdPriceUpdateDate"
-              type="date"
-              :readonly="true"
-              class="no-border"
-              :style="{ width: '130px' }"
-            />
-          </VueFormItem>
-        </VueCol>
-        <VueCol
-          item-key="item"
-          :md="{ span: 6 }"
-        >
           <VueFormItem
             label="改訂前標準小売単価"
             label-width="160px"
@@ -1033,6 +1018,21 @@ const onLeavePartsCode = async (code) => {
           :md="{ span: 6 }"
         >
           <VueFormItem
+            label="単価適用開始日"
+            label-width="160px"
+            prop="stdPriceUpdateDate"
+          >
+            <VueDatePicker
+              id="viy2DateTimePicker_6txCwS"
+              ref="viy2DateTimePicker_6txCwS"
+              v-model="formData.stdPriceUpdateDate"
+              type="date"
+              :readonly="true"
+              class="no-border"
+              :style="{ width: '130px' }"
+            />
+          </VueFormItem>
+          <VueFormItem
             label="改訂前単価適用開始日"
             label-width="160px"
             prop="stdPriceUpdateDateOld"
@@ -1045,6 +1045,100 @@ const onLeavePartsCode = async (code) => {
               :readonly="true"
               class="no-border"
               :style="{ width: '130px' }"
+            />
+          </VueFormItem>
+        </VueCol>
+        <VueCol
+          item-key="item"
+          :md="{ span: 6 }"
+        />
+        <VueCol
+          item-key="item"
+          :md="{ span: 6 }"
+        />
+      </VueRow>
+    </VuePanel>
+    <VuePanel id="viy2Panel_MXmeg" ref="viy2Panel_MXmeg" title="発注" :collapse="true">
+      <VueRow
+        id="viy2Row_7NcS2V"
+        ref="viy2Row_7NcS2V"
+      >
+        <VueCol
+          item-key="item"
+          :md="{ span: 6 }"
+        >
+          <VueFormItem
+            label="発注点"
+            label-width="160px"
+            prop="ROP"
+          >
+            <VueInput
+              id="viy2InputBox_7NcS2W"
+              ref="viy2InputBox_7NcS2W"
+              v-model="formData.ROP"
+              :disabled="true"
+            />
+          </VueFormItem>
+        </VueCol>
+        <VueCol
+          item-key="item"
+          :md="{ span: 6 }"
+        >
+          <VueFormItem
+            label="発注量"
+            label-width="160px"
+            prop="ROQ"
+          >
+            <VueInput
+              id="viy2InputBox_7NcS39"
+              ref="viy2InputBox_7NcS39"
+              v-model="formData.ROQ"
+              :disabled="true"
+            />
+          </VueFormItem>
+        </VueCol>
+        <VueCol
+          item-key="item"
+          :md="{ span: 6 }"
+        >
+          <VueFormItem
+            label="点量対象"
+            label-width="160px"
+            prop="chainFlag"
+          >
+            <VueRadioGroup
+              id="viy2Radio_7NcS3c"
+              ref="viy2Radio_7NcS3c"
+              v-model="formData.chainFlag"
+              radio-style="button"
+              direction="horizontal"
+              :disabled="true"
+              split-size="default"
+            >
+              <VueRadioButton
+                v-for="option in viy2Radio_7NcS3cOpts"
+                :key="option.value"
+                :label="option.value"
+              >
+                {{ option.label }}
+              </VueRadioButton>
+            </VueRadioGroup>
+          </VueFormItem>
+        </VueCol>
+        <VueCol
+          item-key="item"
+          :md="{ span: 6 }"
+        >
+          <VueFormItem
+            label="CU分類"
+            label-width="160px"
+            prop="CU"
+          >
+            <VueInput
+              id="viy2InputBox_1fW4IuO"
+              ref="viy2InputBox_1fW4IuO"
+              v-model="formData.CU"
+              :disabled="true"
             />
           </VueFormItem>
         </VueCol>
