@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 import { merge } from 'lodash-es';
 import { useApi } from '@/composables/useApi';
+import { customer_column, customer_query_method } from '@/settings/valuelistSetting.js';
 import { PAGE_SIZE } from '@/constants/pj-constants.js';
 import { formatPartNo, formatPrice, formatQty } from '@/pj-commonutils.js';
 const { t } = useI18n();
@@ -39,9 +40,13 @@ const viy2DateTimePicker_hFmWWz = ref();
 const viy2Button_hFmWWA = ref();
 const viy2Button_hFmWWB = ref();
 const viy2CheckBox_68qGMM = ref();
+const viy2ValueList_1GTRdhc = ref();
+const viy2ValueList_slGns = ref();
 const viy2Select_1rPSyEH = ref();
-const viy2ValueList_sloqw2 = ref();
 const viy2Cascader_87KXO = ref();
+const viy2ValueList_sloqw2 = ref();
+const viy2ValueList_8ySx1S = ref();
+const viy2InputBox_R60Yq = ref();
 const viy2Select_5RhhYM = ref();
 const viy2Flex_peAv1 = ref();
 const viy2Panel_2U2iU1 = ref();
@@ -53,7 +58,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  dateFrom: '', dateTo: '', orderType: ['通常'], status: ['1', '2', '3'], parts: '', productCategory: [], warnType: '',
+  dateFrom: '', dateTo: '', orderType: ['通常'], customer: '', deliveryAddress: '', status: ['1', '2', '3'], productCategory: [], orderPartsNo: '', allocatePartsNo: '', datafieldviy2InputBox_R60Yq: '', warnType: '',
 });
 const rules = reactive({
   viy2DateTimePicker_hFmWWxRules: [
@@ -95,6 +100,7 @@ const viy2CheckBox_68qGMMOpts = [
 '廃却',
   },
 ];
+const viy2ValueList_1GTRdhcPopoverQueryMethod = customer_query_method;
 const viy2Select_1rPSyEHOpts = reactive([
   {
     codeData1:
@@ -265,6 +271,20 @@ const viy2Button_hFmWWBClick = () => {
   queryFormData.dateFrom = firstDay;
   queryFormData.dateTo = lastDay;
 };
+const viy2ValueList_1GTRdhcSelect = (params) => {
+  queryFormData.customerId = params.id;
+};
+const viy2ValueList_1GTRdhcClear = () => {
+  queryFormData.customerId = '';
+};
+const viy2ValueList_1GTRdhcLeave = (obj) => {
+  if (obj.currentValue != obj.lastSelectedValue) {
+    queryFormData.customerId = '';
+  }
+};
+const viy2ValueList_1GTRdhcPopoverColumns = computed(() => {
+  return customer_column;
+});
 const viy2Button_5heur2Click = () => {
   exportBtn();
 };
@@ -287,6 +307,16 @@ const gridCustomerCdEditRender = computed(() => {
   };
 });
 const gridCustomerNmEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridDeliveryAddressEditRender = computed(() => {
+  return {
+    enabled: false,
+  };
+});
+const gridDeliveryAddressNmEditRender = computed(() => {
   return {
     enabled: false,
   };
@@ -605,6 +635,41 @@ const onLeavePartsCode = async (code) => {
                 </VueCheckboxGroup>
               </VueFormItem>
               <VueFormItem
+                label="受注先"
+                prop="customer"
+              >
+                <VueValueList
+                  id="viy2ValueList_1GTRdhc"
+                  ref="viy2ValueList_1GTRdhc"
+                  :popover-component="valulistWin"
+                  v-model="queryFormData.customer"
+                  :use-common-popover="true"
+                  :toggle-popover-on-click="true"
+                  select-field="desc"
+                  :use-popover="true"
+                  :popover-width="500"
+                  :use-popup="false"
+                  width="250px"
+                  :popover-columns="viy2ValueList_1GTRdhcPopoverColumns"
+                  :popover-query-method="viy2ValueList_1GTRdhcPopoverQueryMethod"
+                  @select="viy2ValueList_1GTRdhcSelect"
+                  @clear="viy2ValueList_1GTRdhcClear"
+                  @leave="viy2ValueList_1GTRdhcLeave"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="出荷先"
+                prop="deliveryAddress"
+              >
+                <VueValueList
+                  id="viy2ValueList_slGns"
+                  ref="viy2ValueList_slGns"
+                  v-model="queryFormData.deliveryAddress"
+                  :use-popover="true"
+                  width="200px"
+                />
+              </VueFormItem>
+              <VueFormItem
                 label="受注状態"
                 prop="status"
               >
@@ -627,18 +692,6 @@ const onLeavePartsCode = async (code) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="部品"
-                prop="parts"
-              >
-                <VueValueList
-                  id="viy2ValueList_sloqw2"
-                  ref="viy2ValueList_sloqw2"
-                  v-model="queryFormData.parts"
-                  :use-popover="true"
-                  width="300px"
-                />
-              </VueFormItem>
-              <VueFormItem
                 label="商品区分"
                 prop="productCategory"
               >
@@ -650,6 +703,41 @@ const onLeavePartsCode = async (code) => {
                   :style="{ width: '200px' }"
                   :options="largeGroupDs"
                   :props="viy2Cascader_87KXOProps"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="受注番号部品"
+                prop="orderPartsNo"
+              >
+                <VueValueList
+                  id="viy2ValueList_sloqw2"
+                  ref="viy2ValueList_sloqw2"
+                  v-model="queryFormData.orderPartsNo"
+                  :use-popover="true"
+                  width="200px"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="引当部品番号"
+                prop="allocatePartsNo"
+              >
+                <VueValueList
+                  id="viy2ValueList_8ySx1S"
+                  ref="viy2ValueList_8ySx1S"
+                  v-model="queryFormData.allocatePartsNo"
+                  :use-popover="true"
+                  width="200px"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="中5コード"
+                prop="datafieldviy2InputBox_R60Yq"
+              >
+                <VueInput
+                  id="viy2InputBox_R60Yq"
+                  ref="viy2InputBox_R60Yq"
+                  v-model="queryFormData.datafieldviy2InputBox_R60Yq"
+                  :style="{ width: '100px' }"
                 />
               </VueFormItem>
               <VueFormItem
@@ -742,6 +830,23 @@ const onLeavePartsCode = async (code) => {
               show-overflow="tooltip"
               :sortable="true"
               title="受注先名称"
+              width="135px"
+            />
+            <VueInputColumn
+              :edit-render="gridDeliveryAddressEditRender"
+              field="deliveryAddress"
+              show-overflow="tooltip"
+              :sortable="true"
+              footer-align="right"
+              title="出荷先"
+              width="135px"
+            />
+            <VueInputColumn
+              :edit-render="gridDeliveryAddressNmEditRender"
+              field="deliveryAddressNm"
+              show-overflow="tooltip"
+              :sortable="true"
+              title="出荷先名称"
               width="135px"
             />
             <VueInputColumn
