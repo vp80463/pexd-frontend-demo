@@ -89,9 +89,9 @@ const viy2CheckBox_sbEgCOpts = [
   },
   {
     label:
-'出荷完了',
+'出荷済み',
     value:
-'出荷完了',
+'出荷済み',
   },
 ];
 const gridEditConfig = reactive({
