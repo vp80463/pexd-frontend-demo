@@ -56,7 +56,7 @@ const viy2Subpage_RoWUZ = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  duNo: '', dateFrom: '', dateTo: '', customer: '', transactionType: '', datafieldviy2CheckBox_sbEgC: ['ピッキング待ち'], pointId: '',
+  duNo: '', dateFrom: '', dateTo: '', customer: '', transactionType: '', datafieldviy2CheckBox_sbEgC: ['出荷待ち'], pointId: '',
 });
 const rules = reactive({
   dateFromRules: [
@@ -83,9 +83,9 @@ const viy2ValueList_4xOiLaPopoverQueryMethod = customer_query_method;
 const viy2CheckBox_sbEgCOpts = [
   {
     label:
-'ピッキング待ち',
+'出荷待ち',
     value:
-'ピッキング待ち',
+'出荷待ち',
   },
   {
     label:
