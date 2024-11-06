@@ -142,6 +142,25 @@ const findStockAccountListApi = useApi({
   manual: true,
 });
 const findStockAccountList = findStockAccountListApi.data;
+const staticDsApi = useApi({
+  method: 'post',
+  localData: [
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '0', largeGroupName: 'Ｍ／Ｃ部品', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '2', largeGroupName: '特記', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '7', largeGroupName: '船外機', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '8', largeGroupName: 'マリン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'C', largeGroupName: 'ヘルメット', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'D', largeGroupName: 'アパレル', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'H', largeGroupName: 'ボルトオン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'L', largeGroupName: 'オイル', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'M', largeGroupName: '消耗品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'Q', largeGroupName: 'M／C仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'R', largeGroupName: 'マリン用品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'A', salesStore: '36944', salesStoreNm: 'SalesA', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'Y', largeGroupName: 'マリン仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { tagetMonth: '1', group: 'B', salesStore: '37000', salesStoreNm: 'SalesA', productType: '--その他計--', retestTotal: '--その他計--', largeCategory: 'Z', largeGroupName: 'その他', lastYearAP: 10000, currentMonthPlan: 1000, currentMonthAP: 920, currentMonthUpRate: '-8%', salesPlanGap: 80, planRate: '2%' },
+  ],
+});
+const staticDs = staticDsApi.data;
 const pcTypeDsApi = useApi({
   method: 'post',
   localData: [
@@ -267,10 +286,10 @@ const viy2Button_5heur2Click = () => {
 const gridCellDblclick = (row) => {
   skipToDetail(row);
 };
-const gridSalesStoredFormatter = (row, columnConfig, cellValue) => {
+const gridTagetMonthFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
-const gridSalesStoredEditRender = computed(() => {
+const gridTagetMonthEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -278,9 +297,6 @@ const gridSalesStoredEditRender = computed(() => {
     },
   };
 });
-const gridGroupFormatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
 const gridGroupEditRender = computed(() => {
   return {
     enabled: false,
@@ -300,9 +316,6 @@ const gridSalesStoreEditRender = computed(() => {
     },
   };
 });
-const gridSalesStoreNmFormatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
 const gridSalesStoreNmEditRender = computed(() => {
   return {
     enabled: false,
@@ -311,9 +324,6 @@ const gridSalesStoreNmEditRender = computed(() => {
     },
   };
 });
-const gridLargeCategoryFormatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
 const gridLargeCategoryEditRender = computed(() => {
   return {
     enabled: false,
@@ -327,10 +337,7 @@ const gridLargeGroupNameEditRender = computed(() => {
     enabled: false,
   };
 });
-const gridT15Formatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
-const gridT15EditRender = computed(() => {
+const gridLastYearAPEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -338,10 +345,10 @@ const gridT15EditRender = computed(() => {
     },
   };
 });
-const gridT14Formatter = (row, columnConfig, cellValue) => {
+const gridCurrentMonthPlanFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
-const gridT14EditRender = computed(() => {
+const gridCurrentMonthPlanEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -349,10 +356,10 @@ const gridT14EditRender = computed(() => {
     },
   };
 });
-const gridT13Formatter = (row, columnConfig, cellValue) => {
+const gridCurrentMonthAPFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
-const gridT13EditRender = computed(() => {
+const gridCurrentMonthAPEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -360,10 +367,7 @@ const gridT13EditRender = computed(() => {
     },
   };
 });
-const gridT18Formatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
-const gridT18EditRender = computed(() => {
+const gridCurrentMonthUpRateEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -371,10 +375,10 @@ const gridT18EditRender = computed(() => {
     },
   };
 });
-const gridT17Formatter = (row, columnConfig, cellValue) => {
+const gridSalesPlanGapFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
-const gridT17EditRender = computed(() => {
+const gridSalesPlanGapEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -382,10 +386,7 @@ const gridT17EditRender = computed(() => {
     },
   };
 });
-const gridT12Formatter = (row, columnConfig, cellValue) => {
-  return formatAmount(row.cellValue);
-};
-const gridT12EditRender = computed(() => {
+const gridPlanRateEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -438,6 +439,16 @@ const skipToDetail = (row) => {
   useMultiTags().getTag({ name: 'spq0508_02' }).meta.title = t('menu.SPQ0508_02');
   // router导航到页面并传递参数
   router.push({ name: 'spq0508_02', data: query });
+};
+const customSubTotal = ({ data, field }) => {
+  const currentMonthPlaSum = data.reduce((accumulator, current) => {
+    return accumulator + current.currentMonthPlan;
+  }, 0);
+  const currentMonthAPSum = data.reduce((accumulator, current) => {
+    return accumulator + current.currentMonthAP;
+  }, 0);
+  debugger;
+  return `${(currentMonthAPSum / currentMonthPlaSum * 100).toFixed(2)}%`;
 };
 </script>
 
@@ -576,7 +587,7 @@ const skipToDetail = (row) => {
             style="height:100%;"
             :model="viy2Form_IZmIkData"
           >
-            <VueTable id="grid" ref="grid" header-align="center" :show-footer="true" height="100%" :data="findStockAccountList" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
+            <VueTable id="grid" ref="grid" header-align="center" :group-config="[{ subtotal: { productType: 'group', planRate: customSubTotal, lastYearAP: 'sum', currentMonthPlan: 'sum', currentMonthAP: 'sum', salesPlanGap: 'sum' }, label: { largeGroupName: '', suffix: true } }]" :show-footer="true" height="100%" :data="staticDs" :edit-config="gridEditConfig" :mouse-config="gridMouseConfig" @cell-dblclick="gridCellDblclick">
               <VueRow
                 id="viy2Row_7fBlfh"
                 ref="viy2Row_7fBlfh"
@@ -597,9 +608,9 @@ const skipToDetail = (row) => {
                 :title="t('label.seqNo')"
               />
               <VueNumberColumn
-                :formatter="gridSalesStoredFormatter"
-                :edit-render="gridSalesStoredEditRender"
-                field="salesStored"
+                :formatter="gridTagetMonthFormatter"
+                :edit-render="gridTagetMonthEditRender"
+                field="tagetMonth"
                 align="right"
                 footer-align="right"
                 :sortable="true"
@@ -608,7 +619,6 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridGroupFormatter"
                 :edit-render="gridGroupEditRender"
                 field="group"
                 align="right"
@@ -632,7 +642,6 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridSalesStoreNmFormatter"
                 :edit-render="gridSalesStoreNmEditRender"
                 field="salesStoreNm"
                 align="right"
@@ -644,7 +653,6 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridLargeCategoryFormatter"
                 :edit-render="gridLargeCategoryEditRender"
                 field="largeCategory"
                 align="right"
@@ -666,9 +674,8 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridT15Formatter"
-                :edit-render="gridT15EditRender"
-                field="t15"
+                :edit-render="gridLastYearAPEditRender"
+                field="lastYearAP"
                 align="right"
                 aggregate="sum"
                 footer-align="right"
@@ -678,9 +685,9 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridT14Formatter"
-                :edit-render="gridT14EditRender"
-                field="t14"
+                :formatter="gridCurrentMonthPlanFormatter"
+                :edit-render="gridCurrentMonthPlanEditRender"
+                field="currentMonthPlan"
                 align="right"
                 aggregate="sum"
                 footer-align="right"
@@ -690,9 +697,9 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridT13Formatter"
-                :edit-render="gridT13EditRender"
-                field="t13"
+                :formatter="gridCurrentMonthAPFormatter"
+                :edit-render="gridCurrentMonthAPEditRender"
+                field="currentMonthAP"
                 align="right"
                 aggregate="sum"
                 footer-align="right"
@@ -702,9 +709,8 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridT18Formatter"
-                :edit-render="gridT18EditRender"
-                field="t18"
+                :edit-render="gridCurrentMonthUpRateEditRender"
+                field="currentMonthUpRate"
                 align="right"
                 footer-align="right"
                 :sortable="true"
@@ -713,9 +719,9 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridT17Formatter"
-                :edit-render="gridT17EditRender"
-                field="t17"
+                :formatter="gridSalesPlanGapFormatter"
+                :edit-render="gridSalesPlanGapEditRender"
+                field="salesPlanGap"
                 align="right"
                 aggregate="sum"
                 footer-align="right"
@@ -725,9 +731,8 @@ const skipToDetail = (row) => {
                 header-align="center"
               />
               <VueNumberColumn
-                :formatter="gridT12Formatter"
-                :edit-render="gridT12EditRender"
-                field="t12"
+                :edit-render="gridPlanRateEditRender"
+                field="planRate"
                 align="right"
                 footer-align="right"
                 :sortable="true"
