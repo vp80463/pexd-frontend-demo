@@ -706,7 +706,7 @@ const onLeavePartsCode = async (code) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="受注番号部品"
+                label="受注部品番号"
                 prop="orderPartsNo"
               >
                 <VueValueList
