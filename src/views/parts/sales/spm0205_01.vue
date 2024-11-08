@@ -215,7 +215,7 @@ const onDelRow = (row) => {
               :md="{ span: 8 }"
             >
               <VueText id="viy2Text_gsOPp" ref="viy2Text_gsOPp" :style="{ width: '100%', display: 'inline-block' }">
-                ※優先度：0が一番高いです、9が一番低いです。
+                ※優先度：1が一番高いです、9が一番低いです。
               </VueText>
             </VueCol>
           </VueRow>
