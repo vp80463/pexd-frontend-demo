@@ -175,32 +175,32 @@ const findStockAccountList = findStockAccountListApi.data;
 const staticDsApi = useApi({
   method: 'post',
   localData: [
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '0', largeGroupName: 'Ｍ／Ｃ部品', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '2', largeGroupName: '特記', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '7', largeGroupName: '船外機', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '8', largeGroupName: 'マリン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'C', largeGroupName: 'ヘルメット', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'D', largeGroupName: 'アパレル', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'H', largeGroupName: 'ボルトオン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'L', largeGroupName: 'オイル', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'M', largeGroupName: '消耗品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'Q', largeGroupName: 'M／C仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'R', largeGroupName: 'マリン用品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'Y', largeGroupName: 'マリン仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--その他計--', retestTotal: '--その他計--', largeCategory: 'Z', largeGroupName: 'その他', lastYearAP: 10000, currentMonthPlan: 1000, currentMonthAP: 920, currentMonthUpRate: '-8%', salesPlanGap: 80, planRate: '2%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '0', largeGroupName: 'Ｍ／Ｃ部品', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '2', largeGroupName: '特記', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '7', largeGroupName: '船外機', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '8', largeGroupName: 'マリン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'C', largeGroupName: 'ヘルメット', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'D', largeGroupName: 'アパレル', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'H', largeGroupName: 'ボルトオン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'L', largeGroupName: 'オイル', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'M', largeGroupName: '消耗品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'Q', largeGroupName: 'M／C仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'R', largeGroupName: 'マリン用品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'Y', largeGroupName: 'マリン仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
-    { sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--その他計--', retestTotal: '--その他計--', largeCategory: 'Z', largeGroupName: 'その他', lastYearAP: 10000, currentMonthPlan: 1000, currentMonthAP: 920, currentMonthUpRate: '-8%', salesPlanGap: 80, planRate: '2%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '0', largeGroupName: 'Ｍ／Ｃ部品', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '2', largeGroupName: '特記', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '7', largeGroupName: '船外機', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '8', largeGroupName: 'マリン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'C', largeGroupName: 'ヘルメット', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'D', largeGroupName: 'アパレル', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'H', largeGroupName: 'ボルトオン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'L', largeGroupName: 'オイル', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'M', largeGroupName: '消耗品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'Q', largeGroupName: 'M／C仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'R', largeGroupName: 'マリン用品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'Y', largeGroupName: 'マリン仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36944', salesStoreNm: 'SalesA', productType: '--その他計--', retestTotal: '--その他計--', largeCategory: 'Z', largeGroupName: 'その他', lastYearAP: 10000, currentMonthPlan: 1000, currentMonthAP: 920, currentMonthUpRate: '-8%', salesPlanGap: 80, planRate: '2%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '0', largeGroupName: 'Ｍ／Ｃ部品', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
+    { group: '12:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '2', largeGroupName: '特記', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
+    { group: '13:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '7', largeGroupName: '船外機', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '14:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--部品計--', retestTotal: '--部品計--', largeCategory: '8', largeGroupName: 'マリン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'C', largeGroupName: 'ヘルメット', lastYearAP: 30000, currentMonthPlan: 3000, currentMonthAP: 430, currentMonthUpRate: '30%', salesPlanGap: 2570, planRate: '14.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'D', largeGroupName: 'アパレル', lastYearAP: 26000, currentMonthPlan: 2000, currentMonthAP: 620, currentMonthUpRate: '10%', salesPlanGap: 1180, planRate: '28.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'H', largeGroupName: 'ボルトオン', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'L', largeGroupName: 'オイル', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'M', largeGroupName: '消耗品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--M/C用品計--', retestTotal: '用品計', largeCategory: 'Q', largeGroupName: 'M／C仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'R', largeGroupName: 'マリン用品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--マリン用品計--', retestTotal: '用品計', largeCategory: 'Y', largeGroupName: 'マリン仕入品', lastYearAP: 39000, currentMonthPlan: 4000, currentMonthAP: 1200, currentMonthUpRate: '20%', salesPlanGap: 2800, planRate: '32.3%' },
+    { group: '11:GroupA', sumFlag: false, salesStore: '36945', salesStoreNm: 'SalesB', productType: '--その他計--', retestTotal: '--その他計--', largeCategory: 'Z', largeGroupName: 'その他', lastYearAP: 10000, currentMonthPlan: 1000, currentMonthAP: 920, currentMonthUpRate: '-8%', salesPlanGap: 80, planRate: '2%' },
   ],
 });
 const staticDs = staticDsApi.data;
@@ -345,14 +345,6 @@ const gridSalesStoreFormatter = (row, columnConfig, cellValue) => {
   return formatAmount(row.cellValue);
 };
 const gridSalesStoreEditRender = computed(() => {
-  return {
-    enabled: false,
-    attrs: {
-      textAlign: 'right',
-    },
-  };
-});
-const gridSalesStoreNmEditRender = computed(() => {
   return {
     enabled: false,
     attrs: {
@@ -643,7 +635,6 @@ const cellStyle = ({ row, column }) => {
                 align="right"
                 footer-align="right"
                 :visible="groupShow"
-                :rowspan="true"
                 :sortable="true"
                 width="200px"
                 title="グルーブ"
@@ -659,17 +650,6 @@ const cellStyle = ({ row, column }) => {
                 :sortable="true"
                 width="200px"
                 :title="t('label.salesStore')"
-                header-align="center"
-              />
-              <VueNumberColumn
-                :edit-render="gridSalesStoreNmEditRender"
-                field="salesStoreNm"
-                align="right"
-                footer-align="right"
-                :visible="salesShow"
-                :sortable="true"
-                width="200px"
-                :title="t('label.salesStoreNm')"
                 header-align="center"
               />
               <VueNumberColumn
