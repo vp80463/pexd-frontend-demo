@@ -29,6 +29,7 @@ const resetBtn = ref();
 const viy2Row_4Hp8hY = ref();
 const viy2ValueList_OqyCL = ref();
 const viy2InputBox_7PsTYg = ref();
+const viy2InputBox_4aIRxc = ref();
 const viy2Radio_Okggq = ref();
 const viy2Radio_2xlyyA = ref();
 const viy2Flex_LUasz = ref();
@@ -59,7 +60,7 @@ const asideGrid = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  shop: '', rank: '', stopshipflag: 'する', activeStatus: '有効',
+  shop: '', abbr: '', rank: '', stopshipflag: 'する', activeStatus: '有効',
 });
 const viy2Form_MFuoeData = reactive({
   orgCd: '01234', orgAbbr: '特金製造', attribute: '内部課', orgRequestCd: '01234', stopFlag: [], orgNm: '特金製造株式会社', orgNm: '特金製造', shipflag: 'する', status: '有効',
@@ -610,12 +611,22 @@ const isNewInput = (value) => {
                 />
               </VueFormItem>
               <VueFormItem
-                label="純掛掛率ランク"
-                prop="rank"
+                label="漢字略称"
+                prop="abbr"
               >
                 <VueInput
                   id="viy2InputBox_7PsTYg"
                   ref="viy2InputBox_7PsTYg"
+                  v-model="queryFormData.abbr"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="純掛掛率ランク"
+                prop="rank"
+              >
+                <VueInput
+                  id="viy2InputBox_4aIRxc"
+                  ref="viy2InputBox_4aIRxc"
                   v-model="queryFormData.rank"
                 />
               </VueFormItem>

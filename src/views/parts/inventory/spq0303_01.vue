@@ -33,7 +33,10 @@ const Parts = ref();
 const viy2Row_1Ms8Aa = ref();
 const viy2Select_Tf6ne = ref();
 const viy2Cascader_qHUEk = ref();
+const viy2Radio_v6BkH = ref();
+const viy2InputBox_v5W8c = ref();
 const viy2Cascader_3OfGH = ref();
+const viy2InputNumber_v6c4v = ref();
 const viy2Flex_KcTfE = ref();
 const viy2Panel_gTNDt = ref();
 const viy2Button_ggxbK = ref();
@@ -47,7 +50,7 @@ const pagination = ref();
 const formData = reactive({
 });
 const queryFormData = reactive({
-  pointId: '', parts: '', partsTest: [], productCategory: [], Groupcd: [],
+  pointId: '', parts: '', partsTest: [], productCategory: [], datafieldviy2Radio_v6BkH: '自拠点', partsNo: '', Groupcd: [], onhandqty: 0,
 });
 const rules = reactive({
   viy2Select_1rPSyEHRules: [
@@ -102,6 +105,10 @@ const viy2Cascader_qHUEkProps = reactive({
   checkStrictly: true,
   expandTrigger: 'click',
 });
+const viy2Radio_v6BkHOpts = reactive([
+  { value: '自拠点', label: '自拠点' },
+  { value: '全拠点', label: '全拠点' },
+]);
 const viy2Cascader_3OfGHProps = reactive({
   checkStrictly: true,
 });
@@ -818,6 +825,7 @@ const onLeavePartsCode = async (code) => {
                 </VueValueList>
               </VueFormItem>
               <VueFormItem
+                v-if="false"
                 label="部品"
                 prop="partsTest"
               >
@@ -848,6 +856,38 @@ const onLeavePartsCode = async (code) => {
                 />
               </VueFormItem>
               <VueFormItem
+                v-if="false"
+                prop="datafieldviy2Radio_v6BkH"
+              >
+                <VueRadioGroup
+                  id="viy2Radio_v6BkH"
+                  ref="viy2Radio_v6BkH"
+                  v-model="queryFormData.datafieldviy2Radio_v6BkH"
+                  radio-style="button"
+                  direction="horizontal"
+                  split-size="default"
+                >
+                  <VueRadioButton
+                    v-for="option in viy2Radio_v6BkHOpts"
+                    :key="option.value"
+                    :label="option.value"
+                  >
+                    {{ option.label }}
+                  </VueRadioButton>
+                </VueRadioGroup>
+              </VueFormItem>
+              <VueFormItem
+                label="部品番号"
+                prop="partsNo"
+              >
+                <VueInput
+                  id="viy2InputBox_v5W8c"
+                  ref="viy2InputBox_v5W8c"
+                  v-model="queryFormData.partsNo"
+                  :style="{ width: '180px' }"
+                />
+              </VueFormItem>
+              <VueFormItem
                 label="商品区分"
                 prop="Groupcd"
               >
@@ -857,6 +897,19 @@ const onLeavePartsCode = async (code) => {
                   v-model="queryFormData.Groupcd"
                   :options="groupDs"
                   :props="viy2Cascader_3OfGHProps"
+                />
+              </VueFormItem>
+              <VueFormItem
+                label="未引当在庫数"
+                prop="onhandqty"
+              >
+                <VueInputNumber
+                  id="viy2InputNumber_v6c4v"
+                  ref="viy2InputNumber_v6c4v"
+                  v-model="queryFormData.onhandqty"
+                  :min="0"
+                  :max="999"
+                  :style="{ width: '60px' }"
                 />
               </VueFormItem>
             </VueCol>
@@ -948,18 +1001,19 @@ const onLeavePartsCode = async (code) => {
               width="175px"
             />
             <VueNumberColumn
-              v-if="false"
+              v-if="true"
               :formatter="gridOnHandQtyFormatter"
               :edit-render="gridOnHandQtyEditRender"
               field="onHandQty"
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="有効在庫数"
+              title="未引当在庫数"
               width="130px"
               header-align="center"
             />
             <VueNumberColumn
+              v-if="false"
               :formatter="gridStockQtyFormatter"
               :edit-render="gridStockQtyEditRender"
               field="stockQty"
@@ -977,7 +1031,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="引当数"
+              title="引当中数"
               width="130px"
               header-align="center"
             />
@@ -999,7 +1053,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="受付中数"
+              title="入庫中数"
               width="150px"
               header-align="center"
             />
@@ -1011,7 +1065,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="ピック中数"
+              title="出庫中数"
               width="150px"
               header-align="center"
             />
@@ -1029,6 +1083,7 @@ const onLeavePartsCode = async (code) => {
               header-align="center"
             />
             <VueNumberColumn
+              v-if="false"
               :formatter="gridEoQtyFormatter"
               :edit-render="gridEoQtyEditRender"
               field="eoQty"
@@ -1048,7 +1103,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="通常発注中数"
+              title="発注残数"
               width="130px"
               header-align="center"
             />
@@ -1099,7 +1154,7 @@ const onLeavePartsCode = async (code) => {
               aggregate="sum"
               show-overflow="tooltip"
               :sortable="true"
-              title="凍結数"
+              title="保留中数"
               width="130px"
               header-align="center"
             />
@@ -1110,7 +1165,7 @@ const onLeavePartsCode = async (code) => {
               align="right"
               show-overflow="tooltip"
               :sortable="true"
-              title="平均原価"
+              title="移動平均原価"
               width="130px"
               header-align="center"
             />

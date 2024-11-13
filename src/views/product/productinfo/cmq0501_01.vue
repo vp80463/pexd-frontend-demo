@@ -16,10 +16,9 @@ defineOptions({
   name: 'cmq0501_01',
 });
 const form = ref();
-const viy2Row_10QMyC = ref();
+const viy2Panel_E6XQ4 = ref();
 const viy2Button_dZW0Q = ref();
 const resetBtn = ref();
-const viy2Panel_E6XQ4 = ref();
 const viy2Row_xChMPR = ref();
 const queryForm = ref();
 const viy2ValueList_hNGbc5 = ref();
@@ -41,7 +40,7 @@ const viy2InputBox_5uL33q = ref();
 const viy2InputBox_6tyCNc = ref();
 const viy2InputBox_6BXBos = ref();
 const viy2InputBox_5uQ7KS = ref();
-const viy2InputBox_6tyGvw = ref();
+const viy2InputBox_47AUGo = ref();
 const viy2InputBox_5uSpPA = ref();
 const viy2InputBox_5uL4NE = ref();
 const viy2InputNumber_8dyC6a = ref();
@@ -58,22 +57,25 @@ const viy2DateTimePicker_5k94S8 = ref();
 const viy2InputBox_5uQ6Ek = ref();
 const viy2Panel_oqx1Vg = ref();
 const viy2Row_6tnLXf = ref();
-const viy2InputNumber_6tnLXg = ref();
+const viy2InputNumber_476auw = ref();
 const viy2InputNumber_33tIpX = ref();
 const viy2DateTimePicker_6txCwS = ref();
 const viy2DateTimePicker_36taxO = ref();
 const viy2Panel_MXmeg = ref();
 const viy2Row_7NcS2V = ref();
-const viy2InputBox_7NcS2W = ref();
-const viy2InputBox_7NcS39 = ref();
+const viy2InputBox_6tyGvw = ref();
+const viy2InputBox_47Bi7C = ref();
+const viy2InputNumber_47m4Su = ref();
+const viy2InputNumber_6tnLXg = ref();
 const viy2Radio_7NcS3c = ref();
-const viy2InputBox_1fW4IuO = ref();
+const viy2InputBox_47CvUY = ref();
+const viy2InputNumber_47qgoa = ref();
 const viy2Panel_wZlWr = ref();
 const grid = ref();
 const viy2Row_AsHNi = ref();
 const viy2Row_y03H5 = ref();
 const formData = reactive({
-  partsCd: '24-M138-6005', partsNm: '', width: 10, volume: 2400, makerCd: '', falg2: 'する', falg4: 'する', minSaleSize: 0, partsNm: '', partsNm: '', height: 15, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', supplyManageType: '', partsNm: '', lastPart: '', weight: 40, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', falg１: 'する', lastPartNm: '', length: 16, partsNm: '', makerProductCd: '', registrationDate: '20241010', partsNm: '', stdRetailPrice: 0, stdRetailPriceold: 0, stdPriceUpdateDate: '20241010', stdPriceUpdateDateOld: '20231010', ROP: '', ROQ: '', chainFlag: 'する', CU: '',
+  partsCd: '24-M138-6005', partsNm: '', width: 10, volume: 2400, makerCd: '', falg2: 'する', falg4: 'する', minSaleSize: 0, partsNm: '', partsNm: '', height: 15, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', supplyManageType: '', partsNm: '', lastPart: '', weight: 40, partsNm: '', makerProductCd: '', partsNm: '', partsNm: '', falg１: 'する', lastPartNm: '', length: 16, partsNm: '', makerProductCd: '', registrationDate: '20241010', partsNm: '', stdRetailPrice: 0, stdRetailPriceold: 0, stdPriceUpdateDate: '20241010', stdPriceUpdateDateOld: '20231010', rop: '', roq: '', j1: 0, j2: 0, chainFlag: 'する', cu: '', averageCost: 0,
 });
 const queryFormData = reactive({
   parts: '',
@@ -92,7 +94,7 @@ const rules = reactive({
       message: t('error.invalid.compareNum', [t('label.STDRetailPrice')], '0'),
     },
   ],
-  viy2InputNumber_6tnLXgRules: [
+  viy2InputNumber_476auwRules: [
     {
       validator: validator.numberValue,
       minValue: 0,
@@ -100,6 +102,27 @@ const rules = reactive({
     },
   ],
   viy2InputNumber_33tIpXRules: [
+    {
+      validator: validator.numberValue,
+      minValue: 0,
+      message: t('error.invalid.compareNum', [t('label.STDRetailPrice')], '0'),
+    },
+  ],
+  viy2InputNumber_47m4SuRules: [
+    {
+      validator: validator.numberValue,
+      minValue: 0,
+      message: t('error.invalid.compareNum', [t('label.STDRetailPrice')], '0'),
+    },
+  ],
+  viy2InputNumber_6tnLXgRules: [
+    {
+      validator: validator.numberValue,
+      minValue: 0,
+      message: t('error.invalid.compareNum', [t('label.STDRetailPrice')], '0'),
+    },
+  ],
+  viy2InputNumber_47qgoaRules: [
     {
       validator: validator.numberValue,
       minValue: 0,
@@ -250,12 +273,27 @@ const viy2InputNumber_12GPGBFChange = (event) => {
     salesControlForm.stdRetailPrice = 0;
   }
 };
-const viy2InputNumber_6tnLXgChange = (event) => {
+const viy2InputNumber_476auwChange = (event) => {
   if (!salesControlForm.stdRetailPrice) {
     salesControlForm.stdRetailPrice = 0;
   }
 };
 const viy2InputNumber_33tIpXChange = (event) => {
+  if (!salesControlForm.stdRetailPrice) {
+    salesControlForm.stdRetailPrice = 0;
+  }
+};
+const viy2InputNumber_47m4SuChange = (event) => {
+  if (!salesControlForm.stdRetailPrice) {
+    salesControlForm.stdRetailPrice = 0;
+  }
+};
+const viy2InputNumber_6tnLXgChange = (event) => {
+  if (!salesControlForm.stdRetailPrice) {
+    salesControlForm.stdRetailPrice = 0;
+  }
+};
+const viy2InputNumber_47qgoaChange = (event) => {
   if (!salesControlForm.stdRetailPrice) {
     salesControlForm.stdRetailPrice = 0;
   }
@@ -400,32 +438,17 @@ const onLeavePartsCode = async (code) => {
 
 <template>
   <VueForm ref="form" v-loading="lockScreen" :model="formData">
-    <VueRow
-      id="viy2Row_10QMyC"
-      ref="viy2Row_10QMyC"
-      class="fixed-button-area"
-    >
-      <VueCol
-        item-key="item"
-        align="left"
-        :inline="true"
-        :md="{ span: 12 }"
-      />
-      <VueCol
-        item-key="item"
-        align="right"
-        :inline="true"
-        :md="{ span: 12 }"
-      >
-        <VueButton id="viy2Button_dZW0Q" ref="viy2Button_dZW0Q" :loading="false" icon-position="left" type="info" @click="viy2Button_dZW0QClick">
-          検索
-        </VueButton>
-        <VueButton id="resetBtn" ref="resetBtn" icon-position="left" @click="resetBtnClick">
-          クリア
-        </VueButton>
-      </VueCol>
-    </VueRow>
-    <VuePanel id="viy2Panel_E6XQ4" ref="viy2Panel_E6XQ4" title="検索条件" title-align="left" :collapse="true" class="margin-top-div except-height-css">
+    <VuePanel id="viy2Panel_E6XQ4" ref="viy2Panel_E6XQ4" title="検索条件" title-align="left" :collapse="true">
+      <template #header>
+        <div style="width: auto">
+          <VueButton id="viy2Button_dZW0Q" ref="viy2Button_dZW0Q" :loading="false" icon-position="left" type="info" @click="viy2Button_dZW0QClick">
+            検索
+          </VueButton>
+          <VueButton id="resetBtn" ref="resetBtn" icon-position="left" @click="resetBtnClick">
+            クリア
+          </VueButton>
+        </div>
+      </template>
       <VueRow
         id="viy2Row_xChMPR"
         ref="viy2Row_xChMPR"
@@ -745,8 +768,8 @@ const onLeavePartsCode = async (code) => {
             prop="supplyManageType"
           >
             <VueInput
-              id="viy2InputBox_6tyGvw"
-              ref="viy2InputBox_6tyGvw"
+              id="viy2InputBox_47AUGo"
+              ref="viy2InputBox_47AUGo"
               v-model="formData.supplyManageType"
               :readonly="true"
               class="no-border"
@@ -976,11 +999,11 @@ const onLeavePartsCode = async (code) => {
             label="標準小売単価"
             label-width="160px"
             prop="stdRetailPrice"
-            :rules="rules.viy2InputNumber_6tnLXgRules"
+            :rules="rules.viy2InputNumber_476auwRules"
           >
             <VueInputNumber
-              id="viy2InputNumber_6tnLXg"
-              ref="viy2InputNumber_6tnLXg"
+              id="viy2InputNumber_476auw"
+              ref="viy2InputNumber_476auw"
               v-model="formData.stdRetailPrice"
               :controls="false"
               text-align="right"
@@ -989,7 +1012,7 @@ const onLeavePartsCode = async (code) => {
               :precision="0"
               :use-separator="true"
               class="no-border"
-              @change="viy2InputNumber_6tnLXgChange"
+              @change="viy2InputNumber_476auwChange"
             />
           </VueFormItem>
           <VueFormItem
@@ -1070,13 +1093,27 @@ const onLeavePartsCode = async (code) => {
           <VueFormItem
             label="発注点"
             label-width="160px"
-            prop="ROP"
+            prop="rop"
           >
             <VueInput
-              id="viy2InputBox_7NcS2W"
-              ref="viy2InputBox_7NcS2W"
-              v-model="formData.ROP"
-              :disabled="true"
+              id="viy2InputBox_6tyGvw"
+              ref="viy2InputBox_6tyGvw"
+              v-model="formData.rop"
+              :readonly="true"
+              class="no-border"
+            />
+          </VueFormItem>
+          <VueFormItem
+            label="発注量"
+            label-width="160px"
+            prop="roq"
+          >
+            <VueInput
+              id="viy2InputBox_47Bi7C"
+              ref="viy2InputBox_47Bi7C"
+              v-model="formData.roq"
+              :readonly="true"
+              class="no-border"
             />
           </VueFormItem>
         </VueCol>
@@ -1085,15 +1122,43 @@ const onLeavePartsCode = async (code) => {
           :md="{ span: 6 }"
         >
           <VueFormItem
-            label="発注量"
+            label="J1"
             label-width="160px"
-            prop="ROQ"
+            prop="j1"
+            :rules="rules.viy2InputNumber_47m4SuRules"
           >
-            <VueInput
-              id="viy2InputBox_7NcS39"
-              ref="viy2InputBox_7NcS39"
-              v-model="formData.ROQ"
+            <VueInputNumber
+              id="viy2InputNumber_47m4Su"
+              ref="viy2InputNumber_47m4Su"
+              v-model="formData.j1"
+              :controls="false"
+              text-align="right"
               :disabled="true"
+              :min="0"
+              :precision="0"
+              :use-separator="true"
+              class="no-border"
+              @change="viy2InputNumber_47m4SuChange"
+            />
+          </VueFormItem>
+          <VueFormItem
+            label="J2"
+            label-width="160px"
+            prop="j2"
+            :rules="rules.viy2InputNumber_6tnLXgRules"
+          >
+            <VueInputNumber
+              id="viy2InputNumber_6tnLXg"
+              ref="viy2InputNumber_6tnLXg"
+              v-model="formData.j2"
+              :controls="false"
+              text-align="right"
+              :disabled="true"
+              :min="0"
+              :precision="0"
+              :use-separator="true"
+              class="no-border"
+              @change="viy2InputNumber_6tnLXgChange"
             />
           </VueFormItem>
         </VueCol>
@@ -1124,21 +1189,42 @@ const onLeavePartsCode = async (code) => {
               </VueRadioButton>
             </VueRadioGroup>
           </VueFormItem>
+          <VueFormItem
+            label="CU分類"
+            label-width="160px"
+            prop="cu"
+          >
+            <VueInput
+              id="viy2InputBox_47CvUY"
+              ref="viy2InputBox_47CvUY"
+              v-model="formData.cu"
+              :readonly="true"
+              class="no-border"
+            />
+          </VueFormItem>
         </VueCol>
         <VueCol
           item-key="item"
           :md="{ span: 6 }"
         >
           <VueFormItem
-            label="CU分類"
+            label="平均原価"
             label-width="160px"
-            prop="CU"
+            prop="averageCost"
+            :rules="rules.viy2InputNumber_47qgoaRules"
           >
-            <VueInput
-              id="viy2InputBox_1fW4IuO"
-              ref="viy2InputBox_1fW4IuO"
-              v-model="formData.CU"
+            <VueInputNumber
+              id="viy2InputNumber_47qgoa"
+              ref="viy2InputNumber_47qgoa"
+              v-model="formData.averageCost"
+              :controls="false"
+              text-align="right"
               :disabled="true"
+              :min="0"
+              :precision="0"
+              :use-separator="true"
+              class="no-border"
+              @change="viy2InputNumber_47qgoaChange"
             />
           </VueFormItem>
         </VueCol>
